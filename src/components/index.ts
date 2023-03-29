@@ -24,5 +24,7 @@ export { default as HighLight } from './HighLight/HighLight';
 
 export { default as Hint } from './Hint/Hint';
 
+export { default as FormFooter } from './FormFooter/FormFooter';
+
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Toast } from './Toast/Toast';

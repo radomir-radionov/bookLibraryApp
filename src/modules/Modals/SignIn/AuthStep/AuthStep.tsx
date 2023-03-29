@@ -7,21 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { authActions } from 'redux/auth';
 import { selectErrorStatus } from 'redux/auth/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Input, InputAuthPassword } from 'components';
+import { Button, FormFooter, Input, InputAuthPassword } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import schema from './schema';
-import {
-  AssistiveText,
-  BtnField,
-  ChevronRightIcon,
-  Form,
-  IconBox,
-  LinkStyled,
-  LoginInfo,
-  ModalStyled,
-  Title,
-} from './styles';
+import { AssistiveText, BtnField, Form, LinkStyled, ModalStyled, Title } from './styles';
 
 type FormValuesProps = {
   identifier: string;
@@ -71,17 +61,9 @@ const AuthStep = () => {
 
         <BtnField>
           <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
-            ВХОД
+            вход
           </Button>
-          <LoginInfo>
-            Нет учётной записи?
-            <LinkStyled to={pageRoutes.REGISTRATION}>
-              Регистрация
-              <IconBox>
-                <ChevronRightIcon />
-              </IconBox>
-            </LinkStyled>
-          </LoginInfo>
+          <FormFooter text='Нет учётной записи?' link={pageRoutes.REGISTRATION} linkText='Регистрация' />
         </BtnField>
       </Form>
     </ModalStyled>

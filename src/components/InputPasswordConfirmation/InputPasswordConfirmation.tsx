@@ -1,9 +1,9 @@
 import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
+import { RegExp } from 'constants/regExp';
 
 import { useEffect, useState } from 'react';
 import { Hint } from 'components';
-import { RegExp } from 'utils/regExp';
 
 import {
   ActionUnvisibleIcon,

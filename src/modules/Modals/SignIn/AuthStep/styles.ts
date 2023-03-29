@@ -79,29 +79,3 @@ export const BtnField = styled.div`
   gap: 16px;
   margin-top: 32px;
 `;
-
-export const LoginInfo = styled.p`
-  display: flex;
-  gap: 16px;
-  ${typography.desktop.BODY_LARGE};
-  color: ${colors.GREY_BLACK_70};
-
-  @media (max-width: ${device.tablet}) {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  @media (max-width: ${device.mobileL}) {
-    ${typography.mobile.BODY_LARGE};
-  }
-`;
-
-export const IconBox = styled.span`
-  display: flex;
-  align-items: center;
-`;
-
-export const ChevronRightIcon = styled(ChevronRight_Icon)`
-  position: relative;
-  bottom: 3px;
-`;

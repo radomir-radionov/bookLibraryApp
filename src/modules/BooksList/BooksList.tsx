@@ -26,8 +26,8 @@ const BooksList = ({ books, categories }: BooksListProps) => {
   const isSortByRating = useSelector(selectIsSortByRating);
   const isBooksLoading = useSelector(selectIsBooksLoading);
   const toastData = useSelector(selectToastData);
-  const [filtredBooks, setFiltredBooks] = useState(books);
   const { category = 'all' } = useParams();
+  const [filtredBooks, setFiltredBooks] = useState(books);
 
   const isToastData = Object.keys(toastData).length === 0;
 

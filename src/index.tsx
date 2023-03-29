@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+import { Loader, Toast } from 'components';
 import { Modal } from 'modules';
 import store from 'store';
 
@@ -14,9 +15,11 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
-        <GlobalStyles />
         <App />
+        <GlobalStyles />
         <Modal />
+        <Toast />
+        <Loader />
       </Provider>
     </HashRouter>
   </React.StrictMode>

@@ -8,18 +8,7 @@ import { selectUser } from 'redux/user/selectors';
 import { DefaultAvatarImg, LogoIcon } from 'assets';
 import { BurgerMenu, UserMenu } from 'modules';
 
-import {
-  Avatar,
-  Container,
-  Greetings,
-  HeaderStyled,
-  Img,
-  Logo,
-  LogoBox,
-  Profile,
-  Title,
-  UserMenuWrapper,
-} from './styles';
+import { Avatar, Greetings, HeaderStyled, Img, Logo, LogoBox, Profile, Title, UserMenuWrapper } from './styles';
 
 const Header = () => {
   const user = useSelector(selectUser);
@@ -32,26 +21,24 @@ const Header = () => {
 
   return (
     <HeaderStyled>
-      <Container>
-        <LogoBox>
-          <BurgerMenu />
-          <Logo onClick={clickLogo} src={LogoIcon} alt='Logo' />
-          <Title>Библиотека</Title>
-        </LogoBox>
-        <Profile onMouseEnter={handleMenuMouseEnter} onMouseLeave={handleMenuMouseLeave}>
-          <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
-          {user && user.avatar ? (
-            <Avatar img={`${serverEndpoints.HOST}${user.avatar}`} />
-          ) : (
-            <Img src={DefaultAvatarImg} alt='default-avatar' />
-          )}
-          {hovered && (
-            <UserMenuWrapper>
-              <UserMenu />
-            </UserMenuWrapper>
-          )}
-        </Profile>
-      </Container>
+      <LogoBox>
+        <BurgerMenu />
+        <Logo onClick={clickLogo} src={LogoIcon} alt='Logo' />
+        <Title>Библиотека</Title>
+      </LogoBox>
+      <Profile onMouseEnter={handleMenuMouseEnter} onMouseLeave={handleMenuMouseLeave}>
+        <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
+        {user && user.avatar ? (
+          <Avatar img={`${serverEndpoints.HOST}${user.avatar}`} />
+        ) : (
+          <Img src={DefaultAvatarImg} alt='default-avatar' />
+        )}
+        {hovered && (
+          <UserMenuWrapper>
+            <UserMenu />
+          </UserMenuWrapper>
+        )}
+      </Profile>
     </HeaderStyled>
   );
 };

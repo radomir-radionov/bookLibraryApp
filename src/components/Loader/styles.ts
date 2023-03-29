@@ -2,6 +2,8 @@ import { Loader_Icon } from 'assets';
 import styled from 'styled-components';
 import { device } from 'styles';
 
+export const Wrapper = styled.div``;
+
 export const LoaderStyled = styled.div`
   position: fixed;
   top: 0;
@@ -14,7 +16,7 @@ export const LoaderStyled = styled.div`
   backdrop-filter: blur(10px);
 `;
 
-export const Wrapper = styled.div`
+export const IconBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

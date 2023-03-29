@@ -3,8 +3,10 @@ import serverEndpoints from 'constants/apiEndpoints';
 import axios from 'axios';
 
 const $api = axios.create({
-  withCredentials: true,
   baseURL: serverEndpoints.HOST,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 $api.interceptors.request.use((config) => {

@@ -1,8 +1,8 @@
 import hintText from 'constants/hintText';
+import { RegExp } from 'constants/regExp';
 
 import { useEffect, useState } from 'react';
 import { Hint } from 'components';
-import { RegExp } from 'utils/regExp';
 
 import { HintWord, InputStyled, Label, LabelText, Wrapper } from './styles';
 import { IInputProps } from './types';

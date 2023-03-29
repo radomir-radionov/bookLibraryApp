@@ -7,13 +7,12 @@ export const LayoutStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  /* gap: 62px; */
 
   @media (max-width: ${device.laptopM}) {
-    /* gap: 54px; */
+    padding: 0 64px;
   }
 
   @media (max-width: ${device.tablet}) {
-    /* gap: 32px; */
+    padding: 0 24px;
   }
 `;

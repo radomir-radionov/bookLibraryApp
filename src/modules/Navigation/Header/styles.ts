@@ -6,32 +6,25 @@ type AvatarProps = {
 };
 
 export const HeaderStyled = styled.header`
+  position: relative;
   display: flex;
   justify-content: center;
+  max-width: 1100px;
   width: 100%;
+  padding: 40px 0 52px;
   transition: all 0.2s ease-out;
 
   button {
     margin-right: 10px;
   }
-`;
-
-export const Container = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 1100px;
-  width: 100%;
-  margin-bottom: 28px;
-  padding: 40px 0 24px;
 
   @media (max-width: ${device.laptopM}) {
     justify-content: space-between;
-    padding: 32px 64px 16px;
+    padding: 32px 0 48px;
   }
 
   @media (max-width: ${device.tablet}) {
-    padding: 16px;
+    padding: 16px 0 32px;
   }
 `;
 
@@ -47,6 +40,7 @@ export const HumburgerMenu = styled.div`
 export const LogoBox = styled.div`
   display: flex;
   align-items: center;
+  flex: 1;
   gap: 120px;
 
   @media (max-width: ${device.laptop}) {

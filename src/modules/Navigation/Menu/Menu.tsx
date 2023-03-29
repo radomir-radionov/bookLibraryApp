@@ -1,7 +1,9 @@
 import pageRoutes from 'constants/pageRoutes';
 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { displayingContentActions } from 'redux/displayingContent';
 import { CategoriesList } from 'components';
 
 import { ChevronIcon, Line, MenuItem, MenuList, MenuStyled, Name, NavLinkStyled } from './styles';
@@ -14,9 +16,10 @@ type MenuProps = {
 };
 
 const Menu = ({ visible = false, dataTestIds }: MenuProps) => {
-  const [isBooksList, setBooksList] = useState(true);
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const [isBooksList, setBooksList] = useState(true);
 
   const bookParam = location.pathname.split('/')[1];
   const categoryParam = location.pathname.split('/')[2];
@@ -26,7 +29,10 @@ const Menu = ({ visible = false, dataTestIds }: MenuProps) => {
     navigate('/books/all');
   };
 
-  const clickCloseList = () => setBooksList(false);
+  const clickCloseList = () => {
+    setBooksList(false);
+    dispatch(displayingContentActions.setBurgerMenuOpen());
+  };
 
   return (
     <MenuStyled $visible={visible}>

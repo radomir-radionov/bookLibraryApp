@@ -4,34 +4,18 @@ import { colors, device } from 'styles';
 export const FooterStyled = styled.footer`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   max-width: 1100px;
   width: 100%;
-  padding-bottom: 16px;
-
-  @media (max-width: ${device.laptopM}) {
-    padding: 16px 64px;
-  }
+  padding: 16px 0;
+  border-top: 1px solid ${colors.GREY_BLACK_20};
 
   @media (max-width: ${device.tablet}) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    padding: 0 16px 10px;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding-top: 16px;
-  border-top: 1px solid ${colors.GREY_BLACK_20};
-
-  @media (max-width: ${device.tabletM}) {
-    flex-direction: column;
   }
 `;
 

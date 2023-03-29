@@ -5,23 +5,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registrationActions } from 'redux/registration';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, InputEmail, InputPhone } from 'components';
+import { Button, FormFooter, InputEmail, InputPhone } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import schema from './schema';
-import {
-  BtnField,
-  ChevronRightIcon,
-  Form,
-  IconBox,
-  InputFields,
-  LinkStyled,
-  LoginInfo,
-  ModalStyled,
-  StepText,
-  Title,
-  TitleBox,
-} from './styles';
+import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
 
 type FormValuesProps = {
   phone: string;
@@ -66,15 +54,7 @@ const ContactStep = () => {
           <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
             зарегистрироваться
           </Button>
-          <LoginInfo>
-            Есть учётная запись?
-            <LinkStyled to={pageRoutes.AUTH}>
-              войти
-              <IconBox>
-                <ChevronRightIcon />
-              </IconBox>
-            </LinkStyled>
-          </LoginInfo>
+          <FormFooter text=' Есть учётная запись?' link={pageRoutes.AUTH} linkText='войти' />
         </BtnField>
       </Form>
     </ModalStyled>

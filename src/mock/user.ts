@@ -1,0 +1,22 @@
+export const user = {
+  avatar: '/uploads/istockphoto_1163467378_170667a_edd29de490.jpg',
+  blocked: false,
+  booking: { id: null, order: null, dateOrder: null, book: null },
+  comments: [
+    { id: 1400, rating: 2, text: 'ggfhg', bookId: 52 },
+    { id: 1412, rating: 4, text: 'fgghgf', bookId: 34 },
+    { id: 1428, rating: 4, text: 'Читабельно1', bookId: 23 },
+  ],
+  confirmed: true,
+  createdAt: '2023-03-23T10:09:09.758Z',
+  delivery: { id: null, handed: null, dateHandedFrom: null, dateHandedTo: null, book: null },
+  email: 'errrrrrrrrg11@gmail.com',
+  firstName: '1gsdgdg',
+  history: { id: null, books: null },
+  id: 1068,
+  lastName: '1',
+  phone: '+375 (44) 111-11-11',
+  role: { id: 1, name: 'User', description: 'Default role given to authenticated user.', type: 'authenticated' },
+  updatedAt: '2023-03-28T18:31:16.248Z',
+  username: 'fdd111',
+};

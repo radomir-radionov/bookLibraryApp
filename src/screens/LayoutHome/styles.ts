@@ -9,12 +9,10 @@ export const LayoutHomeStyled = styled.main`
   margin-bottom: 64px;
 
   @media (max-width: ${device.laptopM}) {
-    padding: 0 64px;
     margin-bottom: 58px;
   }
 
   @media (max-width: ${device.tablet}) {
     justify-content: center;
-    padding: 0 16px;
   }
 `;

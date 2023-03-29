@@ -1,6 +1,6 @@
 import hintText from 'constants/hintText';
+import { RegExp } from 'constants/regExp';
 
-import { RegExp } from 'utils/regExp';
 import * as yup from 'yup';
 import { string } from 'yup';
 
