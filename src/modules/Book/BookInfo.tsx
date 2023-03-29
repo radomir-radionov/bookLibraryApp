@@ -8,6 +8,7 @@ import { AboutBook, CommentsList, Detailed } from 'modules';
 
 import { Additional, BookStyled, Content, Paragraph, RateBox, RateQty, Rating } from './styles';
 
+
 const BookInfo = () => {
   const dispatch = useDispatch();
   const bookData = useSelector(bookDataState);
