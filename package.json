@@ -1,0 +1,97 @@
+{
+  "name": "library.cleverland",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "cy": "cypress open",
+    "e2e": "start-server-and-test start http-get://localhost:3000 cy",
+    "e2e:run": "start-test 3000 'cypress run'"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@types/jest": "^29.2.2",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-datepicker": "^4.8.0",
+    "@types/react-dom": "^18.0.8",
+    "arui-presets-lint": "^6.0.1",
+    "cypress": "^11.0.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-dirnames": "^1.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-unicorn": "^44.0.2",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "prettier-eslint": "^14.0.2",
+    "prettier-eslint-cli": "^5.0.1",
+    "start-server-and-test": "^1.14.0",
+    "stylelint": "^14.8.1",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-prettier": "^2.0.0"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
+    "@redux-saga/types": "^1.2.1",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@types/react-highlight-words": "^0.16.4",
+    "@types/react-input-mask": "^3.0.2",
+    "@types/styled-components": "^5.1.26",
+    "@types/yup": "^0.32.0",
+    "axios": "^1.3.2",
+    "mochawesome": "^7.1.3",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.10.0",
+    "react-dom": "^18.2.0",
+    "react-highlight-words": "^0.20.0",
+    "react-hook-form": "^7.43.1",
+    "react-input-mask": "^2.0.4",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.7.0",
+    "react-scripts": "^5.0.1",
+    "redux-saga": "^1.2.2",
+    "styled-components": "^5.3.6",
+    "swiper": "^8.4.6",
+    "uuidv4": "^6.2.13",
+    "web-vitals": "^3.0.3",
+    "yup": "^0.32.11"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier-eslint --write",
+      "eslint"
+    ],
+    "src/**/*.{css,scss,sass}": [
+      "prettier --write"
+    ]
+  }
+}

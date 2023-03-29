@@ -1,0 +1,5 @@
+export enum BUTTON_VARIANTS {
+  LARGE = 'LARGE',
+  MEDIUM = 'MEDIUM',
+  SMALL = 'SMALL',
+}
