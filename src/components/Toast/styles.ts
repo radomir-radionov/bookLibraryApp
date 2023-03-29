@@ -9,19 +9,11 @@ type ToastStyledProps = {
 
 export const Wrapper = styled.div`
   position: fixed;
-  z-index: 1000;
   top: 68px;
-  max-width: 1100px;
+  z-index: 1000;
   width: 100%;
-  margin: 0;
-
-  @media (max-width: ${device.laptopM}) {
-    padding: 0 64px;
-  }
-
-  @media (max-width: ${device.tablet}) {
-    padding: 0 16px;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 export const ToastStyled = styled.div<ToastStyledProps>`
@@ -29,6 +21,7 @@ export const ToastStyled = styled.div<ToastStyledProps>`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  max-width: 1100px;
   padding: 24px 32px;
   border-radius: 5px;
 
@@ -54,12 +47,18 @@ export const ToastStyled = styled.div<ToastStyledProps>`
     }
   }}
 
+  @media (max-width: ${device.laptopM}) {
+    margin: 0 64px;
+  }
+
   @media (max-width: ${device.tabletL}) {
     padding: 24px 16px;
   }
 
   @media (max-width: ${device.tablet}) {
     padding: 12px 16px;
+
+    margin: 0 32px;
   }
 
   @media (max-width: ${device.tabletL}) {
