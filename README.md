@@ -1,6 +1,6 @@
 # MagicStore
 
-## "Book library" is a library for booking books. For example, if you have your own library with a lot of books, you need to keep all the information on paper, but this app can help you. And provide a web solution for this.
+#### "Book library" is a library for booking books. For example, if you have your own library with a lot of books, you need to keep all the information on paper, but this app can help you. And provide a web solution for this.
 
 ***Don't forget about star***
 
