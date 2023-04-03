@@ -23,8 +23,12 @@ export { default as Loader } from './Loader/Loader';
 export { default as HighLight } from './HighLight/HighLight';
 
 export { default as Hint } from './Hint/Hint';
+export { default as CustomLoginHint } from './CustomLoginHint/CustomLoginHint';
+export { default as CustomPasswordHint } from './CustomPasswordHint/CustomPasswordHint';
 
 export { default as FormFooter } from './FormFooter/FormFooter';
 
 export { default as SearchBar } from './SearchBar/SearchBar';
-export { default as Toast } from './Toast/Toast';
+
+export { default as ToastList } from './ToastList/ToastList';
+export { default as Toast } from './ToastList/Toast/Toast';

@@ -5,10 +5,7 @@ import * as yup from 'yup';
 import { string } from 'yup';
 
 const schema = yup.object().shape({
-  username: string()
-    .required(hintText.EMPTY_FIELD)
-    .matches(RegExp.lattinLetters, 'латинский алфавит')
-    .matches(RegExp.digit, 'цифры'),
+  username: string().required(hintText.EMPTY_FIELD).matches(RegExp.login, 'латинский алфавит'),
   password: string()
     .required(hintText.EMPTY_FIELD)
     .matches(RegExp.minQtyOfChars, { message: 'не менее 8 символов' })

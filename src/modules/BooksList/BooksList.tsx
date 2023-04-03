@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectIsBooksLoading, selectIsSortByRating } from 'redux/books/selectors';
 import { displayingBooks } from 'redux/displayingContent/selectors';
-import { selectToastData } from 'redux/toast/selectors';
+import { selectToasts } from 'redux/toast/selectors';
 import { enteredBookName } from 'redux/user/selectors';
 import { BookLong, BookShort } from 'modules';
 import { BookProps } from 'types/book';
@@ -25,11 +25,9 @@ const BooksList = ({ books, categories }: BooksListProps) => {
   const enteredText = useSelector(enteredBookName);
   const isSortByRating = useSelector(selectIsSortByRating);
   const isBooksLoading = useSelector(selectIsBooksLoading);
-  const toastData = useSelector(selectToastData);
+  const toasts = useSelector(selectToasts);
   const { category = 'all' } = useParams();
   const [filtredBooks, setFiltredBooks] = useState(books);
-
-  const isToastData = Object.keys(toastData).length === 0;
 
   const categoryTranslate = useMemo(
     () => getСurrentCategory(category, categories, books),
@@ -40,7 +38,7 @@ const BooksList = ({ books, categories }: BooksListProps) => {
     setFiltredBooks(getFilteredBooks(books, enteredText, isSortByRating, categoryTranslate));
   }, [books, enteredText, isSortByRating, categoryTranslate]);
 
-  if (isBooksLoading && !isToastData) {
+  if (isBooksLoading && !toasts.length) {
     return <EmptyData />;
   }
 

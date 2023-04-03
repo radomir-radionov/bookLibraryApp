@@ -7,18 +7,17 @@ export const BookStyled = styled.div`
   gap: 42px;
   flex: 1;
   max-width: 1100px;
+  padding-top: 106px;
   margin-bottom: 42px;
   transition: all 0.2s ease-out;
 
   @media (max-width: ${device.laptopM}) {
     gap: 52px;
     width: 100%;
-    padding: 0 64px 0;
   }
 
   @media (max-width: ${device.tablet}) {
-    padding: 0 16px 0;
-    margin-bottom: 20px;
+    margin-bottom: 76px;
   }
 `;
 

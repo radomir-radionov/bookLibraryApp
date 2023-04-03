@@ -1,9 +1,9 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { ToastProps, ToastStateProps } from './types';
 
 const initialState: ToastStateProps = {
-  alert: {} as ToastProps,
+  toasts: [] as ToastProps[],
 };
 
 export const toastSlice = createSlice({
@@ -11,14 +11,11 @@ export const toastSlice = createSlice({
   initialState,
   reducers: {
     addToast: (state, { payload }) => {
-      const alert: ToastProps = {
-        id: nanoid(),
-        ...payload,
-      };
-
-      state.alert = alert;
+      state.toasts = [...state.toasts, payload];
     },
-    removeAlert: () => initialState,
+    deleteToast: (state, { payload }) => {
+      state.toasts = state.toasts.filter((toast) => toast.id !== payload);
+    },
   },
 });
 

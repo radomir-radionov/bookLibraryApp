@@ -5,6 +5,7 @@ import { modalActions } from 'redux/modal';
 import { toastActions } from 'redux/toast';
 import { userActions } from 'redux/user';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { nanoid } from '@reduxjs/toolkit';
 import { booksService, userService } from 'services';
 import { PostCommentsProps } from 'services/userService/types';
 import { BookDetailedProps } from 'types/book';
@@ -37,6 +38,7 @@ export function* putComment({ payload }: ReturnType<typeof userActions.putCommen
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.EDIT_COMMENTS_SUCCESS,
       })
@@ -46,6 +48,7 @@ export function* putComment({ payload }: ReturnType<typeof userActions.putCommen
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.EDIT_COMMENTS_ERROR,
       })
@@ -67,6 +70,7 @@ export function* postComments({ payload }: ReturnType<typeof userActions.postCom
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.COMMENTS_SUCCESS,
       })
@@ -76,6 +80,7 @@ export function* postComments({ payload }: ReturnType<typeof userActions.postCom
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.COMMENTS_ERROR,
       })
@@ -106,6 +111,7 @@ export function* putUploadAvatar({ payload }: ReturnType<typeof userActions.putU
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.UPLOAD_AVATAR_SUCCESS,
       })
@@ -114,6 +120,7 @@ export function* putUploadAvatar({ payload }: ReturnType<typeof userActions.putU
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.UPLOAD_AVATAR_ERROR,
       })
@@ -138,6 +145,7 @@ export function* putEditUserData({ payload }: ReturnType<typeof userActions.putE
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.EDIT_USER_DATA_SUCCESS,
       })
@@ -146,6 +154,7 @@ export function* putEditUserData({ payload }: ReturnType<typeof userActions.putE
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.EDIT_USER_DATA_ERROR,
       })
@@ -160,6 +169,7 @@ export function* deletelBooking({ payload }: ReturnType<typeof userActions.delet
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.CANCEL_BOOKING_SUCCESS,
       })
@@ -168,6 +178,7 @@ export function* deletelBooking({ payload }: ReturnType<typeof userActions.delet
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.CANCEL_BOOKING_ERROR,
       })

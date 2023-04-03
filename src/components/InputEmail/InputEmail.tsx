@@ -26,8 +26,8 @@ const InputEmail = ({ register, labelText, errors, isDisabled }: InputProps) => 
       <Label>
         <InputStyled
           {...register}
-          onBlur={handleBlur}
           type='text'
+          onBlur={handleBlur}
           placeholder=' '
           $errors={errors}
           disabled={isDisabled}

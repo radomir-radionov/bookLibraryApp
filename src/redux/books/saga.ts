@@ -1,6 +1,7 @@
 import responseText from 'constants/responseText';
 
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { nanoid } from '@reduxjs/toolkit';
 import { booksService } from 'services';
 import { BookProps } from 'types/book';
 import { ToastTypes } from 'types/toast';
@@ -18,6 +19,7 @@ export function* getBooks() {
     yield put(booksActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.BOOKS_ERROR,
       })

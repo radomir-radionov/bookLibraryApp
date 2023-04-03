@@ -1,6 +1,6 @@
 import { FieldError } from 'react-hook-form';
 import InputMask from 'react-input-mask';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
 type WrapperProps = {
@@ -13,12 +13,21 @@ type HintWordProps = {
 
 export const Wrapper = styled.div<WrapperProps>`
   position: relative;
+  border-bottom: 1px solid ${colors.GREY_BLACK_20};
 
   small {
     position: absolute;
     left: 0;
     top: 60px;
   }
+
+  ${({ $errors }) => {
+    return $errors
+      ? css`
+          border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
+        `
+      : null;
+  }};
 `;
 
 export const Label = styled.label`
@@ -43,7 +52,7 @@ export const InputMaskStyled = styled(InputMask)`
   padding: 12px;
   padding-top: 26px;
   border-radius: 4px;
-  border-bottom: 1px solid ${colors.GREY_BLACK_20};
+
   ${typography.desktop.BODY_SMALL};
   background-color: ${colors.GREY_BLACK_5};
   transition-duration: 0.3s;

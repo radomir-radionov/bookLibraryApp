@@ -3,6 +3,7 @@ import responseText from 'constants/responseText';
 import { modalActions } from 'redux/modal';
 import { toastActions } from 'redux/toast';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { nanoid } from '@reduxjs/toolkit';
 import { booksService } from 'services';
 import { ToastTypes } from 'types/toast';
 
@@ -30,6 +31,7 @@ export function* postBooking({ payload }: ReturnType<typeof bookingActions.postB
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.BOOKING_SUCCESS,
       })
@@ -39,6 +41,7 @@ export function* postBooking({ payload }: ReturnType<typeof bookingActions.postB
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.BOOKING_ERROR,
       })
@@ -66,6 +69,7 @@ export function* putRebooking({ payload }: ReturnType<typeof bookingActions.putR
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.REBOOKING_SUCCESS,
       })
@@ -75,6 +79,7 @@ export function* putRebooking({ payload }: ReturnType<typeof bookingActions.putR
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.REBOOKING_ERROR,
       })
@@ -92,6 +97,7 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.SUCCESS,
         text: responseText.CANCEL_BOOKING_SUCCESS,
       })
@@ -101,6 +107,7 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
     yield put(bookingActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.CANCEL_BOOKING_ERROR,
       })

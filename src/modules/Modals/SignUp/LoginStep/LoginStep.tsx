@@ -1,17 +1,17 @@
 import dataTestId from 'constants/dataTestId';
 import pageRoutes from 'constants/pageRoutes';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registrationActions } from 'redux/registration';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, FormFooter, InputLogin, InputPassword } from 'components';
+import { Button, CustomLoginHint, CustomPasswordHint, FormFooter, InputLogin, InputPassword } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import schema from './schema';
 import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
 
-type LoginFormProps = {
+type TLoginForm = {
   username: string;
   password: string;
 };
@@ -19,53 +19,51 @@ type LoginFormProps = {
 const LoginStep = () => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    clearErrors,
-  } = useForm<LoginFormProps>({ resolver: yupResolver(schema), mode: 'all' });
+  const methods = useForm<TLoginForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+  });
+
+  const { errors } = methods.formState;
+  const { username, password } = methods.watch();
 
   const isBtnDisabled = !!(errors.username || errors.password);
 
-  const onSubmit: SubmitHandler<LoginFormProps> = (data) => {
+  const onSubmit: SubmitHandler<TLoginForm> = (data) => {
     dispatch(registrationActions.setLoginStepData(data));
     dispatch(registrationActions.setStep());
   };
 
   return (
     <ModalStyled>
-      <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.REGISTER_FORM}>
-        <TitleBox>
-          <Title>Регистрация</Title>
-          <StepText>1 шаг из 3</StepText>
-        </TitleBox>
-        <InputFields>
-          <InputLogin
-            register={register('username')}
-            labelText='Придумайте логин для входа'
-            watchValue={watch('username')}
-            clearErrors={clearErrors}
-            errors={errors.username}
-            view='form'
-          />
-          <InputPassword
-            register={register('password')}
-            labelText='Пароль'
-            watchValue={watch('password')}
-            clearErrors={clearErrors}
-            errors={errors.password}
-            view='form'
-          />
-        </InputFields>
-        <BtnField>
-          <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
-            следующий шаг
-          </Button>
-          <FormFooter text='Есть учетная запись?' link={pageRoutes.AUTH} linkText='войти' />
-        </BtnField>
-      </Form>
+      <FormProvider {...methods}>
+        <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.REGISTER_FORM}>
+          <TitleBox>
+            <Title>Регистрация</Title>
+            <StepText>1 шаг из 3</StepText>
+          </TitleBox>
+          <InputFields>
+            <InputLogin
+              name='username'
+              labelText='Придумайте логин для входа'
+              error={errors.username?.message}
+              customHint={<CustomLoginHint value={username} />}
+            />
+            <InputPassword
+              name='password'
+              labelText='Пароль'
+              error={errors.password?.message}
+              customHint={<CustomPasswordHint value={password} />}
+            />
+          </InputFields>
+          <BtnField>
+            <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
+              следующий шаг
+            </Button>
+            <FormFooter text='Есть учетная запись?' link={pageRoutes.AUTH} linkText='войти' />
+          </BtnField>
+        </Form>
+      </FormProvider>
     </ModalStyled>
   );
 };

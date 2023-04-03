@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from 'styles';
 
 export const LayoutStyled = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

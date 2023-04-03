@@ -2,7 +2,7 @@ import responseText from 'constants/responseText';
 
 import { toastActions } from 'redux/toast';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { PayloadAction } from '@reduxjs/toolkit';
+import { nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { booksService } from 'services';
 import { BookDetailedProps } from 'types/book';
 import { ToastTypes } from 'types/toast';
@@ -22,6 +22,7 @@ export function* getBook(action: PayloadAction<number>) {
     yield put(bookActions.cancelLoading());
     yield put(
       toastActions.addToast({
+        id: nanoid(),
         type: ToastTypes.ERROR,
         text: responseText.BOOK_ERROR,
       })

@@ -3,4 +3,4 @@ import { RootState } from 'store/configureStore';
 
 export const toastState = (state: RootState) => state.toast;
 
-export const selectToastData = createSelector(toastState, (state) => state.alert);
+export const selectToasts = createSelector(toastState, (state) => state.toasts);

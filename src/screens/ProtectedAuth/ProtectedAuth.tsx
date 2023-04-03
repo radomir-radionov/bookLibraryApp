@@ -6,12 +6,11 @@ import { forgotPwdActions } from 'redux/forgotPwd';
 
 const ProtectedAuth = () => {
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem('jwt');
   const [searchParams] = useSearchParams();
+  const jwt = localStorage.getItem('jwt');
   const code = searchParams.get('code');
-  const isCode = !!code?.length;
 
-  if (isCode) {
+  if (code?.length) {
     dispatch(forgotPwdActions.setDefiniteStep(3));
     <Navigate to={pageRoutes.FORGOT_PWD} />;
   }

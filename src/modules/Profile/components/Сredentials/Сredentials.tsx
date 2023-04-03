@@ -61,7 +61,7 @@ const Сredentials = ({ userData }: CredentialsProps) => {
       </Header>
       <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.FORM_PROFILE}>
         <TextField>
-          <InputLogin
+          {/* <InputLogin
             name='login'
             labelText='Логин'
             watchValue={watch('login')}
@@ -70,8 +70,8 @@ const Сredentials = ({ userData }: CredentialsProps) => {
             errors={errors.login}
             isDisabled={inputDisable}
             view='profile'
-          />
-          <InputPassword
+          /> */}
+          {/* <InputPassword
             labelText='Пароль'
             watchValue={watch('password')}
             register={register('password')}
@@ -79,7 +79,7 @@ const Сredentials = ({ userData }: CredentialsProps) => {
             errors={errors.password}
             isDisabled={inputDisable}
             view='profile'
-          />
+          /> */}
           <Input
             labelText='Имя'
             watchValue={watch('firstName')}

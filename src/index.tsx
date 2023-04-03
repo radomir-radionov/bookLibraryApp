@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import { Loader, Toast } from 'components';
+import { Loader, ToastList } from 'components';
 import { Modal } from 'modules';
 import store from 'store';
 
@@ -18,7 +18,7 @@ root.render(
         <App />
         <GlobalStyles />
         <Modal />
-        <Toast />
+        <ToastList />
         <Loader />
       </Provider>
     </HashRouter>

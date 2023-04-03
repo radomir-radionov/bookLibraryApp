@@ -11,7 +11,7 @@ import { BUTTON_VARIANTS } from 'types/button';
 import schema from './schema';
 import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
 
-type FormValuesProps = {
+type TFormValues = {
   phone: string;
   email: string;
 };
@@ -24,11 +24,11 @@ const ContactStep = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormValuesProps>({ resolver: yupResolver(schema), mode: 'all' });
+  } = useForm<TFormValues>({ resolver: yupResolver(schema), mode: 'all' });
 
   const isBtnDisabled = !!errors.phone || !!errors.email;
 
-  const onSubmit: SubmitHandler<FormValuesProps> = (data) => {
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
     dispatch(registrationActions.setContactStepData(data));
     dispatch(registrationActions.postRegistrationData());
   };
@@ -54,7 +54,7 @@ const ContactStep = () => {
           <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
             зарегистрироваться
           </Button>
-          <FormFooter text=' Есть учётная запись?' link={pageRoutes.AUTH} linkText='войти' />
+          <FormFooter text='Есть учётная запись?' link={pageRoutes.AUTH} linkText='войти' />
         </BtnField>
       </Form>
     </ModalStyled>

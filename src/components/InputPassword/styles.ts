@@ -9,7 +9,6 @@ type WrapperProps = {
 
 type InputStyledProps = {
   $errors?: FieldError;
-  autoComplete: string;
 };
 
 type HintWordProps = {

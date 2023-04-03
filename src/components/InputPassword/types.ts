@@ -1,11 +1,10 @@
-import { FieldError, UseFormClearErrors, UseFormRegisterReturn } from 'react-hook-form';
+import { ReactNode } from 'react';
 
-export default interface IInputProps {
-  view: 'form' | 'profile';
-  register: UseFormRegisterReturn;
+export type TInputProps = {
+  name: string;
   labelText: string;
-  watchValue: string;
-  clearErrors?: UseFormClearErrors<any>;
-  errors?: FieldError;
+  error?: string | boolean;
+  required?: boolean;
   isDisabled?: boolean;
-}
+  customHint?: ReactNode;
+};

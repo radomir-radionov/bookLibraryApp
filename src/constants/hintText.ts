@@ -4,7 +4,7 @@ enum hintText {
   DIFFERENT_PASSWORD = 'Пароли не совпадают',
   INVALID_EMAIL = 'Введите корректный e-mail',
   VALID_PHONE_NUMBER = 'В формате +375 (xx) xxx-xx-xx',
-  USE_LATTIN_LETTERS = 'Используйте для логина латинский алфавит и цифры',
+  INVALID_LOGIN = 'Используйте для логина латинский алфавит и цифры',
   EXPIRED_BOOKING_TITLE = 'Дата бронирования книги истекла',
   EXPIRED_BOOKING_SUBTITLE = 'Через 24 часа книга будет  доступна всем',
   EXPIRED_DEADLINE_TITLE = 'Вышел срок пользования книги',

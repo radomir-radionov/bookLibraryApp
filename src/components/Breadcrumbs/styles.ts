@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
 export const Wrapper = styled.div`
+  position: absolute;
+  top: 138px;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
-  width: 100%;
   padding: 24px 64px;
-  margin-bottom: 42px;
   color: ${colors.GREY_BLACK_40};
   background-color: ${colors.GREY_BLACK_5};
   transition: all 0.2s ease-out;
@@ -16,8 +18,13 @@ export const Wrapper = styled.div`
     margin-bottom: 48px;
   }
 
+  @media (max-width: ${device.tabletL}) {
+    top: 108px;
+  }
+
   @media (max-width: ${device.tablet}) {
-    padding: 20px 16px;
+    top: 88px;
+    padding: 20px 24px;
     margin-bottom: 20px;
   }
 `;

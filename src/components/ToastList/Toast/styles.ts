@@ -7,15 +7,6 @@ type ToastStyledProps = {
   $toastVariant: ToastTypes;
 };
 
-export const Wrapper = styled.div`
-  position: fixed;
-  top: 68px;
-  z-index: 1000;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const ToastStyled = styled.div<ToastStyledProps>`
   display: flex;
   justify-content: space-between;
@@ -66,7 +57,7 @@ export const ToastStyled = styled.div<ToastStyledProps>`
   }
 `;
 
-export const AlertBox = styled.div`
+export const TextBox = styled.div`
   display: flex;
   align-items: center;
   gap: 28px;
@@ -77,7 +68,7 @@ export const AlertBox = styled.div`
   }
 `;
 
-export const AlertText = styled.p`
+export const Text = styled.p`
   ${typography.desktop.SUBTITLE_LARGE};
 
   @media (max-width: ${device.tabletL}) {

@@ -6,10 +6,6 @@ type IInputStyledProps = {
   $errors?: FieldError;
 };
 
-type HintWordProps = {
-  $colored?: boolean;
-};
-
 export const Wrapper = styled.div``;
 
 export const Label = styled.label`
@@ -63,9 +59,4 @@ export const InputStyled = styled.input<IInputStyledProps>`
       transform: translate3d(0, -14px, 0);
     }
   }
-`;
-
-export const HintWord = styled.span<HintWordProps>`
-  font-weight: 500;
-  color: ${({ $colored }) => ($colored ? colors.OTHER_NEGATIVE : colors.GREY_BLACK_40)};
 `;

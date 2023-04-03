@@ -7,7 +7,7 @@ import { string } from 'yup';
 const schema = yup.object().shape({
   login: string()
     .required(hintText.EMPTY_FIELD)
-    .matches(RegExp.lattinLetters, 'латинский алфавит')
+    .matches(RegExp.latinLetters, 'латинский алфавит')
     .matches(RegExp.digit, 'цифры'),
   password: string()
     .required(hintText.EMPTY_FIELD)
