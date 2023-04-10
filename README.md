@@ -7,7 +7,7 @@
 SPA app with client-server architecture.
 1. Has developed Authorization/Registration, JWT.
 2. Validation is realized with react-hook-form and yup.
-3. Step-by-step authorisation.
+3. Step-by-step authorization.
 4. User's personal account(name, description, avatar and more yet) with the ability to edit.
 5. Screens include: Routing, Searching system, Sorting, Filtering, Pagination.
 6. A book page is a page with detailed information and the ability to review and re-review a current book.
