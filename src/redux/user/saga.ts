@@ -25,7 +25,7 @@ export function* getUser() {
 
     yield put(userActions.setUserData(data));
   } catch (e) {
-    console.log(e);
+    return null;
   }
 }
 
