@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import colors from './colors';
-
 const GlobalStyles = createGlobalStyle`
 
 html,body {
@@ -17,7 +15,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  color: ${colors.MAIN_DARK};
   letter-spacing: 0.1px;
 }
 

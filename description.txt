@@ -1,7 +1,0 @@
-InputLogin
-
-FormProvider..methods.  The FormProvider component wraps the form component and provides the form methods as props to  
-the child components using the useFormContext hook. In the input login, I am using useFormContext, and through destruction,  
-I got register, setValue, clearErrors, and formState: errors. To watch a value, I use the method watch, and when an onchange event  
-occurs, I use setValue to manually change a value because otherwise it will be undefined, as well as clearErrors to apply another  
-validation for a specific word.
