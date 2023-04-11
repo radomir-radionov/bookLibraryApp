@@ -25,7 +25,7 @@ export const Title = styled.h3`
   ${typography.desktop.H3};
 
   @media (max-width: ${device.tablet}) {
-    width: 218px;
+    width: 220px;
     ${typography.mobile.H3};
   }
 `;
