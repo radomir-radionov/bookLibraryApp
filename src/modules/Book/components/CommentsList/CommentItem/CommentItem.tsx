@@ -19,11 +19,7 @@ const CommentItem = ({ data }: CommentItemProps) => {
   return (
     <CommentItemStyled data-test-id={dataTestId.COMMENT_WRAPPER}>
       <UserInfo>
-        {user && user.avatarUrl ? (
-          <Avatar img={`${serverEndpoints.HOST}${avatarUrl}`} />
-        ) : (
-          <Img src={DefaultAvatarImg} alt='default-avatar' />
-        )}
+        {user && user.avatarUrl ? <Avatar img={`${avatarUrl}`} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />}
         <NameBox>
           <Name data-test-id={dataTestId.COMMENT_AUTHOR}>
             {firstName} {lastName}

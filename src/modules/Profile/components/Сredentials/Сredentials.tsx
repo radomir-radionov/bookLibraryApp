@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Input, InputEmail, InputLogin, InputPassword, InputPhone } from 'components';
+import { CustomLoginHint, Input, InputEmail, InputLogin, InputPassword, InputPhone } from 'components';
 
 import schema from './schema';
 import {
@@ -61,24 +61,18 @@ const Сredentials = ({ userData }: CredentialsProps) => {
       </Header>
       <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.FORM_PROFILE}>
         <TextField>
+          {/* TODO add login and password fields */}
           {/* <InputLogin
-            name='login'
+            name='username'
             labelText='Логин'
-            watchValue={watch('login')}
-            register={register('login')}
-            clearErrors={clearErrors}
-            errors={errors.login}
-            isDisabled={inputDisable}
-            view='profile'
+            error={errors.login?.message}
+            customHint={<CustomLoginHint value={username} />}
           /> */}
           {/* <InputPassword
+            name='password'
             labelText='Пароль'
-            watchValue={watch('password')}
-            register={register('password')}
-            clearErrors={clearErrors}
-            errors={errors.password}
+            error={errors.password?.message}
             isDisabled={inputDisable}
-            view='profile'
           /> */}
           <Input
             labelText='Имя'

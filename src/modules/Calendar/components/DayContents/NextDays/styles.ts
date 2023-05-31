@@ -21,10 +21,8 @@ export const DayButton = styled.div<DayButtonProps>`
   ${({ $variant }) =>
     $variant &&
     css`
-      background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
       span {
-        background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
-        color: white;
+        color: ${colors.MAIN_DARK};
         -webkit-background-clip: unset;
         -webkit-text-fill-color: unset;
         background-clip: unset;

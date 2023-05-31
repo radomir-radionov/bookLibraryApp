@@ -28,11 +28,7 @@ const Header = () => {
       </LogoBox>
       <Profile onMouseEnter={handleMenuMouseEnter} onMouseLeave={handleMenuMouseLeave}>
         <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
-        {user && user.avatar ? (
-          <Avatar img={`${serverEndpoints.HOST}${user.avatar}`} />
-        ) : (
-          <Img src={DefaultAvatarImg} alt='default-avatar' />
-        )}
+        {user && user.avatar ? <Avatar img={`${user.avatar}`} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />}
         {hovered && (
           <UserMenuWrapper>
             <UserMenu />

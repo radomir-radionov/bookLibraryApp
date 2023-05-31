@@ -31,7 +31,6 @@ const BookShort = ({ data, view }: BookShortProps) => {
   const { category } = useParams();
 
   const { id, title, authors, rating, issueYear, booking, delivery, image } = data;
-  const imgSrc = serverEndpoints.HOST + image?.url;
 
   const bookCommentIds = comments?.map(({ bookId }) => bookId);
   const isCommentedBook = bookCommentIds?.includes(id);
@@ -62,8 +61,8 @@ const BookShort = ({ data, view }: BookShortProps) => {
   return (
     <BookItemStyled onClick={handleNavigateClick} data-test-id={dataTestId.CARD}>
       <ImgWrapper>
-        {image ? (
-          <Img src={imgSrc} alt='Book cover' />
+        {image?.url ? (
+          <Img src={image.url} alt='Book cover' />
         ) : (
           <ImgBox>
             <CatIcon />

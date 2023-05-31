@@ -33,7 +33,7 @@ const BookProfile = ({ data }: BookProfileProps) => {
   const navigate = useNavigate();
   const { id, title, authors, rating, issueYear, image } = data.book;
 
-  const imgSrc = `${serverEndpoints.HOST}${image}`;
+  const imgSrc = `${image}`;
 
   const handleNavigateClick = () => navigate(`/books/all/${id}`);
 

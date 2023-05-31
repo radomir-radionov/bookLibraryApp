@@ -25,11 +25,9 @@ const SliderPagination = ({ imgs }: SliderPaginationProps) => {
       data-test-id={dataTestId.SLIDE_BIG}
     >
       {imgs.map((img) => {
-        const imgSrc = serverEndpoints.HOST + img?.url;
-
         return (
           <SwiperSlide key={Math.random()} className='choiseItem' data-test-id={dataTestId.SLIDE_MINI}>
-            <Img src={imgSrc} />
+            <Img src={img?.url} />
           </SwiperSlide>
         );
       })}

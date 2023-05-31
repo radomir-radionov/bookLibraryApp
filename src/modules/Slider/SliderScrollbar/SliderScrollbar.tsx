@@ -34,11 +34,9 @@ const SliderScrollbar = ({ imgs }: SliderScrollbarProps) => {
         data-test-id={dataTestId.SLIDE_BIG}
       >
         {imgs.map((img) => {
-          const imgSrc = serverEndpoints.HOST + img?.url;
-
           return (
             <SwiperSlide key={Math.random()}>
-              <Img src={imgSrc} />
+              <Img src={img?.url} />
             </SwiperSlide>
           );
         })}
@@ -54,15 +52,11 @@ const SliderScrollbar = ({ imgs }: SliderScrollbarProps) => {
           scrollbar={{ draggable: true }}
           className='choiseBar'
         >
-          {imgs.map((img) => {
-            const imgSrc = serverEndpoints.HOST + img?.url;
-
-            return (
-              <SwiperSlideStyled key={Math.random()} className='choiseItem' data-test-id={dataTestId.SLIDE_MINI}>
-                <ImgScroll src={imgSrc} />
-              </SwiperSlideStyled>
-            );
-          })}
+          {imgs.map((img) => (
+            <SwiperSlideStyled key={Math.random()} className='choiseItem' data-test-id={dataTestId.SLIDE_MINI}>
+              <ImgScroll src={img?.url} />
+            </SwiperSlideStyled>
+          ))}
         </ChoiseBar>
       )}
     </>

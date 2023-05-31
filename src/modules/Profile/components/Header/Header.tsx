@@ -65,7 +65,7 @@ const Header = ({ data }: HeaderProps) => {
             </Mask>
           </Label>
           {avatar ? (
-            <Avatar src={`${serverEndpoints.HOST}${avatar}`} alt='profile-avatar' />
+            <Avatar src={`${avatar}`} alt='profile-avatar' />
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' data-test-id={dataTestId.PROFILE_AVATAR} />
           )}

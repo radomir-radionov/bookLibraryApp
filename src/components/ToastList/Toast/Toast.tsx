@@ -20,9 +20,7 @@ const Toast = ({ data }: TToast) => {
   const handleCloseToastClick = (toastId: string) => () => dispatch(toastActions.deleteToast(toastId));
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      dispatch(toastActions.deleteToast(id));
-    }, 4000);
+    const timeoutId = setTimeout(() => dispatch(toastActions.deleteToast(id)), 4000);
 
     return () => clearTimeout(timeoutId);
   }, [dispatch, id]);

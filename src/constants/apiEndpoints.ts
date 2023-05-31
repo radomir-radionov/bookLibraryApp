@@ -1,5 +1,5 @@
 enum serverEndpoints {
-  HOST = 'https://strapi.cleverland.by',
+  HOST = 'https://library-cleverland-2jfze.ondigitalocean.app/',
 
   BOOKS = '/api/books',
   CATEGORIES = '/api/categories',

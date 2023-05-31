@@ -10,9 +10,9 @@ type ToastStyledProps = {
 export const ToastStyled = styled.div<ToastStyledProps>`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex: 1;
   max-width: 1100px;
+  width: 100%;
   padding: 24px 32px;
   border-radius: 5px;
 

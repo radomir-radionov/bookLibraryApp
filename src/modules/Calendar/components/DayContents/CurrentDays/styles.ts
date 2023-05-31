@@ -43,16 +43,28 @@ export const DayButton = styled.div<DayButtonProps>`
         `;
       case 'today':
         return css`
+          cursor: pointer;
+
           span {
             color: rgb(248, 54, 0);
+          }
+
+          &:hover {
+            border: 1px solid ${colors.GREY_BLACK_20};
+            background-color: transparent;
+
+            span {
+              color: ${colors.MAIN_DARK};
+            }
           }
         `;
       case 'selectedDay':
         return css`
           background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+          cursor: pointer;
+
           span {
-            background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
-            color: white;
+            color: ${colors.MAIN_WHITE};
             -webkit-background-clip: unset;
             -webkit-text-fill-color: unset;
             background-clip: unset;

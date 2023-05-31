@@ -30,7 +30,7 @@ const BookLong = ({ data }: BookLongProps) => {
   const { category } = useParams();
 
   const { id, title, authors, rating, issueYear, booking, delivery, image } = data;
-  const imgSrc = `${serverEndpoints.HOST}${image?.url}`;
+  const imgSrc = `${image?.url}`;
 
   const clickNavigateToBook = () => navigate(`/books/${category}/${id}`);
 
