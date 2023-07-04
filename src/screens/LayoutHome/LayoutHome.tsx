@@ -3,15 +3,17 @@ import { Menu } from 'modules';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
 import dataTestIds from './data';
-import { LayoutHomeStyled } from './styles';
+import { Content, LayoutHomeStyled } from './styles';
 
 const LayoutHome = () => {
   const { width } = useWindowDimensions();
 
   return (
     <LayoutHomeStyled>
-      {width > 1024 && <Menu dataTestIds={dataTestIds} />}
-      <Outlet />
+      <Content>
+        {width > 1024 && <Menu dataTestIds={dataTestIds} />}
+        <Outlet />
+      </Content>
     </LayoutHomeStyled>
   );
 };

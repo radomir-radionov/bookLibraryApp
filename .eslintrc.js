@@ -44,9 +44,7 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/jsx-fragments': ['off'],
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-
     complexity: 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
   },

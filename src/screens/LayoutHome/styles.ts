@@ -3,16 +3,22 @@ import { device } from 'styles';
 
 export const LayoutHomeStyled = styled.main`
   display: flex;
-  flex: 1;
-  max-width: 1100px;
+  justify-content: center;
   width: 100%;
-  margin-bottom: 64px;
+  padding: 62px 0;
 
   @media (max-width: ${device.laptopM}) {
-    margin-bottom: 58px;
+    padding: 32px 64px 0;
   }
 
   @media (max-width: ${device.tablet}) {
     justify-content: center;
+    padding: 8px 16px 0;
   }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  max-width: 1100px;
+  width: 100%;
 `;

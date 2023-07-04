@@ -3,19 +3,16 @@ import { device } from 'styles';
 
 export const ProfileStyled = styled.article`
   display: flex;
-  flex-direction: column;
-  gap: 92px;
-  max-width: 1100px;
+  justify-content: center;
   width: 100%;
-  margin-bottom: 62px;
+  padding: 62px 0 62px;
 
   @media (max-width: ${device.laptopM}) {
-    padding: 0 64px;
+    gap: 42px;
+    padding: 32px 64px 62px;
   }
 
   @media (max-width: ${device.tablet}) {
-    gap: 42px;
-    padding: 0 16px;
-    margin-bottom: 32px;
+    padding: 16px 16px 32px;
   }
 `;

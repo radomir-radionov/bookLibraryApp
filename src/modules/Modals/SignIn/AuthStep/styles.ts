@@ -8,10 +8,6 @@ type AssistiveTextProps = {
 };
 
 export const LinkStyled = styled(Link)`
-  display: flex;
-  gap: 14px;
-  padding: 3px 0;
-  ${typography.mobile.BUTTON_SMALL};
   color: ${colors.MAIN_DARK};
   cursor: pointer;
 `;
@@ -19,7 +15,6 @@ export const LinkStyled = styled(Link)`
 export const ModalStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
   width: 528px;
   padding: 48px 56px;
   background: ${colors.MAIN_WHITE};
@@ -39,18 +34,27 @@ export const Title = styled.h4`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-
-  & > ${LinkStyled} {
-    padding-left: 12px;
-    ${typography.desktop.INFO_LARGE};
-    text-transform: none;
-    color: ${colors.GREY_BLACK_40};
-  }
+  gap: 32px;
 
   & > div {
     &:nth-child(2) {
       margin-bottom: 2px;
     }
+  }
+`;
+
+export const Fields = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const InputAuthPasswordWrapper = styled.div`
+  & > ${LinkStyled} {
+    padding-left: 12px;
+    ${typography.desktop.INFO_LARGE};
+    text-transform: none;
+    color: ${colors.GREY_BLACK_40};
   }
 `;
 
@@ -64,8 +68,8 @@ export const AssistiveText = styled.p<AssistiveTextProps>`
     color: ${colors.OTHER_NEGATIVE};
   }
 
-  span:last-child {
-    color: ${colors.MAIN_DARK};
+  a {
+    text-transform: none;
   }
 
   @media (max-width: ${device.tablet}) {
@@ -77,5 +81,4 @@ export const BtnField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 32px;
 `;

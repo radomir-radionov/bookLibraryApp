@@ -1,22 +1,18 @@
 import styled from 'styled-components';
 import { device } from 'styles';
 
-export const BookStyled = styled.div`
+export const ProfileInfoStyled = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 42px;
+  gap: 92px;
   width: 100%;
-  padding: 42px 0;
+  max-width: 1100px;
 
   @media (max-width: ${device.laptopM}) {
-    gap: 48px;
-    padding: 24px 0 48px;
+    gap: 64px;
   }
 
   @media (max-width: ${device.tablet}) {
-    gap: 20px;
-    padding: 20px 0;
+    gap: 42px;
   }
 `;

@@ -1,31 +1,42 @@
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
+type HeaderStyledProps = {
+  $isHovered: boolean;
+};
+
 type AvatarProps = {
   img: string;
 };
 
-export const HeaderStyled = styled.header`
+export const HeaderStyled = styled.header<HeaderStyledProps>`
   position: relative;
   display: flex;
   justify-content: center;
-  max-width: 1100px;
   width: 100%;
-  padding: 40px 0 52px;
+  padding: 40px 0 15px;
   transition: all 0.2s ease-out;
+  box-shadow: ${({ $isHovered }) =>
+    $isHovered ? '-4px 4px 4px 0px rgba(54, 54, 54, 0.05), 4px 4px 4px 0px rgba(54, 54, 54, 0.05);' : 'none'};
 
   button {
     margin-right: 10px;
   }
 
   @media (max-width: ${device.laptopM}) {
-    justify-content: space-between;
-    padding: 32px 0 48px;
+    padding: 32px 64px 22px;
   }
 
   @media (max-width: ${device.tablet}) {
-    padding: 16px 0 32px;
+    padding: 16px 16px 24px;
   }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  width: 100%;
 `;
 
 export const HumburgerMenu = styled.div`
@@ -40,7 +51,6 @@ export const HumburgerMenu = styled.div`
 export const LogoBox = styled.div`
   display: flex;
   align-items: center;
-  flex: 1;
   gap: 120px;
 
   @media (max-width: ${device.laptop}) {
@@ -68,7 +78,7 @@ export const Logo = styled.img`
 export const UserMenuWrapper = styled.div`
   position: absolute;
   z-index: 999;
-  top: 80px;
+  top: 32px;
   right: 0px;
   padding: 40px;
   padding-right: 0;
@@ -79,6 +89,7 @@ export const UserMenuWrapper = styled.div`
 `;
 
 export const Profile = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;

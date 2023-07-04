@@ -35,7 +35,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   }
 
   &:disabled {
-    border: 1px solid ${colors.GREY_BLACK_20};
+    outline: 1px solid ${colors.GREY_BLACK_20};
     color: ${colors.GREY_BLACK_40};
     background: ${colors.GREY_BLACK_5};
   }

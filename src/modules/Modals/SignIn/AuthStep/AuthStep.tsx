@@ -11,7 +11,16 @@ import { Button, FormFooter, Input, InputAuthPassword } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import schema from './schema';
-import { AssistiveText, BtnField, Form, LinkStyled, ModalStyled, Title } from './styles';
+import {
+  AssistiveText,
+  BtnField,
+  Fields,
+  Form,
+  InputAuthPasswordWrapper,
+  LinkStyled,
+  ModalStyled,
+  Title,
+} from './styles';
 
 type FormValuesProps = {
   identifier: string;
@@ -36,29 +45,30 @@ const AuthStep = () => {
 
   return (
     <ModalStyled>
-      <Title>Вход в личный кабинет</Title>
       <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.AUTH_FORM}>
-        <Input
-          labelText='Логин'
-          watchValue={watch('identifier')}
-          register={register('identifier')}
-          errors={errors.identifier}
-        />
-        <InputAuthPassword
-          labelText='Пароль'
-          watchValue={watch('password')}
-          register={register('password')}
-          errors={errors.password}
-        />
-
-        <AssistiveText visiable={errorStatus === 400}>
-          <span data-test-id={dataTestId.HINT}>Неверный логин или пароль!</span>
-          <br />
-          <span> Восстановить?</span>
-        </AssistiveText>
-
-        {errorStatus !== 400 && <LinkStyled to={pageRoutes.FORGOT_PWD}>Забыли логин или пароль?</LinkStyled>}
-
+        <Title>Вход в личный кабинет</Title>
+        <Fields>
+          <Input
+            labelText='Логин'
+            watchValue={watch('identifier')}
+            register={register('identifier')}
+            errors={errors.identifier}
+          />
+          <InputAuthPasswordWrapper>
+            <InputAuthPassword
+              labelText='Пароль'
+              watchValue={watch('password')}
+              register={register('password')}
+              errors={errors.password}
+            />
+            <AssistiveText visiable={errorStatus === 400}>
+              <span data-test-id={dataTestId.HINT}>Неверный логин или пароль!</span>
+              <br />
+              <LinkStyled to={pageRoutes.FORGOT_PWD}>Восстановить?</LinkStyled>
+            </AssistiveText>
+            {errorStatus !== 400 && <LinkStyled to={pageRoutes.FORGOT_PWD}>Забыли логин или пароль?</LinkStyled>}
+          </InputAuthPasswordWrapper>
+        </Fields>
         <BtnField>
           <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
             вход

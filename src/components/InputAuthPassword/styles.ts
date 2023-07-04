@@ -13,6 +13,8 @@ type InputStyledProps = {
 };
 
 export const Wrapper = styled.div<WrapperProps>`
+  height: 76px;
+
   p {
     transition: all 0.2s ease;
     color: ${({ $errors }) => {

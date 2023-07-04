@@ -3,16 +3,16 @@ import { bookDataState } from 'redux/book/selectors';
 import { Breadcrumbs } from 'components';
 import { BookInfo } from 'modules';
 
-import { Wrapper } from './styles';
+import { BookStyled } from './styles';
 
 const Book = () => {
   const bookData = useSelector(bookDataState);
 
   return (
-    <Wrapper>
+    <BookStyled>
       <Breadcrumbs title={bookData.book.title} />
       <BookInfo />
-    </Wrapper>
+    </BookStyled>
   );
 };
 
