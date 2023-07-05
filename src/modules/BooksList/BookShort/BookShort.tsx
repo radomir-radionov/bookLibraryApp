@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,9 +35,9 @@ const BookShort = ({ data, view }: BookShortProps) => {
   const isCommentedBook = bookCommentIds?.includes(id);
   const filtredCommentedBookData = comments?.find((comment) => comment.bookId === id);
 
-  const handleNavigateClick = () => navigate(`/books/${category}/${id}`);
+  const onNavigateClick = () => navigate(`/books/${category}/${id}`);
 
-  const handleSetCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSetCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     dispatch(bookActions.getBook(id));
     dispatch(modalActions.open({ type: MODAL_TYPES.RATE_BOOK, modalInfo: { id } }));
@@ -59,7 +58,7 @@ const BookShort = ({ data, view }: BookShortProps) => {
   };
 
   return (
-    <BookItemStyled onClick={handleNavigateClick} data-test-id={dataTestId.CARD}>
+    <BookItemStyled onClick={onNavigateClick} data-test-id={dataTestId.CARD}>
       <ImgWrapper>
         {image?.url ? (
           <Img src={image.url} alt='Book cover' />
@@ -76,10 +75,7 @@ const BookShort = ({ data, view }: BookShortProps) => {
             <HighLight text={title} searcheText={enteredText} />
           </SubTitleWrapper>
           <Author>
-            {authors?.map((author) => {
-              return author;
-            })}
-            , {issueYear}
+            {authors?.map((author) => author)}, {issueYear}
           </Author>
         </NameBox>
         {view !== 'history' ? (
@@ -95,7 +91,7 @@ const BookShort = ({ data, view }: BookShortProps) => {
           </Button>
         ) : (
           <Button
-            onClick={handleSetCommentClick}
+            onClick={onSetCommentClick}
             variant={BUTTON_VARIANTS.SMALL}
             dataTestId={dataTestId.BUTTON_REVIW_HISTORY}
           >

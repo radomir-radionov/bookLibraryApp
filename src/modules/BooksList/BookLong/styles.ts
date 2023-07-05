@@ -4,7 +4,7 @@ import { colors, device, formalization, typography } from 'styles';
 
 export const BookItemStyled = styled.article`
   display: flex;
-  width: 100%;
+  flex: 1;
   height: 218px;
   padding: 24px 24px 24px 16px;
   border-radius: 10px;
@@ -28,7 +28,7 @@ export const BookItemStyled = styled.article`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 133px;
+  width: 132px;
   margin-right: 16px;
 
   @media (max-width: ${device.tablet}) {
@@ -52,25 +52,14 @@ export const ImgBox = styled.div`
 
 export const Img = styled.img`
   width: 100%;
-  min-width: 70px;
   height: 100%;
-  min-height: 100px;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 649px;
-
-  @media (max-width: ${device.laptopL}) {
-    flex: 1;
-    width: 464px;
-  }
-
-  @media (max-width: ${device.mobileL}) {
-    width: 186px;
-  }
+  flex: 1;
 `;
 
 export const NameBox = styled.div`
@@ -133,11 +122,10 @@ export const Active = styled.div`
     ${typography.desktop.BODY_SMALL}
   }
 
-  @media (max-width: ${device.mobileL}) {
+  @media (max-width: ${device.tablet}) {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    flex: 1;
 
     div {
       margin-top: 4px;

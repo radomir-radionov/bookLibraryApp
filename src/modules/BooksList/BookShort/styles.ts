@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { Cat_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, formalization, typography } from 'styles';
@@ -87,11 +86,5 @@ export const Author = styled.p`
 
   color: ${colors.GREY_BLACK_70};
 `;
-
-export const Active = styled.div``;
-
-export const BtnBox = styled.div``;
-
-export const NavLinkStyled = styled(NavLink)``;
 
 export const CatIcon = styled(Cat_Icon)``;

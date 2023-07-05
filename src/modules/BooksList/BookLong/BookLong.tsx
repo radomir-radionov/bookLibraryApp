@@ -1,11 +1,14 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { enteredBookName } from 'redux/user/selectors';
-import { ButtonToBook, HighLight, RatingList } from 'components';
+import { bookActions } from 'redux/book';
+import { modalActions } from 'redux/modal';
+import { enteredBookName, selectUserComments } from 'redux/user/selectors';
+import { Button, ButtonToBook, HighLight, RatingList } from 'components';
 import { BookProps } from 'types/book';
+import { BUTTON_VARIANTS } from 'types/button';
+import { MODAL_TYPES } from 'types/modal';
 
 import {
   Active,
@@ -22,20 +25,46 @@ import {
 
 type BookLongProps = {
   data: BookProps;
+  view?: 'history';
 };
 
-const BookLong = ({ data }: BookLongProps) => {
+const BookLong = ({ data, view }: BookLongProps) => {
+  const dispatch = useDispatch();
+  const comments = useSelector(selectUserComments);
   const enteredText = useSelector(enteredBookName);
   const navigate = useNavigate();
   const { category } = useParams();
 
   const { id, title, authors, rating, issueYear, booking, delivery, image } = data;
   const imgSrc = `${image?.url}`;
+  const bookCommentIds = comments?.map(({ bookId }) => bookId);
+  const isCommentedBook = bookCommentIds?.includes(id);
+  const filtredCommentedBookData = comments?.find((comment) => comment.bookId === id);
 
-  const clickNavigateToBook = () => navigate(`/books/${category}/${id}`);
+  const onNavigateToBook = () => navigate(`/books/${category}/${id}`);
+
+  const onSetCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+    dispatch(bookActions.getBook(id));
+    dispatch(modalActions.open({ type: MODAL_TYPES.RATE_BOOK, modalInfo: { id } }));
+  };
+
+  const handleChangeCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+    dispatch(bookActions.getBook(id));
+    dispatch(
+      modalActions.open({
+        type: MODAL_TYPES.RATE_BOOK,
+        modalInfo: {
+          view: 'editCommentModal',
+          ...filtredCommentedBookData,
+        },
+      })
+    );
+  };
 
   return (
-    <BookItemStyled onClick={clickNavigateToBook} data-test-id={dataTestId.CARD}>
+    <BookItemStyled onClick={onNavigateToBook} data-test-id={dataTestId.CARD}>
       <ImgWrapper>
         {imgSrc ? (
           <Img src={imgSrc} alt='Book cover' />
@@ -51,15 +80,31 @@ const BookLong = ({ data }: BookLongProps) => {
             <HighLight text={title} searcheText={enteredText} />
           </SubTitleWrapper>
           <Author>
-            {authors?.map((author) => {
-              return author;
-            })}
-            , {issueYear}
+            {authors?.map((author) => author)}, {issueYear}
           </Author>
         </NameBox>
         <Active>
           <RatingList rating={rating} />
-          <ButtonToBook book={data} booking={booking} delivery={delivery} />
+          {view !== 'history' ? (
+            <ButtonToBook book={data} booking={booking} delivery={delivery} />
+          ) : isCommentedBook ? (
+            <Button
+              className='editCommentButton'
+              onClick={handleChangeCommentClick}
+              variant={BUTTON_VARIANTS.SMALL}
+              dataTestId={dataTestId.BUTTON_REVIW_HISTORY}
+            >
+              Изменить оценку
+            </Button>
+          ) : (
+            <Button
+              onClick={onSetCommentClick}
+              variant={BUTTON_VARIANTS.SMALL}
+              dataTestId={dataTestId.BUTTON_REVIW_HISTORY}
+            >
+              Оставить отзыв
+            </Button>
+          )}
         </Active>
       </Info>
     </BookItemStyled>

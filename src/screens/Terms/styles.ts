@@ -9,18 +9,8 @@ export const TermsStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 825px;
-  margin-bottom: 62px;
   margin-left: 10px;
   transition: all 0.5s ease-out;
-
-  @media (max-width: ${device.laptopL}) {
-    width: 100%;
-    margin-left: 30px;
-  }
-
-  @media (max-width: ${device.tabletM}) {
-    margin-bottom: 24px;
-  }
 `;
 
 export const Chapter = styled.div`

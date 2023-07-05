@@ -4,12 +4,10 @@ import pageRoutes from 'constants/pageRoutes';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registrationActions } from 'redux/registration';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, CustomLoginHint, CustomPasswordHint, FormFooter, InputLogin, InputPassword } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import schema from './schema';
-import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
+import { Form, InputFields, ModalStyled, NextStep, StepText, Title, TitleBox } from './styles';
 
 type TLoginForm = {
   username: string;
@@ -56,12 +54,12 @@ const LoginStep = () => {
               customHint={<CustomPasswordHint value={password} />}
             />
           </InputFields>
-          <BtnField>
+          <NextStep>
             <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
               следующий шаг
             </Button>
             <FormFooter text='Есть учетная запись?' link={pageRoutes.AUTH} linkText='войти' />
-          </BtnField>
+          </NextStep>
         </Form>
       </FormProvider>
     </ModalStyled>

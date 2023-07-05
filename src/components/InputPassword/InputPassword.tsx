@@ -31,13 +31,10 @@ const InputPassword = ({ name, labelText, error, isDisabled, required = true, cu
 
   const passwordValue = watch().password;
   const isValid = isPasswordCorrect(passwordValue);
-
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setValue(name, value);
-
     clearErrors(name);
   };
-
   const toggleShow = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
 
   return (
@@ -57,9 +54,7 @@ const InputPassword = ({ name, labelText, error, isDisabled, required = true, cu
           disabled={isDisabled}
         />
         <LabelText>{labelText}</LabelText>
-
         {isValid && <CheckIcon data-test-id={dataTestId.CHECKMARK} />}
-
         <IconWrapper onClick={toggleShow}>
           {passwordValue?.length ? (
             fieldType === 'password' ? (

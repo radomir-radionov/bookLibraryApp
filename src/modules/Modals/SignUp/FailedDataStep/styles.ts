@@ -13,7 +13,6 @@ export const ModalStyled = styled.div`
 
   @media (max-width: ${device.tablet}) {
     width: 288px;
-    height: 456px;
     padding: 24px 16px;
   }
 `;

@@ -10,11 +10,13 @@ const getAvailableDays = () => {
 
     return result;
   }
+
   if (currentDate.getDay() === 0) {
     result.push(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1).getTime());
 
     return result;
   }
+
   if (currentDate.getDay() === 5) {
     result.push(
       currentDate.getTime(),
@@ -23,6 +25,7 @@ const getAvailableDays = () => {
 
     return result;
   }
+
   result.push(
     currentDate.getTime(),
     new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1).getTime()

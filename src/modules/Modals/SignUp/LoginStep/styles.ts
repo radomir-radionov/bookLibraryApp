@@ -56,7 +56,7 @@ export const InputFields = styled.div`
   }
 `;
 
-export const BtnField = styled.div`
+export const NextStep = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;

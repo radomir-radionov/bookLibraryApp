@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
 export const Modal = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 32px;
-  flex: 1;
+  width: 100%;
   max-width: 528px;
   padding: 48px;
   border-radius: 16px;
@@ -31,13 +32,32 @@ export const Container = styled.div`
     color: ${colors.MAIN_DARK};
     background: ${colors.MAIN_WHITE};
   }
+
+  @media (max-width: ${device.tablet}) {
+    gap: 24px;
+  }
 `;
 
 export const Header = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   gap: 16px;
+
+  .btnClose {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    padding: 12px;
+    transition: all 0.2s ease-out;
+    background-color: ${colors.GREY_BLACK_5};
+    filter: none;
+
+    @media (max-width: ${device.tablet}) {
+      right: 16px;
+      top: 16px;
+      padding: 8px;
+    }
+  }
 `;
 
 export const Title = styled.h4`
@@ -48,30 +68,6 @@ export const Title = styled.h4`
 
   @media (max-width: ${device.tablet}) {
     ${typography.mobile.H3};
-  }
-`;
-
-export const CloseBtnBox = styled.div`
-  position: absolute;
-  bottom: 40px;
-  left: 280px;
-  transition: all 0.2s ease-out;
-
-  button {
-    width: 48px;
-    height: 48px;
-    background-color: ${colors.GREY_BLACK_5};
-    filter: none;
-
-    @media (max-width: ${device.tablet}) {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  @media (max-width: ${device.tablet}) {
-    left: 220px;
-    bottom: 50px;
   }
 `;
 

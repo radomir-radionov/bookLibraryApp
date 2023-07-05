@@ -73,7 +73,7 @@ export const LoginInfo = styled.p`
 
   @media (max-width: ${device.tablet}) {
     flex-direction: column;
-    gap: 0;
+    gap: 4px;
   }
 
   @media (max-width: ${device.mobileL}) {
@@ -84,7 +84,6 @@ export const LoginInfo = styled.p`
 export const LinkText = styled(Link)`
   display: flex;
   gap: 14px;
-  padding: 3px 0;
   ${typography.mobile.BUTTON_SMALL}
   color: ${colors.MAIN_DARK};
 `;

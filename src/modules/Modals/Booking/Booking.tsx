@@ -11,7 +11,7 @@ import { Calendar } from 'modules';
 import { BUTTON_VARIANTS } from 'types/button';
 import createBookingPayload from 'utils/calendar/createBookingPayload';
 
-import { ActionCloseIcon, CloseBtnBox, Container, Header, Modal, NavBox, Title } from './styles';
+import { ActionCloseIcon, Container, Header, Modal, NavBox, Title } from './styles';
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -40,11 +40,14 @@ const Booking = () => {
           <Title data-test-id={dataTestId.MODAL_TITLE}>
             {booking?.customerId === user?.id ? 'Изменение даты бронирования' : 'Выбор даты бронирования'}
           </Title>
-          <CloseBtnBox>
-            <ButtonAction value='searching' onClick={handleCloseModalClick} dataTestId={dataTestId.MODAL_CLOSE_BUTTON}>
-              <ActionCloseIcon />
-            </ButtonAction>
-          </CloseBtnBox>
+          <ButtonAction
+            className='btnClose'
+            value='searching'
+            onClick={handleCloseModalClick}
+            dataTestId={dataTestId.MODAL_CLOSE_BUTTON}
+          >
+            <ActionCloseIcon />
+          </ButtonAction>
         </Header>
         <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         {!booking && (

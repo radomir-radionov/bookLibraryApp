@@ -6,8 +6,8 @@ type BooksListStyledProps = {
 };
 
 export const BooksListStyled = styled.section<BooksListStyledProps>`
-  ${(props) => {
-    switch (props.$displaying) {
+  ${({ $displaying }) => {
+    switch ($displaying) {
       case 'tiles':
         return css`
           display: flex;

@@ -24,7 +24,7 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    height: 100%;
   }
 
 *,
@@ -71,7 +71,7 @@ a:not([class]) {
 }
 
 img {
- 
+
   display: block;
 }
 

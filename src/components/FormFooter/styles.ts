@@ -11,10 +11,7 @@ export const Container = styled.div`
 
   @media (max-width: ${device.tablet}) {
     flex-direction: column;
-    gap: 0;
-  }
-
-  @media (max-width: ${device.mobileL}) {
+    gap: 4px;
     ${typography.mobile.BODY_LARGE};
   }
 `;
@@ -22,7 +19,6 @@ export const Container = styled.div`
 export const LinkStyled = styled(Link)`
   display: flex;
   gap: 14px;
-  padding: 3px 0;
   ${typography.mobile.BUTTON_SMALL};
   color: ${colors.MAIN_DARK};
   cursor: pointer;

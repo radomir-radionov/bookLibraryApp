@@ -65,6 +65,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @media (max-width: ${device.tablet}) {
+    gap: 24px;
+  }
 `;
 
 export const BtnField = styled.div`

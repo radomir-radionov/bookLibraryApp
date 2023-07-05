@@ -9,7 +9,6 @@ export const HomeStyled = styled.div`
 
   @media (max-width: ${device.tabletM}) {
     gap: 24px;
-    margin-bottom: 0;
   }
 
   @media (max-width: ${device.tablet}) {

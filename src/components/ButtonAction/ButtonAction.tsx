@@ -6,6 +6,7 @@ import { BTN_FILTER_VARIANTS } from './types';
 type ButtonActionProps = {
   type?: 'button' | 'submit';
   value?: string;
+  className?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   children: ReactNode;
   mix?: boolean | string;
@@ -18,6 +19,7 @@ const ButtonAction = ({
   type = 'button',
   value = '',
   children,
+  className,
   onClick,
   variant = BTN_FILTER_VARIANTS.ROUND,
   mix = '',
@@ -28,6 +30,7 @@ const ButtonAction = ({
     <ButtonActionStyled
       type={type}
       value={value}
+      className={className}
       onClick={onClick}
       mix={mix}
       $variant={variant}

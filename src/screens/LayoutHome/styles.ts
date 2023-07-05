@@ -4,16 +4,17 @@ import { device } from 'styles';
 export const LayoutHomeStyled = styled.main`
   display: flex;
   justify-content: center;
+  flex: 1;
   width: 100%;
   padding: 62px 0;
 
   @media (max-width: ${device.laptopM}) {
-    padding: 32px 64px 0;
+    padding: 32px 64px 62px;
   }
 
   @media (max-width: ${device.tablet}) {
     justify-content: center;
-    padding: 8px 16px 0;
+    padding: 8px 16px 62px;
   }
 `;
 
