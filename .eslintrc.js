@@ -18,15 +18,6 @@ module.exports = {
     'no-nested-ternary': 'off',
     'no-unneeded-ternary': 'off',
     'react/jsx-no-useless-fragment': 'off',
-    'unicorn/filename-case': [
-      'error',
-      {
-        cases: {
-          camelCase: true,
-          pascalCase: true,
-        },
-      },
-    ],
     'dirnames/match-kebab-case': 'off',
     'no-unsafe-optional-chaining': 'off',
     '@typescript-eslint/naming-convention': 'off',
@@ -47,6 +38,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     complexity: 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'unicorn/filename-case': 'off',
   },
 
   ignorePatterns: ['coverage', 'cypress.config.ts'],

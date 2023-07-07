@@ -1,7 +1,8 @@
     {
     "compilerOptions": {
         "baseUrl": "src",
-        "target": "es5",
+        "target": "ESNext",
+        "types": ["./node_modules/vite/client", "./node_modules/vite-plugin-svgr/client"],
         "lib": [
           "dom",
           "dom.iterable",
@@ -12,9 +13,9 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
-        "forceConsistentCasingInFileNames": true, 
+        "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        "module": "esnext",
+        "module": "ESNext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
