@@ -1,6 +1,6 @@
 import { BookProps, BookDetailedProps } from 'types/book';
 
-export interface IButtonToBookProps {
+export type TProps = {
   book: BookProps | BookDetailedProps;
   booking: {
     id: number;
@@ -19,4 +19,4 @@ export interface IButtonToBookProps {
     recipientFirstName: string | null;
     recipientLastName: string | null;
   } | null;
-}
+};

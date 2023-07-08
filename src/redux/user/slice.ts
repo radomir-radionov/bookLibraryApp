@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { UserStateProps } from './types';
+import { TUserData } from 'types/user';
 
 const initialState: UserStateProps = {
   jwt: '',
-  userData: null,
+  userData: {} as TUserData,
   enteredBookName: '',
   isLoading: false,
 };
@@ -19,7 +20,9 @@ export const userSlice = createSlice({
     setUserData: (state, { payload }) => {
       state.userData = payload;
     },
-    getUser: () => {},
+    getUser: (state) => {
+      state.isLoading = true;
+    },
     clearUser: () => {
       return initialState;
     },

@@ -16,7 +16,7 @@ const InputEmail = ({ register, labelText, errors, isDisabled }: InputProps) => 
   const isValidEmail = errors?.message === hintText.INVALID_EMAIL;
   const isEmptyEmail = errors?.message === hintText.EMPTY_FIELD;
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };
@@ -24,14 +24,7 @@ const InputEmail = ({ register, labelText, errors, isDisabled }: InputProps) => 
   return (
     <Wrapper>
       <Label>
-        <InputStyled
-          {...register}
-          type='text'
-          onBlur={handleBlur}
-          placeholder=' '
-          $errors={errors}
-          disabled={isDisabled}
-        />
+        <InputStyled {...register} type='text' onBlur={onBlur} placeholder=' ' $errors={errors} disabled={isDisabled} />
         <LabelText>{labelText}</LabelText>
       </Label>
       <Hint colored={true}>

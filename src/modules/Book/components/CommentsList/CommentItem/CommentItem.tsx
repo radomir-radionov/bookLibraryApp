@@ -8,11 +8,11 @@ import { formatDate } from 'utils/formatDate';
 
 import { Avatar, Comment, CommentDate, CommentItemStyled, Img, Name, NameBox, UserInfo } from './styles';
 
-type CommentItemProps = {
+type TProps = {
   data: CommentProps;
 };
 
-const CommentItem = ({ data }: CommentItemProps) => {
+const CommentItem = ({ data }: TProps) => {
   const { rating, user, text, createdAt } = data;
   const { firstName, lastName, avatarUrl } = user;
 

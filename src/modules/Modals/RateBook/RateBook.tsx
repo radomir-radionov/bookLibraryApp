@@ -14,7 +14,7 @@ import { Rating } from '..';
 
 import { ActionCloseIcon, BtnField, CloseBtnBox, Form, Header, ModalStyled, Textarea, Title } from './styles';
 
-type RateBookProps = {
+type TProps = {
   onClose: () => void;
 };
 
@@ -23,7 +23,7 @@ type FormValues = {
   text: string;
 };
 
-const RateBook = ({ onClose }: RateBookProps) => {
+const RateBook = ({ onClose }: TProps) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const modalInfo = useSelector(selectModalInfo);
@@ -43,7 +43,6 @@ const RateBook = ({ onClose }: RateBookProps) => {
           commentId: modalInfo.id,
           data: { rating: data.rating, text: data.text, book: modalInfo.bookId.toString(), user: user.id.toString() },
         };
-
         dispatch(userActions.putComment(payload));
       } else if (pathData[3]) {
         dispatch(userActions.postComments({ ...data, book: pathData[3], user: user.id.toString() }));

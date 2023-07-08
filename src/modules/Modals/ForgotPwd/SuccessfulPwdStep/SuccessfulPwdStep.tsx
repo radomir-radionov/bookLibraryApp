@@ -10,7 +10,7 @@ import { ModalStyled, Paragraph, Title } from './styles';
 const SuccessfulStep = () => {
   const navigate = useNavigate();
 
-  const handleSubmitClick = () => navigate(pageRoutes.AUTH);
+  const onBtnSubmitClick = () => navigate(pageRoutes.AUTH);
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
@@ -19,7 +19,7 @@ const SuccessfulStep = () => {
         Зайдите в личный кабинет, <br />
         используя свои логин и новый пароль
       </Paragraph>
-      <Button type='submit' onClick={handleSubmitClick} variant={BUTTON_VARIANTS.LARGE}>
+      <Button type='submit' onClick={onBtnSubmitClick} variant={BUTTON_VARIANTS.LARGE}>
         вход
       </Button>
     </ModalStyled>

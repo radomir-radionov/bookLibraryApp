@@ -11,7 +11,7 @@ const Input = ({ type = 'text', value, labelText, register, errors, isDisabled }
   // isBlur state should be only for tests
   const [isBlur, setIsBlur] = useState(false);
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlur = (event: React.FocusEvent<HTMLElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };
@@ -23,7 +23,7 @@ const Input = ({ type = 'text', value, labelText, register, errors, isDisabled }
           {...register}
           type={type}
           value={value}
-          onBlur={handleBlur}
+          onBlur={onBlur}
           placeholder=' '
           $errors={errors}
           disabled={isDisabled}

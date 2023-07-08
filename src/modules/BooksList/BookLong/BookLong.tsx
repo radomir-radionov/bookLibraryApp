@@ -23,12 +23,12 @@ import {
   SubTitleWrapper,
 } from './styles';
 
-type BookLongProps = {
+type TProps = {
   data: BookProps;
   view?: 'history';
 };
 
-const BookLong = ({ data, view }: BookLongProps) => {
+const BookLong = ({ data, view }: TProps) => {
   const dispatch = useDispatch();
   const comments = useSelector(selectUserComments);
   const enteredText = useSelector(enteredBookName);
@@ -41,15 +41,15 @@ const BookLong = ({ data, view }: BookLongProps) => {
   const isCommentedBook = bookCommentIds?.includes(id);
   const filtredCommentedBookData = comments?.find((comment) => comment.bookId === id);
 
-  const onNavigateToBook = () => navigate(`/books/${category}/${id}`);
+  const onBookClick = () => navigate(`/books/${category}/${id}`);
 
-  const onSetCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onBtnCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     dispatch(bookActions.getBook(id));
     dispatch(modalActions.open({ type: MODAL_TYPES.RATE_BOOK, modalInfo: { id } }));
   };
 
-  const handleChangeCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onBtnRatingClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     dispatch(bookActions.getBook(id));
     dispatch(
@@ -64,7 +64,7 @@ const BookLong = ({ data, view }: BookLongProps) => {
   };
 
   return (
-    <BookItemStyled onClick={onNavigateToBook} data-test-id={dataTestId.CARD}>
+    <BookItemStyled onClick={onBookClick} data-test-id={dataTestId.CARD}>
       <ImgWrapper>
         {imgSrc ? (
           <Img src={imgSrc} alt='Book cover' />
@@ -90,7 +90,7 @@ const BookLong = ({ data, view }: BookLongProps) => {
           ) : isCommentedBook ? (
             <Button
               className='editCommentButton'
-              onClick={handleChangeCommentClick}
+              onClick={onBtnRatingClick}
               variant={BUTTON_VARIANTS.SMALL}
               dataTestId={dataTestId.BUTTON_REVIW_HISTORY}
             >
@@ -98,7 +98,7 @@ const BookLong = ({ data, view }: BookLongProps) => {
             </Button>
           ) : (
             <Button
-              onClick={onSetCommentClick}
+              onClick={onBtnCommentClick}
               variant={BUTTON_VARIANTS.SMALL}
               dataTestId={dataTestId.BUTTON_REVIW_HISTORY}
             >

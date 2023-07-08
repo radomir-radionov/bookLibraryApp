@@ -8,14 +8,14 @@ import { CategoriesList } from 'components';
 
 import { ChevronIcon, Line, MenuItem, MenuList, MenuStyled, Name, NavLinkStyled } from './styles';
 
-type MenuProps = {
+type TProps = {
   visible?: boolean;
   dataTestIds: Array<{
     id: string;
   }>;
 };
 
-const Menu = ({ visible = false, dataTestIds }: MenuProps) => {
+const Menu = ({ visible = false, dataTestIds }: TProps) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();

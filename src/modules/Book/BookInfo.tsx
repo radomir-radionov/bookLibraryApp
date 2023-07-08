@@ -8,7 +8,6 @@ import { AboutBook, CommentsList, Detailed } from 'modules';
 
 import { Additional, BookStyled, Content, Paragraph, RateBox, RateQty, Rating } from './styles';
 
-
 const BookInfo = () => {
   const dispatch = useDispatch();
   const bookData = useSelector(bookDataState);
@@ -17,7 +16,7 @@ const BookInfo = () => {
 
   const { book } = bookData;
   const { rating, description } = book;
-  const isBookDataEmpty = Object.keys(book).length === 0;
+  const isBookDataEmpty = Object.keys(book).length !== 0;
 
   const pathData = location.pathname.split('/');
   const bookId = pathData[3];
@@ -32,7 +31,7 @@ const BookInfo = () => {
 
   return (
     <BookStyled>
-      {!isBookDataEmpty && (
+      {isBookDataEmpty && (
         <>
           <AboutBook data={book} />
           <Additional>
@@ -47,7 +46,7 @@ const BookInfo = () => {
                 <RateQty>{rating}</RateQty>
               </RateBox>
             </Rating>
-            <Detailed details={book} />
+            <Detailed data={book} />
             <CommentsList data={book} />
           </Additional>
         </>

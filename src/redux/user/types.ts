@@ -1,4 +1,4 @@
-import { UserDataProps } from 'types/user';
+import { TUserData } from 'types/user';
 
 export type IUserData = {
   id: number;
@@ -16,7 +16,7 @@ export type IUserData = {
 
 export type UserStateProps = {
   jwt: string;
-  userData: UserDataProps | null;
+  userData: TUserData;
   enteredBookName: string;
   isLoading: boolean;
 };

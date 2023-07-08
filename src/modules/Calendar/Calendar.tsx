@@ -6,12 +6,12 @@ import DayContents from './components/DayContents/DayContents';
 import Header from './components/Header/Header';
 import { CalendarStyled } from './styles';
 
-type CalendarProps = {
+type TProps = {
   selectedDate?: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 };
 
-const Calendar = ({ selectedDate, setSelectedDate }: CalendarProps) => {
+const Calendar = ({ selectedDate, setSelectedDate }: TProps) => {
   const [date, setDate] = useState(new Date());
 
   return (

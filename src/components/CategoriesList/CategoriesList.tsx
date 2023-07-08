@@ -7,11 +7,11 @@ import { createCategories } from 'utils/categories';
 
 import { CategoriesListStyled, Wrapper } from './styles';
 
-type CategoriesListProps = {
+type TProps = {
   isOpen: boolean;
 };
 
-const CategoriesList = ({ isOpen }: CategoriesListProps) => {
+const CategoriesList = ({ isOpen }: TProps) => {
   const books = useSelector(selectBooks);
   const categories = useSelector(selectCategories);
 

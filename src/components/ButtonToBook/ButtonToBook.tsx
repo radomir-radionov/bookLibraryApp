@@ -8,14 +8,14 @@ import { MODAL_TYPES } from 'types/modal';
 import { formatDateButton } from 'utils/formatDate';
 
 import { ButtonStyled } from './styles';
-import { IButtonToBookProps } from './types';
+import { TProps } from './types';
 
-const ButtonToBook = ({ book, booking, delivery }: IButtonToBookProps) => {
+const ButtonToBook = ({ book, booking, delivery }: TProps) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserDataId);
   const { id } = book;
 
-  const handleOpenModalClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onModalClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     dispatch(modalActions.open({ type: MODAL_TYPES.BOOKING, modalInfo: book }));
     dispatch(bookingActions.setBookId(id));
@@ -26,7 +26,7 @@ const ButtonToBook = ({ book, booking, delivery }: IButtonToBookProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={handleOpenModalClick}
+          onClick={onModalClick}
           $buttonValue='currentCustomer'
           data-test-id={dataTestId.BOOKING_BUTTON}
         >
@@ -37,7 +37,7 @@ const ButtonToBook = ({ book, booking, delivery }: IButtonToBookProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={handleOpenModalClick}
+          onClick={onModalClick}
           $buttonValue='anotherCustomer'
           disabled={true}
           data-test-id={dataTestId.BOOKING_BUTTON}
@@ -49,7 +49,7 @@ const ButtonToBook = ({ book, booking, delivery }: IButtonToBookProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={handleOpenModalClick}
+          onClick={onModalClick}
           $buttonValue='onHands'
           disabled={true}
           data-test-id={dataTestId.BOOKING_BUTTON}
@@ -61,7 +61,7 @@ const ButtonToBook = ({ book, booking, delivery }: IButtonToBookProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={handleOpenModalClick}
+          onClick={onModalClick}
           $buttonValue='noBooking'
           data-test-id={dataTestId.BOOKING_BUTTON}
         >

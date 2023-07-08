@@ -6,9 +6,9 @@ export const BookStyled = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  flex: 1;
   gap: 42px;
   width: 100%;
-  min-height: 80vh;
   padding: 42px 0;
 
   @media (max-width: ${device.laptopM}) {

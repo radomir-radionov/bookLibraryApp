@@ -2,12 +2,12 @@ import dataTestId from 'constants/dataTestId';
 
 import { ExpiredMaskStyled, Subtitle, Title } from './styles';
 
-type ExpiredMaskProps = {
+type TProps = {
   title: string;
   subtitle: string;
 };
 
-const ExpiredMask = ({ title, subtitle }: ExpiredMaskProps) => {
+const ExpiredMask = ({ title, subtitle }: TProps) => {
   return (
     <ExpiredMaskStyled data-test-id={dataTestId.EXPIRED}>
       <Title>{title}</Title>

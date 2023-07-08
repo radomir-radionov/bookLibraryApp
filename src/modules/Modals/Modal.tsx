@@ -13,9 +13,9 @@ const Modal = () => {
   const modalType: string = useSelector(modalTypeSelector);
   const ModalComponent = MODALS_MAPPING[modalType];
 
-  const handleCloseModal = () => dispatch(modalActions.close());
-  const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) =>
-    event.target === event.currentTarget && handleCloseModal();
+  const onModalClick = () => dispatch(modalActions.close());
+  const onOutsideClick = (event: React.MouseEvent<HTMLDivElement>) =>
+    event.target === event.currentTarget && onModalClick();
 
   useEffect(() => {
     modalType ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
@@ -24,8 +24,8 @@ const Modal = () => {
   return (
     <>
       {modalType && (
-        <Wrapper onClick={handleWrapperClick} data-test-id={dataTestId.MODAL_OUTER}>
-          <ModalComponent onClose={handleCloseModal} />
+        <Wrapper onClick={onOutsideClick} data-test-id={dataTestId.MODAL_OUTER}>
+          <ModalComponent onClose={onModalClick} />
         </Wrapper>
       )}
     </>

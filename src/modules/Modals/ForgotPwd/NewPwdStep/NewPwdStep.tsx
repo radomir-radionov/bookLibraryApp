@@ -9,7 +9,7 @@ import { Button, InputPasswordConfirmation } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import schema from './schema';
-import { AssistiveText, BtnField, Form, InputFields, ModalStyled, Title } from './styles';
+import { Hint, BtnField, Form, InputFields, ModalStyled, Title } from './styles';
 import { NewPwdFormProps } from './types';
 
 const NewPwdStep = () => {
@@ -69,7 +69,7 @@ const NewPwdStep = () => {
           <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
             сохранить изменения
           </Button>
-          <AssistiveText>После сохранения войдите в библиотеку, используя новый пароль</AssistiveText>
+          <Hint>После сохранения войдите в библиотеку, используя новый пароль</Hint>
         </BtnField>
       </Form>
     </ModalStyled>

@@ -2,11 +2,11 @@ import { validateForDigit, validateForLatinLetters } from 'utils/validations';
 
 import { ErrorText, HintStyled } from './styles';
 
-type TCustomLoginHintProps = {
+type TProps = {
   value: string;
 };
 
-const CustomLoginHint = ({ value }: TCustomLoginHintProps) => {
+const CustomLoginHint = ({ value }: TProps) => {
   return (
     <HintStyled>
       Используйте для логина{' '}

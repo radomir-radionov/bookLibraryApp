@@ -1,12 +1,12 @@
 import { ChevronRightIcon, Container, IconBox, LinkStyled } from './styles';
 
-type TFormFooter = {
+type TProps = {
   text: string;
   link: string;
   linkText: string;
 };
 
-const FormFooter = ({ text, link, linkText }: TFormFooter) => {
+const FormFooter = ({ text, link, linkText }: TProps) => {
   return (
     <Container>
       {text}

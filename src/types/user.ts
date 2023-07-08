@@ -18,7 +18,7 @@ export type FileUploadResponseProps = {
   updatedAt: string;
 };
 
-export type UserDataProps = {
+export type TUserData = {
   id: number;
   username: string;
   email: string;

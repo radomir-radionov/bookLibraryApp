@@ -6,7 +6,7 @@ import { selectResetPwdData } from 'redux/forgotPwd/selectors';
 import { Button } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import { ModalStyled, Paragraph, Title } from './styles';
+import { ModalStyled, Text, Title } from './styles';
 
 const FailedPwdStep = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const FailedPwdStep = () => {
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Данные не сохранились</Title>
-      <Paragraph>Что-то пошло не так. Попробуйте ещё раз</Paragraph>
+      <Text>Что-то пошло не так. Попробуйте ещё раз</Text>
       <Button type='submit' onClick={handleSubmitClick} variant={BUTTON_VARIANTS.LARGE}>
         повторить
       </Button>

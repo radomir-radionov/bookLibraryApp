@@ -3,7 +3,7 @@ import { BUTTON_VARIANTS } from 'types/button';
 
 import { ButtonStyled } from './styles';
 
-type ButtonProps = {
+type TProps = {
   children: ReactNode;
   type?: 'button' | 'submit';
   className?: string;
@@ -21,7 +21,7 @@ const Button = ({
   variant = BUTTON_VARIANTS.LARGE,
   disabled = false,
   dataTestId,
-}: ButtonProps) => {
+}: TProps) => {
   return (
     <ButtonStyled
       type={type}

@@ -2,25 +2,23 @@ import { Loader_Icon } from 'assets';
 import styled from 'styled-components';
 import { device } from 'styles';
 
-export const Wrapper = styled.div``;
+type LoaderStyledProps = {
+  $visibility: boolean;
+};
 
-export const LoaderStyled = styled.div`
+export const LoaderStyled = styled.div<LoaderStyledProps>`
+  visibility: ${({ $visibility }) => ($visibility ? 'visible' : 'hidden')};
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background: rgba(54, 54, 54, 0.3);
   backdrop-filter: blur(10px);
-`;
-
-export const IconBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
 `;
 
 export const LoaderIcon = styled(Loader_Icon)`

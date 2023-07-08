@@ -8,23 +8,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { CustomLoginHint, Input, InputEmail, InputLogin, InputPassword, InputPhone } from 'components';
 
 import schema from './schema';
-import {
-  AssistiveText,
-  ButtonEdit,
-  Buttons,
-  ButtonSave,
-  Form,
-  Header,
-  TextField,
-  Title,
-  СredentialsStyled,
-} from './styles';
+import { Text, ButtonEdit, Buttons, ButtonSave, Form, Header, TextField, Title, СredentialsStyled } from './styles';
 import { CredentialsProps, FormValuesProps, SubmitedDataProps } from './types';
 
-const Сredentials = ({ userData }: CredentialsProps) => {
+const Сredentials = ({ data }: CredentialsProps) => {
   const dispatch = useDispatch();
   const [inputDisable, setInputDisable] = useState(true);
-  const { username, firstName, lastName, email, phone } = userData;
+  const { username, firstName, lastName, email, phone } = data;
 
   const defaultValues = {
     login: username,
@@ -42,7 +32,7 @@ const Сredentials = ({ userData }: CredentialsProps) => {
     formState: { errors },
   } = useForm<FormValuesProps>({ resolver: yupResolver(schema), defaultValues, mode: 'all' });
 
-  const handleEditUserDataClick = () => setInputDisable(!inputDisable);
+  const onBtnEditClick = () => setInputDisable(!inputDisable);
   const onSubmit: SubmitHandler<FormValuesProps> = (data: SubmitedDataProps) => {
     data.username = data.login;
     delete data.login;
@@ -57,7 +47,7 @@ const Сredentials = ({ userData }: CredentialsProps) => {
     <СredentialsStyled>
       <Header>
         <Title>Учётные данные</Title>
-        <AssistiveText>Здесь вы можете отредактировать информацию о себе</AssistiveText>
+        <Text>Здесь вы можете отредактировать информацию о себе</Text>
       </Header>
       <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.FORM_PROFILE}>
         <TextField>
@@ -100,7 +90,7 @@ const Сredentials = ({ userData }: CredentialsProps) => {
           <InputEmail labelText='E-mail' register={register('email')} errors={errors.email} isDisabled={inputDisable} />
         </TextField>
         <Buttons>
-          <ButtonEdit onClick={handleEditUserDataClick} dataTestId={dataTestId.BUTTON_EDIT}>
+          <ButtonEdit onClick={onBtnEditClick} dataTestId={dataTestId.BUTTON_EDIT}>
             Редактировать
           </ButtonEdit>
           <ButtonSave type='submit' disabled={isButtonSaveDisabled} dataTestId={dataTestId.BUTTON_SAVE}>

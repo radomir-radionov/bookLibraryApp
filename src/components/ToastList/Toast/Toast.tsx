@@ -9,15 +9,15 @@ import { getToastIconVariant } from '../toastData';
 
 import { CloseToastIcon, Text, TextBox, ToastStyled } from './styles';
 
-type TToast = {
+type TProps = {
   data: ToastProps;
 };
 
-const Toast = ({ data }: TToast) => {
+const Toast = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const { id, type, text } = data;
 
-  const handleCloseToastClick = (toastId: string) => () => dispatch(toastActions.deleteToast(toastId));
+  const onToastClick = (toastId: string) => () => dispatch(toastActions.deleteToast(toastId));
 
   useEffect(() => {
     const timeoutId = setTimeout(() => dispatch(toastActions.deleteToast(id)), 4000);
@@ -31,7 +31,7 @@ const Toast = ({ data }: TToast) => {
         {getToastIconVariant(type)}
         <Text>{text}</Text>
       </TextBox>
-      <CloseToastIcon onClick={handleCloseToastClick(id)} data-test-id={dataTestId.ALERT_CLOSE} />
+      <CloseToastIcon onClick={onToastClick(id)} data-test-id={dataTestId.ALERT_CLOSE} />
     </ToastStyled>
   );
 };

@@ -1,15 +1,18 @@
 import hintText from 'constants/hintText';
 
-import { useSelector } from 'react-redux';
-import { selectUserBooking } from 'redux/user/selectors';
 import { ExpiredMask } from 'components';
 import { BookProfile } from 'modules';
-import { EmptyData } from 'modules/Profile/components';
+import { EmptyData } from 'modules/Profile';
 
-import { AssistiveText, BookedBookStyled, BookWrapper, Header, Title } from './styles';
+import { Text, BookedBookStyled, BookWrapper, Header, Title } from './styles';
+import { TUserData } from 'types/user';
 
-const BookedBook = () => {
-  const booking = useSelector(selectUserBooking);
+type TProps = {
+  data: TUserData;
+};
+
+const BookedBook = ({ data }: TProps) => {
+  const { booking } = data;
 
   const isExpired =
     new Date().getTime() >= new Date(booking?.dateOrder || '').getTime() &&
@@ -19,7 +22,7 @@ const BookedBook = () => {
     <BookedBookStyled>
       <Header>
         <Title>Забронированная книга</Title>
-        <AssistiveText>Здесь вы можете просмотреть забронированную книгу, а так же отменить бронь</AssistiveText>
+        <Text>Здесь вы можете просмотреть забронированную книгу, а так же отменить бронь</Text>
       </Header>
       {booking && booking.id ? (
         <BookWrapper>

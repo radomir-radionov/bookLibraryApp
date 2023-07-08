@@ -8,7 +8,7 @@ enum hintText {
   EXPIRED_BOOKING_TITLE = 'Дата бронирования книги истекла',
   EXPIRED_BOOKING_SUBTITLE = 'Через 24 часа книга будет  доступна всем',
   EXPIRED_DEADLINE_TITLE = 'Вышел срок пользования книги',
-  EXPIRED_DEADLINE__SUBTITLE = 'Верните книгу, пожалуйста',
+  EXPIRED_DEADLINE_SUBTITLE = 'Верните книгу, пожалуйста',
   PURCHASE_HISTORY_TEXT = ' Вы не читали книг  из нашей библиотеки',
   USER_BOOK_TEXT = ' Прочитав книгу, она отобразится в истории',
   BOOKED_BOOK_TEXT = 'Забронируйте книгу и она отобразится',

@@ -2,11 +2,11 @@ import dataTestId from 'constants/dataTestId';
 
 import { EmptyDataStyled, Text } from './styles';
 
-type EmptyDataProps = {
+type TProps = {
   text: string;
 };
 
-const EmptyData = ({ text }: EmptyDataProps) => {
+const EmptyData = ({ text }: TProps) => {
   return (
     <EmptyDataStyled data-test-id={dataTestId.EMPTY_BLUE_CARD}>
       <Text>{text}</Text>

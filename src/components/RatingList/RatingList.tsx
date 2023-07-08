@@ -3,21 +3,19 @@ import dataTestId from 'constants/dataTestId';
 import { useSelector } from 'react-redux';
 import { displayingBooks } from 'redux/displayingContent/selectors';
 
-import { EmptyStarIcon, RatingItem, RatingListStyled, RatingText, StarIcon } from './styles';
+import { EmptyStarIcon, RatingItem, RatingListStyled, Text, StarIcon } from './styles';
 
-type RatingListProps = {
+type TProps = {
   rating: number | null;
 };
 
-const RatingList = ({ rating }: RatingListProps) => {
+const RatingList = ({ rating }: TProps) => {
   const displayingData = useSelector(displayingBooks);
   const ratings = [0, 1, 2, 3, 4, 5];
 
   return (
     <RatingListStyled $visible={displayingData} data-test-id={dataTestId.RATING}>
-      {rating === null ? (
-        <RatingText>ещё нет оценок</RatingText>
-      ) : (
+      {rating ? (
         ratings?.map((item) => (
           <RatingItem key={item}>
             {item === 0 ? null : rating >= item ? (
@@ -27,6 +25,8 @@ const RatingList = ({ rating }: RatingListProps) => {
             )}
           </RatingItem>
         ))
+      ) : (
+        <Text>ещё нет оценок</Text>
       )}
     </RatingListStyled>
   );

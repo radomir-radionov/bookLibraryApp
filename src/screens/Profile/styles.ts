@@ -16,3 +16,19 @@ export const ProfileStyled = styled.article`
     padding: 16px 16px 32px;
   }
 `;
+
+export const Content = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 92px;
+  width: 100%;
+  max-width: 1100px;
+
+  @media (max-width: ${device.laptopM}) {
+    gap: 64px;
+  }
+
+  @media (max-width: ${device.tablet}) {
+    gap: 42px;
+  }
+`;

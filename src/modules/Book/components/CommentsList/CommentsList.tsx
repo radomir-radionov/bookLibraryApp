@@ -14,11 +14,11 @@ import { MODAL_TYPES } from 'types/modal';
 
 import { ChevronIcon, CommentsListStyled, ListWrapper, Qty, SubTitleBox, Wrapper } from './styles';
 
-type CommentsListProps = {
+type TProps = {
   data: BookDetailedProps;
 };
 
-const CommentsList = ({ data }: CommentsListProps) => {
+const CommentsList = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const userComments = useSelector(selectUserComments);
   const [isCommentsListOpen, setCommentsListOpen] = useState(true);

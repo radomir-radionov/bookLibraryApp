@@ -7,7 +7,7 @@ import { selectIsBooksLoading } from 'redux/books/selectors';
 import { selectCategoriesLoading } from 'redux/categories/selectors';
 import { selectIsLoading } from 'redux/user/selectors';
 
-import { IconBox, LoaderIcon, LoaderStyled, Wrapper } from './styles';
+import { LoaderIcon, LoaderStyled } from './styles';
 
 const Loader = () => {
   const isUserLoading = useSelector(selectIsLoading);
@@ -19,13 +19,9 @@ const Loader = () => {
   const isLoading = isUserLoading || isCategoriesLoading || isBooksLoading || isBookLoading || isLoadingBooking;
 
   return (
-    <Wrapper hidden={!isLoading}>
-      <LoaderStyled data-test-id={dataTestId.LOADER}>
-        <IconBox>
-          <LoaderIcon />
-        </IconBox>
-      </LoaderStyled>
-    </Wrapper>
+    <LoaderStyled $visibility={isLoading} data-test-id={dataTestId.LOADER}>
+      <LoaderIcon />
+    </LoaderStyled>
   );
 };
 

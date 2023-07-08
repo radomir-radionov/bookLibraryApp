@@ -31,11 +31,11 @@ const InputPassword = ({ name, labelText, error, isDisabled, required = true, cu
 
   const passwordValue = watch().password;
   const isValid = isPasswordCorrect(passwordValue);
-  const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setValue(name, value);
     clearErrors(name);
   };
-  const toggleShow = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
+  const onToggleClick = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
 
   return (
     <Wrapper>
@@ -49,13 +49,13 @@ const InputPassword = ({ name, labelText, error, isDisabled, required = true, cu
             },
           })}
           type={fieldType}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder=' '
           disabled={isDisabled}
         />
         <LabelText>{labelText}</LabelText>
         {isValid && <CheckIcon data-test-id={dataTestId.CHECKMARK} />}
-        <IconWrapper onClick={toggleShow}>
+        <IconWrapper onClick={onToggleClick}>
           {passwordValue?.length ? (
             fieldType === 'password' ? (
               <ActionVisibleIcon data-test-id={dataTestId.EYE_OPENED} />

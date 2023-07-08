@@ -5,11 +5,18 @@ import { useState } from 'react';
 import { Hint } from 'components';
 
 import { ActionUnvisibleIcon, ActionVisibleIcon, IconWrapper, InputStyled, Label, LabelText, Wrapper } from './styles';
-import IInputProps from './types';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-const InputAuthPassword = ({ labelText, watchValue, register, errors }: IInputProps) => {
+type TProps = {
+  labelText: string;
+  watchValue: string;
+  register: UseFormRegisterReturn;
+  errors?: FieldError;
+};
+
+const InputAuthPassword = ({ labelText, watchValue, register, errors }: TProps) => {
   const [fieldType, setFieldType] = useState('text');
-  const toggleShow = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
+  const onToggleClick = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
   const isValueLength = watchValue?.length > 0;
 
   return (
@@ -24,12 +31,11 @@ const InputAuthPassword = ({ labelText, watchValue, register, errors }: IInputPr
           data-test-id={dataTestId.INPUT_PASS}
         />
         <LabelText>{labelText}</LabelText>
-        <IconWrapper onClick={toggleShow}>
+        <IconWrapper onClick={onToggleClick}>
           {isValueLength && fieldType === 'password' && <ActionVisibleIcon data-test-id={dataTestId.EYE_OPENED} />}
           {isValueLength && fieldType === 'text' && <ActionUnvisibleIcon data-test-id={dataTestId.EYE_CLOSED} />}
         </IconWrapper>
       </Label>
-
       {!!errors && <Hint colored={true}>{hintText.EMPTY_FIELD}</Hint>}
     </Wrapper>
   );

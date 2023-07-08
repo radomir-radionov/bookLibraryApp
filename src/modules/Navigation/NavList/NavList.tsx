@@ -25,9 +25,9 @@ const NavList = () => {
   const displayingData = useSelector(displayingBooks);
   const isSortByRating = useSelector(selectIsSortByRating);
 
-  const handleBooksViewDispaling = (type: string) => () => dispatch(displayingContentActions.setDisplayingBooks(type));
-  const handleSearchBarOpening = () => dispatch(displayingContentActions.setSearchBarOpen());
-  const handleSortingByRating = () => dispatch(booksActions.sortBooksByRating());
+  const onBtnViewClick = (type: string) => () => dispatch(displayingContentActions.setDisplayingBooks(type));
+  const onSearchBarClick = () => dispatch(displayingContentActions.setSearchBarOpen());
+  const onBtnRatingClick = () => dispatch(booksActions.sortBooksByRating());
 
   return (
     <NavListStyled>
@@ -41,13 +41,13 @@ const NavList = () => {
             <SearchBar />
             <ButtonAction
               value='searching'
-              onClick={handleSearchBarOpening}
+              onClick={onSearchBarClick}
               visible={isOpen}
               dataTestId={dataTestId.BUTTON_SEARCH_OPEN}
             >
               <ActionSearchingIcon />
             </ButtonAction>
-            <ButtonAction value='rating' onClick={handleSortingByRating} variant={BTN_FILTER_VARIANTS.OVAL}>
+            <ButtonAction value='rating' onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
               {isSortByRating ? <ActionRatingUpIcon /> : <ActionRatingDownIcon />}
               <Name data-test-id={dataTestId.BUTTON_SORT_RATING}>По рейтингу</Name>
             </ButtonAction>
@@ -55,7 +55,7 @@ const NavList = () => {
           <Actions>
             <ButtonAction
               value='tiles'
-              onClick={handleBooksViewDispaling('tiles')}
+              onClick={onBtnViewClick('tiles')}
               mix={displayingData}
               dataTestId={dataTestId.BUTTON_MENU_VIEW_WINDOW}
             >
@@ -63,7 +63,7 @@ const NavList = () => {
             </ButtonAction>
             <ButtonAction
               value='list'
-              onClick={handleBooksViewDispaling('list')}
+              onClick={onBtnViewClick('list')}
               mix={displayingData}
               dataTestId={dataTestId.BUTTON_MENU_VIEW_LIST}
             >

@@ -5,21 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import { ModalStyled, Paragraph, Title } from './styles';
+import { ModalStyled, Text, Title } from './styles';
 
 const SuccessfulStep = () => {
   const navigate = useNavigate();
 
-  const handleNavigateClick = () => navigate(pageRoutes.AUTH);
+  const onBtnNavigateClick = () => navigate(pageRoutes.AUTH);
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Регистрация успешна</Title>
-      <Paragraph>
+      <Text>
         Регистрация прошла успешно. Зайдите
         <br /> в личный кабинет, используя свои логин и <br /> пароль
-      </Paragraph>
-      <Button type='submit' onClick={handleNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
+      </Text>
+      <Button type='submit' onClick={onBtnNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
         вход
       </Button>
     </ModalStyled>

@@ -1,27 +1,30 @@
 import hintText from 'constants/hintText';
 
-import { useSelector } from 'react-redux';
-import { selectUserDelivery } from 'redux/user/selectors';
 import { ExpiredMask } from 'components';
 import { BookProfile } from 'modules';
-import { EmptyData } from 'modules/Profile/components';
+import { EmptyData } from 'modules/Profile';
 
-import { AssistiveText, BookWrapper, Header, Title, UserBookStyled } from './styles';
+import { Text, BookWrapper, Header, Title, UserBookStyled } from './styles';
+import { TUserData } from 'types/user';
 
-const UserBook = () => {
-  const delivery = useSelector(selectUserDelivery);
+type TProps = {
+  data: TUserData;
+};
+
+const UserBook = ({ data }: TProps) => {
+  const { delivery } = data;
   const isExpired = new Date().getTime() >= (delivery?.dateHandedTo ? new Date(delivery.dateHandedTo).getTime() : 0);
 
   return (
     <UserBookStyled>
       <Header>
         <Title>Книга которую взяли</Title>
-        <AssistiveText>Здесь можете просмотреть информацию о книге и узнать сроки возврата</AssistiveText>
+        <Text>Здесь можете просмотреть информацию о книге и узнать сроки возврата</Text>
       </Header>
       {delivery && delivery.id ? (
         <BookWrapper>
           {isExpired && (
-            <ExpiredMask title={hintText.EXPIRED_DEADLINE_TITLE} subtitle={hintText.EXPIRED_DEADLINE__SUBTITLE} />
+            <ExpiredMask title={hintText.EXPIRED_DEADLINE_TITLE} subtitle={hintText.EXPIRED_DEADLINE_SUBTITLE} />
           )}
           <BookProfile data={delivery} />
         </BookWrapper>

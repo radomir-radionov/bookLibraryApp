@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
 import { DefaultAvatarImg } from 'assets';
-import { UserDataProps } from 'types/user';
 import { convertFile } from 'utils/convertFile';
 
 import {
@@ -22,16 +21,17 @@ import {
   NameUser,
   ProfileAvatar,
 } from './styles';
+import { TUserData } from 'types/user';
 
-type HeaderProps = {
-  data: UserDataProps;
+type TProps = {
+  data: TUserData;
 };
 
 type FileUploadProps = {
   picture: any;
 };
 
-const Header = ({ data }: HeaderProps) => {
+const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState<string | undefined>('');
   const { id, firstName, lastName, avatar } = data;

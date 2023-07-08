@@ -17,7 +17,7 @@ export const ModalStyled = styled.div`
   }
 `;
 
-export const Paragraph = styled.p`
+export const Text = styled.p`
   text-align: center;
   ${typography.desktop.BODY_LARGE}
 `;
@@ -25,8 +25,4 @@ export const Paragraph = styled.p`
 export const Title = styled.h4`
   text-align: center;
   ${typography.desktop.H4}
-`;
-
-export const StepText = styled.p`
-  ${typography.desktop.SUBTITLE_SMALL}
 `;

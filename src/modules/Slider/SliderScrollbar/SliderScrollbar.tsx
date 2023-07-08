@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { useState } from 'react';
@@ -13,15 +12,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/scrollbar';
 
-type SliderScrollbarProps = {
-  imgs: [
-    {
-      url: string;
-    }
-  ];
-};
+type TProps = { imgs: [{ url: string }] };
 
-const SliderScrollbar = ({ imgs }: SliderScrollbarProps) => {
+const SliderScrollbar = ({ imgs }: TProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
 
   return (

@@ -68,7 +68,7 @@ export const Buttons = styled.div`
   }
 `;
 
-export const AssistiveText = styled.p`
+export const Text = styled.p`
   ${typography.desktop.BODY_LARGE};
   color: ${colors.GREY_BLACK_40};
 `;

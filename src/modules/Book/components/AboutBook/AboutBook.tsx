@@ -20,11 +20,11 @@ import {
   Title,
 } from './styles';
 
-type AboutBookProps = {
+type TProps = {
   data: BookDetailedProps;
 };
 
-const AboutBook = ({ data }: AboutBookProps) => {
+const AboutBook = ({ data }: TProps) => {
   const { width } = useWindowDimensions();
   const { title, authors, issueYear, description, images, booking, delivery } = data;
 

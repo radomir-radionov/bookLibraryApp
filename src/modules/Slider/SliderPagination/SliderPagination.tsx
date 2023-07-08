@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { Pagination } from 'swiper';
@@ -6,7 +5,7 @@ import { SwiperSlide } from 'swiper/react';
 
 import { Img, SwiperStyled } from './styles';
 
-type SliderPaginationProps = {
+type TProps = {
   imgs: [
     {
       url: string;
@@ -14,7 +13,7 @@ type SliderPaginationProps = {
   ];
 };
 
-const SliderPagination = ({ imgs }: SliderPaginationProps) => {
+const SliderPagination = ({ imgs }: TProps) => {
   return (
     <SwiperStyled
       spaceBetween={1}

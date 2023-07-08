@@ -4,12 +4,12 @@ import { ReactNode } from 'react';
 
 import { HintStyled } from './styles';
 
-type HintProps = {
+type TProps = {
   colored?: boolean;
   children: ReactNode;
 };
 
-const Hint = ({ colored = false, children }: HintProps) => {
+const Hint = ({ colored = false, children }: TProps) => {
   return (
     <HintStyled $colored={colored} data-test-id={dataTestId.HINT}>
       {children}

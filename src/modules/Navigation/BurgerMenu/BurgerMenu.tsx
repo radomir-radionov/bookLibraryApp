@@ -17,14 +17,14 @@ const BurgerMenu = () => {
   const squareBoxRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
 
-  const clickIsOpenMenu = () => dispatch(displayingContentActions.setBurgerMenuOpen());
-  const clickOutsidehandler = () => isMenuOpen && dispatch(displayingContentActions.closeBurgerMenu());
+  const onBurgerMenuClick = () => dispatch(displayingContentActions.setBurgerMenuOpen());
+  const onOutsideClick = () => isMenuOpen && dispatch(displayingContentActions.closeBurgerMenu());
 
-  useOnClickOutside(squareBoxRef, clickOutsidehandler);
+  useOnClickOutside(squareBoxRef, onOutsideClick);
 
   return (
     <BurgerMenuStyled data-test-id={dataTestId.BUTTON_BURGER}>
-      {isMenuOpen ? <CloseMenuIcon onClick={clickIsOpenMenu} /> : <HumburgerIcon onClick={clickIsOpenMenu} />}
+      {isMenuOpen ? <CloseMenuIcon onClick={onBurgerMenuClick} /> : <HumburgerIcon onClick={onBurgerMenuClick} />}
       <BurgerNav ref={squareBoxRef} $visible={isMenuOpen} data-test-id={dataTestId.BURGER_NAVIGATION}>
         <MenuWrapper>{width < 1024 && <Menu visible={true} dataTestIds={dataTestIds} />}</MenuWrapper>
         <UserMenu />

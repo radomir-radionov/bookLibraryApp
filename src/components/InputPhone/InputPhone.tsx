@@ -5,7 +5,7 @@ import { Hint } from 'components';
 
 import { HintWord, InputMaskStyled, Label, LabelText, Wrapper } from './styles';
 
-type InputPhoneProps = {
+type TProps = {
   view: 'form' | 'profile';
   labelText: string;
   alwaysShowMask?: boolean;
@@ -15,7 +15,7 @@ type InputPhoneProps = {
   isDisabled?: boolean;
 };
 
-const InputPhone = ({ view, labelText, alwaysShowMask, register, errors, isDisabled }: InputPhoneProps) => {
+const InputPhone = ({ view, labelText, alwaysShowMask, register, errors, isDisabled }: TProps) => {
   const { name } = register;
 
   return (

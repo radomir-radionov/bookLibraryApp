@@ -6,19 +6,19 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectBooks } from 'redux/books/selectors';
 import { BookShort } from 'modules';
-import { EmptyData } from 'modules/Profile/components';
+import { EmptyData } from 'modules/Profile';
 import { Pagination } from 'swiper';
 import { BookProps } from 'types/book';
-import { UserDataProps } from 'types/user';
+import { TUserData } from 'types/user';
 
 import { breakpoints } from './data';
 import { AssistiveText, Header, PurchaseHistoryStyled, SwiperSlideStyled, SwiperStyled, Title } from './styles';
 
-type PurchaseHistoryProps = {
-  data: UserDataProps;
+type TProps = {
+  data: TUserData;
 };
 
-const PurchaseHistory = ({ data }: PurchaseHistoryProps) => {
+const PurchaseHistory = ({ data }: TProps) => {
   const allBooks = useSelector(selectBooks);
   const [historyBooks, setHistoryBook] = useState<BookProps[]>([]);
   const { history } = data;

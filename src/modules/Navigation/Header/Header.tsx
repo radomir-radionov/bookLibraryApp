@@ -25,19 +25,19 @@ const Header = () => {
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
 
-  const clickLogo = () => navigate(pageRoutes.HOME);
-  const handleMenuMouseEnter = () => setHovered(true);
-  const handleMenuMouseLeave = () => setHovered(false);
+  const onLogoClick = () => navigate(pageRoutes.HOME);
+  const onMenuMouseEnter = () => setHovered(true);
+  const onMenuMouseLeave = () => setHovered(false);
 
   return (
     <HeaderStyled $isHovered={hovered}>
       <Content>
         <LogoBox>
           <BurgerMenu />
-          <Logo onClick={clickLogo} src={LogoIcon} alt='Logo' />
+          <Logo onClick={onLogoClick} src={LogoIcon} alt='Logo' />
           <Title>Библиотека</Title>
         </LogoBox>
-        <Profile onMouseEnter={handleMenuMouseEnter} onMouseLeave={handleMenuMouseLeave}>
+        <Profile onMouseEnter={onMenuMouseEnter} onMouseLeave={onMenuMouseLeave}>
           <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
           {user && user.avatar ? (
             <Avatar img={`${user.avatar}`} />

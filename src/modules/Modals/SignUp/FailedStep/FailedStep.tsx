@@ -6,19 +6,19 @@ import { selectResponseMessage } from 'redux/registration/selectors';
 import { Button } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import { ModalStyled, Paragraph, Title } from './styles';
+import { ModalStyled, Text, Title } from './styles';
 
 const FailedStep = () => {
   const dispatch = useDispatch();
   const responseMessage = useSelector(selectResponseMessage);
 
-  const handleNavigateClick = () => dispatch(registrationActions.setDefiniteStep(1));
+  const onBtnNavigateClick = () => dispatch(registrationActions.setDefiniteStep(1));
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Данные не сохранились</Title>
-      <Paragraph>{responseMessage}</Paragraph>
-      <Button type='submit' onClick={handleNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
+      <Text>{responseMessage}</Text>
+      <Button type='submit' onClick={onBtnNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
         повторить
       </Button>
     </ModalStyled>

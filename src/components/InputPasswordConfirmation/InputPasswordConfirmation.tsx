@@ -25,7 +25,7 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, clearError
   // isBlur state should be only for tests
   const [isBlur, setIsBlur] = useState(false);
 
-  const toggleShow = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
+  const onToggleClick = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
   const isMix = payload?.name === 'passwordConfirmation';
   const isValueLength = value.length > 0;
   const isWatchValueLength = watchValue?.length > 0;
@@ -34,14 +34,12 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, clearError
   const isCapitalLetter = RegExp.capitalLetter.test(value);
   const isDigit = RegExp.digit.test(value);
 
-  const handleChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     setLocalError(!isMinQtyOfChars || !isCapitalLetter || !isDigit);
   };
-
-  const handleFocus = () => clearErrors && clearErrors();
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onFocus = () => clearErrors && clearErrors();
+  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };
@@ -57,9 +55,9 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, clearError
         <InputStyled
           {...register}
           type={fieldType}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
           placeholder=' '
           $errors={errors}
           autoComplete={register.name}
@@ -68,7 +66,7 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, clearError
 
         {!!value.length && isMix && <CheckIcon $mix={isWatchValueLength} data-test-id={dataTestId.CHECKMARK} />}
 
-        <IconWrapper onClick={toggleShow}>
+        <IconWrapper onClick={onToggleClick}>
           {isValueLength ? (
             isValueLength && fieldType === 'password' ? (
               <ActionVisibleIcon data-test-id={dataTestId.EYE_OPENED} />

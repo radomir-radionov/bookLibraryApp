@@ -21,11 +21,11 @@ const Booking = () => {
   const { booking } = book;
   const bookingId = booking?.id;
 
-  const handleBookingClick = () => dispatch(bookingActions.postBooking(createBookingPayload(selectedDate, user)));
-  const handleReBookingClick = () =>
+  const handleBooking = () => dispatch(bookingActions.postBooking(createBookingPayload(selectedDate, user)));
+  const handleReBooking = () =>
     dispatch(bookingActions.putRebooking(createBookingPayload(selectedDate, user, bookingId)));
-  const handleCancelBookingClick = () => dispatch(bookingActions.deleteBooking(booking.id));
-  const handleCloseModalClick = () => dispatch(modalActions.close());
+  const handleCancelBooking = () => dispatch(bookingActions.deleteBooking(booking.id));
+  const onBtnCloseModalClick = () => dispatch(modalActions.close());
 
   useEffect(() => {
     if (booking?.customerId === user?.id && booking?.dateOrder) {
@@ -43,7 +43,7 @@ const Booking = () => {
           <ButtonAction
             className='btnClose'
             value='searching'
-            onClick={handleCloseModalClick}
+            onClick={onBtnCloseModalClick}
             dataTestId={dataTestId.MODAL_CLOSE_BUTTON}
           >
             <ActionCloseIcon />
@@ -53,7 +53,7 @@ const Booking = () => {
         {!booking && (
           <Button
             type='button'
-            onClick={handleBookingClick}
+            onClick={handleBooking}
             variant={BUTTON_VARIANTS.LARGE}
             disabled={!selectedDate}
             dataTestId={dataTestId.BOOKING_BUTTON}
@@ -66,7 +66,7 @@ const Booking = () => {
             <Button
               type='button'
               className='booking'
-              onClick={handleReBookingClick}
+              onClick={handleReBooking}
               variant={BUTTON_VARIANTS.LARGE}
               disabled={new Date(booking.dateOrder).getDate() !== selectedDate?.getDate() ? false : true}
               dataTestId={dataTestId.BOOKING_BUTTON}
@@ -76,7 +76,7 @@ const Booking = () => {
             <Button
               type='button'
               className='cancelBooking'
-              onClick={handleCancelBookingClick}
+              onClick={handleCancelBooking}
               variant={BUTTON_VARIANTS.LARGE}
               dataTestId={dataTestId.CANCEL_BOOKING_BUTTON}
             >

@@ -17,7 +17,7 @@ export const ModalStyled = styled.div`
   }
 `;
 
-export const Paragraph = styled.p`
+export const Text = styled.p`
   text-align: center;
   ${typography.desktop.BODY_LARGE}
 

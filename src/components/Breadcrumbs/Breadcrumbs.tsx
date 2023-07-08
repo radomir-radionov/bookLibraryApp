@@ -5,13 +5,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { booksActions } from 'redux/books';
 import { selectCategories } from 'redux/categories/selectors';
 
-import { BreadcrumbsList, Link, LinkText, Wrapper } from './styles';
+import { BreadcrumbsList, Link, BookName, Wrapper } from './styles';
 
-type BreadcrumbsProps = {
+type TProps = {
   title?: string;
 };
 
-const Breadcrumbs = ({ title }: BreadcrumbsProps) => {
+const Breadcrumbs = ({ title }: TProps) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const navigate = useNavigate();
@@ -29,9 +29,9 @@ const Breadcrumbs = ({ title }: BreadcrumbsProps) => {
     <Wrapper>
       <BreadcrumbsList>
         <Link onClick={clickNavigateBack} data-test-id={dataTestId.BREADCRUMBS_LINK}>
-          <LinkText>{categoryName ? categoryName : 'Все книги'}</LinkText>
+          {categoryName ? categoryName : 'Все книги'}
         </Link>
-        <LinkText data-test-id={dataTestId.BOOK_NAME}>{title}</LinkText>
+        <BookName data-test-id={dataTestId.BOOK_NAME}>{title}</BookName>
       </BreadcrumbsList>
     </Wrapper>
   );

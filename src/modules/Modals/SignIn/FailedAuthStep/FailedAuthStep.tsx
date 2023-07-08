@@ -7,7 +7,7 @@ import { selectAuthData, selectResponseMessage } from 'redux/auth/selectors';
 import { Button } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import { ModalStyled, Paragraph, Title } from './styles';
+import { ModalStyled, Text, Title } from './styles';
 
 const FailedAuthStep = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const FailedAuthStep = () => {
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Вход не выполнен</Title>
-      <Paragraph>{responseMessage}</Paragraph>
+      <Text>{responseMessage}</Text>
       <Button type='submit' onClick={handleNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
         повторить
       </Button>

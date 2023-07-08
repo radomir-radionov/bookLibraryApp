@@ -3,12 +3,12 @@ import { BookDetailedProps } from 'types/book';
 
 import { DetailedStyled, Table, TColumn, TProp, TRow, TValue } from './styles';
 
-type DetailedProps = {
-  details: BookDetailedProps;
+type TProps = {
+  data: BookDetailedProps;
 };
 
-const Detailed = ({ details }: DetailedProps) => {
-  const { publish, issueYear, pages, cover, format, categories, weight, ISBN, producer } = details;
+const Detailed = ({ data }: TProps) => {
+  const { publish, issueYear, pages, cover, format, categories, weight, ISBN, producer } = data;
 
   const tableGroups = [
     [

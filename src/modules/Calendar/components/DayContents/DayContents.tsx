@@ -6,13 +6,13 @@ import getNextDays from './NextDays/getNextDays';
 import getPrevDays from './PrevDays/getPrevDays';
 import { DayContentsStyled, WeekDay } from './styles';
 
-type DayContentsProps = {
+type TProps = {
   date: Date;
   selectedDate?: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 };
 
-const DayContents = ({ date, selectedDate, setSelectedDate }: DayContentsProps) => {
+const DayContents = ({ date, selectedDate, setSelectedDate }: TProps) => {
   const renderDays = () => {
     const daysElements: JSX.Element[] = [];
     const enabledDates: number[] = getAvailableDays();

@@ -2,11 +2,11 @@ import { validateForDigit, validateForQtyOfCharacters, validateForUppercase } fr
 
 import { ErrorText, HintStyled } from './styles';
 
-type TCustomPasswordHintProps = {
+type TProps = {
   value: string;
 };
 
-const CustomPasswordHint = ({ value }: TCustomPasswordHintProps) => {
+const CustomPasswordHint = ({ value }: TProps) => {
   return (
     <HintStyled>
       Пароль <ErrorText $isValid={!!value?.length && !validateForQtyOfCharacters(value)}>не менее 8 символов</ErrorText>

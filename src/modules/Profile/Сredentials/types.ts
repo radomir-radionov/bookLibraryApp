@@ -1,7 +1,7 @@
-import { UserDataProps } from 'types/user';
+import { TUserData } from 'types/user';
 
 export type CredentialsProps = {
-  userData: UserDataProps;
+  data: TUserData;
 };
 
 export type FormValuesProps = {

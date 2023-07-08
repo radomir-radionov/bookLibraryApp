@@ -60,9 +60,7 @@ export const Form = styled.form<FormProps>`
   }
 
   @media (max-width: ${device.tablet}) {
-    display: ${({ $visible }) => {
-      return $visible ? 'flex' : 'none';
-    }};
+    display: ${({ $visible }) => ($visible ? 'flex' : 'none')};
     flex-basis: 288px;
     ${typography.mobile.BODY_SMALL}
 

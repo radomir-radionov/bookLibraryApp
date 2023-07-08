@@ -11,8 +11,6 @@ export { default as UserMenu } from './Navigation/UserMenu/UserMenu';
 export { default as SliderPagination } from './Slider/SliderPagination/SliderPagination';
 export { default as SliderScrollbar } from './Slider/SliderScrollbar/SliderScrollbar';
 
-export { default as ProfileInfo } from './Profile/ProfileInfo';
-
 export { default as BookInfo } from './Book/BookInfo';
 export { default as AboutBook } from './Book/components/AboutBook/AboutBook';
 export { default as CommentsList } from './Book/components/CommentsList/CommentsList';

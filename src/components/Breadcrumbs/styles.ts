@@ -52,13 +52,18 @@ export const BreadcrumbsList = styled.div`
 `;
 
 export const Link = styled.a`
+  ${typography.desktop.BODY_SMALL};
   cursor: pointer;
-`;
-
-export const LinkText = styled.span`
-  ${typography.desktop.BODY_SMALL}
 
   @media (max-width: ${device.tablet}) {
     ${typography.mobile.INFO_LARGE}
+  }
+`;
+
+export const BookName = styled.span`
+  ${typography.desktop.BODY_SMALL};
+
+  @media (max-width: ${device.tablet}) {
+    ${typography.mobile.INFO_LARGE};
   }
 `;

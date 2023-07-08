@@ -3,7 +3,7 @@ import { MouseEvent, ReactNode } from 'react';
 import { ButtonActionStyled } from './styles';
 import { BTN_FILTER_VARIANTS } from './types';
 
-type ButtonActionProps = {
+type TProps = {
   type?: 'button' | 'submit';
   value?: string;
   className?: string;
@@ -25,7 +25,7 @@ const ButtonAction = ({
   mix = '',
   visible = true,
   dataTestId = '',
-}: ButtonActionProps) => {
+}: TProps) => {
   return (
     <ButtonActionStyled
       type={type}

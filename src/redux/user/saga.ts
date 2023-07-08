@@ -10,9 +10,9 @@ import { booksService, userService } from 'services';
 import { PostCommentsProps } from 'services/userService/types';
 import { BookDetailedProps } from 'types/book';
 import { ToastTypes } from 'types/toast';
-import { UserDataProps } from 'types/user';
 
 import { selectUserDataId } from './selectors';
+import { TUserData } from 'types/user';
 
 export function* clearUserData() {
   yield localStorage.removeItem('jwt');
@@ -21,11 +21,19 @@ export function* clearUserData() {
 
 export function* getUser() {
   try {
-    const data: UserDataProps = yield call(() => userService.getUser());
+    const data: TUserData = yield call(() => userService.getUser());
 
     yield put(userActions.setUserData(data));
+    yield put(userActions.cancelLoading());
   } catch (e) {
-    return null;
+    yield put(userActions.cancelLoading());
+    yield put(
+      toastActions.addToast({
+        id: nanoid(),
+        type: ToastTypes.ERROR,
+        text: responseText.COMMON_ERROR,
+      })
+    );
   }
 }
 
@@ -136,7 +144,7 @@ export function* putEditUserData({ payload }: ReturnType<typeof userActions.putE
       userId,
       reqBody: payload,
     };
-    const updatedUser: UserDataProps = yield call(() => userService.putEditUserData(requestData));
+    const updatedUser: TUserData = yield call(() => userService.putEditUserData(requestData));
 
     if (updatedUser) {
       yield put(userActions.setUserData(updatedUser));

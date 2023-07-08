@@ -7,17 +7,15 @@ type RatingListProps = {
 };
 
 export const RatingListStyled = styled.div<RatingListProps>`
-  display: ${({ $visible }) => {
-    return $visible === 'tiles' ? 'flex' : $visible === 'list' ? 'flex' : 'none';
-  }};
+  display: ${({ $visible }) => ($visible === 'tiles' ? 'flex' : $visible === 'list' ? 'flex' : 'none')};
   align-items: center;
   margin: 0;
 `;
 
 export const RatingItem = styled.div``;
 
-export const RatingText = styled.span`
-  ${typography.desktop.BODY_SMALL}
+export const Text = styled.span`
+  ${typography.desktop.BODY_SMALL};
   line-height: 28px;
   color: ${colors.GREY_BLACK_40};
 `;

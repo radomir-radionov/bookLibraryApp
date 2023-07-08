@@ -21,10 +21,6 @@ export const selectUserBooking = createSelector(userState, (state) => {
   return state?.userData?.booking;
 });
 
-export const selectUserDelivery = createSelector(userState, (state) => {
-  return state?.userData?.delivery;
-});
-
 export const selectUserComments = createSelector(userState, (state) => {
   return state?.userData?.comments;
 });

@@ -5,12 +5,12 @@ import { Control, Controller } from 'react-hook-form';
 
 import { Container, EmptyStarIcon, Input, Label, RatingStyled, StarIcon, SubTitle } from './styles';
 
-type RatingProps = {
+type TProps = {
   defaultRating: number;
   control: Control<any, any>;
 };
 
-const Rating = ({ defaultRating, control }: RatingProps) => {
+const Rating = ({ defaultRating, control }: TProps) => {
   const [rating, setRating] = useState(defaultRating);
   const qtyStars = [1, 2, 3, 4, 5];
 
