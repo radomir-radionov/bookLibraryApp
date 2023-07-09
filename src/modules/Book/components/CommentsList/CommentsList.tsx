@@ -6,7 +6,7 @@ import { bookActions } from 'redux/book';
 import { modalActions } from 'redux/modal';
 import { selectUserComments } from 'redux/user/selectors';
 import { Button, SubTitle } from 'components';
-import { CommentItem } from 'modules';
+import { Comment } from 'modules';
 import moment from 'moment';
 import { TBookDetailed } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
@@ -66,7 +66,7 @@ const CommentsList = ({ data }: TProps) => {
         <ListWrapper>
           <CommentsListStyled data-test-id={dataTestId.REVIEWS}>
             {sortedCommentsByCreatedAt.map((comment) => (
-              <CommentItem key={comment.id} data={comment} />
+              <Comment key={comment.id} data={comment} />
             ))}
           </CommentsListStyled>
         </ListWrapper>

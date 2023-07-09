@@ -36,7 +36,7 @@ export const NavLinkStyled = styled(NavLink)`
   }
 `;
 
-export const NavText = styled.span`
+export const Name = styled.span`
   transition: color 0.3s;
   ${typography.desktop.BODY_LARGE}
 `;

@@ -16,7 +16,7 @@ const RatingList = ({ rating }: TProps) => {
   return (
     <RatingListStyled $visible={displayingData} data-test-id={dataTestId.RATING}>
       {rating ? (
-        ratings?.map((item) => (
+        ratings.map((item) => (
           <RatingItem key={item}>
             {item === 0 ? null : rating >= item ? (
               <StarIcon data-test-id={dataTestId.STAR_ACTIVE} />

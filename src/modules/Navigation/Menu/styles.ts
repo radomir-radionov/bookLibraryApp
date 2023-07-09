@@ -1,103 +1,50 @@
-import { Table } from './../../Book/components/Detailed/styles';
-import { NavLink } from 'react-router-dom';
-import { Chevron_Icon } from 'assets';
+import { ActionRatingDown_Icon, ActionRatingUp_Icon, ActionSearching_Icon, List_Icon, Tiles_Icon } from 'assets';
 import styled from 'styled-components';
-import { colors, device, formalization, other, typography } from 'styles';
+import { colors, device, typography } from 'styles';
 
-type TMenu = {
-  $visible: boolean;
-};
-
-type TMenuItem = {
-  $bookPath?: string;
-  $isListOpen?: boolean;
-  $categoryParam?: string;
-};
-
-type TableName = {
-  $bookPath?: string;
-  $isListOpen: boolean;
-};
-
-type TIcon = {
-  $categoryParam: string;
-};
-
-export const MenuStyled = styled.div<TMenu>`
-  width: 279px;
-
-  @media (max-width: ${device.laptop}) {
-    display: ${({ $visible }) => ($visible ? 'initial' : 'none')};
-  }
-`;
-
-export const Line = styled.hr`
-  position: absolute;
-  z-index: 999;
-  margin: 0;
-  border: none;
-`;
-
-export const MenuList = styled.menu``;
-
-export const MenuItem = styled.li<TMenuItem>`
+export const MenuStyled = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 255px;
-  margin-bottom: 42px;
-  ${typography.desktop.H5};
-  cursor: pointer;
 
-  &:first-child {
-    margin-bottom: ${({ $isListOpen }) => ($isListOpen ? 0 : '42px')};
-
-    svg {
-      rotate: ${({ $isListOpen }) => ($isListOpen ? '180deg' : 0)};
-    }
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  ${({ $categoryParam }) =>
-    $categoryParam &&
-    `
-      padding-bottom: 8px;
-      border-bottom: 1px solid transparent;
-      border-image: ${other.LINEAR_GRADIENT};
-      border-image-slice: 1;
-    }`}
-
-  &:hover {
-    color: ${colors.MAIN_ACCENT};
+  div:nth-child(2) {
+    flex: none;
   }
 `;
 
-export const Name = styled.span<TableName>`
-  ${({ $bookPath }) => $bookPath === 'books' && formalization.HOVER}
-  ${({ $isListOpen }) => $isListOpen && formalization.HOVER}
-`;
+export const Actions = styled.div`
+  display: flex;
+  flex: 1 auto;
+  gap: 16px;
+  height: 38px;
 
-export const NavLinkStyled = styled(NavLink)`
-  transition: color 0.3s;
+  &:nth-child(2) {
+    justify-content: end;
+  }
 
-  &.active {
-    ${formalization.HOVER}
-
-    ${Line} {
-      display: block;
-      width: 255px;
-      margin-top: 8px;
-      ${typography.desktop.H5}
-      ${formalization.HOVER}
-      border-bottom: 1px solid transparent;
-      border-image: ${other.LINEAR_GRADIENT};
-      border-image-slice: 1;
+  @media (min-width: ${device.tablet}) {
+    .visible {
+      display: none;
     }
   }
 `;
 
-export const ChevronIcon = styled(Chevron_Icon)<TIcon>`
-  display: ${({ $categoryParam }) => ($categoryParam ? 'inline-block' : 'none')};
+export const Name = styled.p`
+  margin-left: 8px;
+  ${typography.desktop.BODY_SMALL};
+  color: ${colors.GREY_BLACK_40};
+
+  @media (max-width: ${device.tablet}) {
+    display: none;
+  }
 `;
+
+export const Img = styled.img``;
+
+export const ActionRatingUpIcon = styled(ActionRatingUp_Icon)``;
+
+export const ActionRatingDownIcon = styled(ActionRatingDown_Icon)``;
+
+export const ActionSearchingIcon = styled(ActionSearching_Icon)``;
+
+export const ListIcon = styled(List_Icon)``;
+
+export const TilesIcon = styled(Tiles_Icon)``;

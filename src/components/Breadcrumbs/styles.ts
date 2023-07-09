@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const BreadcrumbsList = styled.div`
+export const Content = styled.div`
   max-width: 1100px;
   width: 100%;
 

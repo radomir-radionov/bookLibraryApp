@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { displayingContentActions } from 'redux/displayingContent';
 import { isBurgerMenuOpen } from 'redux/displayingContent/selectors';
-import { Menu, UserMenu } from 'modules';
+import { Nav, UserMenu } from 'modules';
 import useOnClickOutside from 'utils/useOutsideClick';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
@@ -26,7 +26,7 @@ const BurgerMenu = () => {
     <BurgerMenuStyled data-test-id={dataTestId.BUTTON_BURGER}>
       {isMenuOpen ? <CloseMenuIcon onClick={onBurgerMenuClick} /> : <HumburgerIcon onClick={onBurgerMenuClick} />}
       <BurgerNav ref={squareBoxRef} $visible={isMenuOpen} data-test-id={dataTestId.BURGER_NAVIGATION}>
-        <MenuWrapper>{width < 1024 && <Menu visible={true} dataTestIds={dataTestIds} />}</MenuWrapper>
+        <MenuWrapper>{width < 1024 && <Nav visible={true} dataTestIds={dataTestIds} />}</MenuWrapper>
         <UserMenu />
       </BurgerNav>
     </BurgerMenuStyled>

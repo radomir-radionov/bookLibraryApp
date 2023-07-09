@@ -4,7 +4,7 @@ import { displayingContentActions } from 'redux/displayingContent';
 import { TExtendedCategory } from 'types/categories';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
-import { NavLinkStyled, NavText, Qty, СategoryItemStyled } from './styles';
+import { NavLinkStyled, Name, Qty, СategoryItemStyled } from './styles';
 
 type TProps = {
   data: TExtendedCategory;
@@ -13,10 +13,9 @@ type TProps = {
 const СategoryItem = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
+
   const { name, path, quantity } = data;
-
   let category = path === 'all' ? 'books' : path;
-
   const dataTestIdCategory = width > 1024 ? `navigation-${category}` : `burger-${category}`;
   const dataTestIdCount = width > 1024 ? `navigation-book-count-for-${category}` : `burger-book-count-for-${category}`;
 
@@ -25,7 +24,7 @@ const СategoryItem = ({ data }: TProps) => {
   return (
     <СategoryItemStyled onClick={onCategoryClick}>
       <NavLinkStyled to={`/books/${path}`}>
-        <NavText data-test-id={dataTestIdCategory}>{name}</NavText>
+        <Name data-test-id={dataTestIdCategory}>{name}</Name>
         <Qty data-test-id={dataTestIdCount}>{quantity}</Qty>
       </NavLinkStyled>
     </СategoryItemStyled>

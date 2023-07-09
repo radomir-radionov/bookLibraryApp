@@ -26,7 +26,7 @@ export const Content = styled.section`
   }
 `;
 
-export const Paragraph = styled.p`
+export const Text = styled.p`
   ${typography.desktop.BODY_LARGE}
 
   @media (max-width: ${device.tablet}) {

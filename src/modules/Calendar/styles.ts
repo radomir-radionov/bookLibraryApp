@@ -7,9 +7,6 @@ export const CalendarStyled = styled.div`
   padding: 16px;
   box-shadow: ${other.MAIN_SHADOW};
   border-radius: 8px;
-
-  @media (max-width: ${device.tablet}) {
-  }
 `;
 
 export const DayContents = styled.div`

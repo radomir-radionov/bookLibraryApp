@@ -1,7 +1,7 @@
 export { default as Footer } from './Navigation/Footer/Footer';
 export { default as Header } from './Navigation/Header/Header';
+export { default as Nav } from './Navigation/Nav/Nav';
 export { default as Menu } from './Navigation/Menu/Menu';
-export { default as Navigation } from './Navigation/NavList/NavList';
 
 export { default as Modal } from './Modals/Modal';
 
@@ -14,7 +14,7 @@ export { default as SliderScrollbar } from './Slider/SliderScrollbar/SliderScrol
 export { default as BookInfo } from './Book/BookInfo';
 export { default as AboutBook } from './Book/components/AboutBook/AboutBook';
 export { default as CommentsList } from './Book/components/CommentsList/CommentsList';
-export { default as CommentItem } from './Book/components/CommentsList/CommentItem/CommentItem';
+export { default as Comment } from './Book/components/CommentsList/Comment/Comment';
 export { default as Detailed } from './Book/components/Detailed/Detailed';
 
 export { default as BookList } from './BooksList/BooksList';

@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Menu } from 'modules';
+import { Nav } from 'modules';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
 import dataTestIds from './data';
@@ -11,7 +11,7 @@ const LayoutHome = () => {
   return (
     <LayoutHomeStyled>
       <Content>
-        {width > 1024 && <Menu dataTestIds={dataTestIds} />}
+        {width > 1024 && <Nav dataTestIds={dataTestIds} />}
         <Outlet />
       </Content>
     </LayoutHomeStyled>

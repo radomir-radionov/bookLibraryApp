@@ -6,11 +6,11 @@ import { BTN_FILTER_VARIANTS } from './types';
 type TProps = {
   type?: 'button' | 'submit';
   className?: string;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
-  children: ReactNode;
   isActive?: boolean;
   variant?: BTN_FILTER_VARIANTS;
   visible?: boolean;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  children: ReactNode;
   dataTestId?: string;
 };
 

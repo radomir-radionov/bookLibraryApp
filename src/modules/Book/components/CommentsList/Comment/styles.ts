@@ -5,7 +5,7 @@ type TAvatar = {
   img: string;
 };
 
-export const CommentItemStyled = styled.li``;
+export const CommentStyled = styled.li``;
 
 export const UserInfo = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ export const CommentDate = styled.p`
   }
 `;
 
-export const Comment = styled.p`
+export const CommentText = styled.p`
   margin-top: 18px;
   ${typography.desktop.BODY_LARGE};
 `;

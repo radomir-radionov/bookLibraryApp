@@ -3,7 +3,7 @@ import dataTestId from 'constants/dataTestId';
 import { useSelector } from 'react-redux';
 import { selectBooks } from 'redux/books/selectors';
 import { selectCategories } from 'redux/categories/selectors';
-import { BookList, Navigation } from 'modules';
+import { BookList, Menu } from 'modules';
 
 import { HomeStyled } from './styles';
 
@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <HomeStyled data-test-id={dataTestId.MAIN_PAGE}>
-      {books.length > 0 && <Navigation />}
+      <Menu />
       <BookList books={books} categories={categories} />
     </HomeStyled>
   );

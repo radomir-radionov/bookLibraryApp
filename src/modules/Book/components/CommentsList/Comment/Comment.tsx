@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { DefaultAvatarImg } from 'assets';
@@ -6,18 +5,18 @@ import { RatingList } from 'components';
 import { TComment } from 'types/book';
 import { formatDate } from 'utils/formatDate';
 
-import { Avatar, Comment, CommentDate, CommentItemStyled, Img, Name, NameBox, UserInfo } from './styles';
+import { Avatar, CommentText, CommentDate, CommentStyled, Img, Name, NameBox, UserInfo } from './styles';
 
 type TProps = {
   data: TComment;
 };
 
-const CommentItem = ({ data }: TProps) => {
+const Comment = ({ data }: TProps) => {
   const { rating, user, text, createdAt } = data;
   const { firstName, lastName, avatarUrl } = user;
 
   return (
-    <CommentItemStyled data-test-id={dataTestId.COMMENT_WRAPPER}>
+    <CommentStyled data-test-id={dataTestId.COMMENT_WRAPPER}>
       <UserInfo>
         {user && user.avatarUrl ? <Avatar img={`${avatarUrl}`} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />}
         <NameBox>
@@ -28,9 +27,9 @@ const CommentItem = ({ data }: TProps) => {
         </NameBox>
       </UserInfo>
       <RatingList rating={rating} />
-      <Comment data-test-id={dataTestId.COMMENT_TEXT}>{text}</Comment>
-    </CommentItemStyled>
+      <CommentText data-test-id={dataTestId.COMMENT_TEXT}>{text}</CommentText>
+    </CommentStyled>
   );
 };
 
-export default CommentItem;
+export default Comment;

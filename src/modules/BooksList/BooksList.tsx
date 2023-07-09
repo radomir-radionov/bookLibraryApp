@@ -56,13 +56,9 @@ const BooksList = ({ books, categories }: BooksListProps) => {
 
   return (
     <BooksListStyled $displaying={displayingData} data-test-id={dataTestId.CONTENT}>
-      {filtredBooks.map((book) => {
-        return displayingData === 'tiles' ? (
-          <BookShort key={book.id} data={book} />
-        ) : (
-          <BookLong key={book.id} data={book} />
-        );
-      })}
+      {filtredBooks.map((book) =>
+        displayingData === 'tiles' ? <BookShort key={book.id} data={book} /> : <BookLong key={book.id} data={book} />
+      )}
     </BooksListStyled>
   );
 };

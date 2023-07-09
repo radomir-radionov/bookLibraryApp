@@ -1,68 +1,67 @@
-import pageRoutes from 'constants/pageRoutes';
+import dataTestId from 'constants/dataTestId';
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsSortByRating } from 'redux/books/selectors';
+import { booksActions } from 'redux/books/slice';
 import { displayingContentActions } from 'redux/displayingContent';
-import { CategoriesList } from 'components';
+import { displayingBooks, isSearchBarOpen } from 'redux/displayingContent/selectors';
+import { ButtonFiltering, SearchBar } from 'components';
+import { BTN_FILTER_VARIANTS } from 'components/ButtonFiltering/types';
 
-import { ChevronIcon, Line, MenuItem, MenuList, MenuStyled, Name, NavLinkStyled } from './styles';
+import {
+  ActionRatingDownIcon,
+  ActionRatingUpIcon,
+  Actions,
+  ActionSearchingIcon,
+  ListIcon,
+  Name,
+  MenuStyled,
+  TilesIcon,
+} from './styles';
 
-type TProps = {
-  visible?: boolean;
-  dataTestIds: Array<{
-    id: string;
-  }>;
-};
-
-const Menu = ({ visible = false, dataTestIds }: TProps) => {
+const Menu = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isBooksList, setBooksList] = useState(true);
-
-  const bookParam = location.pathname.split('/')[1];
-  const categoryParam = location.pathname.split('/')[2];
-
-  const clickOpenList = () => {
-    setBooksList(!isBooksList);
-    navigate('/books/all');
-  };
-
-  const clickCloseList = () => {
-    setBooksList(false);
-    dispatch(displayingContentActions.setBurgerMenuOpen());
-  };
+  const isOpen = useSelector(isSearchBarOpen);
+  const displayingData = useSelector(displayingBooks);
+  const isSortByRating = useSelector(selectIsSortByRating);
+  const onBtnViewClick = (type: string) => () => dispatch(displayingContentActions.setDisplayingBooks(type));
+  const onSearchBarClick = () => dispatch(displayingContentActions.setSearchBarOpen());
+  const onBtnRatingClick = () => dispatch(booksActions.sortBooksByRating());
 
   return (
-    <MenuStyled $visible={visible}>
-      <MenuList>
-        <MenuItem
-          onClick={clickOpenList}
-          $bookPath={bookParam}
-          $isListOpen={isBooksList}
-          $categoryParam={categoryParam}
-          data-test-id={dataTestIds[0].id}
-        >
-          <Name $bookPath={bookParam} $isListOpen={isBooksList}>
-            Витрина книг
-          </Name>
-          <ChevronIcon $categoryParam={categoryParam} />
-        </MenuItem>
-        <CategoriesList isOpen={isBooksList} />
-        <MenuItem onClick={clickCloseList} data-test-id={dataTestIds[2].id}>
-          <NavLinkStyled to={pageRoutes.TERMS}>
-            Правила пользования
-            <Line />
-          </NavLinkStyled>
-        </MenuItem>
-        <MenuItem onClick={clickCloseList} data-test-id={dataTestIds[3].id}>
-          <NavLinkStyled to={pageRoutes.CONTRACT}>
-            Договор оферты
-            <Line />
-          </NavLinkStyled>
-        </MenuItem>
-      </MenuList>
+    <MenuStyled>
+      {isOpen ? (
+        <SearchBar />
+      ) : (
+        <>
+          <Actions>
+            <SearchBar />
+            <ButtonFiltering onClick={onSearchBarClick} visible={isOpen} dataTestId={dataTestId.BUTTON_SEARCH_OPEN}>
+              <ActionSearchingIcon />
+            </ButtonFiltering>
+            <ButtonFiltering onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
+              {isSortByRating ? <ActionRatingUpIcon /> : <ActionRatingDownIcon />}
+              <Name data-test-id={dataTestId.BUTTON_SORT_RATING}>По рейтингу</Name>
+            </ButtonFiltering>
+          </Actions>
+          <Actions>
+            <ButtonFiltering
+              isActive={displayingData === 'tiles'}
+              onClick={onBtnViewClick('tiles')}
+              dataTestId={dataTestId.BUTTON_MENU_VIEW_WINDOW}
+            >
+              <TilesIcon />
+            </ButtonFiltering>
+            <ButtonFiltering
+              isActive={displayingData === 'list'}
+              onClick={onBtnViewClick('list')}
+              dataTestId={dataTestId.BUTTON_MENU_VIEW_LIST}
+            >
+              <ListIcon />
+            </ButtonFiltering>
+          </Actions>
+        </>
+      )}
     </MenuStyled>
   );
 };

@@ -6,7 +6,7 @@ import { bookDataState } from 'redux/book/selectors';
 import { RatingList, SubTitle } from 'components';
 import { AboutBook, CommentsList, Detailed } from 'modules';
 
-import { Additional, BookStyled, Content, Paragraph, RateBox, RateQty, Rating } from './styles';
+import { Additional, BookStyled, Content, Text, RateBox, RateQty, Rating } from './styles';
 
 const BookInfo = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const BookInfo = () => {
           <Additional>
             <Content>
               <SubTitle>О книге</SubTitle>
-              <Paragraph>{description}</Paragraph>
+              <Text>{description}</Text>
             </Content>
             <Rating>
               <SubTitle>Рейтинг</SubTitle>

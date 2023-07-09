@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { booksActions } from 'redux/books';
 import { selectCategories } from 'redux/categories/selectors';
 
-import { BreadcrumbsList, Link, BookName, Wrapper } from './styles';
+import { Content, Link, BookName, Container } from './styles';
 
 type TProps = {
   title?: string;
@@ -26,14 +26,14 @@ const Breadcrumbs = ({ title }: TProps) => {
   };
 
   return (
-    <Wrapper>
-      <BreadcrumbsList>
+    <Container>
+      <Content>
         <Link onClick={clickNavigateBack} data-test-id={dataTestId.BREADCRUMBS_LINK}>
           {categoryName ? categoryName : 'Все книги'}
         </Link>
         <BookName data-test-id={dataTestId.BOOK_NAME}>{title}</BookName>
-      </BreadcrumbsList>
-    </Wrapper>
+      </Content>
+    </Container>
   );
 };
 

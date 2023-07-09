@@ -17,7 +17,6 @@ type TProps = {
 const InputAuthPassword = ({ labelText, watchValue, register, errors }: TProps) => {
   const [fieldType, setFieldType] = useState('text');
   const onToggleClick = () => (fieldType === 'password' ? setFieldType('text') : setFieldType('password'));
-  const isValueLength = watchValue?.length > 0;
 
   return (
     <Wrapper $errors={errors}>
@@ -32,8 +31,10 @@ const InputAuthPassword = ({ labelText, watchValue, register, errors }: TProps) 
         />
         <LabelText>{labelText}</LabelText>
         <IconWrapper onClick={onToggleClick}>
-          {isValueLength && fieldType === 'password' && <ActionVisibleIcon data-test-id={dataTestId.EYE_OPENED} />}
-          {isValueLength && fieldType === 'text' && <ActionUnvisibleIcon data-test-id={dataTestId.EYE_CLOSED} />}
+          {!!watchValue.length && fieldType === 'password' && (
+            <ActionVisibleIcon data-test-id={dataTestId.EYE_OPENED} />
+          )}
+          {!!watchValue.length && fieldType === 'text' && <ActionUnvisibleIcon data-test-id={dataTestId.EYE_CLOSED} />}
         </IconWrapper>
       </Label>
       {!!errors && <Hint colored={true}>{hintText.EMPTY_FIELD}</Hint>}
