@@ -26,7 +26,7 @@ export const Title = styled.h4`
   }
 `;
 
-export const AssistiveText = styled.p`
+export const Text = styled.p`
   ${typography.desktop.BODY_LARGE};
   color: ${colors.GREY_BLACK_40};
 

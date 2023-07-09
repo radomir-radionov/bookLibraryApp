@@ -1,10 +1,10 @@
 import { TUserData } from 'types/user';
 
-export type CredentialsProps = {
+export type TCredentials = {
   data: TUserData;
 };
 
-export type FormValuesProps = {
+export type TFormValues = {
   login: string;
   password: string;
   firstName: string;
@@ -13,7 +13,7 @@ export type FormValuesProps = {
   email: string;
 };
 
-export type SubmitedDataProps = {
+export type TSubmitedData = {
   username?: string;
   login?: string;
   password: string;

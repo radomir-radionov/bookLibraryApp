@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
-type DayButtonProps = {
+type TDayButton = {
   $variant: boolean;
 };
 
-export const DayButton = styled.div<DayButtonProps>`
+export const DayButton = styled.div<TDayButton>`
   display: flex;
   justify-content: center;
   align-items: center;

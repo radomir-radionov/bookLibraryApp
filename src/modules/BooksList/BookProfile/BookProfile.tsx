@@ -59,10 +59,7 @@ const BookProfile = ({ data }: BookProfileProps) => {
             <HighLight text={title} searcheText={enteredText} />
           </SubTitleWrapper>
           <Author>
-            {authors?.map((author: any) => {
-              return author;
-            })}
-            , {issueYear}
+            {authors?.map((author: any) => author)}, {issueYear}
           </Author>
         </NameBox>
         <Active>

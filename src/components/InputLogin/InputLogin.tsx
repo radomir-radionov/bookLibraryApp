@@ -18,7 +18,6 @@ const InputLogin = ({ name, labelText, isDisabled, customHint, error, required =
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setValue(name, value);
-
     clearErrors(name);
   };
 

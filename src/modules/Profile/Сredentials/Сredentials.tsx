@@ -8,10 +8,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { CustomLoginHint, Input, InputEmail, InputLogin, InputPassword, InputPhone } from 'components';
 
 import schema from './schema';
-import { Text, ButtonEdit, Buttons, ButtonSave, Form, Header, TextField, Title, СredentialsStyled } from './styles';
-import { CredentialsProps, FormValuesProps, SubmitedDataProps } from './types';
+import { Text, ButtonEdit, Buttons, ButtonSave, Form, Header, Fields, Title, СredentialsStyled } from './styles';
+import { TCredentials, TFormValues, TSubmitedData } from './types';
 
-const Сredentials = ({ data }: CredentialsProps) => {
+const Сredentials = ({ data }: TCredentials) => {
   const dispatch = useDispatch();
   const [inputDisable, setInputDisable] = useState(true);
   const { username, firstName, lastName, email, phone } = data;
@@ -30,10 +30,10 @@ const Сredentials = ({ data }: CredentialsProps) => {
     watch,
     clearErrors,
     formState: { errors },
-  } = useForm<FormValuesProps>({ resolver: yupResolver(schema), defaultValues, mode: 'all' });
+  } = useForm<TFormValues>({ resolver: yupResolver(schema), defaultValues, mode: 'all' });
 
   const onBtnEditClick = () => setInputDisable(!inputDisable);
-  const onSubmit: SubmitHandler<FormValuesProps> = (data: SubmitedDataProps) => {
+  const onSubmit: SubmitHandler<TFormValues> = (data: TSubmitedData) => {
     data.username = data.login;
     delete data.login;
     const payload = { username, ...data };
@@ -50,7 +50,7 @@ const Сredentials = ({ data }: CredentialsProps) => {
         <Text>Здесь вы можете отредактировать информацию о себе</Text>
       </Header>
       <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.FORM_PROFILE}>
-        <TextField>
+        <Fields>
           {/* TODO add login and password fields */}
           {/* <InputLogin
             name='username'
@@ -88,7 +88,7 @@ const Сredentials = ({ data }: CredentialsProps) => {
             view='profile'
           />
           <InputEmail labelText='E-mail' register={register('email')} errors={errors.email} isDisabled={inputDisable} />
-        </TextField>
+        </Fields>
         <Buttons>
           <ButtonEdit onClick={onBtnEditClick} dataTestId={dataTestId.BUTTON_EDIT}>
             Редактировать

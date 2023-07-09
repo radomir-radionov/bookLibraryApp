@@ -3,13 +3,13 @@ import dataTestId from 'constants/dataTestId';
 
 import { DefaultAvatarImg } from 'assets';
 import { RatingList } from 'components';
-import { CommentProps } from 'types/book';
+import { TComment } from 'types/book';
 import { formatDate } from 'utils/formatDate';
 
 import { Avatar, Comment, CommentDate, CommentItemStyled, Img, Name, NameBox, UserInfo } from './styles';
 
 type TProps = {
-  data: CommentProps;
+  data: TComment;
 };
 
 const CommentItem = ({ data }: TProps) => {

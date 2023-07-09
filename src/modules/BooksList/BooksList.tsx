@@ -8,16 +8,16 @@ import { displayingBooks } from 'redux/displayingContent/selectors';
 import { selectToasts } from 'redux/toast/selectors';
 import { enteredBookName } from 'redux/user/selectors';
 import { BookLong, BookShort } from 'modules';
-import { BookProps } from 'types/book';
-import { CategoryProps } from 'types/categories';
+import { TBook } from 'types/book';
+import { TCategory } from 'types/categories';
 import { getСurrentCategory } from 'utils/categories';
 import getFilteredBooks from 'utils/getFiltredBooks';
 
 import { BooksListStyled, EmptyData, Message } from './styles';
 
 type BooksListProps = {
-  books: BookProps[];
-  categories: CategoryProps[];
+  books: TBook[];
+  categories: TCategory[];
 };
 
 const BooksList = ({ books, categories }: BooksListProps) => {

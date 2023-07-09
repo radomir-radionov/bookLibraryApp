@@ -12,7 +12,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const SubTitle = styled.h5`
+export const Title = styled.h5`
   ${typography.desktop.SUBTITLE_LARGE};
 `;
 

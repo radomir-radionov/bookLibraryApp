@@ -1,7 +1,7 @@
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 
 export type BookStateProps = {
-  book: BookDetailedProps;
+  book: TBookDetailed;
   isBookLoading: boolean;
   bookError: { isError: boolean; message: string };
 };

@@ -1,7 +1,7 @@
-import { BookProps } from 'types/book';
+import { TBook } from 'types/book';
 
 export type BooksStateType = {
-  books: BookProps[];
+  books: TBook[];
   isSortBooksByRating: boolean;
   isBooksLoading: boolean;
   booksError: { isError: boolean; message: string };

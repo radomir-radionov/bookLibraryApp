@@ -1,7 +1,7 @@
-import { BookProps } from 'types/book';
-import { CategoryProps, ExtendedCategoryProps } from 'types/categories';
+import { TBook } from 'types/book';
+import { TCategory, TExtendedCategory } from 'types/categories';
 
-export const createCategories = (books: BookProps[], categories: CategoryProps[]) => {
+export const createCategories = (books: TBook[], categories: TCategory[]) => {
   const quantity = {} as { [key: string]: number };
 
   books.forEach((book) => {
@@ -15,7 +15,7 @@ export const createCategories = (books: BookProps[], categories: CategoryProps[]
       });
   });
 
-  const extendedCategories = [] as ExtendedCategoryProps[];
+  const extendedCategories = [] as TExtendedCategory[];
 
   categories.forEach((category, index) => {
     return index === 0
@@ -41,7 +41,7 @@ export const createCategories = (books: BookProps[], categories: CategoryProps[]
   return extendedCategories;
 };
 
-export const getСurrentCategory = (category: string, categories: CategoryProps[], books: BookProps[]) => {
+export const getСurrentCategory = (category: string, categories: TCategory[], books: TBook[]) => {
   const navCategories = createCategories(books, categories);
 
   return navCategories.filter((item) => item.path === category)[0]?.name;

@@ -1,10 +1,10 @@
 import { SubTitle } from 'components';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 
 import { DetailedStyled, Table, TColumn, TProp, TRow, TValue } from './styles';
 
 type TProps = {
-  data: BookDetailedProps;
+  data: TBookDetailed;
 };
 
 const Detailed = ({ data }: TProps) => {

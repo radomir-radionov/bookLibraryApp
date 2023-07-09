@@ -3,7 +3,7 @@ import { ChevronLeft_Icon, ChevronRight_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type AssistiveTextProps = {
+type IAssistiveText = {
   $errors: boolean;
 };
 
@@ -53,7 +53,7 @@ export const LinkStyled = styled(Link)`
 
 export const InputField = styled.div``;
 
-export const AssistiveText = styled.p<AssistiveTextProps>`
+export const AssistiveText = styled.p<IAssistiveText>`
   padding-left: ${({ $errors }) => ($errors ? 0 : '12px')};
   ${typography.desktop.INFO_LARGE};
   color: ${colors.GREY_BLACK_40};

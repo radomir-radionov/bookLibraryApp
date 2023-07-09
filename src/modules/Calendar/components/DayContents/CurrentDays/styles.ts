@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { colors, typography } from 'styles';
+import { colors, other, typography } from 'styles';
 
-type DayButtonProps = {
+type TDayButton = {
   $variant?: string;
 };
 
-export const DayButton = styled.div<DayButtonProps>`
+export const DayButton = styled.div<TDayButton>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ export const DayButton = styled.div<DayButtonProps>`
         `;
       case 'selectedDay':
         return css`
-          background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+          background: ${other.LINEAR_GRADIENT};
           cursor: pointer;
 
           span {

@@ -6,7 +6,7 @@ import { bookingActions } from 'redux/booking';
 import { modalActions } from 'redux/modal';
 import { selectModalInfo } from 'redux/modal/selectors';
 import { selectUser } from 'redux/user/selectors';
-import { Button, ButtonAction } from 'components';
+import { Button, ButtonFiltering } from 'components';
 import { Calendar } from 'modules';
 import { BUTTON_VARIANTS } from 'types/button';
 import createBookingPayload from 'utils/calendar/createBookingPayload';
@@ -40,14 +40,13 @@ const Booking = () => {
           <Title data-test-id={dataTestId.MODAL_TITLE}>
             {booking?.customerId === user?.id ? 'Изменение даты бронирования' : 'Выбор даты бронирования'}
           </Title>
-          <ButtonAction
+          <ButtonFiltering
             className='btnClose'
-            value='searching'
             onClick={onBtnCloseModalClick}
             dataTestId={dataTestId.MODAL_CLOSE_BUTTON}
           >
             <ActionCloseIcon />
-          </ButtonAction>
+          </ButtonFiltering>
         </Header>
         <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         {!booking && (

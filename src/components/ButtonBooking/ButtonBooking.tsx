@@ -10,12 +10,12 @@ import { formatDateButton } from 'utils/formatDate';
 import { ButtonStyled } from './styles';
 import { TProps } from './types';
 
-const ButtonToBook = ({ book, booking, delivery }: TProps) => {
+const ButtonBooking = ({ book, booking, delivery }: TProps) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserDataId);
   const { id } = book;
 
-  const onModalClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     dispatch(modalActions.open({ type: MODAL_TYPES.BOOKING, modalInfo: book }));
     dispatch(bookingActions.setBookId(id));
@@ -26,7 +26,7 @@ const ButtonToBook = ({ book, booking, delivery }: TProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={onModalClick}
+          onClick={onButtonClick}
           $buttonValue='currentCustomer'
           data-test-id={dataTestId.BOOKING_BUTTON}
         >
@@ -37,7 +37,7 @@ const ButtonToBook = ({ book, booking, delivery }: TProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={onModalClick}
+          onClick={onButtonClick}
           $buttonValue='anotherCustomer'
           disabled={true}
           data-test-id={dataTestId.BOOKING_BUTTON}
@@ -49,7 +49,7 @@ const ButtonToBook = ({ book, booking, delivery }: TProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={onModalClick}
+          onClick={onButtonClick}
           $buttonValue='onHands'
           disabled={true}
           data-test-id={dataTestId.BOOKING_BUTTON}
@@ -61,7 +61,7 @@ const ButtonToBook = ({ book, booking, delivery }: TProps) => {
       return (
         <ButtonStyled
           type='button'
-          onClick={onModalClick}
+          onClick={onButtonClick}
           $buttonValue='noBooking'
           data-test-id={dataTestId.BOOKING_BUTTON}
         >
@@ -71,4 +71,4 @@ const ButtonToBook = ({ book, booking, delivery }: TProps) => {
   }
 };
 
-export default ButtonToBook;
+export default ButtonBooking;

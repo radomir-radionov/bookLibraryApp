@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type BooksListStyledProps = {
+type TBooksListStyled = {
   $displaying?: string;
 };
 
-export const BooksListStyled = styled.section<BooksListStyledProps>`
+export const BooksListStyled = styled.section<TBooksListStyled>`
   ${({ $displaying }) => {
     switch ($displaying) {
       case 'tiles':

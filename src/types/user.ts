@@ -1,4 +1,4 @@
-export type FileUploadResponseProps = {
+export type TFileUploadResponse = {
   id: number;
   name: string;
   alternativeText: string | null;
@@ -32,9 +32,9 @@ export type TUserData = {
   comments: CommentProps[];
   role: RoleProps;
   avatar: string;
-  booking: UserBookingProps;
-  delivery: UserDeliveryProps;
-  history: UserHistoryProps;
+  booking: TUserBooking;
+  delivery: TUserDelivery;
+  history: TUserHistory;
 };
 
 export type CommentProps = {
@@ -59,14 +59,14 @@ export type ShortBookDataProps = {
   image: null;
 };
 
-export type UserBookingProps = {
+export type TUserBooking = {
   id: number | null;
   order: string | null;
   dateOrder: string | Date | null;
   book: ShortBookDataProps | null;
 };
 
-export type UserDeliveryProps = {
+export type TUserDelivery = {
   id: number;
   handed: string;
   dateHandedFrom: string | Date;
@@ -74,7 +74,7 @@ export type UserDeliveryProps = {
   book: ShortBookDataProps;
 };
 
-export type UserHistoryProps = {
+export type TUserHistory = {
   id: number;
   books: ShortBookDataProps[];
 };

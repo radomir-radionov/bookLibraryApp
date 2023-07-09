@@ -5,8 +5,7 @@ type CategoriesListStyledProps = {
 };
 
 export const Wrapper = styled.div`
-  margin-top: 16px;
-  margin-bottom: 42px;
+  margin: 16px 0 42px;
 `;
 
 export const CategoriesListStyled = styled.ul<CategoriesListStyledProps>`

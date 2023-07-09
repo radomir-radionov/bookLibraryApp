@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { useState } from 'react';
@@ -44,14 +43,9 @@ const Header = ({ data }: TProps) => {
 
   const onSubmit = (imgData: FileUploadProps) => {
     const formData = new FormData();
-
     formData.append('files', imgData.picture[0]);
-
+    imgData.picture.length && convertFile(imgData.picture[0], setImage);
     dispatch(userActions.putUploadAvatar({ id, formData }));
-
-    if (imgData.picture.length) {
-      convertFile(imgData.picture[0], setImage);
-    }
   };
 
   return (

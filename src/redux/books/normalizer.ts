@@ -1,6 +1,6 @@
-import { BookProps } from 'types/book';
+import { TBook } from 'types/book';
 
-export const sortBooksByRatingNormalizer = (data: BookProps[]) => {
+export const sortBooksByRatingNormalizer = (data: TBook[]) => {
   data = data.sort((a, b) => {
     if (a.rating === null && b.rating === null) {
       return 0;

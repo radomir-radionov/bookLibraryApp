@@ -1,34 +1,33 @@
+import { Table } from './../../Book/components/Detailed/styles';
 import { NavLink } from 'react-router-dom';
 import { Chevron_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, formalization, other, typography } from 'styles';
 
-type MenuProps = {
+type TMenu = {
   $visible: boolean;
 };
 
-type MenuItemProps = {
+type TMenuItem = {
   $bookPath?: string;
   $isListOpen?: boolean;
   $categoryParam?: string;
 };
 
-type NameProps = {
+type TableName = {
   $bookPath?: string;
   $isListOpen: boolean;
 };
 
-type IconProps = {
+type TIcon = {
   $categoryParam: string;
 };
 
-export const MenuStyled = styled.div<MenuProps>`
+export const MenuStyled = styled.div<TMenu>`
   width: 279px;
 
   @media (max-width: ${device.laptop}) {
-    display: ${({ $visible }) => {
-      return $visible ? 'initial' : 'none';
-    }};
+    display: ${({ $visible }) => ($visible ? 'initial' : 'none')};
   }
 `;
 
@@ -41,7 +40,7 @@ export const Line = styled.hr`
 
 export const MenuList = styled.menu``;
 
-export const MenuItem = styled.li<MenuItemProps>`
+export const MenuItem = styled.li<TMenuItem>`
   display: flex;
   justify-content: space-between;
   width: 255px;
@@ -50,14 +49,10 @@ export const MenuItem = styled.li<MenuItemProps>`
   cursor: pointer;
 
   &:first-child {
-    margin-bottom: ${({ $isListOpen }) => {
-      return $isListOpen ? 0 : '42px';
-    }};
+    margin-bottom: ${({ $isListOpen }) => ($isListOpen ? 0 : '42px')};
 
     svg {
-      rotate: ${({ $isListOpen }) => {
-        return $isListOpen ? '180deg' : 0;
-      }};
+      rotate: ${({ $isListOpen }) => ($isListOpen ? '180deg' : 0)};
     }
   }
 
@@ -65,29 +60,23 @@ export const MenuItem = styled.li<MenuItemProps>`
     margin-bottom: 0;
   }
 
-  ${({ $categoryParam }) => {
-    return $categoryParam
-      ? ` 
+  ${({ $categoryParam }) =>
+    $categoryParam &&
+    `
       padding-bottom: 8px;
       border-bottom: 1px solid transparent;
       border-image: ${other.LINEAR_GRADIENT};
       border-image-slice: 1;
-    }`
-      : null;
-  }}
+    }`}
 
   &:hover {
     color: ${colors.MAIN_ACCENT};
   }
 `;
 
-export const Name = styled.span<NameProps>`
-  ${({ $bookPath }) => {
-    return $bookPath === 'books' ? formalization.HOVER : null;
-  }}
-  ${({ $isListOpen }) => {
-    return $isListOpen ? formalization.HOVER : null;
-  }}
+export const Name = styled.span<TableName>`
+  ${({ $bookPath }) => $bookPath === 'books' && formalization.HOVER}
+  ${({ $isListOpen }) => $isListOpen && formalization.HOVER}
 `;
 
 export const NavLinkStyled = styled(NavLink)`
@@ -109,8 +98,6 @@ export const NavLinkStyled = styled(NavLink)`
   }
 `;
 
-export const ChevronIcon = styled(Chevron_Icon)<IconProps>`
-  display: ${({ $categoryParam }) => {
-    return $categoryParam ? 'inline-block' : 'none';
-  }};
+export const ChevronIcon = styled(Chevron_Icon)<TIcon>`
+  display: ${({ $categoryParam }) => ($categoryParam ? 'inline-block' : 'none')};
 `;

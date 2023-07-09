@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type AssistiveTextProps = {
+type TAssistiveText = {
   visiable: boolean;
 };
 
@@ -58,7 +57,7 @@ export const InputAuthPasswordWrapper = styled.div`
   }
 `;
 
-export const AssistiveText = styled.p<AssistiveTextProps>`
+export const AssistiveText = styled.p<TAssistiveText>`
   display: ${({ visiable }) => (visiable ? 'block' : 'none')};
   padding-left: 12px;
   ${typography.desktop.INFO_LARGE};

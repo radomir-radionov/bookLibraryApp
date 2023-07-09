@@ -45,13 +45,11 @@ export const InputStyled = styled.input<InputProps>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) => {
-    return $errors
-      ? css`
-          border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
-        `
-      : null;
-  }};
+  ${({ $errors }) =>
+    $errors &&
+    css`
+      border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
+    `};
 
   &:not(:placeholder-shown) + span {
     ${typography.desktop.INFO_LARGE};

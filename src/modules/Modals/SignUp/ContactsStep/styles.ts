@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 

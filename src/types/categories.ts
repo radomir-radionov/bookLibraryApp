@@ -1,9 +1,9 @@
-export interface CategoryProps {
+export interface TCategory {
   name: string;
   path: string;
   id: number;
 }
 
-export interface ExtendedCategoryProps extends CategoryProps {
+export interface TExtendedCategory extends TCategory {
   quantity?: number;
 }

@@ -22,7 +22,7 @@ import {
   Title,
 } from './styles';
 
-type FormValuesProps = {
+type TFormValues = {
   identifier: string;
   password: string;
 };
@@ -37,11 +37,11 @@ const AuthStep = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormValuesProps>({ resolver: yupResolver(schema), mode: 'all' });
+  } = useForm<TFormValues>({ resolver: yupResolver(schema), mode: 'all' });
 
   const isBtnDisabled = !!(errors.identifier || errors.password);
 
-  const onSubmit: SubmitHandler<FormValuesProps> = (data) => dispatch(authActions.setAuthData({ data, navigate }));
+  const onSubmit: SubmitHandler<TFormValues> = (data) => dispatch(authActions.setAuthData({ data, navigate }));
 
   return (
     <ModalStyled>

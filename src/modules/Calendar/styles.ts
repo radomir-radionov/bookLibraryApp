@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { device, typography } from 'styles';
+import { device, other, typography } from 'styles';
 
 export const CalendarStyled = styled.div`
   width: 256px;
   height: 280px;
   padding: 16px;
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
+  box-shadow: ${other.MAIN_SHADOW};
   border-radius: 8px;
 
   @media (max-width: ${device.tablet}) {
@@ -28,7 +27,7 @@ export const WeekDay = styled.div`
   width: 32px;
   height: 32px;
   ${typography.desktop.INFO_LARGE};
-  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  background: ${other.LINEAR_GRADIENT};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

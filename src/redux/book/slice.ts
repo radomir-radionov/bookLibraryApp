@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 
 import { BookStateProps } from './types';
 
 const initialState: BookStateProps = {
-  book: {} as BookDetailedProps,
+  book: {} as TBookDetailed,
   isBookLoading: false,
   bookError: { isError: false, message: '' },
 };
@@ -28,7 +28,7 @@ export const bookSlice = createSlice({
       state.isBookLoading = false;
     },
     clearBookData: (state) => {
-      state.book = {} as BookDetailedProps;
+      state.book = {} as TBookDetailed;
     },
   },
 });

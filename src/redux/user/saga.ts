@@ -8,7 +8,7 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { nanoid } from '@reduxjs/toolkit';
 import { booksService, userService } from 'services';
 import { PostCommentsProps } from 'services/userService/types';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
 import { selectUserDataId } from './selectors';
@@ -70,7 +70,7 @@ export function* postComments({ payload }: ReturnType<typeof userActions.postCom
 
   try {
     yield call(() => userService.postComments(reqBody));
-    const bookData: BookDetailedProps = yield call(() => booksService.getBook(book));
+    const bookData: TBookDetailed = yield call(() => booksService.getBook(book));
 
     yield put(bookActions.setBook(bookData));
     yield put(userActions.getUser());

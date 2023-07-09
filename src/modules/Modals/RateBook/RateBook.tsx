@@ -7,7 +7,7 @@ import { modalActions } from 'redux/modal';
 import { selectModalInfo } from 'redux/modal/selectors';
 import { userActions } from 'redux/user';
 import { selectUser } from 'redux/user/selectors';
-import { Button, ButtonAction } from 'components';
+import { Button, ButtonFiltering } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import { Rating } from '..';
@@ -62,9 +62,9 @@ const RateBook = ({ onClose }: TProps) => {
             {modalInfo?.view === 'editCommentModal' ? 'Хотите изменить оценку?' : 'Оцените книгу'}
           </Title>
           <CloseBtnBox>
-            <ButtonAction value='searching' onClick={handleCloseModalClick} dataTestId={dataTestId.MODAL_CLOSE_BUTTON}>
+            <ButtonFiltering onClick={handleCloseModalClick} dataTestId={dataTestId.MODAL_CLOSE_BUTTON}>
               <ActionCloseIcon />
-            </ButtonAction>
+            </ButtonFiltering>
           </CloseBtnBox>
         </Header>
         <Rating control={control} defaultRating={defaultRating} />

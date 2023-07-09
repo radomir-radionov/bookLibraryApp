@@ -1,4 +1,4 @@
-export type ErrorProps = {
+export type TErrorProps = {
   data: null;
   error: {
     status: number;

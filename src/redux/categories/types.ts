@@ -1,7 +1,7 @@
-import { CategoryProps } from 'types/categories';
+import { TCategory } from 'types/categories';
 
 export type CategoriesStateProps = {
-  categories: CategoryProps[];
+  categories: TCategory[];
   isCategoriesLoading: boolean;
   categoriesError: { isError: boolean; message: string };
 };

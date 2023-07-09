@@ -8,14 +8,14 @@ import { selectUserComments } from 'redux/user/selectors';
 import { Button, SubTitle } from 'components';
 import { CommentItem } from 'modules';
 import moment from 'moment';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
 import { ChevronIcon, CommentsListStyled, ListWrapper, Qty, SubTitleBox, Wrapper } from './styles';
 
 type TProps = {
-  data: BookDetailedProps;
+  data: TBookDetailed;
 };
 
 const CommentsList = ({ data }: TProps) => {

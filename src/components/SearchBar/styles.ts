@@ -1,12 +1,12 @@
 import { ActionClose_Icon, ActionSearching_Icon, ActionSearchingC_Icon } from 'assets';
 import styled, { css } from 'styled-components';
-import { colors, device, typography } from 'styles';
+import { colors, device, other, typography } from 'styles';
 
-type FormProps = {
+type TForm = {
   $visible: boolean;
 };
 
-type BtnProps = {
+type TButton = {
   $variant: string;
   $isInpFocused?: boolean;
 };
@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const SearchInput = styled.input`
   width: 100%;
-  ${typography.desktop.BODY_SMALL}
+  ${typography.desktop.BODY_SMALL};
   outline: none;
   border: none;
 
@@ -32,7 +32,7 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const Form = styled.form<FormProps>`
+export const Form = styled.form<TForm>`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -41,8 +41,7 @@ export const Form = styled.form<FormProps>`
   padding: 8px 16px;
   border-radius: 20px;
   background-color: ${colors.MAIN_WHITE};
-  filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2)) drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18))
-    drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+  filter: ${other.MAIN_FILTER};
   transition: all 0.2s ease-out;
   caret-color: rgba(248, 54, 0, 1);
 
@@ -70,7 +69,7 @@ export const Form = styled.form<FormProps>`
   }
 `;
 
-export const Btn = styled.button<BtnProps>`
+export const Btn = styled.button<TButton>`
   width: 16px;
   height: 20px;
   background-color: transparent;

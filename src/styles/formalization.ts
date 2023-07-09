@@ -1,7 +1,8 @@
 import { css } from 'styled-components';
+import other from './other';
 
 const BUTTON_HOVER = css`
-  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  background: ${other.LINEAR_GRADIENT};
   border-radius: 20px;
 `;
 
@@ -20,15 +21,14 @@ const ACTIVE_TEXT = css`
 `;
 
 const HOVER = css`
-  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  background: ${other.LINEAR_GRADIENT};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 `;
 
 const MAIN_SHADOW = css`
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
+  box-shadow: ${other.MAIN_SHADOW};
 `;
 
 const formalization = { ACTIVE_TEXT, BUTTON_HOVER, BUTTON_PRESSED, HOVER, MAIN_SHADOW };

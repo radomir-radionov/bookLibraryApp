@@ -1,45 +1,42 @@
 import { MouseEvent, ReactNode } from 'react';
 
-import { ButtonActionStyled } from './styles';
+import { ButtonFilteringStyled } from './styles';
 import { BTN_FILTER_VARIANTS } from './types';
 
 type TProps = {
   type?: 'button' | 'submit';
-  value?: string;
   className?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   children: ReactNode;
-  mix?: boolean | string;
+  isActive?: boolean;
   variant?: BTN_FILTER_VARIANTS;
   visible?: boolean;
   dataTestId?: string;
 };
 
-const ButtonAction = ({
+const ButtonFiltering = ({
   type = 'button',
-  value = '',
   children,
   className,
   onClick,
   variant = BTN_FILTER_VARIANTS.ROUND,
-  mix = '',
+  isActive,
   visible = true,
   dataTestId = '',
 }: TProps) => {
   return (
-    <ButtonActionStyled
+    <ButtonFilteringStyled
       type={type}
-      value={value}
       className={className}
       onClick={onClick}
-      mix={mix}
       $variant={variant}
+      $isActive={isActive}
       $visible={visible}
       data-test-id={dataTestId}
     >
       {children}
-    </ButtonActionStyled>
+    </ButtonFilteringStyled>
   );
 };
 
-export default ButtonAction;
+export default ButtonFiltering;

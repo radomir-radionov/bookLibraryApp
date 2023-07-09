@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import { colors, device, typography } from 'styles';
+import { colors, device, other, typography } from 'styles';
 
-type HeaderStyledProps = {
+type THeaderStyled = {
   $isHovered: boolean;
 };
 
-type AvatarProps = {
+type TAvatar = {
   img: string;
 };
 
-export const HeaderStyled = styled.header<HeaderStyledProps>`
+export const HeaderStyled = styled.header<THeaderStyled>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -116,8 +116,7 @@ export const Img = styled.img`
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2)) drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18))
-    drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+  filter: ${other.MAIN_FILTER};
 `;
 
 export const Greetings = styled.p`
@@ -125,13 +124,12 @@ export const Greetings = styled.p`
   ${typography.desktop.SUBTITLE_SMALL};
 `;
 
-export const Avatar = styled.div<AvatarProps>`
+export const Avatar = styled.div<TAvatar>`
   width: 58px;
   height: 58px;
   border-radius: 50%;
   background-image: ${({ img }) => (img ? `url(${img})` : null)};
   background-size: cover;
   background-repeat: no-repeat;
-  filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2)) drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18))
-    drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+  filter: ${other.MAIN_FILTER};
 `;

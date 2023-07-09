@@ -1,7 +1,7 @@
 import serverEndpoints from 'constants/apiEndpoints';
 
 import { AxiosResponse } from 'axios';
-import { FileUploadResponseProps } from 'types/user';
+import { TFileUploadResponse } from 'types/user';
 
 import httpService from '../../http';
 
@@ -37,7 +37,7 @@ const userService = {
       headers: { 'Content-type': 'multipart/form-data' },
     };
 
-    const { data }: AxiosResponse<FileUploadResponseProps[]> = await httpService.post(
+    const { data }: AxiosResponse<TFileUploadResponse[]> = await httpService.post(
       serverEndpoints.UPLOAD_AVATAR,
       payload,
       config

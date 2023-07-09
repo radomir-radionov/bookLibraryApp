@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
 
@@ -8,11 +7,11 @@ import { selectBooks } from 'redux/books/selectors';
 import { BookShort } from 'modules';
 import { EmptyData } from 'modules/Profile';
 import { Pagination } from 'swiper';
-import { BookProps } from 'types/book';
+import { TBook } from 'types/book';
 import { TUserData } from 'types/user';
 
 import { breakpoints } from './data';
-import { AssistiveText, Header, PurchaseHistoryStyled, SwiperSlideStyled, SwiperStyled, Title } from './styles';
+import { Text, Header, PurchaseHistoryStyled, SwiperSlideStyled, SwiperStyled, Title } from './styles';
 
 type TProps = {
   data: TUserData;
@@ -20,20 +19,20 @@ type TProps = {
 
 const PurchaseHistory = ({ data }: TProps) => {
   const allBooks = useSelector(selectBooks);
-  const [historyBooks, setHistoryBook] = useState<BookProps[]>([]);
+  const [historyBooks, setHistoryBook] = useState<TBook[]>([]);
   const { history } = data;
 
   const books = history?.books;
 
   useEffect(() => {
-    books && setHistoryBook(books.map((book) => allBooks?.find(({ id }) => book.id === id)) as BookProps[]);
+    books && setHistoryBook(books.map((book) => allBooks?.find(({ id }) => book.id === id)) as TBook[]);
   }, [allBooks]);
 
   return (
     <PurchaseHistoryStyled data-test-id={dataTestId.HISTORY}>
       <Header>
         <Title>История</Title>
-        <AssistiveText>Список прочитанных книг</AssistiveText>
+        <Text>Список прочитанных книг</Text>
       </Header>
       {books && books?.length ? (
         <SwiperStyled

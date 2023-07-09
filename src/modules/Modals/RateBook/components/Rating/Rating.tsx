@@ -3,7 +3,7 @@ import dataTestId from 'constants/dataTestId';
 import { useState } from 'react';
 import { Control, Controller } from 'react-hook-form';
 
-import { Container, EmptyStarIcon, Input, Label, RatingStyled, StarIcon, SubTitle } from './styles';
+import { Container, EmptyStarIcon, Input, Label, RatingStyled, StarIcon, Title } from './styles';
 
 type TProps = {
   defaultRating: number;
@@ -16,7 +16,7 @@ const Rating = ({ defaultRating, control }: TProps) => {
 
   return (
     <Container>
-      <SubTitle>Ваша оценка</SubTitle>
+      <Title>Ваша оценка</Title>
       <RatingStyled data-test-id={dataTestId.RATING}>
         {qtyStars.map((value) => (
           <Label key={value} data-test-id={dataTestId.STAR}>

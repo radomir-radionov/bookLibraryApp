@@ -3,16 +3,16 @@ import { ActionUnvisible_Icon, ActionVisible_Icon, Check_Icon } from 'assets';
 import styled, { css } from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type WrapperProps = {
-  $errors: FieldError | undefined;
+type TWrapper = {
+  $errors?: FieldError;
 };
 
-type InputStyledProps = {
-  $errors: FieldError | undefined;
+type InputStyled = {
+  $errors?: FieldError;
   autoComplete: string;
 };
 
-export const Wrapper = styled.div<WrapperProps>`
+export const Wrapper = styled.div<TWrapper>`
   height: 76px;
 
   p {
@@ -59,7 +59,7 @@ export const LabelText = styled.span`
   pointer-events: none;
 `;
 
-export const InputStyled = styled.input<InputStyledProps>`
+export const InputStyled = styled.input<InputStyled>`
   width: 100%;
   height: 56px;
   padding: 12px;
@@ -71,13 +71,11 @@ export const InputStyled = styled.input<InputStyledProps>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) => {
-    return $errors
-      ? css`
-          border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
-        `
-      : null;
-  }};
+  ${({ $errors }) =>
+    $errors &&
+    css`
+      border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
+    `};
 
   &:not(:placeholder-shown) + span {
     ${typography.desktop.INFO_LARGE}
@@ -93,6 +91,10 @@ export const InputStyled = styled.input<InputStyledProps>`
       color: ${colors.GREY_BLACK_40};
       transform: translate3d(0, -14px, 0);
     }
+  }
+
+  @media (max-width: ${device.tablet}) {
+    padding: 26px 46px 12px 12px;
   }
 `;
 

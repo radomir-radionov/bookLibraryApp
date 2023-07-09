@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type AvatarProps = {
+type TAvatar = {
   img: string;
 };
 
@@ -20,7 +20,7 @@ export const UserInfo = styled.div`
   }
 `;
 
-export const Avatar = styled.div<AvatarProps>`
+export const Avatar = styled.div<TAvatar>`
   width: 32px;
   height: 32px;
   background-image: ${({ img }) => (img ? `url(${img})` : null)};

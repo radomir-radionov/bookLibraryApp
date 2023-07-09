@@ -4,14 +4,14 @@ import { toastActions } from 'redux/toast';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { nanoid } from '@reduxjs/toolkit';
 import { booksService } from 'services';
-import { CategoryProps } from 'types/categories';
+import { TCategory } from 'types/categories';
 import { ToastTypes } from 'types/toast';
 
 import { categoriesActions } from './slice';
 
 export function* getCategories() {
   try {
-    const categories: CategoryProps[] = yield call(() => booksService.getCategories());
+    const categories: TCategory[] = yield call(() => booksService.getCategories());
 
     yield put(categoriesActions.setCategories(categories));
   } catch (e) {

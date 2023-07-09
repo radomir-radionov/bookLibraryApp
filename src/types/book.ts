@@ -1,4 +1,4 @@
-export type BookProps = {
+export type TBook = {
   issueYear: string | null;
   rating: number | null;
   title: string;
@@ -35,7 +35,7 @@ export type BookProps = {
     | null;
 };
 
-export type CommentProps = {
+export type TComment = {
   text: string;
   createdAt: string;
   rating: number;
@@ -48,7 +48,7 @@ export type CommentProps = {
   };
 };
 
-export type BookDetailedProps = {
+export type TBookDetailed = {
   id: number;
   title: string;
   rating: number;
@@ -68,7 +68,7 @@ export type BookDetailedProps = {
     }
   ];
   categories: string[];
-  comments: CommentProps[];
+  comments: TComment[];
   booking: {
     id: number;
     order: boolean;
@@ -85,37 +85,6 @@ export type BookDetailedProps = {
     recipientId: number;
     recipientFirstName: string;
     recipientLastName: string;
-  };
-  histories: [
-    {
-      id: number;
-      userId: number;
-    }
-  ];
-};
-
-export type IBookProps = {
-  issueYear: string;
-  rating: number;
-  title: string;
-  authors: string[];
-  image: {
-    url: string;
-  };
-  categories: string[];
-  id: number;
-  booking: {
-    id: number;
-    order: boolean;
-    dateOrder: string;
-    customerId: number;
-  };
-  delivery: {
-    id: number;
-    handed: boolean;
-    dateHandedFrom: string;
-    dateHandedTo: string;
-    recipientId: number;
   };
   histories: [
     {

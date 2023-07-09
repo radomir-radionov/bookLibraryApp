@@ -1,8 +1,8 @@
 import dataTestId from 'constants/dataTestId';
 
-import { ButtonToBook, SubTitle } from 'components';
+import { ButtonBooking, SubTitle } from 'components';
 import { SliderPagination, SliderScrollbar } from 'modules';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
 import {
@@ -21,7 +21,7 @@ import {
 } from './styles';
 
 type TProps = {
-  data: BookDetailedProps;
+  data: TBookDetailed;
 };
 
 const AboutBook = ({ data }: TProps) => {
@@ -49,7 +49,7 @@ const AboutBook = ({ data }: TProps) => {
               {authors?.map((author) => author)}, {issueYear}
             </Author>
           </NameBook>
-          <ButtonToBook book={data} booking={booking} delivery={delivery} />
+          <ButtonBooking book={data} booking={booking} delivery={delivery} />
         </Header>
         <Description>
           <SubTitle>О книге</SubTitle>

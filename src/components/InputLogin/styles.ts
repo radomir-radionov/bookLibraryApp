@@ -36,13 +36,11 @@ export const InputStyled = styled.input<IInputStyledProps>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) => {
-    return $errors
-      ? css`
-          border-bottom: 1px solid ${colors.OTHER_NEGATIVE} !important;
-        `
-      : null;
-  }};
+  ${({ $errors }) =>
+    $errors &&
+    css`
+      border-bottom: 1px solid ${colors.OTHER_NEGATIVE} !important;
+    `};
 
   &:not(:placeholder-shown) + span {
     ${typography.desktop.INFO_LARGE};

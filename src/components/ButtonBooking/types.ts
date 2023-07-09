@@ -1,7 +1,7 @@
-import { BookProps, BookDetailedProps } from 'types/book';
+import { TBook, TBookDetailed } from 'types/book';
 
 export type TProps = {
-  book: BookProps | BookDetailedProps;
+  book: TBook | TBookDetailed;
   booking: {
     id: number;
     order: boolean;

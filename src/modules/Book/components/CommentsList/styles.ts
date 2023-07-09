@@ -2,7 +2,7 @@ import { Chevron_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type SubTitleBoxProps = {
+type TSubTitleBox = {
   $isListOpen: boolean;
 };
 
@@ -22,15 +22,11 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const SubTitleBox = styled.div<SubTitleBoxProps>`
-  margin-bottom: ${({ $isListOpen }) => {
-    return $isListOpen ? '16px' : '42px';
-  }};
+export const SubTitleBox = styled.div<TSubTitleBox>`
+  margin-bottom: ${({ $isListOpen }) => ($isListOpen ? '16px' : '42px')};
 
   svg {
-    rotate: ${({ $isListOpen }) => {
-      return $isListOpen ? '180deg' : 0;
-    }};
+    rotate: ${({ $isListOpen }) => ($isListOpen ? '180deg' : 0)};
   }
 `;
 

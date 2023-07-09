@@ -3,7 +3,7 @@ import { ActionClose_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type TextareaProps = {
+type TTextarea = {
   errors?: FieldError;
 };
 
@@ -81,7 +81,7 @@ export const BtnField = styled.div`
   }
 `;
 
-export const Textarea = styled.textarea<TextareaProps>`
+export const Textarea = styled.textarea<TTextarea>`
   width: 100%;
   height: 132px;
   padding: 20px 12px;

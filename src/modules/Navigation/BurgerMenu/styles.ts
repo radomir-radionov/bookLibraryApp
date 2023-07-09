@@ -1,8 +1,8 @@
 import { CloseMenu_Icon, HumburgerMenu_Icon } from 'assets';
 import styled from 'styled-components';
-import { colors, device } from 'styles';
+import { colors, device, other } from 'styles';
 
-type BurgerNavProps = {
+type TBurgerNav = {
   $visible: boolean;
 };
 
@@ -16,17 +16,14 @@ export const BurgerMenuStyled = styled.div`
   }
 `;
 
-export const BurgerNav = styled.div<BurgerNavProps>`
+export const BurgerNav = styled.div<TBurgerNav>`
   position: absolute;
   z-index: 999;
-  display: ${({ $visible }) => {
-    return $visible ? 'block' : 'none';
-  }};
+  display: ${({ $visible }) => ($visible ? 'block' : 'none')};
   width: 502px;
   margin-top: 18px;
   background: ${colors.GREY_BLACK_5};
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
+  box-shadow: ${other.MAIN_SHADOW};
   border-radius: 10px;
   transition: all 0.2s ease-out;
 

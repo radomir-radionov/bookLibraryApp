@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typography } from 'styles';
+import { other, typography } from 'styles';
 
 export const DayContentsStyled = styled.div`
   display: grid;
@@ -16,7 +16,7 @@ export const WeekDay = styled.div`
   width: 32px;
   height: 32px;
   ${typography.desktop.INFO_LARGE};
-  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  background: ${other.LINEAR_GRADIENT};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

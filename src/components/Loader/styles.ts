@@ -2,11 +2,11 @@ import { Loader_Icon } from 'assets';
 import styled from 'styled-components';
 import { device } from 'styles';
 
-type LoaderStyledProps = {
+type TLoaderStyled = {
   $visibility: boolean;
 };
 
-export const LoaderStyled = styled.div<LoaderStyledProps>`
+export const LoaderStyled = styled.div<TLoaderStyled>`
   visibility: ${({ $visibility }) => ($visibility ? 'visible' : 'hidden')};
   position: fixed;
   top: 0;

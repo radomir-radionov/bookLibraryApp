@@ -2,11 +2,11 @@ import { EmptyStar_Icon, Star_Icon } from 'assets';
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type RatingListProps = {
+type TRatingList = {
   $visible: string;
 };
 
-export const RatingListStyled = styled.div<RatingListProps>`
+export const RatingListStyled = styled.div<TRatingList>`
   display: ${({ $visible }) => ($visible === 'tiles' ? 'flex' : $visible === 'list' ? 'flex' : 'none')};
   align-items: center;
   margin: 0;

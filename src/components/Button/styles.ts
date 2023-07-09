@@ -7,9 +7,7 @@ type ButtonStyledProps = {
 };
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`
-  width: ${({ $variant }) => {
-    return $variant === BUTTON_VARIANTS.LARGE ? '100%' : '350px';
-  }};
+  width: ${({ $variant }) => ($variant === BUTTON_VARIANTS.LARGE ? '100%' : '350px')};
   padding: 15px 0;
   ${typography.desktop.BUTTON_LARGE};
   color: ${colors.MAIN_WHITE};
@@ -41,9 +39,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   }
 
   @media (max-width: ${device.laptop}) {
-    width: ${({ $variant }) => {
-      return $variant === BUTTON_VARIANTS.LARGE ? '100%' : '306px';
-    }};
+    width: ${({ $variant }) => ($variant === BUTTON_VARIANTS.LARGE ? '100%' : '306px')};
   }
 
   @media (max-width: ${device.tablet}) {

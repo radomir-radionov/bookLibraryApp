@@ -3,7 +3,7 @@ import responseText from 'constants/responseText';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { nanoid } from '@reduxjs/toolkit';
 import { booksService } from 'services';
-import { BookProps } from 'types/book';
+import { TBook } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
 import { toastActions } from '../toast/slice';
@@ -12,7 +12,7 @@ import { booksActions } from './slice';
 
 export function* getBooks() {
   try {
-    const books: BookProps[] = yield call(() => booksService.getBooks());
+    const books: TBook[] = yield call(() => booksService.getBooks());
 
     yield put(booksActions.setBooks(books));
   } catch (e) {

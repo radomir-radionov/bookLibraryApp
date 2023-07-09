@@ -3,15 +3,15 @@ import InputMask from 'react-input-mask';
 import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
-type WrapperProps = {
+type TWrapper = {
   $errors?: FieldError;
 };
 
-type HintWordProps = {
+type THintWord = {
   $colored?: boolean;
 };
 
-export const Wrapper = styled.div<WrapperProps>`
+export const Wrapper = styled.div<TWrapper>`
   position: relative;
   border-bottom: 1px solid ${colors.GREY_BLACK_20};
 
@@ -21,13 +21,11 @@ export const Wrapper = styled.div<WrapperProps>`
     top: 60px;
   }
 
-  ${({ $errors }) => {
-    return $errors
-      ? css`
-          border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
-        `
-      : null;
-  }};
+  ${({ $errors }) =>
+    $errors &&
+    css`
+      border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
+    `};
 `;
 
 export const Label = styled.label`
@@ -52,7 +50,6 @@ export const InputMaskStyled = styled(InputMask)`
   padding: 12px;
   padding-top: 26px;
   border-radius: 4px;
-
   ${typography.desktop.BODY_SMALL};
   background-color: ${colors.GREY_BLACK_5};
   transition-duration: 0.3s;
@@ -73,6 +70,6 @@ export const InputMaskStyled = styled(InputMask)`
   }
 `;
 
-export const HintWord = styled.span<HintWordProps>`
+export const HintWord = styled.span<THintWord>`
   color: ${({ $colored }) => ($colored ? colors.OTHER_NEGATIVE : colors.GREY_BLACK_40)};
 `;

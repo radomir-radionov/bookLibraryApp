@@ -45,14 +45,14 @@ export const InputFields = styled.div`
   p {
     padding-left: 12px;
     margin-bottom: 18px;
-
-    @media (max-width: ${device.tablet}) {
-      gap: 10px;
-    }
   }
 
   @media (max-width: ${device.tablet}) {
     gap: 10px;
+
+    div: {
+      height: 92px;
+    }
   }
 `;
 

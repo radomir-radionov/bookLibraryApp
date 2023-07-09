@@ -4,7 +4,7 @@ import { toastActions } from 'redux/toast';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { booksService } from 'services';
-import { BookDetailedProps } from 'types/book';
+import { TBookDetailed } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
 import { bookActions } from './slice';
@@ -15,7 +15,7 @@ export function* getBook(action: PayloadAction<number>) {
   try {
     yield put(bookActions.clearBookData());
 
-    const book: BookDetailedProps = yield call(() => booksService.getBook(id));
+    const book: TBookDetailed = yield call(() => booksService.getBook(id));
 
     yield put(bookActions.setBook(book));
   } catch (e) {

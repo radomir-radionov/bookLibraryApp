@@ -9,18 +9,18 @@ export const SubTitleStyled = styled.h5`
   border-bottom: 1px solid ${colors.GREY_BLACK_10};
   margin-right: 0 !important;
   margin-bottom: 16px;
-  ${typography.desktop.H5}
+  ${typography.desktop.H5};
 
   @media (max-width: ${device.laptop}) {
     width: 305px;
-    ${typography.desktop.SUBTITLE_LARGE}
+    ${typography.desktop.SUBTITLE_LARGE};
   }
 
   @media (max-width: ${device.tablet}) {
     width: 288px;
     padding-bottom: 8px;
     margin-bottom: 12px;
-    ${typography.mobile.H3}
+    ${typography.mobile.H3};
   }
 
   @media (max-width: ${device.mobileS}) {

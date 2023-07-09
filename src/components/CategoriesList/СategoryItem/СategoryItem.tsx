@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { displayingContentActions } from 'redux/displayingContent';
-import { ExtendedCategoryProps } from 'types/categories';
+import { TExtendedCategory } from 'types/categories';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
 import { NavLinkStyled, NavText, Qty, СategoryItemStyled } from './styles';
 
 type TProps = {
-  data: ExtendedCategoryProps;
+  data: TExtendedCategory;
 };
 
 const СategoryItem = ({ data }: TProps) => {

@@ -4,8 +4,8 @@ export { default as RatingList } from './RatingList/RatingList';
 export { default as ExpiredMask } from './ExpiredMask/ExpiredMask';
 
 export { default as Button } from './Button/Button';
-export { default as ButtonAction } from './ButtonAction/ButtonAction';
-export { default as ButtonToBook } from './ButtonToBook/ButtonToBook';
+export { default as ButtonFiltering } from './ButtonFiltering/ButtonFiltering';
+export { default as ButtonBooking } from './ButtonBooking/ButtonBooking';
 
 export { default as Input } from './Input/Input';
 export { default as InputLogin } from './InputLogin/InputLogin';

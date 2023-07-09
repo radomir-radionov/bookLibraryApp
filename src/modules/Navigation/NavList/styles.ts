@@ -4,11 +4,15 @@ import { colors, device, typography } from 'styles';
 
 export const NavListStyled = styled.div`
   display: flex;
+
+  div:nth-child(2) {
+    flex: none;
+  }
 `;
 
 export const Actions = styled.div`
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 auto;
   gap: 16px;
   height: 38px;
 

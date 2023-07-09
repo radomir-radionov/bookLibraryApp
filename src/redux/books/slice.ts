@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BookProps } from 'types/book';
+import { TBook } from 'types/book';
 
 import { sortBooksByRatingNormalizer } from './normalizer';
 import { BooksStateType } from './types';
 
 const initialState: BooksStateType = {
-  books: [] as BookProps[],
+  books: [] as TBook[],
   isSortBooksByRating: true,
   isBooksLoading: false,
   booksError: { isError: false, message: '' },

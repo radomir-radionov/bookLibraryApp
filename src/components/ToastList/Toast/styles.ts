@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 import { colors, device, typography } from 'styles';
 import { ToastTypes } from 'types/toast';
 
-type ToastStyledProps = {
+type TToastStyled = {
   $toastVariant: ToastTypes;
 };
 
-export const ToastStyled = styled.div<ToastStyledProps>`
+export const ToastStyled = styled.div<TToastStyled>`
   display: flex;
   justify-content: space-between;
   flex: 1;

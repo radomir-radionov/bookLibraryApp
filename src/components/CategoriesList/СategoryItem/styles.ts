@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { colors, formalization, typography } from 'styles';
 
 export const СategoryItemStyled = styled.li`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  ${typography.desktop.BODY_LARGE};
   cursor: pointer;
 
   &:hover {

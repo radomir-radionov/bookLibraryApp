@@ -5,8 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { bookActions } from 'redux/book';
 import { modalActions } from 'redux/modal';
 import { enteredBookName, selectUserComments } from 'redux/user/selectors';
-import { Button, ButtonToBook, HighLight, RatingList } from 'components';
-import { BookProps } from 'types/book';
+import { Button, ButtonBooking, HighLight, RatingList } from 'components';
+import { TBook } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
@@ -18,7 +18,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 
 type BookShortProps = {
-  data: BookProps;
+  data: TBook;
   view?: 'history';
 };
 
@@ -79,7 +79,7 @@ const BookShort = ({ data, view }: BookShortProps) => {
           </Author>
         </NameBox>
         {view !== 'history' ? (
-          <ButtonToBook book={data} booking={booking} delivery={delivery} />
+          <ButtonBooking book={data} booking={booking} delivery={delivery} />
         ) : isCommentedBook ? (
           <Button
             className='editCommentButton'

@@ -5,8 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { bookActions } from 'redux/book';
 import { modalActions } from 'redux/modal';
 import { enteredBookName, selectUserComments } from 'redux/user/selectors';
-import { Button, ButtonToBook, HighLight, RatingList } from 'components';
-import { BookProps } from 'types/book';
+import { Button, ButtonBooking, HighLight, RatingList } from 'components';
+import { TBook } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
@@ -24,7 +24,7 @@ import {
 } from './styles';
 
 type TProps = {
-  data: BookProps;
+  data: TBook;
   view?: 'history';
 };
 
@@ -86,7 +86,7 @@ const BookLong = ({ data, view }: TProps) => {
         <Active>
           <RatingList rating={rating} />
           {view !== 'history' ? (
-            <ButtonToBook book={data} booking={booking} delivery={delivery} />
+            <ButtonBooking book={data} booking={booking} delivery={delivery} />
           ) : isCommentedBook ? (
             <Button
               className='editCommentButton'

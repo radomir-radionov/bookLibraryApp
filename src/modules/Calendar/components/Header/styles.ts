@@ -1,6 +1,6 @@
 import { ActionMonthPicker_Icon, Chevron_Icon } from 'assets';
 import styled from 'styled-components';
-import { colors } from 'styles';
+import { colors, other } from 'styles';
 
 export const HeaderStyled = styled.header`
   display: flex;
@@ -45,8 +45,7 @@ export const OptionsWrapper = styled.div`
   transform: translate(0, 30px);
   background: ${colors.GREY_BLACK_5};
   background: white;
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
-    0px 1px 5px rgba(191, 196, 201, 0.24);
+  box-shadow: ${other.MAIN_SHADOW};
   border-radius: 8px;
   position: absolute;
   padding: 10px;

@@ -24,7 +24,7 @@ export const Title = styled.h4`
   ${typography.desktop.H4};
 `;
 
-export const TextField = styled.div`
+export const Fields = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 30px;

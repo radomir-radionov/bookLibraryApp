@@ -1,6 +1,6 @@
 import { ActionAvatar_Icon } from 'assets';
 import styled from 'styled-components';
-import { device, typography } from 'styles';
+import { device, other, typography } from 'styles';
 
 export const HeaderStyled = styled.header`
   display: flex;
@@ -45,8 +45,7 @@ export const Form = styled.form`
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  filter: drop-shadow(0px 2px 4px rgba(191, 196, 201, 0.2)) drop-shadow(0px 3px 4px rgba(191, 196, 201, 0.18))
-    drop-shadow(0px 1px 5px rgba(191, 196, 201, 0.24));
+  filter: ${other.MAIN_FILTER};
 `;
 
 export const InputFileUpload = styled.input`

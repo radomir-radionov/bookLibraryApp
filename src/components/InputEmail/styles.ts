@@ -2,8 +2,8 @@ import { FieldError } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
-type IInputStyledProps = {
-  $errors: FieldError | undefined;
+type TInputStyled = {
+  $errors?: FieldError;
 };
 
 export const Wrapper = styled.div`
@@ -26,7 +26,7 @@ export const LabelText = styled.span`
   pointer-events: none;
 `;
 
-export const InputStyled = styled.input<IInputStyledProps>`
+export const InputStyled = styled.input<TInputStyled>`
   width: 100%;
   height: 56px;
   padding: 12px;
@@ -38,13 +38,11 @@ export const InputStyled = styled.input<IInputStyledProps>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) => {
-    return $errors
-      ? css`
-          border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
-        `
-      : null;
-  }};
+  ${({ $errors }) =>
+    $errors &&
+    css`
+      border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
+    `};
 
   &:not(:placeholder-shown) + span {
     ${typography.desktop.INFO_LARGE};

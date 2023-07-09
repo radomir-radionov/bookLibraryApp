@@ -5,8 +5,8 @@ import { selectIsSortByRating } from 'redux/books/selectors';
 import { booksActions } from 'redux/books/slice';
 import { displayingContentActions } from 'redux/displayingContent';
 import { displayingBooks, isSearchBarOpen } from 'redux/displayingContent/selectors';
-import { ButtonAction, SearchBar } from 'components';
-import { BTN_FILTER_VARIANTS } from 'components/ButtonAction/types';
+import { ButtonFiltering, SearchBar } from 'components';
+import { BTN_FILTER_VARIANTS } from 'components/ButtonFiltering/types';
 
 import {
   ActionRatingDownIcon,
@@ -24,7 +24,6 @@ const NavList = () => {
   const isOpen = useSelector(isSearchBarOpen);
   const displayingData = useSelector(displayingBooks);
   const isSortByRating = useSelector(selectIsSortByRating);
-
   const onBtnViewClick = (type: string) => () => dispatch(displayingContentActions.setDisplayingBooks(type));
   const onSearchBarClick = () => dispatch(displayingContentActions.setSearchBarOpen());
   const onBtnRatingClick = () => dispatch(booksActions.sortBooksByRating());
@@ -32,43 +31,34 @@ const NavList = () => {
   return (
     <NavListStyled>
       {isOpen ? (
-        <Actions>
-          <SearchBar />
-        </Actions>
+        <SearchBar />
       ) : (
         <>
           <Actions>
             <SearchBar />
-            <ButtonAction
-              value='searching'
-              onClick={onSearchBarClick}
-              visible={isOpen}
-              dataTestId={dataTestId.BUTTON_SEARCH_OPEN}
-            >
+            <ButtonFiltering onClick={onSearchBarClick} visible={isOpen} dataTestId={dataTestId.BUTTON_SEARCH_OPEN}>
               <ActionSearchingIcon />
-            </ButtonAction>
-            <ButtonAction value='rating' onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
+            </ButtonFiltering>
+            <ButtonFiltering onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
               {isSortByRating ? <ActionRatingUpIcon /> : <ActionRatingDownIcon />}
               <Name data-test-id={dataTestId.BUTTON_SORT_RATING}>По рейтингу</Name>
-            </ButtonAction>
+            </ButtonFiltering>
           </Actions>
           <Actions>
-            <ButtonAction
-              value='tiles'
+            <ButtonFiltering
+              isActive={displayingData === 'tiles'}
               onClick={onBtnViewClick('tiles')}
-              mix={displayingData}
               dataTestId={dataTestId.BUTTON_MENU_VIEW_WINDOW}
             >
               <TilesIcon />
-            </ButtonAction>
-            <ButtonAction
-              value='list'
+            </ButtonFiltering>
+            <ButtonFiltering
+              isActive={displayingData === 'list'}
               onClick={onBtnViewClick('list')}
-              mix={displayingData}
               dataTestId={dataTestId.BUTTON_MENU_VIEW_LIST}
             >
               <ListIcon />
-            </ButtonAction>
+            </ButtonFiltering>
           </Actions>
         </>
       )}
