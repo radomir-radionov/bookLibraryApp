@@ -8,9 +8,11 @@ import { NavLinkStyled, Name, Qty, СategoryItemStyled } from './styles';
 
 type TProps = {
   data: TExtendedCategory;
+  isBurgerMenuOpen: boolean;
+  setIsBurgerMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const СategoryItem = ({ data }: TProps) => {
+const СategoryItem = ({ data, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps) => {
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
 
@@ -19,7 +21,7 @@ const СategoryItem = ({ data }: TProps) => {
   const dataTestIdCategory = width > 1024 ? `navigation-${category}` : `burger-${category}`;
   const dataTestIdCount = width > 1024 ? `navigation-book-count-for-${category}` : `burger-book-count-for-${category}`;
 
-  const onCategoryClick = () => dispatch(displayingContentActions.setBurgerMenuOpen());
+  const onCategoryClick = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
 
   return (
     <СategoryItemStyled onClick={onCategoryClick}>

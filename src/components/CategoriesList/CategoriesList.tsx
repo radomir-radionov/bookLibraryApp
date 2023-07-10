@@ -9,9 +9,11 @@ import { CategoriesListStyled, Wrapper } from './styles';
 
 type TProps = {
   isOpen?: boolean;
+  isBurgerMenuOpen: boolean;
+  setIsBurgerMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const CategoriesList = ({ isOpen }: TProps) => {
+const CategoriesList = ({ isOpen, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps) => {
   const books = useSelector(selectBooks);
   const categories = useSelector(selectCategories);
 
@@ -21,7 +23,12 @@ const CategoriesList = ({ isOpen }: TProps) => {
     <Wrapper hidden={isOpen}>
       <CategoriesListStyled $length={extendedCategories.length}>
         {extendedCategories?.map((category) => (
-          <СategoryItem key={category.id} data={category} />
+          <СategoryItem
+            key={category.id}
+            data={category}
+            isBurgerMenuOpen={isBurgerMenuOpen}
+            setIsBurgerMenuOpen={setIsBurgerMenuOpen}
+          />
         ))}
       </CategoriesListStyled>
     </Wrapper>

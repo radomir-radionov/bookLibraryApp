@@ -1,5 +1,4 @@
-export type IDisplayingContentState = {
+export type TDisplayingContentState = {
   isSearchBarOpen: boolean;
-  isBurgerMenuOpen: boolean;
   displayingBooks: string;
 };

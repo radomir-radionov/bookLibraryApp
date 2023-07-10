@@ -1,9 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { displayingContentActions } from 'redux/displayingContent';
-import { isBurgerMenuOpen } from 'redux/displayingContent/selectors';
+import { useRef, useState } from 'react';
 import { Nav, UserMenu } from 'modules';
 import useOnClickOutside from 'utils/useOutsideClick';
 import useWindowDimensions from 'utils/useWindowDimensions';
@@ -11,21 +8,24 @@ import useWindowDimensions from 'utils/useWindowDimensions';
 import { BurgerMenuStyled, BurgerNav, CloseMenuIcon, HumburgerIcon, MenuWrapper } from './styles';
 
 const BurgerMenu = () => {
-  const dispatch = useDispatch();
-  const isMenuOpen = useSelector(isBurgerMenuOpen);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const squareBoxRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
 
-  const onBurgerMenuClick = () => dispatch(displayingContentActions.setBurgerMenuOpen());
-  const onOutsideClick = () => isMenuOpen && dispatch(displayingContentActions.closeBurgerMenu());
+  const onBurgerMenuClick = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  const onOutsideClick = () => isBurgerMenuOpen && setIsBurgerMenuOpen(false);
 
   useOnClickOutside(squareBoxRef, onOutsideClick);
 
   return (
     <BurgerMenuStyled data-test-id={dataTestId.BUTTON_BURGER}>
-      {isMenuOpen ? <CloseMenuIcon onClick={onBurgerMenuClick} /> : <HumburgerIcon onClick={onBurgerMenuClick} />}
-      <BurgerNav ref={squareBoxRef} $visible={isMenuOpen} data-test-id={dataTestId.BURGER_NAVIGATION}>
-        <MenuWrapper>{width < 1024 && <Nav visible={true} />}</MenuWrapper>
+      {isBurgerMenuOpen ? <CloseMenuIcon onClick={onBurgerMenuClick} /> : <HumburgerIcon onClick={onBurgerMenuClick} />}
+      <BurgerNav ref={squareBoxRef} $visible={isBurgerMenuOpen} data-test-id={dataTestId.BURGER_NAVIGATION}>
+        <MenuWrapper>
+          {width < 1024 && (
+            <Nav visible={true} isBurgerMenuOpen={isBurgerMenuOpen} setIsBurgerMenuOpen={setIsBurgerMenuOpen} />
+          )}
+        </MenuWrapper>
         <UserMenu />
       </BurgerNav>
     </BurgerMenuStyled>
