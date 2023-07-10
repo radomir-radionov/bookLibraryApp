@@ -20,6 +20,7 @@ export const LayoutHomeStyled = styled.main`
 
 export const Content = styled.div`
   display: flex;
-  max-width: 1100px;
+  gap: 30px;
   width: 100%;
+  max-width: 1100px;
 `;

@@ -8,7 +8,7 @@ import { createCategories } from 'utils/categories';
 import { CategoriesListStyled, Wrapper } from './styles';
 
 type TProps = {
-  isOpen: boolean;
+  isOpen?: boolean;
 };
 
 const CategoriesList = ({ isOpen }: TProps) => {
@@ -18,8 +18,8 @@ const CategoriesList = ({ isOpen }: TProps) => {
   const extendedCategories = useMemo(() => createCategories(books, categories), [books, categories]);
 
   return (
-    <Wrapper hidden={!isOpen}>
-      <CategoriesListStyled $isLength={extendedCategories.length}>
+    <Wrapper hidden={isOpen}>
+      <CategoriesListStyled $length={extendedCategories.length}>
         {extendedCategories?.map((category) => (
           <СategoryItem key={category.id} data={category} />
         ))}

@@ -1,19 +1,14 @@
 import styled from 'styled-components';
 
-type CategoriesListStyledProps = {
-  $isLength: number;
+type TCategoriesListStyled = {
+  $length: number;
 };
 
-export const Wrapper = styled.div`
-  margin: 16px 0 42px;
-`;
+export const Wrapper = styled.div``;
 
-export const CategoriesListStyled = styled.ul<CategoriesListStyledProps>`
-  display: ${({ $isLength }) => ($isLength ? 'flex' : 'none')};
+export const CategoriesListStyled = styled.ul<TCategoriesListStyled>`
+  display: ${({ $length }) => ($length ? 'flex' : 'none')};
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   gap: 16px;
-  padding: 0px 0px 0px 20px;
-  margin-bottom: 42px;
+  padding: 16px 0px 0 20px;
 `;

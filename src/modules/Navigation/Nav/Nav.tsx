@@ -1,65 +1,57 @@
-import pageRoutes from 'constants/pageRoutes';
-
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { displayingContentActions } from 'redux/displayingContent';
+import { useLocation } from 'react-router-dom';
 import { CategoriesList } from 'components';
 
-import { ChevronIcon, Line, NavItem, NavList, NavStyled, Name, NavLinkStyled } from './styles';
+import { ChevronIcon, NavItem, NavList, NavStyled, NavLinkStyled } from './styles';
+import navListData from './data';
 
 type TProps = {
   visible?: boolean;
-  dataTestIds: Array<{ id: string }>;
 };
 
-const Nav = ({ visible = false, dataTestIds }: TProps) => {
-  const dispatch = useDispatch();
+const Nav = ({ visible = false }: TProps) => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [isBooksList, setBooksList] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isOpenCategoriesList, setIsOpenCategoriesList] = useState(false);
 
-  const bookParam = location.pathname.split('/')[1];
+  const pathStartsWithBooks = location.pathname.startsWith('/books');
   const categoryParam = location.pathname.split('/')[2];
 
-  const clickOpenList = () => {
-    setBooksList(!isBooksList);
-    navigate('/books/all');
-  };
-
-  const clickCloseList = () => {
-    setBooksList(false);
-    dispatch(displayingContentActions.setBurgerMenuOpen());
-  };
+  const onNavItemClick = (id: number) => () => setActiveIndex(id);
+  const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 
   return (
     <NavStyled $visible={visible}>
       <NavList>
-        <NavItem
-          onClick={clickOpenList}
-          $bookPath={bookParam}
-          $isListOpen={isBooksList}
-          $categoryParam={categoryParam}
-          data-test-id={dataTestIds[0].id}
-        >
-          <Name $bookPath={bookParam} $isListOpen={isBooksList}>
-            Витрина книг
-          </Name>
-          <ChevronIcon $categoryParam={categoryParam} />
-        </NavItem>
-        <CategoriesList isOpen={isBooksList} />
-        <NavItem onClick={clickCloseList} data-test-id={dataTestIds[2].id}>
-          <NavLinkStyled to={pageRoutes.TERMS}>
-            Правила пользования
-            <Line />
-          </NavLinkStyled>
-        </NavItem>
-        <NavItem onClick={clickCloseList} data-test-id={dataTestIds[3].id}>
-          <NavLinkStyled to={pageRoutes.CONTRACT}>
-            Договор оферты
-            <Line />
-          </NavLinkStyled>
-        </NavItem>
+        {navListData.map(({ id, title, link, dataTestId }) => {
+          if (id === 0) {
+            return (
+              <NavItem
+                key={id}
+                $isActive={activeIndex === id}
+                onClick={onNavItemClick(id)}
+                $categoryParam={categoryParam}
+                data-test-id={dataTestId}
+              >
+                <NavLinkStyled to={link} $pathStartsWithBooks={pathStartsWithBooks}>
+                  {title}
+                  <ChevronIcon
+                    onClick={onChevronItemClick}
+                    isOpen={isOpenCategoriesList}
+                    $categoryParam={categoryParam}
+                  />
+                </NavLinkStyled>
+                {activeIndex === id && <CategoriesList isOpen={isOpenCategoriesList} />}
+              </NavItem>
+            );
+          } else {
+            return (
+              <NavItem key={id} $isActive={activeIndex === id} onClick={onNavItemClick(id)} data-test-id={dataTestId}>
+                <NavLinkStyled to={link}>{title}</NavLinkStyled>
+              </NavItem>
+            );
+          }
+        })}
       </NavList>
     </NavStyled>
   );

@@ -26,7 +26,7 @@ const BurgerMenu = () => {
     <BurgerMenuStyled data-test-id={dataTestId.BUTTON_BURGER}>
       {isMenuOpen ? <CloseMenuIcon onClick={onBurgerMenuClick} /> : <HumburgerIcon onClick={onBurgerMenuClick} />}
       <BurgerNav ref={squareBoxRef} $visible={isMenuOpen} data-test-id={dataTestId.BURGER_NAVIGATION}>
-        <MenuWrapper>{width < 1024 && <Nav visible={true} dataTestIds={dataTestIds} />}</MenuWrapper>
+        <MenuWrapper>{width < 1024 && <Nav visible={true} />}</MenuWrapper>
         <UserMenu />
       </BurgerNav>
     </BurgerMenuStyled>

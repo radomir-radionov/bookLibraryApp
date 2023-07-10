@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device, typography } from 'styles';
 
-type ParagraphProps = {
+type TParagraph = {
   mb?: string;
 };
 
@@ -9,7 +9,6 @@ export const TermsStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 825px;
-  margin-left: 10px;
   transition: all 0.5s ease-out;
 `;
 
@@ -51,10 +50,8 @@ export const SubTitle = styled.p`
   }
 `;
 
-export const Paragraph = styled.p<ParagraphProps>`
-  margin-bottom: ${({ mb }) => {
-    return mb ? 0 : '16px';
-  }};
+export const Paragraph = styled.p<TParagraph>`
+  margin-bottom: ${({ mb }) => (mb ? 0 : '16px')};
   ${typography.desktop.BODY_LARGE}
 
   @media (max-width: ${device.tabletM}) {
