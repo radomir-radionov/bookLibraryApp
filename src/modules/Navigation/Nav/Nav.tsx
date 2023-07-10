@@ -17,8 +17,7 @@ const Nav = ({ visible = false }: TProps) => {
   const pathStartsWithBooks = location.pathname.startsWith('/books');
 
   const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    const id = e.currentTarget.id;
-    setActiveIndex(+id);
+    setActiveIndex(+e.currentTarget.id);
   };
 
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
