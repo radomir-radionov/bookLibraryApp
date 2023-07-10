@@ -19,10 +19,8 @@ const Nav = ({ visible = false }: TProps) => {
   const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
     setActiveIndex(+e.currentTarget.id);
   };
-
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 
-  //   setActiveIndex(id)
   return (
     <NavStyled $visible={visible}>
       <NavList>
