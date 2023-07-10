@@ -3,7 +3,7 @@ import { Chevron_Icon } from 'assets';
 import styled, { css } from 'styled-components';
 import { device, formalization, other, typography } from 'styles';
 
-type TNav = {
+type TNavStyled = {
   $visible: boolean;
 };
 
@@ -12,12 +12,12 @@ type TNavItem = {
   $categoryParam?: string;
 };
 
-type TIcon = {
+type TChevronIcon = {
   isOpen: boolean;
   $pathStartsWithBooks: boolean;
 };
 
-export const NavStyled = styled.nav<TNav>`
+export const NavStyled = styled.nav<TNavStyled>`
   @media (max-width: ${device.laptop}) {
     display: ${({ $visible }) => ($visible ? 'initial' : 'none')};
   }
@@ -68,7 +68,7 @@ export const NavItem = styled.li<TNavItem>`
   }
 `;
 
-export const ChevronIcon = styled(Chevron_Icon)<TIcon>`
+export const ChevronIcon = styled(Chevron_Icon)<TChevronIcon>`
   display: ${({ $pathStartsWithBooks }) => ($pathStartsWithBooks ? 'inline-block' : 'none')};
   rotate: ${({ isOpen }) => (isOpen ? '180deg' : 0)};
 `;
