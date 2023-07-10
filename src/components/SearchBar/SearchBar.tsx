@@ -2,26 +2,28 @@ import dataTestId from 'constants/dataTestId';
 
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { displayingContentActions } from 'redux/displayingContent';
-import { isSearchBarOpen } from 'redux/displayingContent/selectors';
 import { userActions } from 'redux/user';
 import { enteredBookName } from 'redux/user/selectors';
 
 import { ActionCloseIcon, ActionSearchingCIcon, ActionSearchingIcon, Btn, Form, Label, SearchInput } from './styles';
 
-const SearchBar = () => {
+type TProps = {
+  isSearchBarOpen: boolean;
+  setIsSearchBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SearchBar = ({ isSearchBarOpen, setIsSearchBarOpen }: TProps) => {
   const dispatch = useDispatch();
   const searchValue = useSelector(enteredBookName);
-  const isOpen = useSelector(isSearchBarOpen);
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleOpeningSearchBar = () => dispatch(displayingContentActions.setSearchBarOpen());
+  const handleOpeningSearchBar = () => setIsSearchBarOpen(!isSearchBarOpen);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => dispatch(userActions.setBookName(e.target.value));
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
   return (
-    <Form $visible={isOpen}>
+    <Form $visible={isSearchBarOpen}>
       <Label htmlFor='searching'>{isFocused ? <ActionSearchingCIcon /> : <ActionSearchingIcon />}</Label>
       <SearchInput
         type='search'

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsSortByRating } from 'redux/books/selectors';
 import { booksActions } from 'redux/books/slice';
 import { displayingContentActions } from 'redux/displayingContent';
-import { displayingBooks, isSearchBarOpen } from 'redux/displayingContent/selectors';
+import { displayingBooks } from 'redux/displayingContent/selectors';
 import { ButtonFiltering, SearchBar } from 'components';
 import { BTN_FILTER_VARIANTS } from 'components/ButtonFiltering/types';
 
@@ -18,25 +18,31 @@ import {
   MenuStyled,
   TilesIcon,
 } from './styles';
+import { useState } from 'react';
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector(isSearchBarOpen);
   const displayingData = useSelector(displayingBooks);
   const isSortByRating = useSelector(selectIsSortByRating);
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+
   const onBtnViewClick = (type: string) => () => dispatch(displayingContentActions.setDisplayingBooks(type));
-  const onSearchBarClick = () => dispatch(displayingContentActions.setSearchBarOpen());
+  const onSearchBarClick = () => setIsSearchBarOpen(!isSearchBarOpen);
   const onBtnRatingClick = () => dispatch(booksActions.sortBooksByRating());
 
   return (
     <MenuStyled>
-      {isOpen ? (
-        <SearchBar />
+      {isSearchBarOpen ? (
+        <SearchBar isSearchBarOpen={isSearchBarOpen} setIsSearchBarOpen={setIsSearchBarOpen} />
       ) : (
         <>
           <Actions>
-            <SearchBar />
-            <ButtonFiltering onClick={onSearchBarClick} visible={isOpen} dataTestId={dataTestId.BUTTON_SEARCH_OPEN}>
+            <SearchBar isSearchBarOpen={isSearchBarOpen} setIsSearchBarOpen={setIsSearchBarOpen} />
+            <ButtonFiltering
+              onClick={onSearchBarClick}
+              visible={isSearchBarOpen}
+              dataTestId={dataTestId.BUTTON_SEARCH_OPEN}
+            >
               <ActionSearchingIcon />
             </ButtonFiltering>
             <ButtonFiltering onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
