@@ -16,36 +16,48 @@ const Nav = ({ visible = false }: TProps) => {
 
   const pathStartsWithBooks = location.pathname.startsWith('/books');
 
-  const onNavItemClick = (id: number) => () => setActiveIndex(id);
+  const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
+    const id = e.currentTarget.id;
+    setActiveIndex(+id);
+  };
+
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 
-  console.log(isOpenCategoriesList);
+  //   setActiveIndex(id)
   return (
     <NavStyled $visible={visible}>
       <NavList>
-        {navListData.map(({ id, title, link, dataTestId }) => {
-          if (id === 0) {
-            return (
-              <NavItem key={id} $isActive={activeIndex === id} onClick={onNavItemClick(id)} data-test-id={dataTestId}>
-                <NavLinkStyled to={link} $pathStartsWithBooks={pathStartsWithBooks}>
-                  {title}
-                  <ChevronIcon
-                    onClick={onChevronItemClick}
-                    isOpen={isOpenCategoriesList}
-                    $pathStartsWithBooks={pathStartsWithBooks}
-                  />
-                </NavLinkStyled>
-                {activeIndex === 0 && pathStartsWithBooks && <CategoriesList isOpen={isOpenCategoriesList} />}
-              </NavItem>
-            );
-          } else {
-            return (
-              <NavItem key={id} $isActive={activeIndex === id} onClick={onNavItemClick(id)} data-test-id={dataTestId}>
-                <NavLinkStyled to={link}>{title}</NavLinkStyled>
-              </NavItem>
-            );
-          }
-        })}
+        {navListData.map(({ id, title, link, dataTestId }) =>
+          id === 0 ? (
+            <NavItem
+              key={id}
+              id={String(id)}
+              $isActive={activeIndex === id}
+              onClick={onNavItemClick}
+              data-test-id={dataTestId}
+            >
+              <NavLinkStyled to={link} $pathStartsWithBooks={pathStartsWithBooks}>
+                {title}
+                <ChevronIcon
+                  onClick={onChevronItemClick}
+                  isOpen={isOpenCategoriesList}
+                  $pathStartsWithBooks={pathStartsWithBooks}
+                />
+              </NavLinkStyled>
+              {activeIndex === 0 && pathStartsWithBooks && <CategoriesList isOpen={isOpenCategoriesList} />}
+            </NavItem>
+          ) : (
+            <NavItem
+              key={id}
+              id={String(id)}
+              $isActive={activeIndex === id}
+              onClick={onNavItemClick}
+              data-test-id={dataTestId}
+            >
+              <NavLinkStyled to={link}>{title}</NavLinkStyled>
+            </NavItem>
+          )
+        )}
       </NavList>
     </NavStyled>
   );

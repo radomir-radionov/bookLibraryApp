@@ -8,6 +8,7 @@ type TNavStyled = {
 };
 
 type TNavItem = {
+  id: string;
   $isActive?: boolean;
   $categoryParam?: string;
 };
