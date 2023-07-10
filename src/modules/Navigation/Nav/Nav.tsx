@@ -16,9 +16,7 @@ const Nav = ({ visible = false }: TProps) => {
 
   const pathStartsWithBooks = location.pathname.startsWith('/books');
 
-  const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    setActiveIndex(+e.currentTarget.id);
-  };
+  const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => setActiveIndex(+e.currentTarget.id);
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 
   return (
@@ -29,8 +27,8 @@ const Nav = ({ visible = false }: TProps) => {
             <NavItem
               key={id}
               id={String(id)}
-              $isActive={activeIndex === id}
               onClick={onNavItemClick}
+              $isActive={activeIndex === id}
               data-test-id={dataTestId}
             >
               <NavLinkStyled to={link} $pathStartsWithBooks={pathStartsWithBooks}>
@@ -47,8 +45,8 @@ const Nav = ({ visible = false }: TProps) => {
             <NavItem
               key={id}
               id={String(id)}
-              $isActive={activeIndex === id}
               onClick={onNavItemClick}
+              $isActive={activeIndex === id}
               data-test-id={dataTestId}
             >
               <NavLinkStyled to={link}>{title}</NavLinkStyled>
