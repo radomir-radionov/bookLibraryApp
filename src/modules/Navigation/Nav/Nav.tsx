@@ -19,6 +19,7 @@ const Nav = ({ visible = false }: TProps) => {
   const onNavItemClick = (id: number) => () => setActiveIndex(id);
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 
+  console.log(isOpenCategoriesList);
   return (
     <NavStyled $visible={visible}>
       <NavList>
@@ -34,7 +35,7 @@ const Nav = ({ visible = false }: TProps) => {
                     $pathStartsWithBooks={pathStartsWithBooks}
                   />
                 </NavLinkStyled>
-                {activeIndex === id && <CategoriesList isOpen={isOpenCategoriesList} />}
+                {activeIndex === 0 && pathStartsWithBooks && <CategoriesList isOpen={isOpenCategoriesList} />}
               </NavItem>
             );
           } else {
