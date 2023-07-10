@@ -15,7 +15,6 @@ const Nav = ({ visible = false }: TProps) => {
   const [isOpenCategoriesList, setIsOpenCategoriesList] = useState(false);
 
   const pathStartsWithBooks = location.pathname.startsWith('/books');
-  const categoryParam = location.pathname.split('/')[2];
 
   const onNavItemClick = (id: number) => () => setActiveIndex(id);
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
@@ -26,19 +25,13 @@ const Nav = ({ visible = false }: TProps) => {
         {navListData.map(({ id, title, link, dataTestId }) => {
           if (id === 0) {
             return (
-              <NavItem
-                key={id}
-                $isActive={activeIndex === id}
-                onClick={onNavItemClick(id)}
-                $categoryParam={categoryParam}
-                data-test-id={dataTestId}
-              >
+              <NavItem key={id} $isActive={activeIndex === id} onClick={onNavItemClick(id)} data-test-id={dataTestId}>
                 <NavLinkStyled to={link} $pathStartsWithBooks={pathStartsWithBooks}>
                   {title}
                   <ChevronIcon
                     onClick={onChevronItemClick}
                     isOpen={isOpenCategoriesList}
-                    $categoryParam={categoryParam}
+                    $pathStartsWithBooks={pathStartsWithBooks}
                   />
                 </NavLinkStyled>
                 {activeIndex === id && <CategoriesList isOpen={isOpenCategoriesList} />}

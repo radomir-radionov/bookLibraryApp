@@ -14,7 +14,7 @@ type TNavItem = {
 
 type TIcon = {
   isOpen: boolean;
-  $categoryParam: string;
+  $pathStartsWithBooks: boolean;
 };
 
 export const NavStyled = styled.nav<TNav>`
@@ -69,6 +69,6 @@ export const NavItem = styled.li<TNavItem>`
 `;
 
 export const ChevronIcon = styled(Chevron_Icon)<TIcon>`
-  display: ${({ $categoryParam }) => ($categoryParam ? 'inline-block' : 'none')};
+  display: ${({ $pathStartsWithBooks }) => ($pathStartsWithBooks ? 'inline-block' : 'none')};
   rotate: ${({ isOpen }) => (isOpen ? '180deg' : 0)};
 `;

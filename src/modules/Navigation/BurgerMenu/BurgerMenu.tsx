@@ -8,7 +8,6 @@ import { Nav, UserMenu } from 'modules';
 import useOnClickOutside from 'utils/useOutsideClick';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
-import dataTestIds from './data';
 import { BurgerMenuStyled, BurgerNav, CloseMenuIcon, HumburgerIcon, MenuWrapper } from './styles';
 
 const BurgerMenu = () => {
