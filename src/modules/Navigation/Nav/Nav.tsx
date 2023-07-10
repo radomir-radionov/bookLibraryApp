@@ -6,7 +6,7 @@ import { ChevronIcon, NavItem, NavList, NavStyled, NavLinkStyled } from './style
 import navListData from './data';
 
 type TProps = {
-  visible?: boolean;
+  visible: boolean;
 };
 
 const Nav = ({ visible = false }: TProps) => {
@@ -37,7 +37,7 @@ const Nav = ({ visible = false }: TProps) => {
                 {title}
                 <ChevronIcon
                   onClick={onChevronItemClick}
-                  isOpen={isOpenCategoriesList}
+                  $isOpen={isOpenCategoriesList}
                   $pathStartsWithBooks={pathStartsWithBooks}
                 />
               </NavLinkStyled>

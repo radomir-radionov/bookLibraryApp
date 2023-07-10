@@ -14,7 +14,7 @@ type TNavItem = {
 };
 
 type TChevronIcon = {
-  isOpen: boolean;
+  $isOpen: boolean;
   $pathStartsWithBooks: boolean;
 };
 
@@ -71,5 +71,5 @@ export const NavItem = styled.li<TNavItem>`
 
 export const ChevronIcon = styled(Chevron_Icon)<TChevronIcon>`
   display: ${({ $pathStartsWithBooks }) => ($pathStartsWithBooks ? 'inline-block' : 'none')};
-  rotate: ${({ isOpen }) => (isOpen ? '180deg' : 0)};
+  rotate: ${({ $isOpen }) => ($isOpen ? '180deg' : 0)};
 `;
