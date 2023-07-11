@@ -35,6 +35,7 @@ export const BurgerNav = styled.div<TBurgerNav>`
 export const MenuWrapper = styled.div`
   width: 100%;
   padding: 32px 32px 52px 32px;
+  border-bottom: 1px solid ${colors.GREY_BLACK_20};
 
   @media (max-width: ${device.tabletM}) {
     padding: 32px 16px 52px 16px;

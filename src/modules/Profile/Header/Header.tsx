@@ -16,9 +16,9 @@ import {
   InputFileUpload,
   Label,
   Mask,
-  NameText,
-  NameUser,
+  Text,
   ProfileAvatar,
+  UserName,
 } from './styles';
 import { TUserData } from 'types/user';
 
@@ -26,7 +26,7 @@ type TProps = {
   data: TUserData;
 };
 
-type FileUploadProps = {
+type TFileUploadProps = {
   picture: any;
 };
 
@@ -39,9 +39,9 @@ const Header = ({ data }: TProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FileUploadProps>();
+  } = useForm<TFileUploadProps>();
 
-  const onSubmit = (imgData: FileUploadProps) => {
+  const onSubmit = (imgData: TFileUploadProps) => {
     const formData = new FormData();
     formData.append('files', imgData.picture[0]);
     imgData.picture.length && convertFile(imgData.picture[0], setImage);
@@ -65,10 +65,10 @@ const Header = ({ data }: TProps) => {
           )}
         </Form>
       </ProfileAvatar>
-      <NameUser>
-        <NameText>{lastName}</NameText>
-        <NameText>{firstName}</NameText>
-      </NameUser>
+      <UserName>
+        <Text>{lastName}</Text>
+        <Text>{firstName}</Text>
+      </UserName>
     </HeaderStyled>
   );
 };

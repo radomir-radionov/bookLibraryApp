@@ -1,6 +1,7 @@
 import { weekDays } from 'modules/Calendar/data';
 import getAvailableDays from 'utils/calendar/getAvailableDays';
 
+import { Dispatch, SetStateAction } from 'react';
 import getCurrentDays from './CurrentDays/getCurrentDays';
 import getNextDays from './NextDays/getNextDays';
 import getPrevDays from './PrevDays/getPrevDays';
@@ -9,7 +10,7 @@ import { DayContentsStyled, WeekDay } from './styles';
 type TProps = {
   date: Date;
   selectedDate?: Date;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  setSelectedDate: Dispatch<SetStateAction<Date | undefined>>;
 };
 
 const DayContents = ({ date, selectedDate, setSelectedDate }: TProps) => {

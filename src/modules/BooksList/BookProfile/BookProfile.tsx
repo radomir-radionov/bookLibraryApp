@@ -1,4 +1,3 @@
-import serverEndpoints from 'constants/apiEndpoints';
 import dataTestId from 'constants/dataTestId';
 
 import { useDispatch, useSelector } from 'react-redux';

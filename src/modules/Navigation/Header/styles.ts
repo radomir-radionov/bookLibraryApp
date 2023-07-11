@@ -10,7 +10,6 @@ type TAvatar = {
 };
 
 export const HeaderStyled = styled.header<THeaderStyled>`
-  position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -33,6 +32,7 @@ export const HeaderStyled = styled.header<THeaderStyled>`
 `;
 
 export const Content = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   max-width: 1100px;
@@ -84,7 +84,7 @@ export const UserMenuWrapper = styled.div`
   padding-right: 0;
 
   @media (max-width: ${device.laptopM}) {
-    padding-right: 64px;
+    top: 40px;
   }
 `;
 
@@ -107,7 +107,7 @@ export const Profile = styled.div`
     transition: all 0.2s ease-out;
   }
 
-  @media (max-width: ${device.tabletL}) {
+  @media (max-width: ${device.laptop}) {
     display: none;
   }
 `;

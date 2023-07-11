@@ -1,6 +1,6 @@
 import hintText from 'constants/hintText';
 
-import { useState } from 'react';
+import { useState, FocusEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { selectResponseMessage } from 'redux/forgotPwd/selectors';
 import { Hint } from 'components';
@@ -16,7 +16,7 @@ const InputEmail = ({ register, labelText, errors, isDisabled }: InputProps) => 
   const isValidEmail = errors?.message === hintText.INVALID_EMAIL;
   const isEmptyEmail = errors?.message === hintText.EMPTY_FIELD;
 
-  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlur = (event: FocusEvent<HTMLInputElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };

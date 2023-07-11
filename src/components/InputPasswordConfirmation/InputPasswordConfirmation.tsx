@@ -2,7 +2,7 @@ import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
 import { RegExp } from 'constants/regExp';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FocusEvent } from 'react';
 import { Hint } from 'components';
 
 import {
@@ -34,12 +34,12 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, clearError
   const isCapitalLetter = RegExp.capitalLetter.test(value);
   const isDigit = RegExp.digit.test(value);
 
-  const onChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onChange = (event: FocusEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     setLocalError(!isMinQtyOfChars || !isCapitalLetter || !isDigit);
   };
   const onFocus = () => clearErrors && clearErrors();
-  const onBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onBlur = (event: FocusEvent<HTMLInputElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };

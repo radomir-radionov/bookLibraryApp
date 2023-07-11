@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectBooks } from 'redux/books/selectors';
 import { selectCategories } from 'redux/categories/selectors';
@@ -10,7 +10,7 @@ import { CategoriesListStyled, Wrapper } from './styles';
 type TProps = {
   isOpen?: boolean;
   isBurgerMenuOpen: boolean;
-  setIsBurgerMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsBurgerMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const CategoriesList = ({ isOpen, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps) => {

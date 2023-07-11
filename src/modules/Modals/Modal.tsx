@@ -1,6 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useEffect } from 'react';
+import { useEffect, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from 'redux/modal';
 import { modalTypeSelector } from 'redux/modal/selectors';
@@ -14,8 +14,7 @@ const Modal = () => {
   const ModalComponent = MODALS_MAPPING[modalType];
 
   const onModalClick = () => dispatch(modalActions.close());
-  const onOutsideClick = (event: React.MouseEvent<HTMLDivElement>) =>
-    event.target === event.currentTarget && onModalClick();
+  const onOutsideClick = (event: MouseEvent<HTMLDivElement>) => event.target === event.currentTarget && onModalClick();
 
   useEffect(() => {
     modalType ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');

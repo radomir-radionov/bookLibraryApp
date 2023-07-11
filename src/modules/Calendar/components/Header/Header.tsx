@@ -1,6 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { months } from 'modules/Calendar/data';
 
 import {
@@ -18,7 +18,7 @@ import {
 
 type CalendarProps = {
   date: Date;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
+  setDate: Dispatch<SetStateAction<Date>>;
 };
 
 const Header = ({ date, setDate }: CalendarProps) => {
@@ -29,9 +29,9 @@ const Header = ({ date, setDate }: CalendarProps) => {
   const setPrevMonth = () => setDate(new Date(date.getFullYear(), date.getMonth() - 1));
 
   const toggleOptions = () => setOpenOptions(!openOptions);
-  const handleToggleOptionsClick = () => () => toggleOptions();
+  const onMonthSelectClick = () => () => toggleOptions();
   const closeOptions = () => setOpenOptions(false);
-  const handlerOnoptionsClick = (i: number) => () => {
+  const onOptionClick = (i: number) => () => {
     selectMonth(i);
     closeOptions();
   };
@@ -39,7 +39,7 @@ const Header = ({ date, setDate }: CalendarProps) => {
   return (
     <HeaderStyled>
       <MonthBox>
-        <MonthSelect onClick={handleToggleOptionsClick()} data-test-id={dataTestId.MONTH_SELECT}>
+        <MonthSelect onClick={onMonthSelectClick()} data-test-id={dataTestId.MONTH_SELECT}>
           <MonthText>
             {months[date.getMonth()]} {date.getFullYear()}
           </MonthText>
@@ -47,9 +47,9 @@ const Header = ({ date, setDate }: CalendarProps) => {
         </MonthSelect>
         {openOptions && (
           <OptionsWrapper>
-            {months.map((item, i) => {
-              return <Option onClick={handlerOnoptionsClick(i)}>{item}</Option>;
-            })}
+            {months.map((item, i) => (
+              <Option onClick={onOptionClick(i)}>{item}</Option>
+            ))}
           </OptionsWrapper>
         )}
       </MonthBox>

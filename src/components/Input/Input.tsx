@@ -1,3 +1,4 @@
+import { FocusEvent } from 'react';
 import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
 
@@ -11,7 +12,7 @@ const Input = ({ type = 'text', value, labelText, register, errors, isDisabled }
   // isBlur state should be only for tests
   const [isBlur, setIsBlur] = useState(false);
 
-  const onBlur = (event: React.FocusEvent<HTMLElement>) => {
+  const onBlur = (event: FocusEvent<HTMLElement>) => {
     setIsBlur(true);
     register.onBlur(event);
   };

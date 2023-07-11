@@ -15,7 +15,7 @@ export const HeaderStyled = styled.header`
 
 export const ProfileAvatar = styled.div``;
 
-export const NameUser = styled.div`
+export const UserName = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -24,7 +24,7 @@ export const NameUser = styled.div`
   }
 `;
 
-export const NameText = styled.span`
+export const Text = styled.span`
   ${typography.desktop.H1};
 
   @media (max-width: ${device.tablet}) {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, MouseEvent, Dispatch, SetStateAction } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CategoriesList } from 'components';
 
@@ -10,7 +10,7 @@ import dataTestId from 'constants/dataTestId';
 type TProps = {
   visible: boolean;
   isBurgerMenuOpen: boolean;
-  setIsBurgerMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsBurgerMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 type TTest = {
@@ -27,7 +27,7 @@ const Nav = ({ visible = false, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps)
 
   const pathStartsWithBooks = location.pathname.startsWith('/books');
 
-  const onNavItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
+  const onNavItemClick = (e: MouseEvent<HTMLLIElement>) => {
     setActiveIndex(+e.currentTarget.id);
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };

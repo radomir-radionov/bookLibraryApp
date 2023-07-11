@@ -59,7 +59,7 @@ export const NavItem = styled.li<TNavItem>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 255px;
+  max-width: 258px;
   ${typography.desktop.H5};
   cursor: pointer;
 

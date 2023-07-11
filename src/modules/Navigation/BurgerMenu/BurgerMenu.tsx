@@ -26,7 +26,7 @@ const BurgerMenu = () => {
             <Nav visible={true} isBurgerMenuOpen={isBurgerMenuOpen} setIsBurgerMenuOpen={setIsBurgerMenuOpen} />
           )}
         </MenuWrapper>
-        <UserMenu />
+        <UserMenu setIsBurgerMenuOpen={setIsBurgerMenuOpen} />
       </BurgerNav>
     </BurgerMenuStyled>
   );

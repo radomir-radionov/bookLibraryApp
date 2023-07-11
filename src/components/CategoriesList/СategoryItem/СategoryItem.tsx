@@ -1,6 +1,5 @@
-import { memo } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { displayingContentActions } from 'redux/displayingContent';
 import { TExtendedCategory } from 'types/categories';
 import useWindowDimensions from 'utils/useWindowDimensions';
 
@@ -9,7 +8,7 @@ import { NavLinkStyled, Name, Qty, СategoryItemStyled } from './styles';
 type TProps = {
   data: TExtendedCategory;
   isBurgerMenuOpen: boolean;
-  setIsBurgerMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsBurgerMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const СategoryItem = ({ data, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps) => {

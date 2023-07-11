@@ -1,6 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 
 import DayContents from './components/DayContents/DayContents';
 import Header from './components/Header/Header';
@@ -8,7 +8,7 @@ import { CalendarStyled } from './styles';
 
 type TProps = {
   selectedDate?: Date;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  setSelectedDate: Dispatch<SetStateAction<Date | undefined>>;
 };
 
 const Calendar = ({ selectedDate, setSelectedDate }: TProps) => {

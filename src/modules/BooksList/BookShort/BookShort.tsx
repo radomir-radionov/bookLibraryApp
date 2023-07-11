@@ -37,14 +37,14 @@ const BookShort = ({ data, view }: BookShortProps) => {
 
   const onNavigateClick = () => navigate(`/books/${category}/${id}`);
 
-  const onSetCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.stopPropagation();
+  const onSetCommentClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
     dispatch(bookActions.getBook(id));
     dispatch(modalActions.open({ type: MODAL_TYPES.RATE_BOOK, modalInfo: { id } }));
   };
 
-  const handleChangeCommentClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.stopPropagation();
+  const handleChangeCommentClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
     dispatch(bookActions.getBook(id));
     dispatch(
       modalActions.open({

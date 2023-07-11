@@ -22,15 +22,15 @@ import {
 
 const Header = () => {
   const user = useSelector(selectUser);
-  const [hovered, setHovered] = useState(false);
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
   const navigate = useNavigate();
 
   const onLogoClick = () => navigate(pageRoutes.HOME);
-  const onMenuMouseEnter = () => setHovered(true);
-  const onMenuMouseLeave = () => setHovered(false);
+  const onMenuMouseEnter = () => setIsHeaderHovered(true);
+  const onMenuMouseLeave = () => setIsHeaderHovered(false);
 
   return (
-    <HeaderStyled $isHovered={hovered}>
+    <HeaderStyled $isHovered={isHeaderHovered}>
       <Content>
         <LogoBox>
           <BurgerMenu />
@@ -44,12 +44,12 @@ const Header = () => {
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' />
           )}
-          {hovered && (
-            <UserMenuWrapper>
-              <UserMenu />
-            </UserMenuWrapper>
-          )}
         </Profile>
+        {isHeaderHovered && (
+          <UserMenuWrapper>
+            <UserMenu />
+          </UserMenuWrapper>
+        )}
       </Content>
     </HeaderStyled>
   );

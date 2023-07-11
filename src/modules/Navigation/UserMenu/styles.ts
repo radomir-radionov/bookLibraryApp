@@ -5,13 +5,17 @@ import { colors, device, formalization, other, typography } from 'styles';
 export const UserMenuStyled = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 42px;
-  padding: 32px 32px 52px 32px;
+  gap: 32px;
+  min-width: 270px;
+  padding: 32px;
+  border-radius: 0px 0px 10px 10px;
   ${typography.desktop.H5}
-  border-top: 1px solid ${colors.GREY_BLACK_20};
+  background-color: ${colors.MAIN_WHITE};
+  box-shadow: -4px 4px 4px 0px rgba(54, 54, 54, 0.05), 4px 4px 4px 0px rgba(54, 54, 54, 0.05);
 
   @media (max-width: ${device.laptop}) {
     width: 100%;
+    background-color: ${colors.GREY_BLACK_5};
   }
 
   @media (max-width: ${device.tabletM}) {
@@ -21,6 +25,7 @@ export const UserMenuStyled = styled.ul`
 
 export const MenuItem = styled.li`
   display: flex;
+  width: 100%;
   cursor: pointer;
 
   &:hover {
@@ -30,6 +35,8 @@ export const MenuItem = styled.li`
 
 export const NavLinkStyled = styled(NavLink)<{ $pathStartsWithBooks?: boolean }>`
   flex: 1;
+  max-width: 258px;
+  text-align: right;
   transition: color 0.3s;
 
   &.active {
@@ -51,4 +58,8 @@ export const NavLinkStyled = styled(NavLink)<{ $pathStartsWithBooks?: boolean }>
       ${typography.desktop.H5}
       ${formalization.HOVER}
     `}
+
+  @media (max-width: ${device.laptop}) {
+    text-align: left;
+  }
 `;

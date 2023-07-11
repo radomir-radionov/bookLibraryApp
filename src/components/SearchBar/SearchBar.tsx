@@ -1,6 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, Dispatch, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'redux/user';
 import { enteredBookName } from 'redux/user/selectors';
@@ -9,7 +9,7 @@ import { ActionCloseIcon, ActionSearchingCIcon, ActionSearchingIcon, Btn, Form, 
 
 type TProps = {
   isSearchBarOpen: boolean;
-  setIsSearchBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSearchBarOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const SearchBar = ({ isSearchBarOpen, setIsSearchBarOpen }: TProps) => {
