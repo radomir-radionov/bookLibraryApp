@@ -8,6 +8,7 @@ export const UserMenuStyled = styled.ul`
   gap: 32px;
   min-width: 270px;
   padding: 32px;
+  padding-top: 42px;
   border-radius: 0px 0px 10px 10px;
   ${typography.desktop.H5}
   background-color: ${colors.MAIN_WHITE};

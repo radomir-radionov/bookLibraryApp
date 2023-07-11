@@ -44,12 +44,12 @@ const Header = () => {
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' />
           )}
+          {isHeaderHovered && (
+            <UserMenuWrapper>
+              <UserMenu />
+            </UserMenuWrapper>
+          )}
         </Profile>
-        {isHeaderHovered && (
-          <UserMenuWrapper>
-            <UserMenu />
-          </UserMenuWrapper>
-        )}
       </Content>
     </HeaderStyled>
   );
