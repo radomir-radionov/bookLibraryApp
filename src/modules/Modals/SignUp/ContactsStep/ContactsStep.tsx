@@ -4,11 +4,9 @@ import pageRoutes from 'constants/pageRoutes';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registrationActions } from 'redux/registration';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, FormFooter, InputEmail, InputPhone } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import schema from './schema';
 import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
 
 type TContactForm = {

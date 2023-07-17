@@ -1,14 +1,12 @@
 import dataTestId from 'constants/dataTestId';
 import pageRoutes from 'constants/pageRoutes';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { forgotPwdActions } from 'redux/forgotPwd';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, InputEmail } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import schema from './schema';
 import {
   AssistiveText,
   Back,
@@ -26,22 +24,22 @@ import {
   Wrapper,
 } from './styles';
 
-type EmailFormProps = {
+type TEmailForm = {
   email: string;
 };
 
 const EmailStep = () => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<EmailFormProps>({ resolver: yupResolver(schema), mode: 'all' });
+  const methods = useForm<TEmailForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+  });
 
+  const { errors } = methods.formState;
   const isBtnDisabled = !!errors.email;
 
-  const onSubmit: SubmitHandler<EmailFormProps> = (data) => {
+  const onSubmit: SubmitHandler<TEmailForm> = (data) => {
     dispatch(forgotPwdActions.postForgotPwd(data));
     dispatch(forgotPwdActions.setStep());
   };
@@ -55,29 +53,31 @@ const EmailStep = () => {
         </LinkStyled>
       </Back>
       <Wrapper>
-        <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.SEND_EMAIL_FORM}>
-          <Title>Восстановление пароля</Title>
-          <InputField>
-            <InputEmail register={register('email')} labelText='Email' errors={errors.email} />
-            <AssistiveText $errors={!!errors.email}>
-              На этот email будет отправлено письмо с инструкциями по восстановлению пароля
-            </AssistiveText>
-          </InputField>
-          <BtnField>
-            <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
-              восстановить
-            </Button>
-            <LoginInfo>
-              Нет учётной записи?
-              <LinkText to={pageRoutes.REGISTRATION}>
-                Регистрация
-                <IconBox>
-                  <ChevronRightIcon />
-                </IconBox>
-              </LinkText>
-            </LoginInfo>
-          </BtnField>
-        </Form>
+        <FormProvider {...methods}>
+          <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.SEND_EMAIL_FORM}>
+            <Title>Восстановление пароля</Title>
+            <InputField>
+              <InputEmail name='email' labelText='Email' error={errors.email?.message} />
+              <AssistiveText $errors={!!errors.email}>
+                На этот email будет отправлено письмо с инструкциями по восстановлению пароля
+              </AssistiveText>
+            </InputField>
+            <BtnField>
+              <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
+                восстановить
+              </Button>
+              <LoginInfo>
+                Нет учётной записи?
+                <LinkText to={pageRoutes.REGISTRATION}>
+                  Регистрация
+                  <IconBox>
+                    <ChevronRightIcon />
+                  </IconBox>
+                </LinkText>
+              </LoginInfo>
+            </BtnField>
+          </Form>
+        </FormProvider>
       </Wrapper>
     </ModalStyled>
   );

@@ -18,6 +18,12 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 52px;
+
+  @media (max-width: ${device.tablet}) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 export const Title = styled.h4`

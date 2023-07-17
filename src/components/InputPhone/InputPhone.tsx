@@ -10,7 +10,7 @@ type TProps = {
   view: 'form' | 'profile';
   labelText: string;
   alwaysShowMask?: boolean;
-  defaultValue: string;
+  defaultValue?: string;
   error?: string | boolean;
   isDisabled?: boolean;
   required?: boolean;
