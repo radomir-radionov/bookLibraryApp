@@ -1,9 +1,8 @@
-import { FieldError } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
 type TInputStyled = {
-  $errors?: FieldError;
+  $error?: string | boolean;
 };
 
 export const Wrapper = styled.div`
@@ -38,8 +37,8 @@ export const InputStyled = styled.input<TInputStyled>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) =>
-    $errors &&
+  ${({ $error }) =>
+    $error &&
     css`
       border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
     `};

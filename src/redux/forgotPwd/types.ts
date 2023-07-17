@@ -1,4 +1,4 @@
-export type ForgotPwdState = {
+export type TForgotPwdState = {
   step: number;
   email: string;
   newPassword: string;

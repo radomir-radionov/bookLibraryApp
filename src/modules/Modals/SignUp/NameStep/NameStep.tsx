@@ -1,17 +1,15 @@
 import dataTestId from 'constants/dataTestId';
 import pageRoutes from 'constants/pageRoutes';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registrationActions } from 'redux/registration';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, FormFooter, Input } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import schema from './schema';
 import { BtnField, Form, InputFields, ModalStyled, StepText, Title, TitleBox } from './styles';
 
-type FormValuesProps = {
+type TNameForm = {
   firstName: string;
   lastName: string;
 };
@@ -19,48 +17,39 @@ type FormValuesProps = {
 const NameStep = () => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<FormValuesProps>({ resolver: yupResolver(schema), mode: 'all' });
+  const methods = useForm<TNameForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+  });
+  const { errors } = methods.formState;
 
-  const isBtnDisabled = !!errors.firstName || !!errors.lastName;
+  const isBtnDisabled = !!(errors.firstName || errors.lastName);
 
-  const onSubmit: SubmitHandler<FormValuesProps> = (data) => {
+  const onSubmit: SubmitHandler<TNameForm> = (data) => {
     dispatch(registrationActions.setNameStepData(data));
     dispatch(registrationActions.setStep());
   };
 
   return (
     <ModalStyled>
-      <Form onSubmit={handleSubmit(onSubmit)} data-test-id={dataTestId.REGISTER_FORM}>
-        <TitleBox>
-          <Title>Регистрация</Title>
-          <StepText>2 шаг из 3</StepText>
-        </TitleBox>
-        <InputFields>
-          <Input
-            labelText='Имя'
-            watchValue={watch('firstName')}
-            errors={errors.firstName}
-            register={register('firstName')}
-          />
-          <Input
-            labelText='Фамилия'
-            watchValue={watch('lastName')}
-            errors={errors.lastName}
-            register={register('lastName')}
-          />
-        </InputFields>
-        <BtnField>
-          <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
-            последний шаг
-          </Button>
-          <FormFooter text='  Есть учётная запись?' link={pageRoutes.AUTH} linkText=' войти' />
-        </BtnField>
-      </Form>
+      <FormProvider {...methods}>
+        <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.REGISTER_FORM}>
+          <TitleBox>
+            <Title>Регистрация</Title>
+            <StepText>2 шаг из 3</StepText>
+          </TitleBox>
+          <InputFields>
+            <Input name='firstName' labelText='Имя' error={errors.firstName?.message} />
+            <Input name='lastName' labelText='Фамилия' error={errors.lastName?.message} />
+          </InputFields>
+          <BtnField>
+            <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
+              последний шаг
+            </Button>
+            <FormFooter text='  Есть учётная запись?' link={pageRoutes.AUTH} linkText=' войти' />
+          </BtnField>
+        </Form>
+      </FormProvider>
     </ModalStyled>
   );
 };

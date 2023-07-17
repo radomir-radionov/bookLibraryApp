@@ -1,6 +1,6 @@
 import { TBook } from 'types/book';
 
-export type BooksStateType = {
+export type TBooksState = {
   books: TBook[];
   isSortBooksByRating: boolean;
   isBooksLoading: boolean;

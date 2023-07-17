@@ -1,14 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'store/configureStore';
 
-const bookingState = (state: RootState) => {
-  return state.booking;
-};
+const bookingState = (state: RootState) => state.booking;
 
-export const selectBookId = createSelector(bookingState, (state) => {
-  return state.bookId;
-});
-
-export const selectIsLoadingBooking = createSelector(bookingState, (state) => {
-  return state.isLoading;
-});
+export const selectBookId = createSelector(bookingState, (state) => state.bookId);
+export const selectIsLoadingBooking = createSelector(bookingState, (state) => state.isLoading);

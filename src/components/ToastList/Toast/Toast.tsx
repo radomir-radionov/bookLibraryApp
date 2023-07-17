@@ -3,14 +3,14 @@ import dataTestId from 'constants/dataTestId';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { toastActions } from 'redux/toast';
-import { ToastProps } from 'redux/toast/types';
+import { TToast } from 'redux/toast/types';
 
 import { getToastIconVariant } from '../toastData';
 
 import { CloseToastIcon, Text, TextBox, ToastStyled } from './styles';
 
 type TProps = {
-  data: ToastProps;
+  data: TToast;
 };
 
 const Toast = ({ data }: TProps) => {

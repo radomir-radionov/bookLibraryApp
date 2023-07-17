@@ -1,6 +1,6 @@
-import { UserDataProps } from 'types/user';
+import { TUserData } from 'types/user';
 
-const createBookingPayload = (selectedDate: Date | undefined, user: UserDataProps | null, bookingId?: number) => {
+const createBookingPayload = (selectedDate: Date | undefined, user: TUserData | null, bookingId?: number) => {
   if (selectedDate === undefined) {
     return;
   }

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IBookingState } from './types';
+import { TBookingState } from './types';
 
-const initialState: IBookingState = {
+const initialState: TBookingState = {
   bookId: null,
   isLoading: false,
 };

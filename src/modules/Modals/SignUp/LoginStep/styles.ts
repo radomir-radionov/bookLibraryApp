@@ -4,7 +4,6 @@ import { colors, device, typography } from 'styles';
 
 export const ModalStyled = styled.div`
   width: 528px;
-  height: 492px;
   padding: 48px 56px;
   background: ${colors.MAIN_WHITE};
   border-radius: 16px;
@@ -59,6 +58,7 @@ export const InputFields = styled.div`
 export const NextStep = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 16px;
 `;
 

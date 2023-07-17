@@ -1,6 +1,6 @@
 import { Cat_Icon } from 'assets';
 import styled from 'styled-components';
-import { colors, device, formalization, typography } from 'styles';
+import { colors, device, other, typography } from 'styles';
 
 export const BookItemStyled = styled.article`
   width: 190px;
@@ -8,9 +8,18 @@ export const BookItemStyled = styled.article`
   padding: 8px 8px 16px 8px;
   border-radius: 10px;
   background: ${colors.MAIN_WHITE};
-  ${formalization.MAIN_SHADOW};
+  filter: ${other.MAIN_FILTER};
   transition: all 0.2s ease-out;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+    filter: ${other.FILTER_LIGHT};
+  }
+
+  &:active {
+    filter: ${other.FILTER_СRYSTAL};
+  }
 
   @media (max-width: ${device.tablet}) {
     width: 100%;

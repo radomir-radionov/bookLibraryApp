@@ -1,11 +1,10 @@
-import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { ReactNode } from 'react';
 
-export interface InputProps {
+export type TInput = {
   type?: string;
-  value?: string;
+  name: string;
   labelText: string;
-  watchValue?: string;
-  register: UseFormRegisterReturn;
-  errors?: FieldError;
+  error?: string | boolean;
   isDisabled?: boolean;
-}
+  required?: boolean;
+};

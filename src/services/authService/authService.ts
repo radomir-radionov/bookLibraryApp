@@ -1,6 +1,6 @@
 import serverEndpoints from 'constants/apiEndpoints';
 
-import { AuthResponseType } from 'redux/auth/types';
+import { TAuthResponse } from 'redux/auth/types';
 import { AxiosResponse } from 'axios';
 
 import httpService from '../../http';
@@ -12,7 +12,7 @@ const authService = {
     await httpService.post(serverEndpoints.REGISTRATION, payload);
   },
   postAuthentication: async (payload: PostAuthenticationProps) => {
-    const { data }: AxiosResponse<AuthResponseType> = await httpService.post(serverEndpoints.AUTHORIZATION, payload);
+    const { data }: AxiosResponse<TAuthResponse> = await httpService.post(serverEndpoints.AUTHORIZATION, payload);
 
     return data;
   },

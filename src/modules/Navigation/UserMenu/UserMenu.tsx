@@ -15,12 +15,12 @@ const UserMenu = ({ setIsBurgerMenuOpen }: TUserMenu) => {
   const dispatch = useDispatch();
 
   const onBtnExitClick = () => {
-    setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
+    !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
     dispatch(userActions.clearUser());
   };
 
   const onBtnProfileClick = () => {
-    setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
+    !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
     dispatch(userActions.getUser());
   };
 

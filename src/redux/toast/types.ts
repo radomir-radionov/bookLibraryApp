@@ -1,11 +1,11 @@
 import { ToastTypes } from 'types/toast';
 
-export type ToastProps = {
+export type TToast = {
   id: string;
   type: ToastTypes;
   text: string;
 };
 
-export type ToastStateProps = {
-  toasts: ToastProps[];
+export type TToastState = {
+  toasts: TToast[];
 };

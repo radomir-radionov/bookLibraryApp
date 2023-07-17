@@ -22,7 +22,6 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 18px;
 `;
 
 export const Title = styled.h4`
@@ -36,7 +35,7 @@ export const StepText = styled.p`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 34px;
 `;
 
 export const BtnField = styled.div`

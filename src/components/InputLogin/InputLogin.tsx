@@ -9,12 +9,7 @@ import { InputStyled, Label, LabelText, Wrapper } from './styles';
 import { TInputProps } from './types';
 
 const InputLogin = ({ name, labelText, isDisabled, customHint, error, required = true }: TInputProps) => {
-  const {
-    register,
-    setValue,
-    clearErrors,
-    formState: { errors },
-  } = useFormContext();
+  const { register, setValue, clearErrors } = useFormContext();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setValue(name, value);
@@ -38,8 +33,7 @@ const InputLogin = ({ name, labelText, isDisabled, customHint, error, required =
         />
         <LabelText>{labelText}</LabelText>
       </Label>
-
-      {!errors?.username?.message ? customHint : <Hint colored={true}>{error}</Hint>}
+      {!error ? customHint : <Hint colored={true}>{error}</Hint>}
     </Wrapper>
   );
 };

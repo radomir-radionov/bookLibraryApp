@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IModalInfo, TModalType } from 'types/modal';
 
-import { ModalStateProps } from './types';
+import { TModalState } from './types';
 
-const initialState: ModalStateProps = {
+const initialState: TModalState = {
   type: '',
   modalInfo: {},
 };

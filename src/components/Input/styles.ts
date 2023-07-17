@@ -8,7 +8,7 @@ type InputProps = {
 
 export const Wrapper = styled.div`
   position: relative;
-  height: 76px;
+  height: 74px;
 
   height small {
     position: absolute;

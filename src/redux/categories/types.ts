@@ -1,6 +1,6 @@
 import { TCategory } from 'types/categories';
 
-export type CategoriesStateProps = {
+export type TCategoriesState = {
   categories: TCategory[];
   isCategoriesLoading: boolean;
   categoriesError: { isError: boolean; message: string };

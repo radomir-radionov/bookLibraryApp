@@ -18,6 +18,7 @@ export const Container = styled.div`
 
 export const LinkStyled = styled(Link)`
   display: flex;
+  align-items: center;
   gap: 14px;
   ${typography.mobile.BUTTON_SMALL};
   color: ${colors.MAIN_DARK};
@@ -29,7 +30,4 @@ export const IconBox = styled.span`
   align-items: center;
 `;
 
-export const ChevronRightIcon = styled(ChevronRight_Icon)`
-  position: relative;
-  bottom: 3px;
-`;
+export const ChevronRightIcon = styled(ChevronRight_Icon)``;

@@ -22,6 +22,7 @@ export type TUserData = {
   id: number;
   username: string;
   email: string;
+  password?: string;
   confirmed: boolean;
   blocked: boolean;
   createdAt: string;
@@ -29,7 +30,7 @@ export type TUserData = {
   firstName: string;
   lastName: string;
   phone: string;
-  comments: CommentProps[];
+  comments: TComment[];
   role: RoleProps;
   avatar: string;
   booking: TUserBooking;
@@ -37,7 +38,7 @@ export type TUserData = {
   history: TUserHistory;
 };
 
-export type CommentProps = {
+export type TComment = {
   id: number;
   rating: number;
   text: string;

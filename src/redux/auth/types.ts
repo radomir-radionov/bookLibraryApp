@@ -1,19 +1,19 @@
 import { IUserData } from 'redux/user/types';
 
-export type IAuthData = {
+export type TAuthData = {
   identifier: string;
   password: string;
 };
 
-export type IAuthState = {
+export type TAuthState = {
   step: number;
-  authData: IAuthData;
+  authData: TAuthData;
   isLoading: boolean;
   errorStatus: number;
   responseMessage: string;
 };
 
-export type AuthResponseType = {
+export type TAuthResponse = {
   jwt: string;
   user: IUserData;
 };

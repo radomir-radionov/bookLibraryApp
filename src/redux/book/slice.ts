@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TBookDetailed } from 'types/book';
 
-import { BookStateProps } from './types';
+import { TBookState } from './types';
 
-const initialState: BookStateProps = {
+const initialState: TBookState = {
   book: {} as TBookDetailed,
   isBookLoading: false,
   bookError: { isError: false, message: '' },

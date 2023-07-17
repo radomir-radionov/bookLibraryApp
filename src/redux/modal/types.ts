@@ -1,4 +1,4 @@
-export type ModalStateProps = {
+export type TModalState = {
   type: string;
   modalInfo: any;
 };

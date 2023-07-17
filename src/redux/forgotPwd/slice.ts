@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PostResetPwdProps } from 'services/authService/types';
 
-import { ForgotPwdState } from './types';
+import { TForgotPwdState } from './types';
 
-const initialState: ForgotPwdState = {
+const initialState: TForgotPwdState = {
   step: 1,
   email: '',
   newPassword: '',

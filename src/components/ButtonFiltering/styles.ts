@@ -39,12 +39,12 @@ export const ButtonFilteringStyled = styled.button<TButtonStyled>`
   }
 
   &:hover {
-    filter: drop-shadow(0px 2px 5px rgba(54, 54, 54, 0.1));
+    filter: ${other.FILTER_СRYSTAL};
   }
 
   &:active {
     box-shadow: none;
-    filter: drop-shadow(0px 3px 4px rgba(222, 125, 11, 0.2)) drop-shadow(0px 1px 10px rgba(249, 89, 8, 0.2));
+    filter: ${other.FILTER_LIGHT};
   }
 
   @media (max-width: ${device.tablet}) {

@@ -1,29 +1,49 @@
 import hintText from 'constants/hintText';
-
-import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { RegExp } from 'constants/regExp';
+import { useFormContext } from 'react-hook-form';
 import { Hint } from 'components';
 
 import { HintWord, InputMaskStyled, Label, LabelText, Wrapper } from './styles';
 
 type TProps = {
+  name: string;
   view: 'form' | 'profile';
   labelText: string;
   alwaysShowMask?: boolean;
-  watchValue?: string;
-  register: UseFormRegisterReturn;
-  errors?: FieldError;
+  defaultValue: string;
+  error?: string | boolean;
   isDisabled?: boolean;
+  required?: boolean;
 };
 
-const InputPhone = ({ view, labelText, alwaysShowMask, register, errors, isDisabled }: TProps) => {
-  const { name } = register;
+const InputPhone = ({
+  name,
+  view,
+  labelText,
+  alwaysShowMask,
+  defaultValue,
+  error,
+  isDisabled,
+  required = true,
+}: TProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
-    <Wrapper $errors={errors}>
+    <Wrapper $errors={error}>
       <Label>
         <InputMaskStyled
-          {...register}
+          {...register(name, {
+            required: required && hintText.EMPTY_FIELD,
+            pattern: {
+              value: RegExp.phone,
+              message: hintText.VALID_PHONE_NUMBER,
+            },
+          })}
           type='text'
+          value={defaultValue}
           placeholder=' '
           mask='+375 (99) 999-99-99'
           maskChar='x'
@@ -35,14 +55,14 @@ const InputPhone = ({ view, labelText, alwaysShowMask, register, errors, isDisab
       </Label>
       {view === 'form' && (
         <>
-          {errors?.message && <Hint colored={true}>{errors.message}</Hint>}
-          {!errors?.message && <Hint>{hintText.VALID_PHONE_NUMBER}</Hint>}
+          {errors?.phone?.message && <Hint colored={true}>{error}</Hint>}
+          {!errors?.phone?.message && <Hint>{hintText.VALID_PHONE_NUMBER}</Hint>}
         </>
       )}
       {view === 'profile' && (
         <Hint>
-          {errors?.message && <HintWord $colored={true}>{errors.message}</HintWord>}
-          {!errors?.message && <HintWord>{hintText.VALID_PHONE_NUMBER}</HintWord>}
+          {errors?.phone?.message && <HintWord $colored={true}>{error}</HintWord>}
+          {!errors?.phone?.message && <HintWord>{hintText.VALID_PHONE_NUMBER}</HintWord>}
         </Hint>
       )}
     </Wrapper>

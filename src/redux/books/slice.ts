@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TBook } from 'types/book';
 
 import { sortBooksByRatingNormalizer } from './normalizer';
-import { BooksStateType } from './types';
+import { TBooksState } from './types';
 
-const initialState: BooksStateType = {
+const initialState: TBooksState = {
   books: [] as TBook[],
   isSortBooksByRating: true,
   isBooksLoading: false,

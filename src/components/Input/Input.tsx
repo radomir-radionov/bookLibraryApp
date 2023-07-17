@@ -1,38 +1,36 @@
-import { FocusEvent } from 'react';
+import { ChangeEventHandler } from 'react';
 import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
-
-import { useState } from 'react';
 import { Hint } from 'components';
 
 import { InputStyled, Label, LabelText, Wrapper } from './styles';
-import { InputProps } from './types';
+import { TInput } from './types';
+import { useFormContext } from 'react-hook-form';
 
-const Input = ({ type = 'text', value, labelText, register, errors, isDisabled }: InputProps) => {
-  // isBlur state should be only for tests
-  const [isBlur, setIsBlur] = useState(false);
+const Input = ({ type = 'text', name, labelText, error, isDisabled, required = true }: TInput) => {
+  const { register, setValue, clearErrors } = useFormContext();
 
-  const onBlur = (event: FocusEvent<HTMLElement>) => {
-    setIsBlur(true);
-    register.onBlur(event);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
+    setValue(name, value);
+    clearErrors(name);
   };
 
   return (
     <Wrapper>
       <Label>
         <InputStyled
-          {...register}
+          {...register(name, {
+            required: required && hintText.EMPTY_FIELD,
+          })}
           type={type}
-          value={value}
-          onBlur={onBlur}
+          onChange={handleChange}
           placeholder=' '
-          $errors={errors}
           disabled={isDisabled}
           data-test-id={dataTestId.INPUT}
         />
         <LabelText>{labelText}</LabelText>
       </Label>
-      <Hint colored={true}>{errors && hintText.EMPTY_FIELD}</Hint>
+      {error && <Hint colored={true}>{error}</Hint>}
     </Wrapper>
   );
 };

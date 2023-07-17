@@ -14,7 +14,7 @@ export type IUserData = {
   phone: string;
 };
 
-export type UserStateProps = {
+export type TUserState = {
   jwt: string;
   userData: TUserData;
   enteredBookName: string;

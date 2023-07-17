@@ -1,10 +1,9 @@
-import { FieldError } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import styled, { css } from 'styled-components';
 import { colors, typography } from 'styles';
 
 type TWrapper = {
-  $errors?: FieldError;
+  $errors?: string | boolean;
 };
 
 type THintWord = {

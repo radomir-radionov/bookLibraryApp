@@ -29,7 +29,7 @@ const Nav = ({ visible = false, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps)
 
   const onNavItemClick = (e: MouseEvent<HTMLLIElement>) => {
     setActiveIndex(+e.currentTarget.id);
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+    !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 

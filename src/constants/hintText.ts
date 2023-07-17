@@ -1,5 +1,7 @@
 enum hintText {
   EMPTY_FIELD = 'Поле не может быть пустым',
+  INVALID_DATA = 'Неверный логин или пароль!',
+  FORGOT_DATA = 'Забыли логин или пароль?',
   INVALID_PASSWORD = 'Пароль не менее 8 символов, с заглавной буквой и цифрой',
   DIFFERENT_PASSWORD = 'Пароли не совпадают',
   INVALID_EMAIL = 'Введите корректный e-mail',

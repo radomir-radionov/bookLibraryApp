@@ -1,4 +1,4 @@
-export type IRegistrationData = {
+export type TRegistrationData = {
   login?: string;
   password?: string;
   name?: string;
@@ -7,9 +7,9 @@ export type IRegistrationData = {
   email?: string;
 };
 
-export type IRegistrationState = {
+export type TRegistrationState = {
   step: number;
-  registrationData: IRegistrationData;
+  registrationData: TRegistrationData;
   isLoading: boolean;
   responseMessage: string;
 };

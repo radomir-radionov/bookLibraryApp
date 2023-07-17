@@ -1,34 +1,47 @@
 import hintText from 'constants/hintText';
-
-import { useState, FocusEvent } from 'react';
+import { RegExp } from 'constants/regExp';
 import { useSelector } from 'react-redux';
 import { selectResponseMessage } from 'redux/forgotPwd/selectors';
 import { Hint } from 'components';
 
 import { InputStyled, Label, LabelText, Wrapper } from './styles';
-import { InputProps } from './types';
+import { useFormContext } from 'react-hook-form';
 
-const InputEmail = ({ register, labelText, errors, isDisabled }: InputProps) => {
-  // isBlur state should be only for tests
-  const [isBlur, setIsBlur] = useState(false);
+type TInput = {
+  name: string;
+  labelText: string;
+  error?: string | boolean;
+  isDisabled?: boolean;
+  required?: boolean;
+};
+
+const InputEmail = ({ name, labelText, error, isDisabled, required = true }: TInput) => {
   const responseMessage = useSelector(selectResponseMessage);
+  const { register } = useFormContext();
 
-  const isValidEmail = errors?.message === hintText.INVALID_EMAIL;
-  const isEmptyEmail = errors?.message === hintText.EMPTY_FIELD;
-
-  const onBlur = (event: FocusEvent<HTMLInputElement>) => {
-    setIsBlur(true);
-    register.onBlur(event);
-  };
+  const isValidEmail = error === hintText.INVALID_EMAIL;
+  const isEmptyEmail = error === hintText.EMPTY_FIELD;
 
   return (
     <Wrapper>
       <Label>
-        <InputStyled {...register} type='text' onBlur={onBlur} placeholder=' ' $errors={errors} disabled={isDisabled} />
+        <InputStyled
+          {...register(name, {
+            required: required && hintText.EMPTY_FIELD,
+            pattern: {
+              value: RegExp.email,
+              message: hintText.INVALID_EMAIL,
+            },
+          })}
+          type='text'
+          placeholder=' '
+          $error={error}
+          disabled={isDisabled}
+        />
         <LabelText>{labelText}</LabelText>
       </Label>
       <Hint colored={true}>
-        {isValidEmail && errors?.message}
+        {isValidEmail && error}
         {responseMessage}
         {isEmptyEmail && hintText.EMPTY_FIELD}
       </Hint>

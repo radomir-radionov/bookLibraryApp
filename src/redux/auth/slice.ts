@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IAuthData, IAuthState } from './types';
+import { TAuthData, TAuthState } from './types';
 
-const initialState: IAuthState = {
+const initialState: TAuthState = {
   step: 1,
-  authData: {} as IAuthData,
+  authData: {} as TAuthData,
   isLoading: false,
   errorStatus: 0,
   responseMessage: '',

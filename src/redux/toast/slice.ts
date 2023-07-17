@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ToastProps, ToastStateProps } from './types';
+import { TToast, TToastState } from './types';
 
-const initialState: ToastStateProps = {
-  toasts: [] as ToastProps[],
+const initialState: TToastState = {
+  toasts: [] as TToast[],
 };
 
 export const toastSlice = createSlice({

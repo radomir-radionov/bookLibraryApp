@@ -12,7 +12,6 @@ export { default as InputLogin } from './InputLogin/InputLogin';
 export { default as InputEmail } from './InputEmail/InputEmail';
 export { default as InputPassword } from './InputPassword/InputPassword';
 export { default as InputPasswordConfirmation } from './InputPasswordConfirmation/InputPasswordConfirmation';
-export { default as InputAuthPassword } from './InputAuthPassword/InputAuthPassword';
 export { default as InputPhone } from './InputPhone/InputPhone';
 
 export { default as CategoriesList } from './CategoriesList/CategoriesList';

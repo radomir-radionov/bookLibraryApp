@@ -7,13 +7,13 @@ import { AxiosError } from 'axios';
 import { authService } from 'services';
 
 import { authActions } from './slice';
-import { AuthResponseType } from './types';
+import { TAuthResponse } from './types';
 
 export function* postAuthData({ payload }: ReturnType<typeof authActions.setAuthData>) {
   const { data, navigate } = payload;
 
   try {
-    const res: AuthResponseType = yield call(() => {
+    const res: TAuthResponse = yield call(() => {
       return authService.postAuthentication(data);
     });
 

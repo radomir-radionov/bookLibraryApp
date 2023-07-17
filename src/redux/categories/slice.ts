@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { CategoriesStateProps } from './types';
+import { TCategoriesState } from './types';
 
-const initialState: CategoriesStateProps = {
+const initialState: TCategoriesState = {
   categories: [],
   isCategoriesLoading: false,
   categoriesError: { isError: false, message: '' },

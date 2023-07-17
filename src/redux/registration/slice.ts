@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IRegistrationData, IRegistrationState } from './types';
+import { TRegistrationData, TRegistrationState } from './types';
 
-const initialState: IRegistrationState = {
+const initialState: TRegistrationState = {
   step: 1,
-  registrationData: {} as IRegistrationData,
+  registrationData: {} as TRegistrationData,
   isLoading: false,
   responseMessage: '',
 };
