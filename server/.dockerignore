@@ -1,0 +1,10 @@
+node_modules
+.git
+.env
+.env.example
+.gitignore
+.idea
+Dockerfile
+docker-compose.yml
+install_project.sh
+README.md
