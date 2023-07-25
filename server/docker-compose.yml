@@ -5,11 +5,12 @@ volumes:
 
 services:
   app_db:
-    image: postgres:14.4-alpine
+    container_name: app_db
+    image: postgres:15.3-alpine
     env_file: .env
     restart: unless-stopped
     volumes:
-      - app_db_data:/var/lib/postgresql/data
+      - 'app_db_data:${PGDATA}'
     ports:
       - '${DB_PORT}:5432'
 
@@ -17,12 +18,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: tms_worker_server
+    container_name: app_worker_server
     stdin_open: true
     tty: true
     env_file: .env
     depends_on:
       - app_db
-    volumes: -./:/app
+    volumes:
+      - ./:/app
     ports:
-      - '3000:${DB_PORT}'
+      - '${APP_PORT}:3000'

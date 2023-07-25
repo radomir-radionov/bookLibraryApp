@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize')
+import { Sequelize } from 'sequelize'
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -9,4 +9,4 @@ const sequelize = new Sequelize({
   port: process.env.DB_PORT,
 })
 
-module.exports = sequelize
+export default sequelize

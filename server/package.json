@@ -1,17 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": " Koa App Description",
+  "description": "Koa App Description",
   "main": "src/index.mjs",
   "scripts": {
     "start": "nodemon src/index.mjs",
     "stop": "docker compose down",
     "stop:force": "docker compose down -v",
     "docker:up": "docker compose up -d",
-    "docker:rs": "docker compose down && docker compose up -d --build && docker attach tms_worker_server_1",
-    "docker:attach:1": "docker attach tms_worker_server_1",
-    "docker:attach:2": "docker attach tms_worker_server_2",
-    "docker:attach:3": "docker attach tms_worker_server_3",
+    "docker:rs": "docker compose down && docker compose up -d --build && docker attach app_worker_server",
     "docker:down": "docker compose down",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:undo": "npx sequelize-cli db:migrate:undo",
@@ -21,10 +18,12 @@
   "author": "Radomir R",
   "license": "MIT",
   "dependencies": {
+    "@koa/cors": "^4.0.0",
     "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.0",
+    "pg": "^8.11.1",
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
