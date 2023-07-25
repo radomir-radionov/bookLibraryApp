@@ -17,9 +17,16 @@ SPA app with client-server architecture.
 
 ## The technology stack:
 
-- React, Typescript
-- Redux Toolkit, Redux-Saga
-- Styled Components
+- client:
+
+  - React, Typescript
+  - Redux Toolkit, Redux-Saga
+  - Styled Components
+
+- server:
+
+  - Node.js, Koa.js
+  - PostgreSQL, Sequelize
 
 ## Run app
 
