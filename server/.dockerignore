@@ -6,5 +6,7 @@ node_modules
 .idea
 Dockerfile
 docker-compose.yml
+.eslintrc.json
 install_project.sh
+.desc.txt
 README.md

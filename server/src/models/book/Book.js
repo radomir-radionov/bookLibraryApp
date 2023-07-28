@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 // import Histories from './Histories.mjs'
 // import Delivery from './Delivery.mjs'
 // import Booking from './Booking.mjs'

@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize'
+// import { Model, DataTypes } from 'sequelize'
 
 // class Histories extends Model {}
 

@@ -1,4 +1,4 @@
-import userHandlers from './user.handlers.mjs'
+import userHandlers from './user.handlers.js'
 
 const routes = [
   {

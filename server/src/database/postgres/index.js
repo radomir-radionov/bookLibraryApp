@@ -1,8 +1,5 @@
-import sequelize from './instance.mjs'
-import user from '../../models/User.mjs'
-import book from '../../models/book/Book.mjs'
-// import DeliveryModel from './models/book/Delivery.mjs'
-// import HistoriesModel from './models/book/Histories.mjs'
+import { user, book } from 'models/index.js'
+import sequelize from './instance.js'
 
 const User = sequelize.define('User', user)
 const Book = sequelize.define('Book', book)

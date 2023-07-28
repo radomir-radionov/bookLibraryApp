@@ -3,8 +3,8 @@ import cors from '@koa/cors'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import dotenv from 'dotenv'
-import AppRoutes from './routes.mjs'
-import db from './database/postgres/index.mjs'
+import AppRoutes from './routes.js'
+import db from './database/postgres/index.js'
 
 dotenv.config()
 

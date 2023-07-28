@@ -1,4 +1,4 @@
-import userRoutes from './api/user/index.mjs'
+import userRoutes from './api/user/index.js'
 
 const AppRoutes = [...userRoutes]
 
