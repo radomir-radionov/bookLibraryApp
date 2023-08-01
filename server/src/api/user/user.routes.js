@@ -6,6 +6,11 @@ const routes = [
     method: 'get',
     action: userHandlers.test,
   },
+  {
+    path: '/user',
+    method: 'post',
+    action: userHandlers.createUser,
+  },
 ]
 
 export default routes

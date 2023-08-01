@@ -1,8 +1,12 @@
 class UserHandlers {
-  async test(context) {
+  async test(ctx) {
     const a = 1
     console.log(1)
-    context.body = a
+    ctx.body = a
+  }
+
+  async createUser(ctx) {
+    console.log(ctx.body)
   }
 }
 

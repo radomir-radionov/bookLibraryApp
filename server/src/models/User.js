@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 
-export default {
+const user = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -47,3 +47,5 @@ export default {
     allowNull: false,
   },
 }
+
+export default user

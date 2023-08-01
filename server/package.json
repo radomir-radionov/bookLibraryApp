@@ -1,12 +1,11 @@
 {
   "name": "server",
-  "type": "commonjs",
+  "type": "module",
   "version": "1.0.0",
   "description": "Koa App Description",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d dist --copy-files",
-    "start": "nodemon dist/index.js",
+    "start": "nodemon src/index.js",
     "stop": "docker compose down",
     "stop:force": "docker compose down -v",
     "docker:up": "docker compose up -d",
@@ -29,10 +28,6 @@
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "babel-plugin-module-resolver": "^5.0.0",
     "eslint": "^8.45.0",
     "nodemon": "^3.0.1",
     "sequelize-cli": "^6.6.1"
