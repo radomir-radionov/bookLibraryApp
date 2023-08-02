@@ -1,17 +1,15 @@
-// import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-// class Histories extends Model {}
+const histories = {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+}
 
-// Histories.init({
-//   id: {
-//     type: DataTypes.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true,
-//   },
-//   userId: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//   },
-// })
-
-// export default Histories
+export default histories

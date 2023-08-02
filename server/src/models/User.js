@@ -16,11 +16,11 @@ const user = {
   },
   provider: {
     type: DataTypes.STRING,
-    allowNull: false,
+    defaultValue: 'local',
   },
   confirmed: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    defaultValue: true,
   },
   blocked: {
     type: DataTypes.BOOLEAN,

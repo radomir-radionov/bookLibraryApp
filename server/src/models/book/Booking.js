@@ -1,29 +1,27 @@
-// import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-// class Booking extends Model {}
+const booking = {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  order: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  dateOrder: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  customerFirstName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  customerLastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+}
 
-// Booking.init({
-//   id: {
-//     type: DataTypes.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true,
-//   },
-//   order: {
-//     type: DataTypes.BOOLEAN,
-//     defaultValue: false,
-//   },
-//   dateOrder: {
-//     type: DataTypes.DATE,
-//     allowNull: false,
-//   },
-//   customerFirstName: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   customerLastName: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-// })
-
-// export default Booking
+export default booking

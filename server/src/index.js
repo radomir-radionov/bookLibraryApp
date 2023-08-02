@@ -14,9 +14,6 @@ const router = new Router()
 const { sequelize } = db
 const port = +process.env.APP_PORT || 3000
 
-// register all application routes
-AppRoutes.forEach((route) => router[route.method](route.path, route.action))
-
 // Middleware
 app
   .use(cors())
@@ -35,6 +32,9 @@ app.use(async (ctx, next) => {
     ctx.body = { error: err.message }
   }
 })
+
+// register all application routes
+AppRoutes.forEach((route) => router[route.method](route.path, route.action))
 
 async function main() {
   try {

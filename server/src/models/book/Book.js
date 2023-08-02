@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize'
-// import Histories from './Histories.mjs'
-// import Delivery from './Delivery.mjs'
-// import Booking from './Booking.mjs'
+import Histories from './Histories.js'
+import Delivery from './Delivery.js'
+import Booking from './Booking.js'
 
-export default {
+const book = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -35,8 +35,4 @@ export default {
   },
 }
 
-// Book.hasMany(Histories, { as: 'histories', foreignKey: 'bookId' })
-// Book.hasOne(Booking, { as: 'booking', foreignKey: 'bookId' })
-// Book.hasOne(Delivery, { as: 'delivery', foreignKey: 'bookId' })
-
-// export default Book
+export default book
