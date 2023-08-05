@@ -1,7 +1,4 @@
 import { DataTypes } from 'sequelize'
-import Histories from './Histories.js'
-import Delivery from './Delivery.js'
-import Booking from './Booking.js'
 
 const book = {
   id: {

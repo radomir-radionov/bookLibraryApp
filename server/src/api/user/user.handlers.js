@@ -5,13 +5,17 @@ const { User } = db
 const createUser = async (ctx) => {
   try {
     const { booking, ...params } = ctx.request.body
-    console.log(booking)
-    console.log(params)
-    const user = await User.create(ctx.request.body)
-    ctx.body = { message: 'User created successfully', data: user }
+    const user = await User.create(params)
+    ctx.body = { message: 'User created successfully', user }
   } catch (error) {
-    ctx.status = 500 // Internal Server Error
-    ctx.body = { error: 'Failed to create user' }
+    ctx.body = {
+      data: null,
+      error: {
+        status: 500,
+        message: 'Failed to create user',
+        details: {},
+      },
+    }
   }
 }
 
