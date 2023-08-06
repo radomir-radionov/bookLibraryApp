@@ -9,6 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "src/index.js", "src/database/models/book"],
   "exclude": ["node_modules", "**/node_modules/*"]
 }
