@@ -5,14 +5,14 @@ volumes:
 
 services:
   postgres:
-    container_name: postgres
+    container_name: db_service
     image: postgres:15.3-alpine
     env_file: .env
     restart: unless-stopped
     volumes:
       - 'postgres_data:${DB_DATA}'
     ports:
-      - '${DB_PORT}:5432'
+      - '${HOST_DB_PORT}:5432'
 
   app_worker_server:
     build:
@@ -26,5 +26,6 @@ services:
       - postgres
     volumes:
       - ./:/app
+      - ./src:/app/src
     ports:
       - '${APP_PORT}:3000'

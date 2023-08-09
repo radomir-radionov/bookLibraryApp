@@ -8,4 +8,4 @@ RUN yarn install
 
 COPY . .
 
-CMD ["node_modules/.bin/nodemon", "src/index.js"]
+CMD ["yarn", "start"]

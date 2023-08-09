@@ -5,7 +5,7 @@
   "description": "Koa App Description",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "nodemon -L src/index.js",
     "stop": "docker compose down",
     "stop:force": "docker compose down -v",
     "docker:up": "docker compose up -d",
@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^4.0.0",
+    "@sequelize/core": "^7.0.0-alpha.27",
     "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.4.1",
