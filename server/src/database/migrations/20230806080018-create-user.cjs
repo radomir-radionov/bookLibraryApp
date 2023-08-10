@@ -1,8 +1,8 @@
-const tableName = 'Users'
+import tableNames from '../../constants/tableNames.js'
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tableName, {
+    await queryInterface.createTable(tableNames.users, {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -53,6 +53,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tableName)
+    await queryInterface.dropTable(tableNames)
   },
 }

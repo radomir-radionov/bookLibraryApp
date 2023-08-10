@@ -2,36 +2,32 @@ import tableNames from '../../constants/tableNames.js'
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tableNames.books, {
+    await queryInterface.createTable(tableNames.deliveries, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      issueYear: {
+      handed: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
+      },
+      dateHandedFrom: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      dateHandedTo: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      recipientFirstName: {
+        allowNull: false,
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      rating: {
-        type: Sequelize.FLOAT,
+      recipientLastName: {
         allowNull: false,
-      },
-      title: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      authors: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false,
-      },
-      image: {
-        type: Sequelize.JSONB,
-        allowNull: false,
-      },
-      categories: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +40,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tableNames.books)
+    await queryInterface.dropTable(tableNames.deliveries)
   },
 }

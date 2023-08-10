@@ -1,12 +1,12 @@
-const tableName = 'Users'
+import tableNames from '../../constants/tableNames.js'
 const columnName = 'testField'
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn(tableName, columnName, {type: Sequelize.STRING})
+    await queryInterface.addColumn(tableNames.users, columnName, {type: Sequelize.STRING})
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn(tableName, columnName)
+    await queryInterface.removeColumn(tableNames.users, columnName)
   },
 }
