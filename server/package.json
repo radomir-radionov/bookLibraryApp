@@ -1,14 +1,15 @@
 {
   "name": "server",
+  "type": "module",
   "version": "1.0.0",
   "description": "Koa App Description",
-  "main": "src/index.mjs",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.mjs",
+    "start": "nodemon -L src/index.js",
     "stop": "docker compose down",
     "stop:force": "docker compose down -v",
     "docker:up": "docker compose up -d",
-    "docker:rs": "docker compose down && docker compose up -d --build && docker attach app_worker_server",
+    "docker:rs": "docker compose down && docker compose up -d --build && docker logs -f app_worker_server",
     "docker:down": "docker compose down",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:undo": "npx sequelize-cli db:migrate:undo",
@@ -19,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^4.0.0",
+    "@sequelize/core": "^7.0.0-alpha.27",
     "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.4.1",
@@ -27,6 +29,7 @@
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
+    "eslint": "^8.45.0",
     "nodemon": "^3.0.1",
     "sequelize-cli": "^6.6.1"
   }
