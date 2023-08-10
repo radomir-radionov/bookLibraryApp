@@ -1,4 +1,4 @@
-const tableName = 'Users'
+const tableName = 'Books'
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,42 +9,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      firstName: {
+      issueYear: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      lastName: {
+      rating: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
+      authors: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
-      phone: {
-        type: Sequelize.STRING,
+      image: {
+        type: Sequelize.JSONB,
         allowNull: false,
       },
-      blocked: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-      },
-      confirmed: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
-      },
-      provider: {
-        type: Sequelize.STRING,
-        defaultValue: 'local',
-      },
-      username: {
-        type: Sequelize.STRING,
+      categories: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,

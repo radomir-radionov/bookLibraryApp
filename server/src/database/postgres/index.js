@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { user, book, booking, delivery, histories } from '../index.js'
+import {user, book, booking, delivery, histories} from '../index.js'
 import sequelize from './instance.js'
 
 dotenv.config()
