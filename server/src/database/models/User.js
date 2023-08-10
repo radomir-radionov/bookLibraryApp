@@ -21,6 +21,7 @@ export default (sequelize, DataTypes) => {
       confirmed: DataTypes.BOOLEAN,
       provider: DataTypes.STRING,
       username: DataTypes.STRING,
+      testField: DataTypes.STRING,
     },
     {
       sequelize,

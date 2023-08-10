@@ -1,4 +1,4 @@
-export { default as user } from './models/testUser.js'
+export { default as user } from './models/user.js'
 export { default as book } from './models/book/Book.js'
 export { default as booking } from './models/book/Booking.js'
 export { default as delivery } from './models/book/Delivery.js'
