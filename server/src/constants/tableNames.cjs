@@ -7,4 +7,4 @@ const tableNames = {
   booking: 'Booking',
 }
 
-export default tableNames
+module.exports = tableNames

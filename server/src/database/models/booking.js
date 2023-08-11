@@ -9,6 +9,14 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Booking.belongsTo(models.User, {
+        foreignKey: 'customerId',
+        as: 'customer',
+      })
+      Booking.belongsTo(models.Book, {
+        foreignKey: 'bookId',
+        as: 'book',
+      })
     }
   }
   Booking.init(

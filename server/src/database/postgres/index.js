@@ -11,13 +11,6 @@ const Booking = sequelize.define('Booking', booking)
 const Delivery = sequelize.define('Delivery', delivery)
 const History = sequelize.define('Histories', history)
 
-// User.hasMany(Book)
-// Book.belongsTo(User)
-
-// Book.hasMany(Histories)
-// Book.hasOne(Booking)
-// Book.hasOne(Delivery)
-
 const db = {
   sequelize,
   User,

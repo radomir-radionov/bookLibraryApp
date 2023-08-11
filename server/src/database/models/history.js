@@ -9,12 +9,18 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      History.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user',
+      })
+      History.belongsTo(models.Book, {
+        foreignKey: 'bookId',
+        as: 'book',
+      })
     }
   }
   History.init(
-    {
-      userId: DataTypes.INTEGER,
-    },
+    {},
     {
       sequelize,
       modelName: 'History',

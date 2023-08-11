@@ -1,4 +1,4 @@
-import tableNames from '../../constants/tableNames.js'
+const tableNames = require('../../constants/tableNames.cjs')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,10 +7,6 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      userId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {

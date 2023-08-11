@@ -9,7 +9,18 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Message)
+      User.hasMany(models.Booking, {
+        foreignKey: 'customerId',
+        as: 'bookings',
+      })
+      User.hasMany(models.Delivery, {
+        foreignKey: 'recipientId',
+        as: 'receivedDeliveries',
+      })
+      User.hasMany(models.History, {
+        foreignKey: 'userId',
+        as: 'histories',
+      })
     }
   }
   User.init(
