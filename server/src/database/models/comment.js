@@ -1,7 +1,7 @@
 import {Model} from 'sequelize'
 
 export default (sequelize, DataTypes) => {
-  class History extends Model {
+  class Comment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,22 +9,19 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      History.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'user',
-      })
-      History.belongsTo(models.Book, {
-        foreignKey: 'bookId',
-        as: 'book',
-      })
     }
   }
-  History.init(
-    {},
+  Comment.init(
+    {
+      rating: DataTypes.INTEGER,
+      text: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      commentUserId: DataTypes.INTEGER,
+    },
     {
       sequelize,
-      modelName: 'History',
+      modelName: 'Comment',
     }
   )
-  return History
+  return Comment
 }

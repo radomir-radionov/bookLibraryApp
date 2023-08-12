@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import {user, book, category, booking, delivery, history} from '../index.js'
+import {user, book, category, booking, delivery, history, extendedBook, comment} from '../index.js'
 import sequelize from './instance.js'
 
 dotenv.config()
@@ -10,6 +10,8 @@ const Category = sequelize.define('Category', category)
 const Booking = sequelize.define('Booking', booking)
 const Delivery = sequelize.define('Delivery', delivery)
 const History = sequelize.define('Histories', history)
+const ExtendedBooks = sequelize.define('ExtendedBooks', extendedBook)
+const Comment = sequelize.define('Comments', comment)
 
 const db = {
   sequelize,
@@ -19,6 +21,8 @@ const db = {
   Booking,
   Delivery,
   History,
+  ExtendedBooks,
+  Comment,
 }
 
 export default db

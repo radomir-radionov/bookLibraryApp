@@ -1,4 +1,4 @@
-const {Model} = require('sequelize')
+import {Model} from 'sequelize'
 
 export default (sequelize, DataTypes) => {
   class Category extends Model {
