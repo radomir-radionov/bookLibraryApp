@@ -13,6 +13,7 @@
     "docker:down": "docker compose down",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:undo": "npx sequelize-cli db:migrate:undo",
+    "db:undo:all": "npx sequelize-cli db:migrate:undo:all",
     "db:seed:up": "npx sequelize-cli db:seed:all",
     "db:seed:down": "npx sequelize-cli db:seed:undo "
   },

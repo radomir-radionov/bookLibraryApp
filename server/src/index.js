@@ -11,15 +11,11 @@ dotenv.config()
 // create koa app
 const app = new Koa()
 const router = new Router()
-const { sequelize } = db
+const {sequelize} = db
 const port = +process.env.APP_PORT || 3000
 
 // Middleware
-app
-  .use(cors())
-  .use(bodyParser())
-  .use(router.routes())
-  .use(router.allowedMethods())
+app.use(cors()).use(bodyParser()).use(router.routes()).use(router.allowedMethods())
 
 // Error-handling middleware
 app.use(async (ctx, next) => {
@@ -29,7 +25,7 @@ app.use(async (ctx, next) => {
   } catch (err) {
     console.error('Server error', err)
     ctx.status = err.status || 500
-    ctx.body = { error: err.message }
+    ctx.body = {error: err.message}
   }
 })
 
@@ -40,7 +36,7 @@ async function main() {
   try {
     console.log(4)
     await sequelize.sync()
-    await sequelize.sync({ force: process.env.NODE_ENV === 'development' })
+    // await sequelize.sync({force: process.env.NODE_ENV === 'development'})
     console.log(`DB started on port ${process.env.HOST_DB_PORT}`)
     app.listen(port, (err) => {
       if (err) {

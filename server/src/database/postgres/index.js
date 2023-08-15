@@ -1,28 +1,45 @@
 import dotenv from 'dotenv'
-import {user, book, category, booking, delivery, history, extendedBook, comment} from '../index.js'
+import {DataTypes} from 'sequelize'
 import sequelize from './instance.js'
+import book from '../models/book.js'
+import category from '../models/category.js'
+import delivery from '../models/delivery.js'
+import booking from '../models/booking.js'
+import history from '../models/history.js'
 
 dotenv.config()
 
-const User = sequelize.define('User', user)
-const Book = sequelize.define('Book', book)
-const Category = sequelize.define('Category', category)
-const Booking = sequelize.define('Booking', booking)
-const Delivery = sequelize.define('Delivery', delivery)
-const History = sequelize.define('Histories', history)
-const ExtendedBooks = sequelize.define('ExtendedBooks', extendedBook)
-const Comment = sequelize.define('Comments', comment)
+const Book = book(sequelize)
+const Category = category(sequelize)
+const Delivery = delivery(sequelize)
+const Booking = booking(sequelize)
+const History = history(sequelize)
+// const User = sequelize.define('User', user)
+
+// const ExtendedBooks = sequelize.define('ExtendedBooks', extendedBook)
+// const Comment = sequelize.define('Comments', comment)
+
+Book.hasOne(Delivery, {foreignKey: 'bookId', as: 'delivery'})
+Book.hasOne(Booking, {foreignKey: 'bookId', as: 'booking'})
+Book.hasMany(History, {foreignKey: 'bookId', as: 'history'})
+
+Booking.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
+Delivery.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
+History.belongsTo(Book, {
+  foreignKey: 'bookId',
+  as: 'book',
+})
 
 const db = {
   sequelize,
-  User,
+  // User,
   Book,
   Category,
-  Booking,
   Delivery,
+  Booking,
   History,
-  ExtendedBooks,
-  Comment,
+  // ExtendedBooks,
+  // Comment,
 }
 
 export default db

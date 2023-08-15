@@ -1,29 +1,28 @@
-import {Model} from 'sequelize'
+import {DataTypes, Model} from 'sequelize'
+import tableNames from '../../constants/tableNames.cjs'
 
-export default (sequelize, DataTypes) => {
+export default (sequelize) => {
   class History extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-      History.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'user',
-      })
-      History.belongsTo(models.Book, {
-        foreignKey: 'bookId',
-        as: 'book',
-      })
+      //TODO: fix circular dependency
+      // History.belongsTo(models.Book, {
+      //   foreignKey: 'bookId',
+      //   as: 'book',
+      // })
+      // History.belongsTo(models.User, {
+      //   foreignKey: 'userId',
+      //   as: 'user',
+      // })
     }
   }
   History.init(
-    {},
+    {
+      bookId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+    },
     {
       sequelize,
-      modelName: 'History',
+      modelName: tableNames.histories,
     }
   )
   return History

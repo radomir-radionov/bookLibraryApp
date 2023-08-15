@@ -23,7 +23,7 @@ module.exports = {
       },
       authors: {
         allowNull: false,
-        type: Sequelize.ARRAY,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       image: {
         allowNull: false,
@@ -31,7 +31,7 @@ module.exports = {
       },
       categories: {
         allowNull: false,
-        type: Sequelize.ARRAY,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       description: {
         allowNull: false,

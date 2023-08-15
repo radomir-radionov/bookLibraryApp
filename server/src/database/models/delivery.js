@@ -1,26 +1,18 @@
-import {Model} from 'sequelize'
+import {Model, DataTypes} from 'sequelize'
 
-export default (sequelize, DataTypes) => {
+export default (sequelize) => {
   class Delivery extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Delivery.belongsTo(models.User, {
-        foreignKey: 'recipientId',
-        as: 'recipient',
-      })
-      Delivery.belongsTo(models.Book, {
-        foreignKey: 'bookId',
-        as: 'book',
-      })
-    }
+    //TODO: fix circular dependency
+    // static associate({Book}) {
+    //   Delivery.belongsTo(Book, {
+    //     foreignKey: 'bookId',
+    //   })
+    // }
   }
+
   Delivery.init(
     {
+      bookId: DataTypes.INTEGER,
       handed: DataTypes.BOOLEAN,
       dateHandedFrom: DataTypes.DATE,
       dateHandedTo: DataTypes.DATE,
@@ -30,6 +22,7 @@ export default (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Delivery',
+      timestamps: true,
     }
   )
   return Delivery

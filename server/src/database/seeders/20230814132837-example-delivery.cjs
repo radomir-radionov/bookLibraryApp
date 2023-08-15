@@ -1,13 +1,13 @@
 const tableNames = require('../../constants/tableNames.cjs')
-const mockData = require('../../mock/books.cjs')
+const mockData = require('../../mock/delivery.cjs')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert(tableNames.books, mockData, {})
+    await queryInterface.bulkInsert(tableNames.deliveries, [mockData], {})
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete(tableNames.books, null, {})
+    await queryInterface.bulkDelete(tableNames.deliveries, null, {})
   },
 }

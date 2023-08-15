@@ -5,7 +5,7 @@ const tableNames = {
   categories: 'Categories',
   deliveries: 'Deliveries',
   histories: 'Histories',
-  booking: 'Booking',
+  booking: 'Bookings',
   comments: 'Comments',
 }
 

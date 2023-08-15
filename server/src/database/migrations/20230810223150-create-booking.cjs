@@ -1,5 +1,6 @@
 const tableNames = require('../../constants/tableNames.cjs')
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tableNames.booking, {
@@ -8,6 +9,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+      },
+      bookId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      customerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       order: {
         defaultValue: false,
@@ -30,7 +39,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })

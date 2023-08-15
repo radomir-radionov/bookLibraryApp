@@ -1,15 +1,13 @@
-import {Model} from 'sequelize'
+import {Model, DataTypes} from 'sequelize'
 
-export default (sequelize, DataTypes) => {
+export default (sequelize) => {
   class Book extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+    //TODO: fix circular dependency
+    // static associate({Delivery}) {
+    //   Book.hasOne(Delivery, {
+    //     foreignKey: 'bookId',
+    //   })
+    // }
   }
   Book.init(
     {
@@ -17,12 +15,13 @@ export default (sequelize, DataTypes) => {
       rating: DataTypes.FLOAT,
       title: DataTypes.STRING,
       authors: DataTypes.ARRAY(DataTypes.STRING),
-      image: DataTypes.JSONB,
+      image: DataTypes.STRING,
       categories: DataTypes.ARRAY(DataTypes.STRING),
     },
     {
       sequelize,
       modelName: 'Book',
+      timestamps: true,
     }
   )
   return Book

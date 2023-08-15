@@ -1,26 +1,26 @@
-import {Model} from 'sequelize'
+import {Model, DataTypes} from 'sequelize'
+import tableNames from '../../constants/tableNames.cjs'
 
-export default (sequelize, DataTypes) => {
+//TODO: add field customerId when  created user model
+
+export default (sequelize) => {
   class Booking extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-      Booking.belongsTo(models.User, {
-        foreignKey: 'customerId',
-        as: 'customer',
-      })
-      Booking.belongsTo(models.Book, {
-        foreignKey: 'bookId',
-        as: 'book',
-      })
+      //TODO: fix circular dependency
+      // Booking.belongsTo(models.User, {
+      //   foreignKey: 'customerId',
+      //   as: 'customer',
+      // })
+      // Booking.belongsTo(models.Book, {
+      //   foreignKey: 'bookId',
+      //   as: 'book',
+      // })
     }
   }
   Booking.init(
     {
+      bookId: DataTypes.INTEGER,
+      customerId: DataTypes.INTEGER,
       order: DataTypes.BOOLEAN,
       dateOrder: DataTypes.DATE,
       customerFirstName: DataTypes.STRING,
@@ -28,7 +28,7 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Booking',
+      modelName: tableNames.booking,
     }
   )
   return Booking
