@@ -1,7 +1,6 @@
 import db from '../../database/postgres/index.js'
 
-// @ts-ignore
-const {Book, Delivery, Booking, History} = db
+const {Book} = db
 
 const getBook = async (ctx) => {
   try {
@@ -16,7 +15,7 @@ const getBook = async (ctx) => {
       throw new Error('Book not found')
     }
 
-    // @ts-ignore // book associated with history but it doesn't add history in book type
+    // @ts-ignore
     const bookHistory = book.history.length === 0 ? null : book.history
 
     ctx.body = {
@@ -44,7 +43,7 @@ const createBook = async (ctx) => {
     // const user = await User.findOne({where: {id: customer}})
     const book = await Book.create(params)
     // @ts-ignore, sequalize is adding special method addBook added to instances
-    await user.addBook(book)
+    // await user.addBook(book)
     ctx.body = {data: book}
   } catch (error) {
     ctx.body = {

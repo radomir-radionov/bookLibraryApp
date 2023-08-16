@@ -2,6 +2,10 @@
 `npx sequelize-cli seed:generate --name example-booking` - create a seed`  
 `db:migrate": "npx sequelize-cli db:migrate`- need to invoke every time when migtatings are changed
 
+### tasks
+
+- add field booksCount to categories when try to get
+
 ### Problems
 
 - sequelize doesnt use default value **defaultValue: Sequelize.NOW**
