@@ -12,7 +12,10 @@ export default (sequelize) => {
 
   Delivery.init(
     {
-      bookId: DataTypes.INTEGER,
+      bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       handed: DataTypes.BOOLEAN,
       dateHandedFrom: DataTypes.DATE,
       dateHandedTo: DataTypes.DATE,

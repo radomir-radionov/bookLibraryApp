@@ -1,5 +1,6 @@
 import db from '../../database/postgres/index.js'
 
+// @ts-ignore
 const {Book, Delivery, Booking, History} = db
 
 const getBook = async (ctx) => {
@@ -8,19 +9,22 @@ const getBook = async (ctx) => {
     console.log(id)
     const book = await Book.findOne({
       where: {id},
-      include: [
-        {model: Delivery, as: 'delivery'},
-        {model: Booking, as: 'booking'},
-        {model: History, as: 'history'},
-      ],
+      include: ['delivery', 'booking', 'history'],
     })
-
-    console.log(book)
 
     if (!book) {
       throw new Error('Book not found')
     }
-    ctx.body = {data: book}
+
+    // @ts-ignore // book associated with history but it doesn't add history in book type
+    const bookHistory = book.history.length === 0 ? null : book.history
+
+    ctx.body = {
+      data: {
+        ...book.dataValues,
+        history: bookHistory,
+      },
+    }
   } catch (error) {
     console.log(error)
     ctx.body = {

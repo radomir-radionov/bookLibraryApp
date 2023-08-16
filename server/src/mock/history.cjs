@@ -10,7 +10,7 @@ module.exports = [
     createdAt: new Date(),
   },
   {
-    bookId: 1,
+    bookId: 2,
     userId: 3,
     createdAt: new Date(),
   },

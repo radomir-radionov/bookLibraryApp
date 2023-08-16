@@ -8,5 +8,5 @@ Dockerfile
 docker-compose.yml
 .eslintrc.json
 install_project.sh
-.desc.txt
+.desc.md
 README.md

@@ -17,7 +17,10 @@ export default (sequelize) => {
   }
   History.init(
     {
-      bookId: DataTypes.INTEGER,
+      bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       userId: DataTypes.INTEGER,
     },
     {

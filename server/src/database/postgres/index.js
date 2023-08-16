@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-import {DataTypes} from 'sequelize'
 import sequelize from './instance.js'
 import book from '../models/book.js'
 import category from '../models/category.js'
@@ -25,10 +24,7 @@ Book.hasMany(History, {foreignKey: 'bookId', as: 'history'})
 
 Booking.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
 Delivery.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
-History.belongsTo(Book, {
-  foreignKey: 'bookId',
-  as: 'book',
-})
+History.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
 
 const db = {
   sequelize,

@@ -19,7 +19,10 @@ export default (sequelize) => {
   }
   Booking.init(
     {
-      bookId: DataTypes.INTEGER,
+      bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       customerId: DataTypes.INTEGER,
       order: DataTypes.BOOLEAN,
       dateOrder: DataTypes.DATE,
