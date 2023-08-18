@@ -1,5 +1,5 @@
 import {Model} from 'sequelize'
-import initBookModel from './book.js'
+import initBookModel from './book/book.js'
 
 export default (sequelize, DataTypes) => {
   class ExtendedBook extends initBookModel() {

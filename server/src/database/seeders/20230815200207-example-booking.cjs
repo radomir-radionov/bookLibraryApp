@@ -3,11 +3,11 @@ const mockData = require('../../mock/booking.cjs')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(tableNames.booking, [mockData], {})
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.bulkDelete(tableNames.booking, null, {})
   },
 }

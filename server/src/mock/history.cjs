@@ -1,17 +1,5 @@
 module.exports = [
-  {
-    bookId: 1,
-    userId: 1,
-    createdAt: new Date(),
-  },
-  {
-    bookId: 1,
-    userId: 2,
-    createdAt: new Date(),
-  },
-  {
-    bookId: 2,
-    userId: 3,
-    createdAt: new Date(),
-  },
+  {userId: 1, bookId: 1, createdAt: new Date()},
+  {userId: 2, bookId: 1, createdAt: new Date()},
+  {userId: 3, bookId: 2, createdAt: new Date()},
 ]

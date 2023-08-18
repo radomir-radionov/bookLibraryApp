@@ -47,12 +47,12 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames)
   },
 }

@@ -34,7 +34,6 @@ AppRoutes.forEach((route) => router[route.method](route.path, route.action))
 
 async function main() {
   try {
-    console.log(4)
     await sequelize.sync()
     // await sequelize.sync({force: process.env.NODE_ENV === 'development'})
     console.log(`DB started on port ${process.env.HOST_DB_PORT}`)

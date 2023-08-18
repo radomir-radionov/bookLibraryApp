@@ -1,8 +1,7 @@
 import {DataTypes} from 'sequelize'
 
-//TODO: add field customerId when  created user model
-
 export default {
+  userId: DataTypes.INTEGER,
   bookId: {
     type: DataTypes.INTEGER,
     allowNull: false,
