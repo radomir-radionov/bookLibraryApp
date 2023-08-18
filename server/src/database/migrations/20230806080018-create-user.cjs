@@ -1,4 +1,4 @@
-import tableNames from '../../constants/tableNames.js'
+const tableNames = require('../../constants/tableNames.cjs')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -47,12 +47,12 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames)
   },
 }

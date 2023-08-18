@@ -1,5 +1,6 @@
-import tableNames from '../../constants/tableNames.js'
+const tableNames = require('../../constants/tableNames.cjs')
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tableNames.deliveries, {
@@ -8,6 +9,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      bookId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       handed: {
         defaultValue: false,
@@ -32,14 +41,15 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames.deliveries)
   },
 }

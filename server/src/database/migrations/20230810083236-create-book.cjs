@@ -1,5 +1,6 @@
-import tableNames from '../../constants/tableNames.js'
+const tableNames = require('../../constants/tableNames.cjs')
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tableNames.books, {
@@ -26,24 +27,26 @@ module.exports = {
         allowNull: false,
       },
       image: {
-        type: Sequelize.JSONB,
-        allowNull: false,
+        allowNull: true,
+        type: Sequelize.STRING,
+        defaultValue: null,
       },
       categories: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames.books)
   },
 }

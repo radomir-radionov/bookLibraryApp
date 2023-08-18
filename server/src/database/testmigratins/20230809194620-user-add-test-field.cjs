@@ -1,4 +1,4 @@
-import tableNames from '../../constants/tableNames.js'
+const tableNames = require('../../constants/tableNames.cjs')
 const columnName = 'testField'
 
 module.exports = {

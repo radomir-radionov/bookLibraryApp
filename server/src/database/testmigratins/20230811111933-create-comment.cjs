@@ -1,50 +1,37 @@
 const tableNames = require('../../constants/tableNames.cjs')
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tableNames.booking, {
+    await queryInterface.createTable(tableNames.comments, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      rating: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
-      bookId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      order: {
-        defaultValue: false,
-        type: Sequelize.BOOLEAN,
-      },
-      dateOrder: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      customerFirstName: {
+      text: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      customerLastName: {
+      commentUserId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.DATE,
       },
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tableNames.booking)
+    await queryInterface.dropTable(tableNames.comments)
   },
 }
