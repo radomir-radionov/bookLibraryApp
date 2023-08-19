@@ -1,5 +1,6 @@
 const tableNames = require('../../constants/tableNames.cjs')
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tableNames.extendedBooks, {
@@ -9,73 +10,53 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      issueYear: {
+      bookId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.STRING,
-      },
-      rating: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      authors: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
-      },
-      image: {
-        allowNull: false,
-        type: Sequelize.JSONB,
-      },
-      categories: {
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       description: {
-        allowNull: false,
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       publish: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       pages: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       cover: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       weight: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       format: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       ISBN: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       producer: {
-        allowNull: false,
         type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames.extendedBooks)
   },
 }

@@ -1,34 +1,44 @@
 import dotenv from 'dotenv'
 import sequelize from './instance.js'
-import {user, history, booking, delivery, category, book} from '../index.js'
+import {user, book, history, booking, delivery, category, extendedBook, comment} from '../index.js'
+import foreignKeys from '../../constants/foreignKeys.js'
+import modelAliases from '../../constants/modelAliases.js'
 
 dotenv.config()
 
-const User = sequelize.define('User', user)
-const Category = sequelize.define('Category', category)
-const Book = sequelize.define('Book', book)
-const Delivery = sequelize.define('Delivery', delivery)
-const Booking = sequelize.define('Booking', booking)
-const History = sequelize.define('History', history)
+const User = user(sequelize)
+const Category = category(sequelize)
+const Book = book(sequelize)
+const Delivery = delivery(sequelize)
+const Booking = booking(sequelize)
+const History = history(sequelize)
+const ExtendedBook = extendedBook(sequelize)
+const Comment = comment(sequelize)
 
-// const ExtendedBooks = sequelize.define('ExtendedBooks', extendedBook)
-// const Comment = sequelize.define('Comments', comment)
+const {userId, bookId} = foreignKeys
+const {userAlias, bookAlias, extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
-User.hasOne(Booking, {foreignKey: 'userId'})
-User.hasOne(Delivery, {foreignKey: 'userId'})
-User.hasMany(History, {foreignKey: 'userId'})
+Book.hasOne(ExtendedBook, {foreignKey: bookId, as: extendedBookAlias})
+Book.hasOne(Delivery, {foreignKey: bookId, as: deliveryAlias})
+Book.hasOne(Booking, {foreignKey: bookId, as: bookingAlias})
+Book.hasMany(History, {foreignKey: bookId, as: historyAlias})
+Book.hasMany(Comment, {foreignKey: bookId, as: commentAlias})
 
-Delivery.belongsTo(Book, {foreignKey: 'userId', as: 'user'})
-Booking.belongsTo(Book, {foreignKey: 'userId', as: 'user'})
-History.belongsTo(User, {foreignKey: 'userId', as: 'user'})
+User.hasOne(Booking, {foreignKey: bookId, as: bookingAlias})
+User.hasOne(Delivery, {foreignKey: bookId, as: deliveryAlias})
+User.hasMany(History, {foreignKey: bookId, as: historyAlias})
+User.hasMany(Comment, {foreignKey: bookId, as: commentAlias})
 
-Book.hasOne(Delivery, {foreignKey: 'bookId', as: 'delivery'})
-Book.hasOne(Booking, {foreignKey: 'bookId', as: 'booking'})
-Book.hasMany(History, {foreignKey: 'bookId', as: 'history'})
+Delivery.belongsTo(User, {foreignKey: userId, as: userAlias})
+Booking.belongsTo(User, {foreignKey: userId, as: userAlias})
+History.belongsTo(User, {foreignKey: userId, as: userAlias})
+Comment.belongsTo(User, {foreignKey: userId, as: userAlias})
 
-Delivery.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
-Booking.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
-History.belongsTo(Book, {foreignKey: 'bookId', as: 'book'})
+ExtendedBook.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
+Delivery.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
+Booking.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
+History.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
+Comment.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 
 const db = {
   sequelize,
@@ -38,8 +48,8 @@ const db = {
   Delivery,
   Booking,
   History,
-  // ExtendedBooks,
-  // Comment,
+  ExtendedBook,
+  Comment,
 }
 
 export default db

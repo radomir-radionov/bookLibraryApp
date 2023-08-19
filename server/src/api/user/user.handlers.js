@@ -13,11 +13,8 @@ const getUser = async (ctx) => {
       throw new Error('Book not found')
     }
 
-    ctx.body = {
-      user,
-    }
+    ctx.body = user
   } catch (error) {
-    console.log(error)
     ctx.body = {
       data: null,
       error: {

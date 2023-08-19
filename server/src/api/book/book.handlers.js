@@ -1,28 +1,61 @@
 import db from '../../database/postgres/index.js'
+import modelAliases from '../../constants/modelAliases.js'
 
 const {Book} = db
+const {extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
-const getBook = async (ctx) => {
+const getBooks = async (ctx) => {
   try {
     const {id} = ctx.request.body
     console.log(id)
     const book = await Book.findOne({
       where: {id},
-      include: ['delivery', 'booking', 'history'],
+      include: [deliveryAlias, bookingAlias, historyAlias],
     })
 
     if (!book) {
       throw new Error('Book not found')
     }
 
-    // @ts-ignore
-    const bookHistory = book.history.length === 0 ? null : book.history
+    const bookHistory = book.histories.length === 0 ? null : book.histories
 
     ctx.body = {
       data: {
         ...book.dataValues,
-        history: bookHistory,
+        histories: bookHistory,
       },
+    }
+  } catch (error) {
+    console.log(error)
+    ctx.body = {
+      data: null,
+      error: {
+        status: 500,
+        message: 'Failed to get books data',
+        details: {},
+      },
+    }
+  }
+}
+
+const getBookById = async (ctx) => {
+  try {
+    const id = ctx.params.id
+    console.log(id)
+    const book = await Book.findOne({
+      where: {id},
+      include: [extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias],
+    })
+
+    if (!book) {
+      throw new Error('Book not found')
+    }
+
+    const bookHistory = book.histories.length === 0 ? null : book.histories
+
+    ctx.body = {
+      ...book.dataValues,
+      histories: bookHistory,
     }
   } catch (error) {
     console.log(error)
@@ -58,7 +91,8 @@ const createBook = async (ctx) => {
 }
 
 const bookHandlers = {
-  getBook,
+  getBooks,
+  getBookById,
   createBook,
 }
 
