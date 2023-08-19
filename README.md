@@ -1,4 +1,4 @@
-#### "Book library" is a library for storing, booking, commenting books. For example, if you have your own library with a lot of books, you need to keep all the information on paper, but this app can help you. And provide a web solution for this.
+#### "Book library" is a library for storing, booking and commenting books. For example, if you have your own library with a lot of books, you need to keep all the information on paper, but this app can help you. And provide a web solution for this.
 
 **_Don't forget about star_**
 
