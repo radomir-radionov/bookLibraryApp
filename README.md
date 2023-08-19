@@ -4,6 +4,24 @@
 
 SPA app with client-server architecture.
 
+## the technology stack:
+
+- client:
+
+  - React, Typescript
+  - Redux Toolkit, Redux-Saga
+  - Styled Components
+
+- server:
+
+  - Node.js, Koa.js
+  - PostgreSQL, Sequelize
+  - Docker
+
+- tools:
+
+  - Git, Docker, DBeaver, Insomnia
+
 ## features:
 
 - client:
@@ -22,24 +40,6 @@ SPA app with client-server architecture.
 - server :
 
   - will be soon ...
-
-## the technology stack:
-
-- client:
-
-  - React, Typescript
-  - Redux Toolkit, Redux-Saga
-  - Styled Components
-
-- server:
-
-  - Node.js, Koa.js
-  - PostgreSQL, Sequelize
-  - Docker
-
-- tools:
-
-  - Git, Docker, DBeaver, Insomnia
 
 ## run app
 
