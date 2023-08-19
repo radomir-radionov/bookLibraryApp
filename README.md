@@ -28,6 +28,10 @@ SPA app with client-server architecture.
   - Node.js, Koa.js
   - PostgreSQL, Sequelize
 
+- tools:
+
+  - Git, Docker
+
 ## Run app
 
 ```
