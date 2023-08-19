@@ -30,7 +30,7 @@ SPA app with client-server architecture.
 
 - tools:
 
-  - Git, Docker
+  - Git, Docker, DBeaver, Insomnia
 
 ## Run app
 
