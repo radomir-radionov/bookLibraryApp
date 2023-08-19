@@ -4,7 +4,12 @@ const routes = [
   {
     path: '/book',
     method: 'get',
-    action: bookHandlers.getBook,
+    action: bookHandlers.getBooks,
+  },
+  {
+    path: '/book/:id',
+    method: 'get',
+    action: bookHandlers.getBookById,
   },
   {
     path: '/book',

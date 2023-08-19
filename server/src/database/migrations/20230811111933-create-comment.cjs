@@ -9,6 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      bookId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       rating: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -17,21 +25,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      commentUserId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable(tableNames.comments)
   },
 }

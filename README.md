@@ -29,6 +29,10 @@ SPA app with client-server architecture.
   - PostgreSQL, Sequelize
   - Docker
 
+- tools:
+
+  - Git, Docker, DBeaver, Insomnia
+
 ## Run app
 
 ```
