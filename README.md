@@ -23,7 +23,7 @@ SPA app with client-server architecture.
 
   - will be soon ...
 
-## The technology stack:
+## the technology stack:
 
 - client:
 
@@ -41,7 +41,7 @@ SPA app with client-server architecture.
 
   - Git, Docker, DBeaver, Insomnia
 
-## Run app
+## run app
 
 ```
 yarn
