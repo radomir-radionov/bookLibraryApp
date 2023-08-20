@@ -4,32 +4,18 @@ import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import dotenv from 'dotenv'
 import AppRoutes from './routes.js'
-import db from './database/postgres/index.js'
+import db from './database/postgres/instance/index.js'
+import errorMiddleware from './middleware/errorMiddleware.js'
 
 dotenv.config()
 
-// create koa app
 const app = new Koa()
 const router = new Router()
 const {sequelize} = db
 const port = +process.env.APP_PORT || 3000
 
-// Middleware
-app.use(cors()).use(bodyParser()).use(router.routes()).use(router.allowedMethods())
+app.use(errorMiddleware).use(cors()).use(bodyParser()).use(router.routes()).use(router.allowedMethods())
 
-// Error-handling middleware
-app.use(async (ctx, next) => {
-  try {
-    ctx.body = 'Hello World'
-    await next()
-  } catch (err) {
-    console.error('Server error', err)
-    ctx.status = err.status || 500
-    ctx.body = {error: err.message}
-  }
-})
-
-// register all application routes
 AppRoutes.forEach((route) => router[route.method](route.path, route.action))
 
 async function main() {

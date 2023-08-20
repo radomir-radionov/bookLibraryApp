@@ -1,56 +1,44 @@
-import db from '../../database/postgres/index.js'
+import db from '../../database/postgres/instance/index.js'
 import modelAliases from '../../constants/modelAliases.js'
 
 const {Book} = db
 const {extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
-const getBooks = async (ctx) => {
-  try {
-    const {id} = ctx.request.body
-    console.log(id)
-    const book = await Book.findOne({
-      where: {id},
-      include: [deliveryAlias, bookingAlias, historyAlias],
-    })
+//TODO: create book feature will be soon
 
-    if (!book) {
-      throw new Error('Book not found')
-    }
-
-    const bookHistory = book.histories.length === 0 ? null : book.histories
-
-    ctx.body = {
-      data: {
-        ...book.dataValues,
-        histories: bookHistory,
-      },
-    }
-  } catch (error) {
-    console.log(error)
-    ctx.body = {
-      data: null,
-      error: {
-        status: 500,
-        message: 'Failed to get books data',
-        details: {},
-      },
-    }
-  }
+const createBook = async (ctx, next) => {
+  console.log('feature will be soon')
+  // try {
+  //   const params = ctx.request.body
+  //   const book = await Book.update({...params})
+  //   // await user.addBook(book)
+  //   ctx.body = {data: book}
+  // } catch (error) {
+  //   ctx.assert(ctx.state.book, 500, 'Book was not created')
+  // }
+  // await next()
 }
 
-const getBookById = async (ctx) => {
+const getBooks = async (ctx, next) => {
+  try {
+    ctx.state.books = await Book.findAll()
+    ctx.body = ctx.state.books
+  } catch (error) {
+    ctx.assert(ctx.state.books, 500, 'Books not found')
+  }
+
+  await next()
+}
+
+const getBookById = async (ctx, next) => {
   try {
     const id = ctx.params.id
-    console.log(id)
-    const book = await Book.findOne({
+
+    ctx.state.book = await Book.findOne({
       where: {id},
       include: [extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias],
     })
-
-    if (!book) {
-      throw new Error('Book not found')
-    }
-
+    const book = ctx.state.book
     const bookHistory = book.histories.length === 0 ? null : book.histories
 
     ctx.body = {
@@ -58,42 +46,16 @@ const getBookById = async (ctx) => {
       histories: bookHistory,
     }
   } catch (error) {
-    console.log(error)
-    ctx.body = {
-      data: null,
-      error: {
-        status: 500,
-        message: 'Failed to get book data',
-        details: {},
-      },
-    }
+    ctx.assert(ctx.state.book, 404, 'Book not found')
   }
-}
 
-const createBook = async (ctx) => {
-  try {
-    const {customer, ...params} = ctx.request.body
-    // const user = await User.findOne({where: {id: customer}})
-    const book = await Book.create(params)
-    // @ts-ignore, sequalize is adding special method addBook added to instances
-    // await user.addBook(book)
-    ctx.body = {data: book}
-  } catch (error) {
-    ctx.body = {
-      data: null,
-      error: {
-        status: 500,
-        message: 'Failed to create book',
-        details: {},
-      },
-    }
-  }
+  await next()
 }
 
 const bookHandlers = {
+  createBook,
   getBooks,
   getBookById,
-  createBook,
 }
 
 export default bookHandlers

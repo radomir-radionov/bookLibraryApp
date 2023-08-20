@@ -1,25 +1,20 @@
-import db from '../../database/postgres/index.js'
+import db from '../../database/postgres/instance/index.js'
 
 const {Category} = db
 
-const getCateories = async (ctx) => {
+const getCateories = async (ctx, next) => {
   try {
-    const categories = await Category.findAll()
-    ctx.body = categories
+    ctx.state.categories = await Category.findAll()
+    ctx.body = ctx.state.categories
   } catch (error) {
-    ctx.body = {
-      data: null,
-      error: {
-        status: 500,
-        message: 'Failed to get categories',
-        details: {},
-      },
-    }
+    ctx.assert(ctx.state.categories, 404, 'Books not found')
   }
+
+  await next()
 }
 
-const userHandlers = {
+const cateoryHandlers = {
   getCateories,
 }
 
-export default userHandlers
+export default cateoryHandlers

@@ -3,13 +3,18 @@ import userHandlers from './user.handlers.js'
 const routes = [
   {
     path: '/user',
-    method: 'get',
-    action: userHandlers.getUser,
+    method: 'post',
+    action: userHandlers.createUser,
   },
   {
     path: '/user',
-    method: 'post',
-    action: userHandlers.createUser,
+    method: 'get',
+    action: userHandlers.getUsers,
+  },
+  {
+    path: '/user/:id',
+    method: 'get',
+    action: userHandlers.getUserById,
   },
 ]
 

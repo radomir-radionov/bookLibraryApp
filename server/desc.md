@@ -18,3 +18,7 @@
 - when do i need to create migrations and when some models associated with some models
 - do i need create a new migrations when change model or postgres/index.js
 - what about updatedAt and createdAt fields and some associated fields like bookId or userId
+
+### koa
+
+- how to pass error in try block

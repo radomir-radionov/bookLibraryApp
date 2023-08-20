@@ -3,6 +3,11 @@ import bookHandlers from './book.handlers.js'
 const routes = [
   {
     path: '/book',
+    method: 'post',
+    action: bookHandlers.createBook,
+  },
+  {
+    path: '/book',
     method: 'get',
     action: bookHandlers.getBooks,
   },
@@ -10,11 +15,6 @@ const routes = [
     path: '/book/:id',
     method: 'get',
     action: bookHandlers.getBookById,
-  },
-  {
-    path: '/book',
-    method: 'post',
-    action: bookHandlers.createBook,
   },
 ]
 
