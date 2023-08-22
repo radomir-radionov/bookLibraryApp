@@ -16,7 +16,6 @@ SPA app with client-server architecture.
 
   - Node.js, Koa.js
   - PostgreSQL, Sequelize
-  - Docker
 
 - tools:
 
