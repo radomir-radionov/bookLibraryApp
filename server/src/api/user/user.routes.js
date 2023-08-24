@@ -1,18 +1,23 @@
+import paths from '../../constants/paths.js'
 import userHandlers from './user.handlers.js'
+
+const {
+  userPaths: {user, userId},
+} = paths
 
 const routes = [
   {
-    path: '/user',
+    path: user,
     method: 'post',
     action: userHandlers.createUser,
   },
   {
-    path: '/user',
+    path: user,
     method: 'get',
     action: userHandlers.getUsers,
   },
   {
-    path: '/user/:id',
+    path: userId,
     method: 'get',
     action: userHandlers.getUserById,
   },

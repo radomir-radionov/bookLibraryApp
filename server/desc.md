@@ -9,7 +9,7 @@
 ### Problems
 
 - sequelize doesnt use default value **defaultValue: Sequelize.NOW**
-- circular dependency between book and delivery models
+- circular dependency between book and delivery models etc
 - delete field updateAt for mostly models
 
 ### sequelize

@@ -1,18 +1,18 @@
+import paths from '../../constants/paths.js'
 import bookHandlers from './book.handlers.js'
+
+const {
+  bookPaths: {book, bookId},
+} = paths
 
 const routes = [
   {
-    path: '/book',
-    method: 'post',
-    action: bookHandlers.createBook,
-  },
-  {
-    path: '/book',
+    path: book,
     method: 'get',
     action: bookHandlers.getBooks,
   },
   {
-    path: '/book/:id',
+    path: bookId,
     method: 'get',
     action: bookHandlers.getBookById,
   },
