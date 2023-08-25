@@ -1,5 +1,5 @@
 import paths from '../../constants/paths.js'
-import categoryHandlers from './category.handlers.js'
+import categoryHandlers from './handlers.js'
 
 const {
   categoryPaths: {category},

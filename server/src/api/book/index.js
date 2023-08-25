@@ -1,3 +1,3 @@
-import bookRoutes from './book.routes.js'
+import bookRoutes from './routes.js'
 
 export default bookRoutes

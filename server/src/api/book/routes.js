@@ -1,5 +1,5 @@
 import paths from '../../constants/paths.js'
-import bookHandlers from './book.handlers.js'
+import bookHandlers from './handlers.js'
 
 const {
   bookPaths: {book, bookId},

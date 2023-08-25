@@ -16,6 +16,7 @@ export default (sequelize) => {
     confirmed: DataTypes.BOOLEAN,
     provider: DataTypes.STRING,
     username: DataTypes.STRING,
+    passwordHash: DataTypes.STRING,
   })
 
   // TODO: circular dependency

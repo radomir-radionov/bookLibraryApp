@@ -6,6 +6,10 @@
 
 - add field booksCount to categories when try to get
 
+### future tasks
+
+add access and refresh token
+
 ### Problems
 
 - sequelize doesnt use default value **defaultValue: Sequelize.NOW**

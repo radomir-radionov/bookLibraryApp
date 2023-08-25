@@ -27,5 +27,6 @@ services:
     volumes:
       - ./:/app
       - ./src:/app/src
+      - '/app/node_modules' # ensure that the directory is available within the container.
     ports:
       - '${APP_PORT}:3000'
