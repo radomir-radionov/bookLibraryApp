@@ -2,7 +2,6 @@ import Koa from 'koa'
 import json from 'koa-json'
 import cors from '@koa/cors'
 import session from 'koa-session'
-import jwt from 'jsonwebtoken'
 import passport from 'koa-passport'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
@@ -10,7 +9,6 @@ import dotenv from 'dotenv'
 import AppRoutes from './routes.js'
 import db from './database/postgres/instance/index.js'
 import errorHandler from './middlewares/errorHandler.js'
-import jwtAuthenticater from './middlewares/jwtAuthenticater.js'
 
 dotenv.config()
 
@@ -22,7 +20,6 @@ const port = +process.env.APP_PORT || 3000
 app.keys = [process.env.SESSION_KEY]
 
 app.use(errorHandler).use(cors()).use(bodyParser()).use(json()).use(session({}, app)).use(passport.initialize()).use(passport.session())
-// .use(jwtAuthenticater)
 
 AppRoutes.forEach((route) => router[route.method](route.path, route.action))
 

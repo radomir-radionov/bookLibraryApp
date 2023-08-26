@@ -1,5 +1,6 @@
 import paths from '../../constants/paths.js'
 import userHandlers from './handlers.js'
+import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
 
 const {
   userPaths: {user, userId},
@@ -20,7 +21,11 @@ const routes = [
   {
     path: user,
     method: 'get',
-    action: userHandlers.getUsers,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.getUsers(ctx, next)
+      })
+    },
   },
   {
     path: userId,

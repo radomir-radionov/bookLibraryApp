@@ -22,7 +22,7 @@ const createUser = async (ctx, next) => {
   const user = omit(createdUser.dataValues, ['passwordHash'])
   ctx.assert(createdUser, 500, CREATE_USER_ERROR)
 
-  const token = createJwtToken({sub: user.id, iat: Date.now()})
+  const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
 
   ctx.body = {jwt: token, user}
   await next()
@@ -39,7 +39,7 @@ const authenticateUser = async (ctx, next) => {
   ctx.assert(isPasswordEquals, 401, AUTH_WRONG_DATA)
 
   const user = omit(foundUser.dataValues, ['passwordHash'])
-  const token = createJwtToken({sub: user.id, iat: Date.now()})
+  const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
 
   ctx.body = {jwt: token, user}
 

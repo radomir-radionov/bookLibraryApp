@@ -1,3 +1,5 @@
+import errorText from '../constants/errorText.js'
+
 const errorHandler = async (ctx, next) => {
   try {
     await next()
@@ -7,7 +9,7 @@ const errorHandler = async (ctx, next) => {
       data: null,
       error: {
         status: ctx.status,
-        message: error.message || 'Internal Server Error',
+        message: error.message || errorText.INTERNAL_SERVER_ERROR,
       },
     }
   }
