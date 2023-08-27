@@ -10,7 +10,6 @@
     "stop:force": "docker compose down -v",
     "docker:up": "docker compose up -d",
     "docker:rs": "docker compose down && docker compose up -d --build && docker logs -f server",
-    "docker:down": "docker compose down",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:undo": "npx sequelize-cli db:migrate:undo",
     "db:undo:all": "npx sequelize-cli db:migrate:undo:all",
