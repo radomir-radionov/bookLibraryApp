@@ -1,4 +1,5 @@
 node_modules/
+public/images/covers/
 
 .env
 desc.md  

@@ -26,3 +26,11 @@ add access and refresh token
 ### koa
 
 - how to pass error in try block
+
+### routes
+
+-user handlers has tp much fields
+
+```javascript
+const user = omit(foundUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
+```

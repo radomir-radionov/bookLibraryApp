@@ -14,7 +14,7 @@
     "db:undo": "npx sequelize-cli db:migrate:undo",
     "db:undo:all": "npx sequelize-cli db:migrate:undo:all",
     "db:seed:up": "npx sequelize-cli db:seed:all",
-    "db:seed:down": "npx sequelize-cli db:seed:undo "
+    "db:seed:down": "npx sequelize-cli db:seed:undo"
   },
   "author": "Radomir R",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "koa-passport": "^6.0.0",
     "koa-router": "^12.0.0",
     "koa-session": "^6.4.0",
+    "koa-static": "^5.0.0",
     "lodash": "^4.17.21",
     "pg": "^8.11.1",
     "sequelize": "^6.32.1"

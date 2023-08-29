@@ -6,12 +6,11 @@ const {
 } = paths
 
 const routes = [
-  {
-    path: register,
-    method: 'post',
-    action: authHandlers.createUser,
-  },
-
+  // {
+  //   path: register,
+  //   method: 'post',
+  //   action: authHandlers.createUser,
+  // },
   //   {
   //     path: forgotPassword,
   //     method: 'post',

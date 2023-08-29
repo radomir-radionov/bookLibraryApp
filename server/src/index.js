@@ -5,6 +5,8 @@ import session from 'koa-session'
 import passport from 'koa-passport'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
+import serve from 'koa-static'
+import path from 'path'
 import dotenv from 'dotenv'
 import AppRoutes from './routes.js'
 import db from './database/postgres/instance/index.js'
@@ -18,6 +20,9 @@ const {sequelize} = db
 const port = +process.env.APP_PORT || 3000
 
 app.keys = [process.env.SESSION_KEY]
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
+app.use(serve(path.join(__dirname, '../public/images/covers')))
 
 app.use(errorHandler).use(cors()).use(bodyParser()).use(json()).use(session({}, app)).use(passport.initialize()).use(passport.session())
 

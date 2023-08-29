@@ -2,6 +2,7 @@ import pkg from 'lodash'
 import {compare} from 'bcrypt'
 
 import db from '../../database/postgres/instance/index.js'
+import modelAliases from '../../constants/modelAliases.js'
 import errorText from '../../constants/errorText.js'
 import {createJwtToken} from '../../services/jwt.js'
 import createHash from '../../utils/createHash.js'
@@ -9,6 +10,7 @@ import createHash from '../../utils/createHash.js'
 const {omit} = pkg
 const {User} = db
 const {INVALID_USER, EXSITED_USER, USER_NOT_FOUND, AUTH_WRONG_DATA, CREATE_USER_ERROR} = errorText
+const {deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
 const createUser = async (ctx, next) => {
   const registerData = ctx.request.body
@@ -56,8 +58,13 @@ const getUsers = async (ctx, next) => {
 const getUserById = async (ctx, next) => {
   const id = ctx.params.id
 
-  const user = await User.findOne({where: {id}})
-  ctx.assert(user, 404, INVALID_USER)
+  const foundUser = await User.findOne({
+    where: {id},
+    include: [deliveryAlias, bookingAlias, historyAlias, commentAlias],
+  })
+
+  const user = omit(foundUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
+  ctx.assert(foundUser, 404, INVALID_USER)
   ctx.body = user
 
   await next()

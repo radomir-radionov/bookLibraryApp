@@ -16,7 +16,7 @@ module.exports = {
       },
       rating: {
         type: Sequelize.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       title: {
         type: Sequelize.STRING,
@@ -43,7 +43,6 @@ module.exports = {
       updatedAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: null,
       },
     })
   },
