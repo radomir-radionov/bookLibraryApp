@@ -8,8 +8,8 @@ import httpService from '../../http';
 import { PostCommentsProps, PutCommentProps, PutEditUserDataProps } from './types';
 
 const userService = {
-  getUser: async () => {
-    const resp = await httpService.get(serverEndpoints.USER);
+  getUser: async (id: number) => {
+    const resp = await httpService.get(`${serverEndpoints.USER}/${id}`);
 
     return resp.data;
   },

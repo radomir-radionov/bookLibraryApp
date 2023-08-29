@@ -6,6 +6,7 @@ import { TUserData } from 'types/user';
 const initialState: TUserState = {
   jwt: '',
   userData: {} as TUserData,
+  additionalInfo: {} as any,
   enteredBookName: '',
   isLoading: false,
 };
@@ -20,7 +21,11 @@ export const userSlice = createSlice({
     setUserData: (state, { payload }) => {
       state.userData = payload;
     },
-    getUser: (state) => {
+
+    setAdditionalInfo: (state, { payload }) => {
+      state.additionalInfo = payload;
+    },
+    getUser: (state, { payload }) => {
       state.isLoading = true;
     },
     clearUser: () => initialState,
@@ -29,7 +34,7 @@ export const userSlice = createSlice({
     },
     setAvatar: (state, { payload }: PayloadAction<string>) => {
       if (state.userData) {
-        state.userData.avatar = payload;
+        state.additionalInfo.avatar = payload;
       }
     },
     putComment: (state, { payload }) => {

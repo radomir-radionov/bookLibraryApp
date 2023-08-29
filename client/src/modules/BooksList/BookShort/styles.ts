@@ -28,13 +28,6 @@ export const BookItemStyled = styled.article`
   }
 `;
 
-export const ImgWrapper = styled.div`
-  @media (max-width: ${device.tablet}) {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
 export const ImgBox = styled.div`
   display: flex;
   justify-content: center;

@@ -28,10 +28,6 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     box-shadow: 0px 2px 5px rgba(54, 54, 54, 0.1);
   }
 
-  &:active {
-    box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
-  }
-
   &:disabled {
     outline: 1px solid ${colors.GREY_BLACK_20};
     color: ${colors.GREY_BLACK_40};

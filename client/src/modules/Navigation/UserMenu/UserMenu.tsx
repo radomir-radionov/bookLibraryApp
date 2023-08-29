@@ -19,11 +19,7 @@ const UserMenu = ({ setIsBurgerMenuOpen }: TUserMenu) => {
     dispatch(userActions.clearUser());
   };
 
-  const onBtnProfileClick = () => {
-    !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
-    dispatch(userActions.getUser());
-  };
-
+  const onBtnProfileClick = () => !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
   return (
     <UserMenuStyled>
       <MenuItem onClick={onBtnProfileClick} data-test-id={dataTestId.BUTTON_PROFILE}>

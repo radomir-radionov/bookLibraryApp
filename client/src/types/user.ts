@@ -25,14 +25,17 @@ export type TUserData = {
   password?: string;
   confirmed: boolean;
   blocked: boolean;
-  createdAt: string;
-  updatedAt: string;
   firstName: string;
   lastName: string;
   phone: string;
-  comments: TComment[];
-  role: RoleProps;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TAdditionalInfo = {
   avatar: string;
+  role: RoleProps;
+  comments: TComment[];
   booking: TUserBooking;
   delivery: TUserDelivery;
   history: TUserHistory;

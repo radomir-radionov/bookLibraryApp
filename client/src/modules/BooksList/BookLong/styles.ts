@@ -4,7 +4,7 @@ import { colors, device, formalization, typography } from 'styles';
 
 export const BookItemStyled = styled.article`
   display: flex;
-  flex: 1;
+  gap: 16px;
   height: 218px;
   padding: 24px 24px 24px 16px;
   border-radius: 10px;
@@ -18,7 +18,6 @@ export const BookItemStyled = styled.article`
   }
 
   @media (max-width: ${device.tablet}) {
-    height: fit-content;
     padding: 16px 16px 16px 8px;
   }
 
@@ -27,22 +26,11 @@ export const BookItemStyled = styled.article`
   }
 `;
 
-export const ImgWrapper = styled.div`
-  width: 132px;
-  margin-right: 16px;
-
-  @media (max-width: ${device.tablet}) {
-    width: 70px;
-    height: 100px;
-    margin-right: 8px;
-  }
-`;
-
 export const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 132px;
   height: 100%;
   background: ${colors.GREY_BLACK_5};
   border: 1px solid ${colors.GREY_BLACK_40};
@@ -51,8 +39,7 @@ export const ImgBox = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 132px;
 `;
 
 export const Info = styled.div`
@@ -142,4 +129,6 @@ export const Active = styled.div`
   }
 `;
 
-export const CatIcon = styled(Cat_Icon)``;
+export const CatIcon = styled(Cat_Icon)`
+  width: 34px;
+`;

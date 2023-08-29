@@ -3,9 +3,7 @@ export type TBook = {
   rating: number | null;
   title: string;
   authors: string[] | null;
-  image: {
-    url: string | null;
-  } | null;
+  image: string | null;
   categories: string[] | null;
   id: number;
   booking: {

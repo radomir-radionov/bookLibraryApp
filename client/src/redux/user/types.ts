@@ -1,4 +1,4 @@
-import { TUserData } from 'types/user';
+import { TAdditionalInfo, TUserData } from 'types/user';
 
 export type IUserData = {
   id: number;
@@ -17,6 +17,7 @@ export type IUserData = {
 export type TUserState = {
   jwt: string;
   userData: TUserData;
+  additionalInfo: TAdditionalInfo;
   enteredBookName: string;
   isLoading: boolean;
 };

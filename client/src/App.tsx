@@ -10,10 +10,11 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
+    const user = JSON.parse(localStorage.getItem('userData') || 'null');
 
     if (jwt && ignore) {
       dispatch(userActions.setJwt({ jwt }));
-      dispatch(userActions.getUser());
+      dispatch(userActions.setUserData(user));
     }
 
     return () => setIgnore(true);

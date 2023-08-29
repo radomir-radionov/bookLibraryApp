@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from 'redux/auth';
 import { selectErrorStatus } from 'redux/auth/selectors';
-import { Button, CustomPasswordHint, FormFooter, Input, InputPassword } from 'components';
+import { Button, FormFooter, Input, InputPassword } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import {
@@ -22,7 +22,7 @@ import {
 import hintText from 'constants/hintText';
 
 type TAuthForm = {
-  identifier: string;
+  email: string;
   password: string;
 };
 
@@ -38,9 +38,12 @@ const AuthStep = () => {
 
   const { errors } = methods.formState;
 
-  const isBtnDisabled = !!(errors.identifier || errors.password);
+  const isBtnDisabled = !!(errors.email || errors.password);
 
-  const onSubmit: SubmitHandler<TAuthForm> = (data) => dispatch(authActions.setAuthData({ data, navigate }));
+  const onSubmit: SubmitHandler<TAuthForm> = (data) => {
+    console.log(data);
+    dispatch(authActions.setAuthData({ data, navigate }));
+  };
 
   return (
     <ModalStyled>
@@ -48,7 +51,7 @@ const AuthStep = () => {
         <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.AUTH_FORM}>
           <Title>Вход в личный кабинет</Title>
           <Fields>
-            <Input name='identifier' labelText='Логин' error={errors.identifier?.message} />
+            <Input name='email' labelText='Логин' error={errors.email?.message} />
             <InputAuthPasswordWrapper>
               <InputPassword name='password' labelText='Пароль' error={errors.password?.message} />
               <AssistiveText visiable={errorStatus === 400}>

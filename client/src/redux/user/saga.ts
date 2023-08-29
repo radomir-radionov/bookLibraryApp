@@ -12,18 +12,18 @@ import { TBookDetailed } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
 import { selectUserDataId } from './selectors';
-import { TUserData } from 'types/user';
+import { TAdditionalInfo, TUserData } from 'types/user';
 
 export function* clearUserData() {
   yield localStorage.removeItem('jwt');
   yield localStorage.removeItem('userData');
 }
 
-export function* getUser() {
+export function* getUser({ payload }: ReturnType<typeof userActions.getUser>) {
   try {
-    const data: TUserData = yield call(() => userService.getUser());
+    const data: TAdditionalInfo = yield call(() => userService.getUser(payload));
 
-    yield put(userActions.setUserData(data));
+    yield put(userActions.setAdditionalInfo(data));
     yield put(userActions.cancelLoading());
   } catch (e) {
     yield put(userActions.cancelLoading());
@@ -41,7 +41,7 @@ export function* putComment({ payload }: ReturnType<typeof userActions.putCommen
   try {
     yield call(() => userService.putComment(payload));
 
-    yield put(userActions.getUser());
+    // yield put(userActions.getUser());
     yield put(modalActions.close());
     yield put(userActions.cancelLoading());
     yield put(
@@ -73,7 +73,7 @@ export function* postComments({ payload }: ReturnType<typeof userActions.postCom
     const bookData: TBookDetailed = yield call(() => booksService.getBook(book));
 
     yield put(bookActions.setBook(bookData));
-    yield put(userActions.getUser());
+    // yield put(userActions.getUser());
     yield put(modalActions.close());
     yield put(userActions.cancelLoading());
     yield put(
@@ -173,7 +173,7 @@ export function* putEditUserData({ payload }: ReturnType<typeof userActions.putE
 export function* deletelBooking({ payload }: ReturnType<typeof userActions.deletelBooking>) {
   try {
     yield call(() => userService.deleteBooking(payload));
-    yield put(userActions.getUser());
+    // yield put(userActions.getUser());
     yield put(userActions.cancelLoading());
     yield put(
       toastActions.addToast({

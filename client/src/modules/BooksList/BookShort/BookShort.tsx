@@ -10,7 +10,7 @@ import { TBook } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
-import { Author, BookItemStyled, CatIcon, Img, ImgBox, ImgWrapper, Info, NameBox, SubTitleWrapper } from './styles';
+import { Author, BookItemStyled, CatIcon, Img, ImgBox, Info, NameBox, SubTitleWrapper } from './styles';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -59,15 +59,13 @@ const BookShort = ({ data, view }: BookShortProps) => {
 
   return (
     <BookItemStyled onClick={onNavigateClick} data-test-id={dataTestId.CARD}>
-      <ImgWrapper>
-        {image?.url ? (
-          <Img src={image.url} alt='Book cover' />
-        ) : (
-          <ImgBox>
-            <CatIcon />
-          </ImgBox>
-        )}
-      </ImgWrapper>
+      {image ? (
+        <Img src={`http://localhost:5000/${image}`} alt='Book cover' />
+      ) : (
+        <ImgBox>
+          <CatIcon />
+        </ImgBox>
+      )}
       <Info>
         <RatingList rating={rating} />
         <NameBox>

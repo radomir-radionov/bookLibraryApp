@@ -14,7 +14,7 @@ export const authSlice = createSlice({
   name: 'AUTH',
   initialState,
   reducers: {
-    setDefiniteStep: (state, { payload }) => {
+    setStep: (state, { payload }) => {
       state.step = payload;
     },
     setAuthData: (state, { payload }) => {

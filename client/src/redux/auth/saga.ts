@@ -13,14 +13,12 @@ export function* postAuthData({ payload }: ReturnType<typeof authActions.setAuth
   const { data, navigate } = payload;
 
   try {
-    const res: TAuthResponse = yield call(() => {
-      return authService.postAuthentication(data);
-    });
+    const res: TAuthResponse = yield call(() => authService.postAuthentication(data));
 
     yield put(userActions.setJwt(res.jwt));
+    yield put(userActions.setUserData(res.user));
     localStorage.setItem('jwt', res.jwt);
     localStorage.setItem('userData', JSON.stringify(res.user));
-    yield put(userActions.getUser());
     yield put(authActions.cancelLoading());
     yield navigate(pageRoutes.BOOKS_ALL);
   } catch (e) {
@@ -31,7 +29,7 @@ export function* postAuthData({ payload }: ReturnType<typeof authActions.setAuth
       yield put(authActions.setErrorStatus(response.status));
     } else {
       yield put(authActions.setResponseMessage(responseText.AUTH_SMTH_WRONG));
-      yield put(authActions.setDefiniteStep(2));
+      yield put(authActions.setStep(2));
     }
 
     yield put(authActions.cancelLoading());

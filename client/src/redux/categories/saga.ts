@@ -12,7 +12,6 @@ import { categoriesActions } from './slice';
 export function* getCategories() {
   try {
     const categories: TCategory[] = yield call(() => booksService.getCategories());
-
     yield put(categoriesActions.setCategories(categories));
   } catch (e) {
     yield put(categoriesActions.cancelLoading());

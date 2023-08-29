@@ -11,7 +11,7 @@ export const BooksListStyled = styled.section<TBooksListStyled>`
       case 'tiles':
         return css`
           display: flex;
-          gap: 24px 20px;
+          gap: 24px 16px;
           flex-wrap: wrap;
           transition: all 0.2s ease-out;
         `;
@@ -25,7 +25,7 @@ export const BooksListStyled = styled.section<TBooksListStyled>`
   }}
 
   @media (max-width: ${device.laptopL}) {
-    gap: 24px 20px;
+    gap: 24px 16px;
   }
 
   @media (max-width: ${device.tablet}) {

@@ -8,7 +8,7 @@ export type PostRegistrationProps = {
 };
 
 export type PostAuthenticationProps = {
-  identifier: string;
+  email: string;
   password: string;
 };
 

@@ -10,18 +10,7 @@ import { TBook } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
-import {
-  Active,
-  Author,
-  BookItemStyled,
-  CatIcon,
-  Img,
-  ImgBox,
-  ImgWrapper,
-  Info,
-  NameBox,
-  SubTitleWrapper,
-} from './styles';
+import { Active, Author, BookItemStyled, CatIcon, Img, ImgBox, Info, NameBox, SubTitleWrapper } from './styles';
 
 type TProps = {
   data: TBook;
@@ -36,7 +25,6 @@ const BookLong = ({ data, view }: TProps) => {
   const { category } = useParams();
 
   const { id, title, authors, rating, issueYear, booking, delivery, image } = data;
-  const imgSrc = `${image?.url}`;
   const bookCommentIds = comments?.map(({ bookId }) => bookId);
   const isCommentedBook = bookCommentIds?.includes(id);
   const filtredCommentedBookData = comments?.find((comment) => comment.bookId === id);
@@ -65,15 +53,13 @@ const BookLong = ({ data, view }: TProps) => {
 
   return (
     <BookItemStyled onClick={onBookClick} data-test-id={dataTestId.CARD}>
-      <ImgWrapper>
-        {imgSrc ? (
-          <Img src={imgSrc} alt='Book cover' />
-        ) : (
-          <ImgBox>
-            <CatIcon />
-          </ImgBox>
-        )}
-      </ImgWrapper>
+      {image ? (
+        <Img src={`http://localhost:5000/${image}`} alt='Book cover' />
+      ) : (
+        <ImgBox>
+          <CatIcon />
+        </ImgBox>
+      )}
       <Info>
         <NameBox>
           <SubTitleWrapper>
