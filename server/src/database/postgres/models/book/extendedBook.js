@@ -7,17 +7,26 @@ const {bookId} = foreignKeys
 const {extendedBookAlias, bookAlias} = modelAliases
 
 export default (sequelize) => {
-  const ExtendedBook = sequelize.define(modelNames.extendedBook, {
-    bookId: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    publish: DataTypes.STRING,
-    pages: DataTypes.STRING,
-    cover: DataTypes.STRING,
-    weight: DataTypes.STRING,
-    format: DataTypes.STRING,
-    ISBN: DataTypes.STRING,
-    producer: DataTypes.STRING,
-  })
+  const ExtendedBook = sequelize.define(
+    modelNames.extendedBook,
+    {
+      bookId: DataTypes.INTEGER,
+      description: DataTypes.TEXT,
+      publish: DataTypes.STRING,
+      pages: DataTypes.STRING,
+      cover: DataTypes.STRING,
+      weight: DataTypes.STRING,
+      format: DataTypes.STRING,
+      ISBN: DataTypes.STRING,
+      producer: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
+    },
+    {
+      updatedAt: true,
+      timestamps: true,
+    }
+  )
 
   // TODO: circular dependency
 

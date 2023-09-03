@@ -5,5 +5,4 @@ module.exports = {
   dateOrder: new Date(),
   customerFirstName: 'Алексей',
   customerLastName: 'Володько',
-  createdAt: new Date(),
 }

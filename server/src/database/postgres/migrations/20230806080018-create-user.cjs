@@ -41,6 +41,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       passwordHash: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -48,7 +52,7 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        defaultValue: Sequelize.literal('NOW()'),
       },
       updatedAt: {
         allowNull: true,

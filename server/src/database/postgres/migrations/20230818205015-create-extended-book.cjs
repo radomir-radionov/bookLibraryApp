@@ -12,47 +12,48 @@ module.exports = {
       },
       bookId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       publish: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       pages: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       cover: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       weight: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       format: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       ISBN: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       producer: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
+        defaultValue: Sequelize.literal('NOW()'),
       },
       updatedAt: {
+        type: Sequelize.STRING,
         allowNull: true,
-        type: Sequelize.DATE,
       },
     })
   },

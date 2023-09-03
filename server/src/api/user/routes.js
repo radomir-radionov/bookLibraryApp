@@ -3,21 +3,11 @@ import userHandlers from './handlers.js'
 import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
 
 const {
-  userPaths: {user, userId},
+  userPaths: {user, userId, comments, commentId},
   authPaths: {register, auth},
 } = paths
 
 const routes = [
-  {
-    path: register,
-    method: 'post',
-    action: userHandlers.createUser,
-  },
-  {
-    path: auth,
-    method: 'post',
-    action: userHandlers.authenticateUser,
-  },
   {
     path: user,
     method: 'get',
@@ -31,6 +21,36 @@ const routes = [
     path: userId,
     method: 'get',
     action: userHandlers.getUserById,
+  },
+  {
+    path: register,
+    method: 'post',
+    action: userHandlers.createUser,
+  },
+  {
+    path: auth,
+    method: 'post',
+    action: userHandlers.authenticateUser,
+  },
+  {
+    path: comments,
+    method: 'post',
+    action: userHandlers.createComment,
+  },
+  {
+    path: userId,
+    method: 'put',
+    action: userHandlers.updateUser,
+  },
+  {
+    path: commentId,
+    method: 'put',
+    action: userHandlers.updateComment,
+  },
+  {
+    path: commentId,
+    method: 'put',
+    action: userHandlers.updateComment,
   },
 ]
 

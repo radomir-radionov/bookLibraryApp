@@ -6,8 +6,10 @@ const paths = {
     resetPassword: '/api/auth/reset-password',
   },
   userPaths: {
-    user: '/api/user',
-    userId: '/api/user/:id',
+    user: '/api/users',
+    userId: '/api/users/:id',
+    comments: '/api/comments',
+    commentId: '/api/comments/:id',
   },
   bookPaths: {
     book: '/api/book',

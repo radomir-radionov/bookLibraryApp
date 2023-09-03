@@ -6,7 +6,6 @@ module.exports = [
     authors: ['Александр Остервальдер'],
     image: null,
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -15,7 +14,6 @@ module.exports = [
     authors: ['Александр Остервальдер'],
     image: '2.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -25,7 +23,6 @@ module.exports = [
     image: '3.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -35,7 +32,6 @@ module.exports = [
     image: '4.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -44,7 +40,6 @@ module.exports = [
     authors: ['Алексей Марков'],
     image: '5.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -53,7 +48,6 @@ module.exports = [
     authors: ['Алексей Марков'],
     image: '6.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -62,7 +56,6 @@ module.exports = [
     authors: ['Бенджамин Грэм'],
     image: null,
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -71,7 +64,6 @@ module.exports = [
     authors: ['Брайан Трейси'],
     image: '8.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -81,7 +73,6 @@ module.exports = [
     image: '9.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -90,7 +81,6 @@ module.exports = [
     authors: ['Владимир Якуба'],
     image: '10.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -100,7 +90,6 @@ module.exports = [
     image: '11.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -109,7 +98,6 @@ module.exports = [
     authors: ['Вячеслав Семенчук'],
     image: '12.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -119,7 +107,6 @@ module.exports = [
     image: '13.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -129,7 +116,6 @@ module.exports = [
     image: '14.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -139,7 +125,6 @@ module.exports = [
     image: '15.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -149,7 +134,6 @@ module.exports = [
     image: '16.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -159,7 +143,6 @@ module.exports = [
     image: '17.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -169,7 +152,6 @@ module.exports = [
     image: '18.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -179,7 +161,6 @@ module.exports = [
     image: '19.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -189,7 +170,6 @@ module.exports = [
     image: '20.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -199,7 +179,6 @@ module.exports = [
     image: '21.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -209,7 +188,6 @@ module.exports = [
     image: '22.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -219,7 +197,6 @@ module.exports = [
     image: '23.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -229,7 +206,6 @@ module.exports = [
     image: '24.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -239,7 +215,6 @@ module.exports = [
     image: '25.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -249,7 +224,6 @@ module.exports = [
     image: '26.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -259,7 +233,6 @@ module.exports = [
     image: '27.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2014',
@@ -269,7 +242,6 @@ module.exports = [
     image: '28.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -279,7 +251,6 @@ module.exports = [
     image: '29.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -289,7 +260,6 @@ module.exports = [
     image: '30.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -298,7 +268,6 @@ module.exports = [
     authors: ['Марк Мэнсон'],
     image: '31.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -307,7 +276,6 @@ module.exports = [
     authors: ['Максим Батырев (Комбат)'],
     image: '32.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -317,7 +285,6 @@ module.exports = [
     image: '33.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -327,7 +294,6 @@ module.exports = [
     image: '34.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -337,7 +303,6 @@ module.exports = [
     image: '35.webp',
 
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -346,7 +311,6 @@ module.exports = [
     authors: ['Максим Ильяхов'],
     image: '36.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -355,7 +319,6 @@ module.exports = [
     authors: ['Максим Ильяхов'],
     image: '37.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -364,7 +327,6 @@ module.exports = [
     authors: ['Нассим Талеб'],
     image: '38.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2012',
@@ -373,7 +335,6 @@ module.exports = [
     authors: ['Олег Тиньков'],
     image: '39.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -382,7 +343,6 @@ module.exports = [
     authors: ['Оливер Кемпкенс'],
     image: '40.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -391,7 +351,6 @@ module.exports = [
     authors: ['Питер Тиль'],
     image: '41.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -400,7 +359,6 @@ module.exports = [
     authors: ['Роб Фитцпатрик'],
     image: '42.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -409,7 +367,6 @@ module.exports = [
     authors: ['Робин Шарма'],
     image: '43.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -418,7 +375,6 @@ module.exports = [
     authors: ['Стивен Р. Кови'],
     image: '44.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -427,7 +383,6 @@ module.exports = [
     authors: ['Сэм Уолтон'],
     image: '45.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -436,7 +391,6 @@ module.exports = [
     authors: ['Тао Тань'],
     image: '46.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -445,7 +399,6 @@ module.exports = [
     authors: ['Тинькофф'],
     image: '47.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -454,7 +407,6 @@ module.exports = [
     authors: ['Тони Бьюзен'],
     image: '48.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -463,7 +415,6 @@ module.exports = [
     authors: ['Фил Найт'],
     image: '49.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -472,7 +423,6 @@ module.exports = [
     authors: ['Максим Котин'],
     image: '50.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -481,7 +431,6 @@ module.exports = [
     authors: ['Евгений Черняк'],
     image: '51.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2015',
@@ -490,7 +439,6 @@ module.exports = [
     authors: ['Тони Бьюзен'],
     image: '52.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -499,7 +447,6 @@ module.exports = [
     authors: ['Кевин Круз'],
     image: '53.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -508,7 +455,6 @@ module.exports = [
     authors: ['Нассим Николас Талеб'],
     image: '54.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -517,7 +463,6 @@ module.exports = [
     authors: ['Сергей Бехтерев'],
     image: '55.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -526,7 +471,6 @@ module.exports = [
     authors: ['Роджер Дули'],
     image: '56.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -535,7 +479,6 @@ module.exports = [
     authors: ['Рэй Далио'],
     image: '57.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -544,7 +487,6 @@ module.exports = [
     authors: ['Максим Ильяхов'],
     image: null,
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -553,7 +495,6 @@ module.exports = [
     authors: ['Джек Траут', 'Эл Райс'],
     image: '59.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -562,7 +503,6 @@ module.exports = [
     authors: ['Марки Форстер'],
     image: '60.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -571,7 +511,6 @@ module.exports = [
     authors: ['Ричард Талер'],
     image: '61.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -580,7 +519,6 @@ module.exports = [
     authors: ['Ли Якокка'],
     image: '62.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -589,7 +527,6 @@ module.exports = [
     authors: ['Дэвид Блэнд', 'Алекс Остервальдер'],
     image: '63.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -598,7 +535,6 @@ module.exports = [
     authors: ['Алекс Остервальдер', 'Ив Пинье', 'Фред Этьембль', 'Алан Смит'],
     image: '64.webp',
     categories: ['Бизнес'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -607,7 +543,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: '65.webp',
     categories: ['Психология', 'Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2015',
@@ -616,7 +551,6 @@ module.exports = [
     authors: ['Джон Кехо'],
     image: '66.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -625,7 +559,6 @@ module.exports = [
     authors: ['Джон Кехо'],
     image: '67.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -634,7 +567,6 @@ module.exports = [
     authors: ['Крис Бэйли'],
     image: '68.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -643,7 +575,6 @@ module.exports = [
     authors: ['Мила Левчук'],
     image: '69.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -652,7 +583,6 @@ module.exports = [
     authors: ['Михаил Лабковский'],
     image: null,
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -661,7 +591,6 @@ module.exports = [
     authors: ['Михай Чиксентмихайи'],
     image: null,
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -670,7 +599,6 @@ module.exports = [
     authors: ['Сатья Дас'],
     image: '72.webp',
     categories: ['Психология', 'Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -679,7 +607,6 @@ module.exports = [
     authors: ['Эмили Нагоски '],
     image: '73.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -688,7 +615,6 @@ module.exports = [
     authors: ['Энди Паддикомб'],
     image: null,
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -697,7 +623,6 @@ module.exports = [
     authors: ['Эрик Берн'],
     image: '75.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -706,7 +631,6 @@ module.exports = [
     authors: ['Эрик Берн'],
     image: '76.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -715,7 +639,6 @@ module.exports = [
     authors: ['Келли Макгонигал'],
     image: '77.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -724,7 +647,6 @@ module.exports = [
     authors: ['Кэролайн Форен'],
     image: '78.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -733,7 +655,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: '79.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -742,7 +663,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: '80.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -751,7 +671,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: '81.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -760,7 +679,6 @@ module.exports = [
     authors: ['Би Джей Фогг'],
     image: '82.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -769,7 +687,6 @@ module.exports = [
     authors: ['Пакчок Ринпоче', 'Эррик Соломон'],
     image: '83.webp',
     categories: ['Психология'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -778,7 +695,6 @@ module.exports = [
     authors: ['Анна Быкова'],
     image: '84.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -787,7 +703,6 @@ module.exports = [
     authors: ['Анна Быкова'],
     image: '85.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -796,7 +711,6 @@ module.exports = [
     authors: ['Анна Быкова'],
     image: null,
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2013',
@@ -805,7 +719,6 @@ module.exports = [
     authors: ['Елена Смирнова'],
     image: '87.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -814,7 +727,6 @@ module.exports = [
     authors: ['Людмила Петрановская'],
     image: '88.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2010',
@@ -823,7 +735,6 @@ module.exports = [
     authors: ['Мария Монтессори'],
     image: '89.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -832,7 +743,6 @@ module.exports = [
     authors: ['Бодо Шефер'],
     image: '90.webp',
     categories: ['Бизнес', 'Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -841,7 +751,6 @@ module.exports = [
     authors: ['Любвь Сурудо'],
     image: '91.webp',
     categories: ['Родителям'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -850,7 +759,6 @@ module.exports = [
     authors: ['Мэттью Уолкер'],
     image: '92.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -859,7 +767,6 @@ module.exports = [
     authors: ['Юваль Ной Харари'],
     image: '93.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -868,7 +775,6 @@ module.exports = [
     authors: ['Юваль Ной Харари'],
     image: '94.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -877,7 +783,6 @@ module.exports = [
     authors: ['С. Барсов'],
     image: '95.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -886,7 +791,6 @@ module.exports = [
     authors: ['Массимо Пильюччи'],
     image: '96.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2021',
@@ -895,7 +799,6 @@ module.exports = [
     authors: ['Евгения Шестакова'],
     image: '97.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -904,7 +807,6 @@ module.exports = [
     authors: ['Билл Брайсон'],
     image: '98.webp',
     categories: ['Нон-фикшн'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -913,7 +815,6 @@ module.exports = [
     authors: ['Айн Рэнд'],
     image: '99.webp',
     categories: ['Художественная литература'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -922,7 +823,6 @@ module.exports = [
     authors: ['Айн Рэнд'],
     image: '100.webp',
     categories: ['Художественная литература'],
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -931,8 +831,6 @@ module.exports = [
     authors: ['Айн Рэнд'],
     image: '101.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -941,8 +839,6 @@ module.exports = [
     authors: ['Антуан де Сент-Экзюпери'],
     image: '102.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2010',
@@ -951,8 +847,6 @@ module.exports = [
     authors: ['Аркадий и Борис Стругацкие'],
     image: '103.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2012',
@@ -961,8 +855,6 @@ module.exports = [
     authors: ['Венедикт Ерофеев'],
     image: '104.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2011',
@@ -971,8 +863,6 @@ module.exports = [
     authors: ['Артур Конан Дойл'],
     image: '105.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -981,8 +871,6 @@ module.exports = [
     authors: ['Габриэль Гарсия Маркес'],
     image: '106.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -991,8 +879,6 @@ module.exports = [
     authors: ['Габриэль Гарсия Маркес'],
     image: '107.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -1001,8 +887,6 @@ module.exports = [
     authors: ['Дженифер Уорф'],
     image: '108.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -1011,8 +895,6 @@ module.exports = [
     authors: ['Дженифер Уорф'],
     image: '109.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1021,8 +903,6 @@ module.exports = [
     authors: ['Джон Р.Р. Толкин'],
     image: '110.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -1031,8 +911,6 @@ module.exports = [
     authors: ['Дэниел Киз'],
     image: '111.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2012',
@@ -1041,8 +919,6 @@ module.exports = [
     authors: ['Милош Губачек'],
     image: '112.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1051,8 +927,6 @@ module.exports = [
     authors: ['Оноре де Бальзак'],
     image: '113.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1061,8 +935,6 @@ module.exports = [
     authors: ['Рэй Бредбери'],
     image: '114.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -1071,8 +943,6 @@ module.exports = [
     authors: ['Фредерик Бакман'],
     image: '115.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1081,8 +951,6 @@ module.exports = [
     authors: ['Наринэ Абгарян'],
     image: '116.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2014',
@@ -1091,8 +959,6 @@ module.exports = [
     authors: ['Эрих Мария Ремарк'],
     image: '117.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -1101,8 +967,6 @@ module.exports = [
     authors: ['Януш Леон Вишневский'],
     image: '118.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1111,8 +975,6 @@ module.exports = [
     authors: ['Луиза Мэй Олкотт'],
     image: '119.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1121,8 +983,6 @@ module.exports = [
     authors: ['Дж. К. Роулинг '],
     image: '120.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2017',
@@ -1131,8 +991,6 @@ module.exports = [
     authors: ['J. K. Rowling'],
     image: '121.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -1141,8 +999,6 @@ module.exports = [
     authors: ['Дэниел Киз'],
     image: '122.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1151,8 +1007,6 @@ module.exports = [
     authors: ['Мариам Петросян'],
     image: '123.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1161,8 +1015,6 @@ module.exports = [
     authors: ['Мариам Петросян'],
     image: '124.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1171,8 +1023,6 @@ module.exports = [
     authors: ['Мариам Петросян'],
     image: '125.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1181,8 +1031,6 @@ module.exports = [
     authors: ['Евгений ЧеширКо'],
     image: '126.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2014',
@@ -1191,8 +1039,6 @@ module.exports = [
     authors: ['Wilde Oscar'],
     image: '127.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2010',
@@ -1201,8 +1047,6 @@ module.exports = [
     authors: ['Роберт Мартин '],
     image: '128.webp',
     categories: ['Программирование'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2014',
@@ -1211,8 +1055,6 @@ module.exports = [
     authors: ['Алексей Николаевич'],
     image: '129.webp',
     categories: ['Программирование'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -1221,8 +1063,6 @@ module.exports = [
     authors: ['Владсон Феррейра Фило'],
     image: '130.webp',
     categories: ['Программирование'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1231,8 +1071,6 @@ module.exports = [
     authors: ['Адитья Бхаргава'],
     image: '131.webp',
     categories: ['Программирование'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2016',
@@ -1241,8 +1079,6 @@ module.exports = [
     authors: ['Мадлен Пакетт'],
     image: '132.webp',
     categories: ['Хобби'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1251,8 +1087,6 @@ module.exports = [
     authors: ['Робин Уильямс'],
     image: '133.webp',
     categories: ['Дизайн'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1261,8 +1095,6 @@ module.exports = [
     authors: ['Ричард Пулин'],
     image: '134.webp',
     categories: ['Дизайн'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1271,8 +1103,6 @@ module.exports = [
     authors: ['Ричард Пулин'],
     image: null,
     categories: ['Дизайн'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -1281,8 +1111,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: null,
     categories: ['Детские'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2020',
@@ -1291,8 +1119,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: null,
     categories: ['Детские'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1301,8 +1127,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: null,
     categories: ['Детские'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2019',
@@ -1311,8 +1135,6 @@ module.exports = [
     authors: ['Андрей Курпатов'],
     image: null,
     categories: ['Детские'],
-
-    createdAt: new Date(),
   },
   {
     issueYear: '2018',
@@ -1321,7 +1143,5 @@ module.exports = [
     authors: ['J. K. Rowling'],
     image: '136.webp',
     categories: ['Художественная литература'],
-
-    createdAt: new Date(),
   },
 ]
