@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TUserState } from './types';
-import { TUserData } from 'types/user';
+import { TUser } from 'types/user';
 
 const initialState: TUserState = {
   jwt: '',
-  userData: {} as TUserData,
+  userData: {} as TUser,
   additionalInfo: {} as any,
   enteredBookName: '',
   isLoading: false,
@@ -40,13 +40,13 @@ export const userSlice = createSlice({
     putComment: (state, { payload }) => {
       state.isLoading = true;
     },
-    postComments: (state, { payload }) => {
+    postComment: (state, { payload }) => {
       state.isLoading = true;
     },
-    putEditUserData: (state, { payload }) => {
+    putUser: (state, { payload }) => {
       state.isLoading = true;
     },
-    putUploadAvatar: (state, { payload }) => {
+    putAvatar: (state, { payload }) => {
       state.isLoading = true;
     },
     deletelBooking: (state, { payload }) => {

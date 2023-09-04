@@ -12,9 +12,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/scrollbar';
 
-type TProps = { imgs: [{ url: string }] };
+type TProps = { img: string };
 
-const SliderScrollbar = ({ imgs }: TProps) => {
+const SliderScrollbar = ({ img }: TProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
 
   return (
@@ -26,16 +26,12 @@ const SliderScrollbar = ({ imgs }: TProps) => {
         modules={[FreeMode, Navigation, Thumbs]}
         data-test-id={dataTestId.SLIDE_BIG}
       >
-        {imgs.map((img) => {
-          return (
-            <SwiperSlide key={Math.random()}>
-              <Img src={img?.url} />
-            </SwiperSlide>
-          );
-        })}
+        {/* <SwiperSlide key={Math.random()}> */}
+        <Img src={img} />
+        {/* </SwiperSlide> */}
       </ValueBar>
 
-      {imgs.length >= 2 && (
+      {/* {imgs.length >= 2 && (
         <ChoiseBar
           onSwiper={setThumbsSwiper}
           slidesPerView={4}
@@ -51,7 +47,7 @@ const SliderScrollbar = ({ imgs }: TProps) => {
             </SwiperSlideStyled>
           ))}
         </ChoiseBar>
-      )}
+      )} */}
     </>
   );
 };

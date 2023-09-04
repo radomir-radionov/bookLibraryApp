@@ -5,7 +5,7 @@ import { TFileUploadResponse } from 'types/user';
 
 import httpService from '../../http';
 
-import { PostCommentsProps, PutCommentProps, PutEditUserDataProps } from './types';
+import { PostCommentProps, PutCommentProps, TPutUserReq } from './types';
 
 const userService = {
   getUser: async (id: number) => {
@@ -13,26 +13,18 @@ const userService = {
 
     return resp.data;
   },
-  putComment: async (payload: PutCommentProps) => {
-    const { commentId } = payload;
+  postComment: async (paylaod: PostCommentProps) => await httpService.post(serverEndpoints.COMMENTS, paylaod),
+  putComment: async ({ commentId, ...restPayload }: PutCommentProps) => {
+    const { data } = await httpService.put(`${serverEndpoints.COMMENTS}/${commentId}`, restPayload.data);
 
-    delete payload.commentId;
-
-    const resp = await httpService.put(`${serverEndpoints.COMMENTS}/${commentId}`, payload);
-
-    return resp.data;
+    return data;
   },
-  postComments: async (payload: PostCommentsProps) => {
-    const resp = await httpService.post(serverEndpoints.COMMENTS, payload);
+  putUser: async ({ userId, payload }: TPutUserReq) => {
+    const { data } = await httpService.put(`${serverEndpoints.USER}/${userId}`, payload);
 
-    return resp.data;
+    return data;
   },
-  putEditUserData: async (payload: PutEditUserDataProps) => {
-    const resp = await httpService.put(`${serverEndpoints.EDIT_USER_DATA}/${payload.userId}`, payload.reqBody);
-
-    return resp.data;
-  },
-  putUploadAvatar: async (payload: any) => {
+  putAvatar: async (payload: any) => {
     const config = {
       headers: { 'Content-type': 'multipart/form-data' },
     };
@@ -50,7 +42,6 @@ const userService = {
 
     return resp.data;
   },
-
   putUploadAvatarById: async (payload: any) => {
     const { data: userData }: AxiosResponse<any> = await httpService.put(
       `${serverEndpoints.UPLOAD_AVATAR_BY_ID}/${payload.id}`

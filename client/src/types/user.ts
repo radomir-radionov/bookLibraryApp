@@ -18,22 +18,23 @@ export type TFileUploadResponse = {
   updatedAt: string;
 };
 
-export type TUserData = {
+export type TUser = {
   id: number;
   username: string;
   email: string;
   password?: string;
   confirmed: boolean;
+  provider: string;
   blocked: boolean;
   firstName: string;
   lastName: string;
   phone: string;
+  avatar: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type TAdditionalInfo = {
-  avatar: string;
+export type TExtendedUserInfo = TUser & {
   role: RoleProps;
   comments: TComment[];
   booking: TUserBooking;
@@ -41,18 +42,18 @@ export type TAdditionalInfo = {
   history: TUserHistory;
 };
 
-export type TComment = {
-  id: number;
-  rating: number;
-  text: string;
-  bookId: number;
-};
-
 export type RoleProps = {
   id: number;
   name: string;
   description: string;
   type: string;
+};
+
+export type TComment = {
+  id: number;
+  rating: number;
+  text: string;
+  bookId: number;
 };
 
 export type ShortBookDataProps = {

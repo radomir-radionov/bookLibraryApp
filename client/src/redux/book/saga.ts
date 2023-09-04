@@ -15,7 +15,7 @@ export function* getBook(action: PayloadAction<number>) {
   try {
     yield put(bookActions.clearBookData());
 
-    const book: TBookDetailed = yield call(() => booksService.getBook(id));
+    const book: TBookDetailed = yield call(() => booksService.getBookById(id));
 
     yield put(bookActions.setBook(book));
   } catch (e) {
@@ -29,6 +29,27 @@ export function* getBook(action: PayloadAction<number>) {
     );
   }
 }
+
+// export function* getBookComments(action: PayloadAction<number>) {
+//   const id = action.payload;
+
+//   try {
+//     yield put(bookActions.clearBookData());
+
+//     const book: TBookDetailed = yield call(() => booksService.getBookById(id));
+
+//     yield put(bookActions.setBook(book));
+//   } catch (e) {
+//     yield put(bookActions.cancelLoading());
+//     yield put(
+//       toastActions.addToast({
+//         id: nanoid(),
+//         type: ToastTypes.ERROR,
+//         text: responseText.BOOK_ERROR,
+//       })
+//     );
+//   }
+// }
 
 function* bookSaga() {
   yield all([takeLatest(bookActions.getBook, getBook)]);

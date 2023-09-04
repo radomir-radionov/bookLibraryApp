@@ -26,13 +26,16 @@ type TProps = {
 
 const AboutBook = ({ data }: TProps) => {
   const { width } = useWindowDimensions();
-  const { title, authors, issueYear, description, images, booking, delivery } = data;
+  const { title, authors, issueYear, description, image, booking, delivery } = data;
 
   return (
     <About>
-      {images ? (
+      {image ? (
         <SliderWrapper>
-          {width > 1024 ? <SliderScrollbar imgs={images} /> : <SliderPagination imgs={images} />}
+          {
+            width > 1024 ? <SliderScrollbar img={`http://localhost:5000/${image}`} /> : null
+            //   <SliderPagination imgs={image} />
+          }
         </SliderWrapper>
       ) : (
         <ImgContainer>

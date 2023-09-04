@@ -5,20 +5,23 @@ import colors from './colors';
 const GlobalStyles = createGlobalStyle`
 
 html,body {
-  height: 100%;
+    overflow: auto;
+    height: 100%;
 }
 
 body {
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  font-family: 'Montserrat', sans-serif;
-  line-height: 18px;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: ${colors.MAIN_DARK};
-  letter-spacing: 0.1px;
+    text-rendering: optimizeSpeed;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 18px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: ${colors.MAIN_DARK};
+    letter-spacing: 0.1px;
+    padding-left: 16px;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
 }
 
 #root {
@@ -74,8 +77,6 @@ img {
 
   display: block;
 }
-
-
 
 input,
 button,

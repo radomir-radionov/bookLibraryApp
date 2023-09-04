@@ -20,10 +20,10 @@ import {
   ProfileAvatar,
   UserName,
 } from './styles';
-import { TUserData } from 'types/user';
+import { TUser } from 'types/user';
 
 type TProps = {
-  data: TUserData;
+  data: TUser;
 };
 
 type TFileUploadProps = {
@@ -45,7 +45,7 @@ const Header = ({ data }: TProps) => {
     const formData = new FormData();
     formData.append('files', imgData.picture[0]);
     imgData.picture.length && convertFile(imgData.picture[0], setImage);
-    dispatch(userActions.putUploadAvatar({ id, formData }));
+    dispatch(userActions.putAvatar({ id, formData }));
   };
 
   return (

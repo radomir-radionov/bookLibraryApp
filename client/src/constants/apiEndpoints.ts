@@ -12,8 +12,7 @@ enum serverEndpoints {
   COMMENTS = '/api/comments',
   BOOKINGS = '/api/bookings',
 
-  USER = '/api/user',
-  EDIT_USER_DATA = '/api/users',
+  USER = '/api/users',
   UPLOAD_AVATAR = '/api/upload',
   UPLOAD_AVATAR_BY_ID = '/api/users',
 }

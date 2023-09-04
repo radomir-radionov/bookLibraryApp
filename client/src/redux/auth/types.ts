@@ -1,4 +1,4 @@
-import { IUserData } from 'redux/user/types';
+import { TUser } from 'types/user.js';
 
 export type TAuthData = {
   identifier: string;
@@ -15,5 +15,5 @@ export type TAuthState = {
 
 export type TAuthResponse = {
   jwt: string;
-  user: IUserData;
+  user: TUser;
 };

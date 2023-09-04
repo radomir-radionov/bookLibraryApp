@@ -13,7 +13,6 @@ const BookInfo = () => {
   const bookData = useSelector(bookDataState);
   const location = useLocation();
   const [ignore, setIgnore] = useState(false);
-
   const { book } = bookData;
   const { rating, description } = book;
   const isBookDataEmpty = Object.keys(book).length !== 0;
@@ -23,7 +22,7 @@ const BookInfo = () => {
 
   useEffect(() => {
     if (ignore) {
-      dispatch(bookActions.getBook(Number(bookId)));
+      dispatch(bookActions.getBook(+bookId));
     }
 
     return () => setIgnore(true);

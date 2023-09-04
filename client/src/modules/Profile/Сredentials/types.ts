@@ -1,9 +1,3 @@
-import { TUserData } from 'types/user';
-
-export type TCredentials = {
-  data: TUserData;
-};
-
 export type TFormValues = {
   login: string;
   password: string;

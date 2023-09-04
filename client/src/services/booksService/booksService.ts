@@ -15,10 +15,9 @@ const booksService = {
 
     return resp.data;
   },
-  getBook: async (payload: number) => {
-    const resp = await httpService.get(`${serverEndpoints.BOOKS}/${payload}`);
-
-    return resp.data;
+  getBookById: async (id: number) => {
+    const { data } = await httpService.get(`${serverEndpoints.BOOKS}/${id}`);
+    return data;
   },
   postBooking: async (payload: PostBookingProps) => {
     const resp = await httpService.post(serverEndpoints.BOOKINGS, payload);

@@ -14,16 +14,12 @@ import { Rating } from '..';
 
 import { ActionCloseIcon, BtnField, CloseBtnBox, Form, Header, ModalStyled, Textarea, Title } from './styles';
 
-type TProps = {
-  onClose: () => void;
-};
-
 type FormValues = {
   rating: number;
   text: string;
 };
 
-const RateBook = ({ onClose }: TProps) => {
+const RateBook = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const modalInfo = useSelector(selectModalInfo);
@@ -37,18 +33,19 @@ const RateBook = ({ onClose }: TProps) => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    if (user) {
-      if (modalInfo?.view === 'editCommentModal') {
-        const payload = {
-          commentId: modalInfo.id,
-          data: { rating: data.rating, text: data.text, book: modalInfo.bookId.toString(), user: user.id.toString() },
-        };
-        dispatch(userActions.putComment(payload));
-      } else if (pathData[3]) {
-        dispatch(userActions.postComments({ ...data, book: pathData[3], user: user.id.toString() }));
-      } else if (modalInfo.id) {
-        dispatch(userActions.postComments({ ...data, book: modalInfo.id, user: user.id.toString() }));
-      }
+    if (modalInfo?.view === 'editCommentModal') {
+      const payload = {
+        commentId: modalInfo.id,
+        data: {
+          userId: user.id,
+          bookId: modalInfo.bookId,
+          rating: data.rating,
+          text: data.text,
+        },
+      };
+      dispatch(userActions.putComment(payload));
+    } else {
+      dispatch(userActions.postComment({ ...data, bookId: +pathData[3], userId: user.id }));
     }
   };
 

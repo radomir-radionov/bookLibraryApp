@@ -13,7 +13,7 @@ export const HeaderStyled = styled.header<THeaderStyled>`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 40px 0 15px;
+  padding: 32px 0 14px;
   transition: all 0.2s ease-out;
   box-shadow: ${({ $isHovered }) =>
     $isHovered ? '-4px 4px 4px 0px rgba(54, 54, 54, 0.05), 4px 4px 4px 0px rgba(54, 54, 54, 0.05);' : 'none'};

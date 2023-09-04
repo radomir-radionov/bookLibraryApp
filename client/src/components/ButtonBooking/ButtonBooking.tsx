@@ -8,12 +8,16 @@ import { MODAL_TYPES } from 'types/modal';
 import { formatDateButton } from 'utils/formatDate';
 
 import { ButtonStyled } from './styles';
-import { TProps } from './types';
+import { TBook, TBookDetailed } from 'types/book.js';
 
-const ButtonBooking = ({ book, booking, delivery }: TProps) => {
+type TProps = {
+  book: TBook | TBookDetailed;
+};
+
+const ButtonBooking = ({ book }: TProps) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserDataId);
-  const { id } = book;
+  const { id, booking, delivery } = book;
 
   const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();

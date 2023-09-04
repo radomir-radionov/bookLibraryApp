@@ -1,7 +1,7 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectIsBooksLoading, selectIsSortByRating } from 'redux/books/selectors';
 import { displayingBooks } from 'redux/displayingContent/selectors';
@@ -14,6 +14,7 @@ import { getСurrentCategory } from 'utils/categories';
 import getFilteredBooks from 'utils/getFiltredBooks';
 
 import { BooksListStyled, EmptyData, Message } from './styles';
+import { booksActions } from 'redux/books/slice.js';
 
 type BooksListProps = {
   books: TBook[];
@@ -21,6 +22,7 @@ type BooksListProps = {
 };
 
 const BooksList = ({ books, categories }: BooksListProps) => {
+  const dispatch = useDispatch();
   const displayingData = useSelector(displayingBooks);
   const enteredText = useSelector(enteredBookName);
   const isSortByRating = useSelector(selectIsSortByRating);
@@ -33,6 +35,10 @@ const BooksList = ({ books, categories }: BooksListProps) => {
     () => getСurrentCategory(category, categories, books),
     [category, categories, books]
   );
+
+  useEffect(() => {
+    dispatch(booksActions.getBooks());
+  }, []);
 
   useEffect(() => {
     setFiltredBooks(getFilteredBooks(books, enteredText, isSortByRating, categoryTranslate));

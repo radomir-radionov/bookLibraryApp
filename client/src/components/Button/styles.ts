@@ -25,13 +25,17 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     `}
 
   &:hover {
-    box-shadow: 0px 2px 5px rgba(54, 54, 54, 0.1);
+    filter: ${other.FILTER_СRYSTAL};
+  }
+
+  &:active {
+    box-shadow: ${other.BUTTON_SHADOW};
   }
 
   &:disabled {
-    outline: 1px solid ${colors.GREY_BLACK_20};
-    color: ${colors.GREY_BLACK_40};
-    background: ${colors.GREY_BLACK_5};
+    border: none;
+    color: ${colors.MAIN_WHITE};
+    background: rgb(235, 235, 235);
   }
 
   @media (max-width: ${device.laptop}) {

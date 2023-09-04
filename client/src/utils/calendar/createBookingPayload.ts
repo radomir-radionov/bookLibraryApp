@@ -1,6 +1,6 @@
-import { TUserData } from 'types/user';
+import { TUser } from 'types/user';
 
-const createBookingPayload = (selectedDate: Date | undefined, user: TUserData | null, bookingId?: number) => {
+const createBookingPayload = (selectedDate: Date | undefined, user: TUser | null, bookingId?: number) => {
   if (selectedDate === undefined) {
     return;
   }

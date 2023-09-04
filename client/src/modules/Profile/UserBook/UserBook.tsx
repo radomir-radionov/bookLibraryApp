@@ -5,10 +5,10 @@ import { BookProfile } from 'modules';
 import { EmptyData } from 'modules/Profile';
 
 import { Text, BookWrapper, Header, Title, UserBookStyled } from './styles';
-import { TUserData } from 'types/user';
+import { TUser } from 'types/user';
 
 type TProps = {
-  data: TUserData;
+  data: TUser;
 };
 
 const UserBook = ({ data }: TProps) => {

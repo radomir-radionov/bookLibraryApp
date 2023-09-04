@@ -1,4 +1,4 @@
-export type TErrorProps = {
+export type TErrorResponse = {
   data: null;
   error: {
     status: number;

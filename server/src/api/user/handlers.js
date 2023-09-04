@@ -10,15 +10,15 @@ import prepareUpdateCommentRes from '../../helpers/user/prepareUpdateCommentRes.
 
 const {omit} = pkg
 const {User, Comment} = db
-const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, UPDATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
+const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
 const {deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
 const createUser = async (ctx, next) => {
   const registerData = ctx.request.body
   const {email, password} = registerData
 
-  const foundUser = await User.findOne({where: {email}})
-  ctx.assert(!foundUser, 404, EXSITED_USER)
+  const foundedUser = await User.findOne({where: {email}})
+  ctx.assert(!foundedUser, 404, EXSITED_USER)
 
   const passwordHash = await createHash(password)
   const createdUser = await User.create({...registerData, passwordHash})
@@ -35,13 +35,13 @@ const authenticateUser = async (ctx, next) => {
   const authData = ctx.request.body
   const {email, password} = authData
 
-  const foundUser = await User.findOne({where: {email}})
-  ctx.assert(foundUser, 404, USER_NOT_FOUND)
+  const foundedUser = await User.findOne({where: {email}})
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND)
 
-  const isPasswordEquals = await compare(password, foundUser.passwordHash)
+  const isPasswordEquals = await compare(password, foundedUser.passwordHash)
   ctx.assert(isPasswordEquals, 401, AUTH_WRONG_DATA)
 
-  const user = omit(foundUser.dataValues, ['passwordHash'])
+  const user = omit(foundedUser.dataValues, ['passwordHash'])
   const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
 
   ctx.body = {jwt: token, user}
@@ -59,13 +59,14 @@ const getUsers = async (ctx, next) => {
 const getUserById = async (ctx, next) => {
   const id = ctx.params.id
 
-  const foundUser = await User.findOne({
+  const foundedUser = await User.findOne({
     where: {id},
     include: [deliveryAlias, bookingAlias, historyAlias, commentAlias],
   })
 
-  const user = omit(foundUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
-  ctx.assert(foundUser, 404, INVALID_USER)
+  const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
+
+  ctx.assert(foundedUser, 404, INVALID_USER)
   ctx.body = user
 
   await next()
@@ -74,10 +75,16 @@ const getUserById = async (ctx, next) => {
 const updateUser = async (ctx, next) => {
   const id = ctx.params.id
   const body = ctx.request.body
-  console.log(id)
-  const a = await User.update({...body}, {where: {id}})
-  console.log('aaaa', a)
-  // ctx.body = 1
+
+  await User.update({...body}, {where: {id}})
+
+  const foundedUser = await User.findOne({where: {id}})
+
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND)
+
+  const user = omit(foundedUser.dataValues, ['passwordHash', 'createdAt', 'updatedAt'])
+
+  ctx.body = user
 
   await next()
 }

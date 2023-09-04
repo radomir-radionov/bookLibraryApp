@@ -1,6 +1,12 @@
 QUESTION:
 
-TODO:
+TODO_SERVER:
+
+TODO_CLIENT:
+
+- add array of images for book page and scrollbar
+- check loader on the blur
+- add error boudry
 
 FUTURE_TODO:
 
