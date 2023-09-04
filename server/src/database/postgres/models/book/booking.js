@@ -14,9 +14,6 @@ export default (sequelize) => {
       allowNull: false,
     },
     order: DataTypes.BOOLEAN,
-    dateOrder: DataTypes.DATE,
-    customerFirstName: DataTypes.STRING,
-    customerLastName: DataTypes.STRING,
   })
 
   // TODO: circular dependency

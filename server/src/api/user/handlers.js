@@ -1,3 +1,6 @@
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
 import pkg from 'lodash'
 import {compare} from 'bcrypt'
 
@@ -89,6 +92,19 @@ const updateUser = async (ctx, next) => {
   await next()
 }
 
+const updateUserAvatarById = async (ctx, next) => {
+  const id = ctx.params.id
+  const body = ctx.request.body
+  const reader = fs.createReadStream(body.path)
+  const stream = fs.createWriteStream(path.join(os.tmpdir(), Math.random().toString()))
+  reader.pipe(stream)
+  console.log(id, body)
+
+  console.log('uploading %s -> %s', body.name, stream.path)
+
+  await next()
+}
+
 const createComment = async (ctx, next) => {
   const commentData = ctx.request.body
   const createdComment = await Comment.create(commentData)
@@ -118,6 +134,7 @@ const userHandlers = {
   getUsers,
   getUserById,
   updateUser,
+  updateUserAvatarById,
   createComment,
   updateComment,
 }

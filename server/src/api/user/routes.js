@@ -3,7 +3,7 @@ import userHandlers from './handlers.js'
 import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
 
 const {
-  userPaths: {user, userId, comments, commentId},
+  userPaths: {user, userId, updateUserAvatarById, comments, commentId},
   authPaths: {register, auth},
 } = paths
 
@@ -41,6 +41,11 @@ const routes = [
     path: userId,
     method: 'put',
     action: userHandlers.updateUser,
+  },
+  {
+    path: updateUserAvatarById,
+    method: 'put',
+    action: userHandlers.updateUserAvatarById,
   },
   {
     path: commentId,
