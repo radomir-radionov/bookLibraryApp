@@ -142,13 +142,13 @@ export const ImgBox = styled.div`
   border-radius: 10px;
 
   @media (max-width: ${device.laptop}) {
+    flex: 0 136px;
     height: 198px;
   }
 
   @media (max-width: ${device.tablet}) {
-    max-width: 188px;
+    flex: 0 188px;
     height: 260px;
-    max-height: 260px;
   }
 `;
 

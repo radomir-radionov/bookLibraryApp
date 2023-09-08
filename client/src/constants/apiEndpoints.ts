@@ -13,8 +13,6 @@ enum serverEndpoints {
   BOOKINGS = '/api/bookings',
 
   USER = '/api/users',
-  UPLOAD_AVATAR = '/api/upload',
-  UPLOAD_AVATAR_BY_ID = '/api/users',
 }
 
 export default serverEndpoints;

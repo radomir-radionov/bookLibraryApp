@@ -46,10 +46,7 @@ export const userSlice = createSlice({
     putUser: (state, { payload }) => {
       state.isLoading = true;
     },
-    putAvatar: (state, { payload }) => {
-      state.isLoading = true;
-    },
-    deletelBooking: (state, { payload }) => {
+    updateAvatarReq: (state, { payload }) => {
       state.isLoading = true;
     },
     cancelLoading: (state) => {

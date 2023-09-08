@@ -26,7 +26,7 @@ type TProps = {
 
 const AboutBook = ({ data }: TProps) => {
   const { width } = useWindowDimensions();
-  const { title, authors, issueYear, description, image, booking, delivery } = data;
+  const { title, authors, issueYear, description, image } = data;
 
   return (
     <About>
@@ -52,7 +52,7 @@ const AboutBook = ({ data }: TProps) => {
               {authors?.map((author) => author)}, {issueYear}
             </Author>
           </NameBook>
-          <ButtonBooking book={data} booking={booking} delivery={delivery} />
+          <ButtonBooking onlyBookData={true} book={data} />
         </Header>
         <Description>
           <SubTitle>О книге</SubTitle>

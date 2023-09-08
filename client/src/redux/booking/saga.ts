@@ -2,124 +2,91 @@ import responseText from 'constants/responseText';
 
 import { modalActions } from 'redux/modal';
 import { toastActions } from 'redux/toast';
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { nanoid } from '@reduxjs/toolkit';
-import { booksService } from 'services';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { bookingReqService, booksService } from 'services';
 import { ToastTypes } from 'types/toast';
 
 import { booksActions } from '../books/slice';
-import { categoriesActions } from '../categories/slice';
 
-import { selectBookId } from './selectors';
 import { bookingActions } from './slice';
+import prepareToastData from 'helpers/toast/createToast.js';
+import { TBookDetailed } from 'types/book.js';
+import { bookActions } from 'redux/book/slice.js';
 
-export function* postBooking({ payload }: ReturnType<typeof bookingActions.postBooking>) {
-  const bookId: number = yield select(selectBookId);
-  const reqBody = {
-    data: {
-      book: bookId,
-      ...payload,
-    },
-  };
-
+export function* postBooking({ payload }: ReturnType<typeof bookingActions.createBookingReq>) {
   try {
-    yield call(() => booksService.postBooking(reqBody));
+    const { onlyBookData, preparedBookingData } = payload;
 
-    yield put(booksActions.getBooks());
-    yield put(categoriesActions.getCategories());
+    yield call(() => bookingReqService.postBooking(preparedBookingData));
+
+    if (onlyBookData) {
+      const book: TBookDetailed = yield call(() => booksService.getBookById(preparedBookingData.bookId));
+      yield put(bookActions.setBook(book));
+    } else {
+      yield put(booksActions.getBooks());
+    }
+
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.BOOKING_SUCCESS,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.BOOKING_SUCCESS)));
   } catch (e) {
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.BOOKING_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.BOOKING_ERROR)));
   }
 }
 
-export function* putRebooking({ payload }: ReturnType<typeof bookingActions.putRebooking>) {
-  const bookId: number = yield select(selectBookId);
-  const { bookingId } = payload;
-
-  const reqBody = {
-    data: {
-      book: bookId,
-      ...payload.payload,
-    },
-  };
-
+export function* putBooking({
+  payload: { onlyBookData, preparedBookingData },
+}: ReturnType<typeof bookingActions.updateBookingReq>) {
   try {
-    yield call(() => booksService.putRebooking({ bookingId, reqBody }));
+    yield call(() => bookingReqService.putBooking(preparedBookingData));
 
-    yield put(booksActions.getBooks());
-    yield put(categoriesActions.getCategories());
+    if (onlyBookData) {
+      const book: TBookDetailed = yield call(() => booksService.getBookById(preparedBookingData.payload.bookId));
+      yield put(bookActions.setBook(book));
+    } else {
+      yield put(booksActions.getBooks());
+    }
+
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.REBOOKING_SUCCESS,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.UPDATE_BOOKING_SUCCESS)));
   } catch (e) {
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.REBOOKING_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.UPDATE_BOOKING_ERROR)));
   }
 }
 
-export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.deleteBooking>) {
+export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.deleteBookingReq>) {
   try {
-    yield call(() => booksService.deleteBooking(payload));
+    const { id, onlyBookData, bookingId } = payload;
 
-    yield put(booksActions.getBooks());
-    yield put(categoriesActions.getCategories());
+    yield call(() => bookingReqService.deleteBooking(bookingId));
+
+    if (onlyBookData) {
+      const book: TBookDetailed = yield call(() => booksService.getBookById(id));
+      yield put(bookActions.setBook(book));
+    } else {
+      yield put(booksActions.getBooks());
+    }
+
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.CANCEL_BOOKING_SUCCESS,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_BOOKING_SUCCESS)));
   } catch (e) {
     yield put(modalActions.close());
     yield put(bookingActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.CANCEL_BOOKING_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.CANCEL_BOOKING_ERROR)));
   }
 }
 
 function* bookingSaga() {
   yield all([
-    takeLatest(bookingActions.postBooking, postBooking),
-    takeLatest(bookingActions.putRebooking, putRebooking),
-    takeLatest(bookingActions.deleteBooking, deleteBooking),
+    takeLatest(bookingActions.createBookingReq, postBooking),
+    takeLatest(bookingActions.updateBookingReq, putBooking),
+    takeLatest(bookingActions.deleteBookingReq, deleteBooking),
   ]);
 }
 

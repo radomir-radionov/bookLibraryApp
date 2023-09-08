@@ -9,40 +9,48 @@ import { selectUser } from 'redux/user/selectors';
 import { Button, ButtonFiltering } from 'components';
 import { Calendar } from 'modules';
 import { BUTTON_VARIANTS } from 'types/button';
-import createBookingPayload from 'utils/calendar/createBookingPayload';
+import prepareBookingData from 'utils/calendar/prepareBookingData';
 
 import { ActionCloseIcon, Container, Header, Modal, NavBox, Title } from './styles';
 
 const Booking = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const book = useSelector(selectModalInfo);
+  const { onlyBookData, book } = useSelector(selectModalInfo);
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const { booking } = book;
+  const { id, booking } = book;
   const bookingId = booking?.id;
 
-  const handleBooking = () => dispatch(bookingActions.postBooking(createBookingPayload(selectedDate, user)));
-  const handleReBooking = () =>
-    dispatch(bookingActions.putRebooking(createBookingPayload(selectedDate, user, bookingId)));
-  const handleCancelBooking = () => dispatch(bookingActions.deleteBooking(booking.id));
-  const onBtnCloseModalClick = () => dispatch(modalActions.close());
+  const handleBtnBookingClick = () => {
+    const preparedBookingData = prepareBookingData(selectedDate, user, id);
+    dispatch(bookingActions.createBookingReq({ onlyBookData, preparedBookingData }));
+  };
+
+  const handleBtnReBookingClick = () => {
+    const preparedBookingData = prepareBookingData(selectedDate, user, id, bookingId);
+    dispatch(bookingActions.updateBookingReq({ onlyBookData, preparedBookingData }));
+  };
+
+  const handleBtnCancelClick = () => dispatch(bookingActions.deleteBookingReq({ id, onlyBookData, bookingId }));
+
+  const handleBtnCloseClick = () => dispatch(modalActions.close());
 
   useEffect(() => {
-    if (booking?.customerId === user?.id && booking?.dateOrder) {
-      setSelectedDate(new Date(booking?.dateOrder));
+    if (booking?.userId === user.id && booking?.createdAt) {
+      setSelectedDate(new Date(booking?.createdAt));
     }
-  }, [booking?.customerId, booking?.dateOrder, user?.id]);
+  }, [booking?.userId, booking?.createdAt, user.id]);
 
   return (
     <Modal data-test-id={dataTestId.BOOKING_MODAL}>
       <Container>
         <Header>
           <Title data-test-id={dataTestId.MODAL_TITLE}>
-            {booking?.customerId === user?.id ? 'Изменение даты бронирования' : 'Выбор даты бронирования'}
+            {booking?.userId === user.id ? 'Изменение даты бронирования' : 'Выбор даты бронирования'}
           </Title>
           <ButtonFiltering
             className='btnClose'
-            onClick={onBtnCloseModalClick}
+            onClick={handleBtnCloseClick}
             dataTestId={dataTestId.MODAL_CLOSE_BUTTON}
           >
             <ActionCloseIcon />
@@ -52,7 +60,7 @@ const Booking = () => {
         {!booking && (
           <Button
             type='button'
-            onClick={handleBooking}
+            onClick={handleBtnBookingClick}
             variant={BUTTON_VARIANTS.LARGE}
             disabled={!selectedDate}
             dataTestId={dataTestId.BOOKING_BUTTON}
@@ -60,14 +68,14 @@ const Booking = () => {
             забронировать
           </Button>
         )}
-        {booking && booking.dateOrder && booking.customerId === user?.id && (
+        {booking?.createdAt && booking?.userId === user.id && (
           <NavBox>
             <Button
               type='button'
               className='booking'
-              onClick={handleReBooking}
+              onClick={handleBtnReBookingClick}
               variant={BUTTON_VARIANTS.LARGE}
-              disabled={new Date(booking.dateOrder).getDate() !== selectedDate?.getDate() ? false : true}
+              disabled={new Date(booking?.createdAt).getDate() !== selectedDate?.getDate() ? false : true}
               dataTestId={dataTestId.BOOKING_BUTTON}
             >
               забронировать
@@ -75,7 +83,7 @@ const Booking = () => {
             <Button
               type='button'
               className='cancelBooking'
-              onClick={handleCancelBooking}
+              onClick={handleBtnCancelClick}
               variant={BUTTON_VARIANTS.LARGE}
               dataTestId={dataTestId.CANCEL_BOOKING_BUTTON}
             >

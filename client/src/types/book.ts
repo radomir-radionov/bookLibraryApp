@@ -9,11 +9,11 @@ export type TBook = {
   comments: TComment[] | [];
   booking: {
     id: number;
+    userId: number;
+    bookId: number;
     order: boolean;
-    dateOrder: string | null;
-    customerId: number | null;
-    customerFirstName: string | null;
-    customerLastName: string | null;
+    createdAt: string;
+    updatedAt: string;
   } | null;
   delivery: {
     id: number;

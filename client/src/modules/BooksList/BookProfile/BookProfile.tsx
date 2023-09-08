@@ -38,7 +38,7 @@ const BookProfile = ({ data }: BookProfileProps) => {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     event.stopPropagation();
-    dispatch(userActions.deletelBooking(data?.id));
+    // dispatch(userActions.deletelBooking(data?.id));
   };
 
   return (

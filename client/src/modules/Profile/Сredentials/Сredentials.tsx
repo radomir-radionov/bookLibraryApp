@@ -46,7 +46,7 @@ const Сredentials = ({ data }: TProps) => {
   useEffect(() => {
     methods.reset({
       login: data.username,
-      password: 'feat will be soon',
+      password: 'Feat will be soon  111',
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,

@@ -25,11 +25,11 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     `}
 
   &:hover {
-    filter: ${other.FILTER_СRYSTAL};
+    box-shadow: 0px 2px 5px rgba(54, 54, 54, 0.1);
   }
 
   &:active {
-    box-shadow: ${other.BUTTON_SHADOW};
+    box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
   }
 
   &:disabled {

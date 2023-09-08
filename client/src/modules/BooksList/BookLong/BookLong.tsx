@@ -71,7 +71,7 @@ const BookLong = ({ data, view }: TProps) => {
         <Active>
           <RatingList rating={rating} />
           {view !== 'history' ? (
-            <ButtonBooking book={data} booking={booking} delivery={delivery} />
+            <ButtonBooking book={data} />
           ) : isCommentedBook ? (
             <Button
               className='editCommentButton'

@@ -19,7 +19,6 @@ body {
     background-color: #ffffff;
     color: ${colors.MAIN_DARK};
     letter-spacing: 0.1px;
-    padding-left: 16px;
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
 }

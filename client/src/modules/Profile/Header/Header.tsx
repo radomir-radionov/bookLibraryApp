@@ -26,26 +26,23 @@ type TProps = {
   data: TUser;
 };
 
-type TFileUploadProps = {
+type TAvatar = {
   picture: any;
 };
 
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
-  const [image, setImage] = useState<string | undefined>('');
-  const { id, firstName, lastName, avatar } = data;
+  const { firstName, lastName, avatar } = data;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFileUploadProps>();
+  } = useForm<TAvatar>();
 
-  const onSubmit = (imgData: TFileUploadProps) => {
-    const formData = new FormData();
-    formData.append('files', imgData.picture[0]);
-    imgData.picture.length && convertFile(imgData.picture[0], setImage);
-    dispatch(userActions.putAvatar({ id, formData }));
+  const onSubmit = (imgData: TAvatar) => {
+    console.log(imgData);
+    dispatch(userActions.updateAvatarReq(imgData));
   };
 
   return (

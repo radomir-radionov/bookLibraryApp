@@ -5,10 +5,10 @@ import { BookProfile } from 'modules';
 import { EmptyData } from 'modules/Profile';
 
 import { Text, BookedBookStyled, BookWrapper, Header, Title } from './styles';
-import { TUser } from 'types/user';
+import { TExtendedUserInfo } from 'types/user';
 
 type TProps = {
-  data: TUser;
+  data: TExtendedUserInfo;
 };
 
 const BookedBook = ({ data }: TProps) => {
@@ -24,7 +24,7 @@ const BookedBook = ({ data }: TProps) => {
         <Title>Забронированная книга</Title>
         <Text>Здесь вы можете просмотреть забронированную книгу, а так же отменить бронь</Text>
       </Header>
-      {booking && booking.id ? (
+      {booking?.id ? (
         <BookWrapper>
           {isExpired && (
             <ExpiredMask title={hintText.EXPIRED_BOOKING_TITLE} subtitle={hintText.EXPIRED_BOOKING_SUBTITLE} />

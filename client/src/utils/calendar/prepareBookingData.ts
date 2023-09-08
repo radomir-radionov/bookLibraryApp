@@ -1,6 +1,6 @@
 import { TUser } from 'types/user';
 
-const createBookingPayload = (selectedDate: Date | undefined, user: TUser | null, bookingId?: number) => {
+const prepareBookingData = (selectedDate: Date | undefined, user: TUser | null, id: number, bookingId?: number) => {
   if (selectedDate === undefined) {
     return;
   }
@@ -10,9 +10,10 @@ const createBookingPayload = (selectedDate: Date | undefined, user: TUser | null
   const date = selectedDate.getDate() < 10 ? `0${selectedDate.getDate()}` : selectedDate.getDate();
 
   const payload = {
+    userId: user?.id,
+    bookId: id,
     order: true,
-    dateOrder: `${year}-${month}-${date}T00:00:00.000Z`,
-    customer: user?.id,
+    createdAt: `${year}-${month}-${date}T00:00:00.000Z`,
   };
 
   if (bookingId) {
@@ -22,4 +23,4 @@ const createBookingPayload = (selectedDate: Date | undefined, user: TUser | null
   return payload;
 };
 
-export default createBookingPayload;
+export default prepareBookingData;

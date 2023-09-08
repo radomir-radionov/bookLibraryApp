@@ -1,7 +1,6 @@
 import responseText from 'constants/responseText';
 
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { nanoid } from '@reduxjs/toolkit';
 import { booksService } from 'services';
 import { TBook } from 'types/book';
 import { ToastTypes } from 'types/toast';
@@ -9,6 +8,7 @@ import { ToastTypes } from 'types/toast';
 import { toastActions } from '../toast/slice';
 
 import { booksActions } from './slice';
+import prepareToastData from 'helpers/toast/createToast.js';
 
 export function* getBooks() {
   try {
@@ -17,13 +17,7 @@ export function* getBooks() {
     yield put(booksActions.setBooks(books));
   } catch (e) {
     yield put(booksActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.BOOKS_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.BOOKS_ERROR)));
   }
 }
 

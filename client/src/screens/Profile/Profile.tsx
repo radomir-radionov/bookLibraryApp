@@ -1,6 +1,6 @@
 import { Content, ProfileStyled } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/user/selectors';
+import { selectAdditionalInfo, selectUser } from 'redux/user/selectors';
 import { Header, Сredentials, BookedBook, UserBook, PurchaseHistory } from 'modules/Profile';
 import { useEffect, useState } from 'react';
 import { userActions } from 'redux/user/slice.js';
@@ -8,6 +8,8 @@ import { userActions } from 'redux/user/slice.js';
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const userAdditionalInfo = useSelector(selectAdditionalInfo);
+
   const [ignore, setIgnore] = useState(false);
 
   useEffect(() => {
@@ -23,9 +25,9 @@ const Profile = () => {
       <Content>
         <Header data={user} />
         <Сredentials data={user} />
-        <BookedBook data={user} />
-        <UserBook data={user} />
-        <PurchaseHistory data={user} />
+        <BookedBook data={userAdditionalInfo} />
+        <UserBook data={userAdditionalInfo} />
+        <PurchaseHistory data={userAdditionalInfo} />
       </Content>
     </ProfileStyled>
   );

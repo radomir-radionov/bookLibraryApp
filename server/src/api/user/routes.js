@@ -20,7 +20,12 @@ const routes = [
   {
     path: userId,
     method: 'get',
-    action: userHandlers.getUserById,
+    action:
+      // async (ctx, next) => {
+      // await jwtAuthenticater(ctx, async () => {
+      userHandlers.getUserById,
+    // })
+    // },
   },
   {
     path: register,
