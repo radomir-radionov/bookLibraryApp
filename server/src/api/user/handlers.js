@@ -12,7 +12,7 @@ import createHash from '../../utils/createHash.js'
 import prepareUpdateCommentRes from '../../helpers/user/prepareUpdateCommentRes.js'
 
 const {omit} = pkg
-const {User, Comment} = db
+const {User, Book, Comment} = db
 const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
 const {deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
@@ -67,8 +67,19 @@ const getUserById = async (ctx, next) => {
     include: [deliveryAlias, bookingAlias, historyAlias, commentAlias],
   })
 
+  ctx.assert(foundedUser, 404, INVALID_USER)
+
   const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
 
+  const bookId = user.booking.datatValues.bookId
+
+  const foundedBook = await Book.findOne({
+    where: {bookId},
+    attributes: {
+      exclude: ['property1', 'property2'], // List the properties you want to exclude
+    },
+  })
+  console.log(foundedBook)
   ctx.assert(foundedUser, 404, INVALID_USER)
   ctx.body = user
 
