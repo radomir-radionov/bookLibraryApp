@@ -3,6 +3,7 @@ import os from 'os'
 import path from 'path'
 import pkg from 'lodash'
 import {compare} from 'bcrypt'
+import nodemailer from 'nodemailer'
 
 import db from '../../database/postgres/instance/index.js'
 import modelAliases from '../../constants/modelAliases.js'
@@ -10,6 +11,7 @@ import errorText from '../../constants/errorText.js'
 import {createJwtToken} from '../../services/jwt.js'
 import createHash from '../../utils/createHash.js'
 import prepareUpdateCommentRes from '../../helpers/user/prepareUpdateCommentRes.js'
+import generateCode from '../../helpers/user/generateCode.js'
 
 const {omit} = pkg
 const {User, Book, Comment} = db
@@ -71,15 +73,15 @@ const getUserById = async (ctx, next) => {
 
   const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
 
-  const bookId = user.booking.datatValues.bookId
+  // const bookId = user.booking.datatValues.bookId
 
-  const foundedBook = await Book.findOne({
-    where: {bookId},
-    attributes: {
-      exclude: ['property1', 'property2'], // List the properties you want to exclude
-    },
-  })
-  console.log(foundedBook)
+  // const foundedBook = await Book.findOne({
+  //   where: {bookId},
+  //   attributes: {
+  //     exclude: ['property1', 'property2'], // List the properties you want to exclude
+  //   },
+  // })
+  // console.log(foundedBook)
   ctx.assert(foundedUser, 404, INVALID_USER)
   ctx.body = user
 
@@ -89,6 +91,8 @@ const getUserById = async (ctx, next) => {
 const updateUser = async (ctx, next) => {
   const id = ctx.params.id
   const body = ctx.request.body
+
+  console.log('updateUser', id, body)
 
   await User.update({...body}, {where: {id}})
 
@@ -139,6 +143,49 @@ const updateComment = async (ctx, next) => {
   await next()
 }
 
+const forgotPassword = async (ctx, next) => {
+  const {email} = ctx.request.body
+
+  const foundedUser = await User.findOne({where: {email}})
+  ctx.assert(foundedUser, 404, INVALID_USER)
+
+  const code = generateCode()
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    host: process.env.SMTP_HOST,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: 'mnpc ovfy jjzl cgwk',
+    },
+  })
+
+  const mailOptions = {
+    from: process.env.SMTP_USER,
+    to: email,
+    subject: 'Hello from Node.js',
+    text: 'This is a test email from Node.js.',
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error)
+    } else {
+      console.log('Email sent:', info.response)
+    }
+  })
+
+  ctx.body = code
+
+  await next()
+}
+
+const resetPassword = async (ctx, next) => {
+  const body = ctx.request.body
+  console.log(body)
+  await next()
+}
+
 const userHandlers = {
   createUser,
   authenticateUser,
@@ -148,6 +195,8 @@ const userHandlers = {
   updateUserAvatarById,
   createComment,
   updateComment,
+  forgotPassword,
+  resetPassword,
 }
 
 export default userHandlers

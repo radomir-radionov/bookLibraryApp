@@ -12,7 +12,7 @@ export type PostAuthenticationProps = {
   password: string;
 };
 
-export type PostForgotPwdProps = {
+export type TPostForgotPwdReq = {
   email: string;
 };
 

@@ -34,9 +34,6 @@ export const forgotPwdSlice = createSlice({
     postResetPwd: (state, { payload }) => {
       state.isLoading = true;
     },
-    setResponseMessage: (state, { payload }) => {
-      state.responseMessage = payload;
-    },
   },
 });
 

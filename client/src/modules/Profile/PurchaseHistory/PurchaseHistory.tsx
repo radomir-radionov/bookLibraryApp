@@ -8,13 +8,13 @@ import { BookShort } from 'modules';
 import { EmptyData } from 'modules/Profile';
 import { Pagination } from 'swiper';
 import { TBook } from 'types/book';
-import { TUserData } from 'types/user';
+// import { TUserData } from 'types/user';
 
 import { breakpoints } from './data';
 import { Text, Header, PurchaseHistoryStyled, SwiperSlideStyled, SwiperStyled, Title } from './styles';
 
 type TProps = {
-  data: TUserData;
+  data: any;
 };
 
 const PurchaseHistory = ({ data }: TProps) => {
@@ -24,13 +24,13 @@ const PurchaseHistory = ({ data }: TProps) => {
 
   const books = history?.books;
 
-  useEffect(() => {
-    books && setHistoryBook(books.map((book) => allBooks?.find(({ id }) => book.id === id)) as TBook[]);
-  }, [allBooks]);
+  //   useEffect(() => {
+  //     books && setHistoryBook(books.map((book) => allBooks?.find(({ id }) => book.id === id)) as TBook[]);
+  //   }, [allBooks]);
 
   return (
     <PurchaseHistoryStyled data-test-id={dataTestId.HISTORY}>
-      <Header>
+      {/* <Header>
         <Title>История</Title>
         <Text>Список прочитанных книг</Text>
       </Header>
@@ -50,7 +50,7 @@ const PurchaseHistory = ({ data }: TProps) => {
         </SwiperStyled>
       ) : (
         <EmptyData text={hintText.PURCHASE_HISTORY_TEXT} />
-      )}
+      )} */}
     </PurchaseHistoryStyled>
   );
 };

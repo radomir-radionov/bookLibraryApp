@@ -48,7 +48,7 @@ const AuthStep = () => {
         <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.AUTH_FORM}>
           <Title>Вход в личный кабинет</Title>
           <Fields>
-            <Input name='email' labelText='Логин' error={errors.email?.message} />
+            <Input name='email' labelText='Email' error={errors.email?.message} />
             <InputAuthPasswordWrapper>
               <InputPassword name='password' labelText='Пароль' error={errors.password?.message} />
               <AssistiveText visiable={errorStatus === 400}>

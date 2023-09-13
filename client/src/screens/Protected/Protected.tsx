@@ -10,18 +10,16 @@ const Protected = () => {
   const [ignore, setIgnore] = useState(false);
 
   const jwt = localStorage.getItem('jwt');
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    const user = JSON.parse(localStorage.getItem('userData') || 'null');
-
-    if (jwt && ignore) {
+    if (jwt && user && ignore) {
       dispatch(userActions.setJwt({ jwt }));
       dispatch(userActions.setUserData(user));
     }
 
     return () => setIgnore(true);
-  }, [dispatch, ignore]);
+  }, [dispatch, jwt, user, ignore]);
 
   return jwt ? <Outlet /> : <Navigate to={pageRoutes.AUTH} />;
 };

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
-import { Input, InputEmail, InputLogin, InputPassword, InputPhone } from 'components';
+import { Input, InputEmail, InputLogin, InputPhone } from 'components';
 
 import { Text, ButtonEdit, Buttons, ButtonSave, Form, Header, Fields, Title, СredentialsStyled } from './styles';
 import { TFormValues, TSubmitedData } from './types';
@@ -21,7 +21,6 @@ const Сredentials = ({ data }: TProps) => {
   const methods = useForm<TFormValues>({
     defaultValues: {
       login: data.username,
-      password: '*********',
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -41,12 +40,11 @@ const Сredentials = ({ data }: TProps) => {
     dispatch(userActions.putUser(payload));
   };
 
-  const isButtonSaveDisabled = !!(isBtnEditActive || errors.login || errors.password || errors.email);
+  const isButtonSaveDisabled = !!(isBtnEditActive || errors.login || errors.email);
 
   useEffect(() => {
     methods.reset({
       login: data.username,
-      password: 'Feat will be soon  111',
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -64,12 +62,6 @@ const Сredentials = ({ data }: TProps) => {
         <Form onSubmit={methods.handleSubmit(onSubmit)} data-test-id={dataTestId.FORM_PROFILE}>
           <Fields>
             <InputLogin name='login' labelText='Логин' error={errors.login?.message} isDisabled={isBtnEditActive} />
-            <InputPassword
-              name='password'
-              labelText='Пароль'
-              error={errors.password?.message}
-              isDisabled={isBtnEditActive}
-            />
             <Input name='firstName' labelText='Имя' error={errors.firstName?.message} isDisabled={isBtnEditActive} />
             <Input name='lastName' labelText='Фамилия' error={errors.lastName?.message} isDisabled={isBtnEditActive} />
             <InputPhone

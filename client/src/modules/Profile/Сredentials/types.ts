@@ -1,6 +1,5 @@
 export type TFormValues = {
   login: string;
-  password: string;
   firstName: string;
   lastName: string;
   phone: string;
@@ -10,7 +9,6 @@ export type TFormValues = {
 export type TSubmitedData = {
   username?: string;
   login?: string;
-  password: string;
   firstName: string;
   lastName: string;
   phone: string;

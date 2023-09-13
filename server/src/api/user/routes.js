@@ -4,7 +4,7 @@ import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
 
 const {
   userPaths: {user, userId, updateUserAvatarById, comments, commentId},
-  authPaths: {register, auth},
+  authPaths: {register, auth, forgotPassword, resetPassword},
 } = paths
 
 const routes = [
@@ -20,12 +20,11 @@ const routes = [
   {
     path: userId,
     method: 'get',
-    action:
-      // async (ctx, next) => {
-      // await jwtAuthenticater(ctx, async () => {
-      userHandlers.getUserById,
-    // })
-    // },
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.getUserById(ctx, next)
+      })
+    },
   },
   {
     path: register,
@@ -45,22 +44,39 @@ const routes = [
   {
     path: userId,
     method: 'put',
-    action: userHandlers.updateUser,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.updateUser(ctx, next)
+      })
+    },
+  },
+  {
+    path: forgotPassword,
+    method: 'post',
+    action: userHandlers.forgotPassword,
+  },
+  {
+    path: resetPassword,
+    method: 'post',
+    action: userHandlers.resetPassword,
   },
   {
     path: updateUserAvatarById,
     method: 'put',
-    action: userHandlers.updateUserAvatarById,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.updateUserAvatarById(ctx, next)
+      })
+    },
   },
   {
     path: commentId,
     method: 'put',
-    action: userHandlers.updateComment,
-  },
-  {
-    path: commentId,
-    method: 'put',
-    action: userHandlers.updateComment,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.updateComment(ctx, next)
+      })
+    },
   },
 ]
 
