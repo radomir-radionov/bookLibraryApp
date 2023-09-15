@@ -18,6 +18,7 @@ export default (sequelize) => {
     username: DataTypes.STRING,
     passwordHash: DataTypes.STRING,
     avatar: DataTypes.STRING,
+    code: DataTypes.STRING,
   })
 
   // TODO: circular dependency

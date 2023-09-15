@@ -1,6 +1,6 @@
 import pkg from 'jsonwebtoken'
 
-import jwtData from '../constants/jwtData.js'
+import jwtData from '../../../constants/jwtData.js'
 
 const {sign} = pkg
 const {JWT_SECRET} = jwtData

@@ -3,15 +3,15 @@ import os from 'os'
 import path from 'path'
 import pkg from 'lodash'
 import {compare} from 'bcrypt'
-import nodemailer from 'nodemailer'
 
 import db from '../../database/postgres/instance/index.js'
 import modelAliases from '../../constants/modelAliases.js'
 import errorText from '../../constants/errorText.js'
-import {createJwtToken} from '../../services/jwt.js'
+import {createJwtToken} from './services/jwt.js'
 import createHash from '../../utils/createHash.js'
 import prepareUpdateCommentRes from '../../helpers/user/prepareUpdateCommentRes.js'
 import generateCode from '../../helpers/user/generateCode.js'
+import sendMail from './services/mail.js'
 
 const {omit} = pkg
 const {User, Book, Comment} = db
@@ -150,30 +150,9 @@ const forgotPassword = async (ctx, next) => {
   ctx.assert(foundedUser, 404, INVALID_USER)
 
   const code = generateCode()
+  await User.update({code}, {where: {email}})
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: process.env.SMTP_HOST,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: 'mnpc ovfy jjzl cgwk',
-    },
-  })
-
-  const mailOptions = {
-    from: process.env.SMTP_USER,
-    to: email,
-    subject: 'Hello from Node.js',
-    text: 'This is a test email from Node.js.',
-  }
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error('Error sending email:', error)
-    } else {
-      console.log('Email sent:', info.response)
-    }
-  })
+  await sendMail(email, code)
 
   ctx.body = code
 
@@ -181,8 +160,18 @@ const forgotPassword = async (ctx, next) => {
 }
 
 const resetPassword = async (ctx, next) => {
-  const body = ctx.request.body
-  console.log(body)
+  const {password, code} = ctx.request.body
+
+  const foundedUser = await User.findOne({where: {code}})
+  ctx.assert(foundedUser, 404, INVALID_USER)
+
+  const passwordHash = await createHash(password)
+  foundedUser.passwordHash = passwordHash
+  await foundedUser.save()
+
+  console.log(foundedUser)
+  ctx.body = true
+
   await next()
 }
 
