@@ -8,6 +8,8 @@ export { default as Modal } from './Modals/Modal';
 export { default as BurgerMenu } from './Navigation/BurgerMenu/BurgerMenu';
 export { default as UserMenu } from './Navigation/UserMenu/UserMenu';
 
+export { default as Pagination } from './Navigation/Pagination/Pagination';
+
 export { default as SliderPagination } from './Slider/SliderPagination/SliderPagination';
 export { default as SliderScrollbar } from './Slider/SliderScrollbar/SliderScrollbar';
 

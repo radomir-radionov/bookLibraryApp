@@ -7,7 +7,7 @@ import { selectIsBooksLoading, selectIsSortByRating } from 'redux/books/selector
 import { displayingBooks } from 'redux/displayingContent/selectors';
 import { selectToasts } from 'redux/toast/selectors';
 import { enteredBookName } from 'redux/user/selectors';
-import { BookLong, BookShort } from 'modules';
+import { BookLong, BookShort, Pagination } from 'modules';
 import { TBook } from 'types/book';
 import { TCategory } from 'types/categories';
 import { getСurrentCategory } from 'utils/categories';
@@ -61,10 +61,8 @@ const BooksList = ({ books, categories }: BooksListProps) => {
   }
 
   return (
-    <BooksListStyled $displaying={displayingData} data-test-id={dataTestId.CONTENT}>
-      {filtredBooks.map((book) =>
-        displayingData === 'tiles' ? <BookShort key={book.id} data={book} /> : <BookLong key={book.id} data={book} />
-      )}
+    <BooksListStyled data-test-id={dataTestId.CONTENT}>
+      <Pagination data={filtredBooks} displayingData={displayingData} />
     </BooksListStyled>
   );
 };

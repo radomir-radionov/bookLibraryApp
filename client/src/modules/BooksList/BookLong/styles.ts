@@ -4,6 +4,7 @@ import { colors, device, formalization, typography } from 'styles';
 
 export const BookItemStyled = styled.article`
   display: flex;
+  flex: 1;
   gap: 16px;
   height: 218px;
   padding: 24px 24px 24px 16px;

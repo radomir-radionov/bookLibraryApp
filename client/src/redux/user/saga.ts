@@ -15,7 +15,7 @@ import { TExtendedUserInfo } from 'types/user';
 import { TPutCommentRes } from './types.js';
 import prepareToastData from 'helpers/toast/createToast.js';
 
-export function* clearUserData() {
+export function* clearUser() {
   yield localStorage.removeItem('jwt');
   yield localStorage.removeItem('user');
 }
@@ -23,7 +23,6 @@ export function* clearUserData() {
 export function* getUser({ payload }: ReturnType<typeof userActions.getUser>) {
   try {
     const data: TExtendedUserInfo = yield call(() => userService.getUser(payload));
-    console.log(data);
     yield put(userActions.setAdditionalInfo(data));
     yield put(userActions.cancelLoading());
   } catch (e: any) {
@@ -106,7 +105,7 @@ function* userSaga() {
     takeLatest(userActions.updateAvatarReq, updateAvatar),
     takeLatest(userActions.putComment, putComment),
     takeLatest(userActions.postComment, postComment),
-    takeLatest(userActions.clearUser, clearUserData),
+    takeLatest(userActions.clearUser, clearUser),
   ]);
 }
 

@@ -63,6 +63,7 @@
     "react-highlight-words": "^0.20.0",
     "react-hook-form": "^7.43.1",
     "react-input-mask": "^2.0.4",
+    "react-paginate": "^8.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "redux-saga": "^1.2.2",
