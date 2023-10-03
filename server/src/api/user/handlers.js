@@ -160,16 +160,14 @@ const forgotPassword = async (ctx, next) => {
 }
 
 const resetPassword = async (ctx, next) => {
-  const {password, code} = ctx.request.body
-
+  const {passwordConfirmation, code} = ctx.request.body
   const foundedUser = await User.findOne({where: {code}})
   ctx.assert(foundedUser, 404, INVALID_USER)
 
-  const passwordHash = await createHash(password)
+  const passwordHash = await createHash(passwordConfirmation)
   foundedUser.passwordHash = passwordHash
   await foundedUser.save()
 
-  console.log(foundedUser)
   ctx.body = true
 
   await next()
