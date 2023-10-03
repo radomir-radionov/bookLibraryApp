@@ -13,7 +13,6 @@ type TProps = {
 
 const BookedBook = ({ data }: TProps) => {
   const { booking } = data;
-
   const isExpired =
     new Date().getTime() >= new Date(booking?.dateOrder || '').getTime() &&
     new Date().getDate() !== new Date(booking?.dateOrder || '').getDate();

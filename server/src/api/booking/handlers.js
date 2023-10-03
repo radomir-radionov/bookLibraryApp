@@ -1,28 +1,34 @@
 import db from '../../database/postgres/instance/index.js'
 import errorText from '../../constants/errorText.js'
+import prepareAvailableUpToDate from './helpers/prepareAvailableUpToDate.js'
 
-const {Booking} = db
+const {Book, Booking} = db
 const {CREATE_BOOKING_ERROR, BOOK_ALREADY_BOOKED, USER_LIMIT_BOOKING, BOOKING_DELETE_ERROR} = errorText
 
 const createBooking = async (ctx, next) => {
   const bookingData = ctx.request.body
-
   const bookingByUserId = await Booking.findAll({where: {userId: bookingData.userId}})
   const bookingsByBookId = await Booking.findAll({where: {bookId: bookingData.bookId}})
 
-  if (bookingByUserId.some((booking) => booking.userId === bookingData.userId)) {
+  if (bookingByUserId.some(({userId}) => userId === bookingData.userId)) {
     ctx.throw(404, USER_LIMIT_BOOKING)
   }
 
-  if (bookingsByBookId.some((booking) => booking.bookId === bookingData.bookId)) {
+  if (bookingsByBookId.some(({bookId}) => bookId === bookingData.bookId)) {
     ctx.throw(404, BOOK_ALREADY_BOOKED)
   }
 
+  // const availableUpTo = prepareAvailableUpToDate(bookingData.createdAt)
   const createdBooking = await Booking.create(bookingData)
+
+  const book = await Book.findOne({
+    where: {id: bookingData.bookId},
+    attributes: {exclude: ['issueYear', 'categories', 'createdAt', 'updatedAt']},
+  })
 
   ctx.assert(createdBooking, 404, CREATE_BOOKING_ERROR)
 
-  ctx.body = createdBooking.dataValues
+  ctx.body = {...createdBooking.dataValues, book}
   await next()
 }
 

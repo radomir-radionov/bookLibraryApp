@@ -33,7 +33,8 @@ const AboutBook = ({ data }: TProps) => {
       {image ? (
         <SliderWrapper>
           {
-            width > 1024 ? <SliderScrollbar img={`http://localhost:5000/${image}`} /> : null
+            //   width > 1024 ? <SliderScrollbar img={`http://localhost:5000/${image}`} /> : null
+            <SliderScrollbar img={`http://localhost:5000/${image}`} />
             //   <SliderPagination imgs={image} />
           }
         </SliderWrapper>

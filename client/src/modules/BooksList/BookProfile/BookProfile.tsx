@@ -30,10 +30,8 @@ const BookProfile = ({ data }: BookProfileProps) => {
   const dispatch = useDispatch();
   const enteredText = useSelector(enteredBookName);
   const navigate = useNavigate();
-  const { id, title, authors, rating, issueYear, image } = data.book;
-
+  const { id, title, authors, rating, issueYear, image } = data;
   const imgSrc = `${image}`;
-
   const handleNavigateClick = () => navigate(`/books/all/${id}`);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
