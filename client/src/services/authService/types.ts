@@ -16,7 +16,7 @@ export type TPostForgotPwdReq = {
   email: string;
 };
 
-export type PostResetPwdProps = {
+export type TPostResetPwdReq = {
   password: string;
   passwordConfirmation: string;
   code: string;

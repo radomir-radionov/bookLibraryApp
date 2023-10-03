@@ -1,7 +1,7 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useSelector } from 'react-redux';
-import { selectIsLoading, selectStep } from 'redux/registration/selectors';
+import { selectStep } from 'redux/registration/selectors';
 import { Loader } from 'components';
 import { ContactsStep, FailedDataStep, FailedStep, LoginStep, NameStep, SuccessfulStep } from 'modules/Modals';
 
@@ -9,7 +9,6 @@ import { Container, Title, Wrapper } from './styles';
 
 const Registration = () => {
   const step = useSelector(selectStep);
-  const isLoading = useSelector(selectIsLoading);
 
   const getStepToRender = () => {
     switch (true) {
@@ -36,7 +35,6 @@ const Registration = () => {
         <Title>Cleverland</Title>
         {getStepToRender()}
       </Container>
-      {isLoading && <Loader />}
     </Wrapper>
   );
 };

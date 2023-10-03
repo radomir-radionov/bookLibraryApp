@@ -11,6 +11,7 @@ enum responseText {
   AUTH_WRONG_DATA = 'Неверный логин или пароль!',
   AUTH_SMTH_WRONG = 'Что-то пошло не так. Попробуйте еще раз',
 
+  FORGOT_PWD_SUCCESS = 'Пароль успешно изменен!',
   FORGOT_PWD_ERROR = 'error',
   FORGOT_PWD_SMTH_WRONG = 'Что-то пошло не так. Попробуйте еще раз',
 

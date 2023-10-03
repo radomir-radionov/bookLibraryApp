@@ -12,16 +12,18 @@ const FailedPwdStep = () => {
   const dispatch = useDispatch();
   const resetPwdData = useSelector(selectResetPwdData);
 
-  const handleSubmitClick = () => {
-    dispatch(forgotPwdActions.postResetPwd(resetPwdData));
-  };
+  const handleBtnRepeatClick = () => dispatch(forgotPwdActions.postResetPwd(resetPwdData));
+  const handleBtnBackClick = () => dispatch(forgotPwdActions.setDefiniteStep(3));
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Данные не сохранились</Title>
-      <Text>Что-то пошло не так. Попробуйте ещё раз</Text>
-      <Button type='submit' onClick={handleSubmitClick} variant={BUTTON_VARIANTS.LARGE}>
+      <Text>Что-то пошло не так. Попробуйте ещё раз!</Text>
+      <Button type='submit' onClick={handleBtnRepeatClick} variant={BUTTON_VARIANTS.LARGE}>
         повторить
+      </Button>
+      <Button type='submit' onClick={handleBtnBackClick} variant={BUTTON_VARIANTS.LARGE}>
+        вернуться назад
       </Button>
     </ModalStyled>
   );

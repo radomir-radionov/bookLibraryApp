@@ -20,8 +20,10 @@ export function* postForgotPwd({ payload }: ReturnType<typeof forgotPwdActions.p
 
 export function* postResetPwd({ payload }: ReturnType<typeof forgotPwdActions.postResetPwd>) {
   try {
+    console.log(payload);
     yield call(() => authService.postResetPwd(payload));
     yield put(forgotPwdActions.setDefiniteStep(4));
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.FORGOT_PWD_SUCCESS)));
   } catch (e) {
     yield put(forgotPwdActions.setResetPwdData(payload));
     yield put(forgotPwdActions.setDefiniteStep(5));

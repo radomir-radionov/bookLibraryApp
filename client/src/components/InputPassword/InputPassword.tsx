@@ -31,6 +31,7 @@ const InputPassword = ({ name, labelText, error, isDisabled, required = true, cu
 
   const passwordValue = watch().password;
   const isValid = isPasswordCorrect(passwordValue);
+
   const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setValue(name, value);
     clearErrors(name);

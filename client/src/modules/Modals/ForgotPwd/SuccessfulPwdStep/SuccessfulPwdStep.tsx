@@ -6,18 +6,24 @@ import { Button } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import { ModalStyled, Paragraph, Title } from './styles';
+import { useDispatch } from 'react-redux';
+import { forgotPwdActions } from 'redux/forgotPwd/slice.js';
 
 const SuccessfulStep = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onBtnSubmitClick = () => navigate(pageRoutes.AUTH);
+  const onBtnSubmitClick = () => {
+    dispatch(forgotPwdActions.setDefiniteStep(1));
+    navigate(pageRoutes.AUTH);
+  };
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
       <Title>Новые данные сохранены</Title>
       <Paragraph>
         Зайдите в личный кабинет, <br />
-        используя свои логин и новый пароль
+        используя свои email и новый пароль
       </Paragraph>
       <Button type='submit' onClick={onBtnSubmitClick} variant={BUTTON_VARIANTS.LARGE}>
         вход

@@ -3,7 +3,6 @@ import responseText from 'constants/responseText';
 
 import { userActions } from 'redux/user';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { AxiosError } from 'axios';
 import { authService } from 'services';
 
 import { authActions } from './slice';

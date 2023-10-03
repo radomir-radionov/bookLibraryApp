@@ -5,7 +5,7 @@ import { AxiosResponse } from 'axios';
 
 import httpService from '../../http';
 
-import { PostAuthenticationProps, TPostForgotPwdReq, PostRegistrationProps, PostResetPwdProps } from './types';
+import { PostAuthenticationProps, TPostForgotPwdReq, PostRegistrationProps, TPostResetPwdReq } from './types';
 
 const authService = {
   postRegistration: async (payload: PostRegistrationProps) => {
@@ -21,7 +21,7 @@ const authService = {
 
     return data;
   },
-  postResetPwd: async (payload: PostResetPwdProps) => {
+  postResetPwd: async (payload: TPostResetPwdReq) => {
     await httpService.post(serverEndpoints.RESET_PWD, payload);
   },
 };

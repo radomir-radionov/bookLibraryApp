@@ -27,7 +27,7 @@ type TEmailForm = {
 const EmailStep = () => {
   const dispatch = useDispatch();
 
-  const methods = useForm<TEmailForm>({ mode: 'onBlur', reValidateMode: 'onChange' });
+  const methods = useForm<TEmailForm>();
   const { errors } = methods.formState;
   const isBtnDisabled = !!errors.email;
 

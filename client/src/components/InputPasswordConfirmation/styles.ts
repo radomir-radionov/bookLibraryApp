@@ -16,10 +16,6 @@ type THintWord = {
   $colored?: boolean;
 };
 
-type TCheckIcon = {
-  $mix: boolean;
-};
-
 export const Wrapper = styled.div<TWrapper>`
   p {
     transition: all 0.2s ease;
@@ -117,11 +113,10 @@ export const HintWord = styled.span<THintWord>`
   color: ${({ $colored }) => ($colored ? colors.OTHER_NEGATIVE : colors.GREY_BLACK_40)};
 `;
 
-export const CheckIcon = styled(Check_Icon)<TCheckIcon>`
+export const CheckIcon = styled(Check_Icon)`
   position: absolute;
   right: 45px;
   bottom: 2px;
-  width: ${({ $mix }) => ($mix ? 'auto' : 0)};
 `;
 
 export const ActionUnvisibleIcon = styled(ActionUnvisible_Icon)``;
