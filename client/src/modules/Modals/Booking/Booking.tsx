@@ -31,7 +31,7 @@ const Booking = () => {
     dispatch(bookingActions.updateBookingReq({ onlyBookData, preparedBookingData }));
   };
 
-  const handleBtnCancelClick = () => dispatch(bookingActions.deleteBookingReq({ id, onlyBookData, bookingId }));
+  const handleBtnCancelClick = () => dispatch(bookingActions.deleteBookingReq({ id, dataType: 'books' }));
   const handleBtnCloseClick = () => dispatch(modalActions.close());
 
   useEffect(() => {

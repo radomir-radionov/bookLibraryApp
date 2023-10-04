@@ -25,7 +25,7 @@ const Profile = () => {
       <Content>
         <Header data={user} />
         <Сredentials data={user} />
-        <BookedBook data={userAdditionalInfo} />
+        <BookedBook data={userAdditionalInfo.booking} />
         <UserBook data={userAdditionalInfo} />
         <PurchaseHistory data={userAdditionalInfo} />
       </Content>

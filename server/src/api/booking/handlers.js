@@ -1,9 +1,11 @@
 import db from '../../database/postgres/instance/index.js'
 import errorText from '../../constants/errorText.js'
+import responseText from '../../constants/responseText.js'
 import prepareAvailableUpToDate from './helpers/prepareAvailableUpToDate.js'
 
 const {Book, Booking} = db
 const {CREATE_BOOKING_ERROR, BOOK_ALREADY_BOOKED, USER_LIMIT_BOOKING, BOOKING_DELETE_ERROR} = errorText
+const {BOOKING_DELETED_SUCCESS} = responseText
 
 const createBooking = async (ctx, next) => {
   const bookingData = ctx.request.body
@@ -44,12 +46,11 @@ const updateBooking = async (ctx, next) => {
 
 const deleteBooking = async (ctx, next) => {
   const id = ctx.params.id
-
-  const isBookingDeleted = await Booking.destroy({where: {id}})
+  const isBookingDeleted = await Booking.destroy({where: {bookId: id}})
 
   ctx.assert(isBookingDeleted, 404, BOOKING_DELETE_ERROR)
 
-  ctx.body = true
+  ctx.body = {message: BOOKING_DELETED_SUCCESS}
   await next()
 }
 

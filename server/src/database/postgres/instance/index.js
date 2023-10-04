@@ -18,13 +18,11 @@ const Comment = comment(sequelize)
 const {userId, bookId} = foreignKeys
 const {userAlias, bookAlias, extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
-User.hasOne(Booking, {foreignKey: userId, as: bookingAlias})
 User.hasOne(Delivery, {foreignKey: userId, as: deliveryAlias})
 User.hasMany(History, {foreignKey: userId, as: historyAlias})
 User.hasMany(Comment, {foreignKey: userId, as: commentAlias})
 
 Delivery.belongsTo(User, {foreignKey: userId, as: userAlias})
-Booking.belongsTo(User, {foreignKey: userId, as: userAlias})
 History.belongsTo(User, {foreignKey: userId, as: userAlias})
 Comment.belongsTo(User, {foreignKey: userId, as: userAlias})
 
@@ -36,9 +34,12 @@ Book.hasMany(Comment, {foreignKey: bookId, as: commentAlias})
 
 ExtendedBook.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 Delivery.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
-Booking.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 History.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 Comment.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
+
+User.hasOne(Booking, {foreignKey: userId, as: bookingAlias})
+Booking.belongsTo(User, {foreignKey: userId, as: userAlias})
+Booking.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 
 const db = {
   sequelize,

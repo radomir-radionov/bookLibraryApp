@@ -4,38 +4,24 @@ import { colors, device, formalization, typography } from 'styles';
 
 export const BookStyled = styled.article`
   display: flex;
-  flex: 218px 1 1;
+  gap: 16px;
   width: 100%;
   height: 218px;
-  padding: 24px 24px 24px 16px;
+  padding: 16px;
   border-radius: 10px;
   background: ${colors.MAIN_WHITE};
   ${formalization.MAIN_SHADOW};
   transition: all 0.2s ease-out;
   cursor: pointer;
 
-  @media (max-width: ${device.laptopL}) {
-    padding: 16px 24px 16px 16px;
-  }
-
   @media (max-width: ${device.tablet}) {
     height: 182px;
-    padding: 16px 16px 16px 8px;
   }
 
   @media (max-width: ${device.mobileL}) {
     justify-content: space-evenly;
-  }
-`;
-
-export const ImgWrapper = styled.div`
-  width: 133px;
-  margin-right: 16px;
-
-  @media (max-width: ${device.tablet}) {
-    width: 70px;
-    height: 100px;
-    margin-right: 8px;
+    gap: 8px;
+    padding-left: 8px;
   }
 `;
 
@@ -52,10 +38,16 @@ export const ImgBox = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
-  min-width: 70px;
-  height: 100%;
-  min-height: 100px;
+  flex: 1;
+  max-width: 120px;
+  height: 170px;
+  border-radius: 3px;
+
+  @media (max-width: ${device.tablet}) {
+    max-width: 70px;
+    min-width: 70px;
+    height: 100px;
+  }
 `;
 
 export const Info = styled.div`
@@ -69,7 +61,7 @@ export const Info = styled.div`
   }
 
   @media (max-width: ${device.mobileL}) {
-    flex: none;
+    justify-content: flex-start;
     gap: 4px;
     width: 186px;
   }
@@ -109,7 +101,7 @@ export const SubTitleWrapper = styled.div`
       ${typography.mobile.H3};
     }
 
-    @media (max-width: ${device.mobileL}) {
+    @media (max-width: ${device.tablet}) {
       margin-bottom: 3px;
       ${typography.mobile.SUBTITLE_SMALL};
     }
@@ -119,7 +111,7 @@ export const SubTitleWrapper = styled.div`
 export const Author = styled.p`
   ${typography.desktop.BODY_LARGE};
 
-  @media (max-width: ${device.mobileL}) {
+  @media (max-width: ${device.tablet}) {
     ${typography.desktop.BODY_SMALL};
   }
 `;
@@ -143,9 +135,6 @@ export const Active = styled.div`
   }
 
   @media (max-width: ${device.tablet}) {
-    flex-direction: column;
-    align-items: flex-start;
-
     div > div > svg {
       width: 16px;
       height: 16px;
@@ -153,7 +142,15 @@ export const Active = styled.div`
 
     button {
       width: 186px;
-      margin-top: 18px;
+    }
+  }
+
+  @media (max-width: ${device.mobileL}) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    button {
+      margin-top: 16px;
     }
   }
 `;

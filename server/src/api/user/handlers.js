@@ -14,9 +14,9 @@ import generateCode from '../../helpers/user/generateCode.js'
 import sendMail from './services/mail.js'
 
 const {omit} = pkg
-const {User, Book, Comment} = db
+const {User, Book, Comment, Booking} = db
 const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
-const {deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
+const {bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
 const createUser = async (ctx, next) => {
   const registerData = ctx.request.body
@@ -66,7 +66,24 @@ const getUserById = async (ctx, next) => {
 
   const foundedUser = await User.findOne({
     where: {id},
-    include: [deliveryAlias, bookingAlias, historyAlias, commentAlias],
+    include: [
+      deliveryAlias,
+      {
+        model: Booking,
+        as: bookingAlias,
+        include: [
+          {
+            model: Book,
+            as: bookAlias,
+            attributes: {
+              exclude: ['categories', 'createdAt', 'updatedAt'],
+            },
+          },
+        ],
+      },
+      historyAlias,
+      commentAlias,
+    ],
   })
 
   ctx.assert(foundedUser, 404, INVALID_USER)

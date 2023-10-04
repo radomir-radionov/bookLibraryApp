@@ -2,7 +2,7 @@ import responseText from 'constants/responseText';
 
 import { modalActions } from 'redux/modal';
 import { toastActions } from 'redux/toast';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { bookingReqService, booksService } from 'services';
 import { ToastTypes } from 'types/toast';
 
@@ -12,6 +12,8 @@ import { bookingActions } from './slice';
 import prepareToastData from 'helpers/toast/createToast.js';
 import { TBookDetailed } from 'types/book.js';
 import { bookActions } from 'redux/book/slice.js';
+import { userActions } from 'redux/user/slice.js';
+import { selectUserDataId } from 'redux/user/selectors.js';
 
 export function* postBooking({ payload }: ReturnType<typeof bookingActions.createBookingReq>) {
   try {
@@ -61,15 +63,14 @@ export function* putBooking({
 
 export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.deleteBookingReq>) {
   try {
-    const { id, onlyBookData, bookingId } = payload;
+    const { id, dataType } = payload;
+    const userId: number = yield select(selectUserDataId);
+    yield call(() => bookingReqService.deleteBooking(id));
 
-    yield call(() => bookingReqService.deleteBooking(bookingId));
-
-    if (onlyBookData) {
-      const book: TBookDetailed = yield call(() => booksService.getBookById(id));
-      yield put(bookActions.setBook(book));
-    } else {
+    if (dataType === 'books') {
       yield put(booksActions.getBooks());
+    } else {
+      yield put(userActions.getUser(userId));
     }
 
     yield put(modalActions.close());

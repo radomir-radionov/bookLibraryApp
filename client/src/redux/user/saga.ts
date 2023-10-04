@@ -34,8 +34,6 @@ export function* getUser({ payload }: ReturnType<typeof userActions.getUser>) {
 export function* putUser({ payload }: ReturnType<typeof userActions.putUser>) {
   try {
     const userId: number = yield select(selectUserDataId);
-    console.log('putUser', payload);
-    console.log('userId', userId);
     const updatedUser: TExtendedUserInfo = yield call(() => userService.putUser({ userId, payload }));
 
     if (updatedUser) {

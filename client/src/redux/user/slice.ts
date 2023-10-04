@@ -28,6 +28,7 @@ export const userSlice = createSlice({
     getUser: (state, { payload }) => {
       state.isLoading = true;
     },
+
     clearUser: () => initialState,
     setBookName: (state, { payload }: PayloadAction<string>) => {
       state.enteredBookName = payload;

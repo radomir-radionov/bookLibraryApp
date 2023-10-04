@@ -47,7 +47,7 @@ export type ShortBookDataProps = {
 export type TUserBooking = {
   id: number | null;
   order: string | null;
-  dateOrder: string | Date | null;
+  createdAt: string | Date | null;
   book: ShortBookDataProps | null;
 };
 
