@@ -29,12 +29,19 @@ export const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  flex: 1;
+  max-width: 120px;
+  height: 170px;
   background: ${colors.GREY_BLACK_5};
   border: 1px solid ${colors.GREY_BLACK_40};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+
+  @media (max-width: ${device.tablet}) {
+    max-width: 70px;
+    min-width: 70px;
+    height: 100px;
+  }
 `;
 
 export const Img = styled.img`
@@ -165,4 +172,8 @@ export const DeliveryText = styled.span`
   }
 `;
 
-export const CatIcon = styled(Cat_Icon)``;
+export const CatIcon = styled(Cat_Icon)`
+  @media (max-width: ${device.tablet}) {
+    width: 32px;
+  }
+`;

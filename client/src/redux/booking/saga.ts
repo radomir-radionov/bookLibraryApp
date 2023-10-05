@@ -65,10 +65,13 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
   try {
     const { id, dataType } = payload;
     const userId: number = yield select(selectUserDataId);
+
     yield call(() => bookingReqService.deleteBooking(id));
 
     if (dataType === 'books') {
       yield put(booksActions.getBooks());
+    } else if (dataType === 'book') {
+      yield put(bookActions.getBook(id));
     } else {
       yield put(userActions.getUser(userId));
     }
@@ -83,11 +86,32 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
   }
 }
 
+export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActions.deleteExpiredBookingReq>) {
+  try {
+    const { id } = payload;
+    const userId: number = yield select(selectUserDataId);
+    console.log(id);
+    console.log(1);
+    yield call(() => bookingReqService.deleteExpiredBooking(id));
+    yield put(userActions.getUser(userId));
+
+    yield put(bookingActions.cancelLoading());
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_EXPIRED_BOOKING_SUCCESS)));
+  } catch (e) {
+    console.log(2);
+    yield put(bookingActions.cancelLoading());
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.CANCEL_EXPIRED_BOOKING_ERROR)));
+  }
+}
+
 function* bookingSaga() {
   yield all([
     takeLatest(bookingActions.createBookingReq, postBooking),
     takeLatest(bookingActions.updateBookingReq, putBooking),
     takeLatest(bookingActions.deleteBookingReq, deleteBooking),
+    takeLatest(bookingActions.deleteExpiredBookingReq, deleteExpiredBooking),
+
+    ,
   ]);
 }
 

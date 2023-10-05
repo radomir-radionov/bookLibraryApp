@@ -29,6 +29,8 @@ enum responseText {
 
   CANCEL_BOOKING_SUCCESS = 'Бронирование книги успешно отменено!',
   CANCEL_BOOKING_ERROR = 'Не удалось снять бронирование книги. Попробуйте позже!',
+  CANCEL_EXPIRED_BOOKING_SUCCESS = 'Истёкшее бронирование книги успешно отменено!',
+  CANCEL_EXPIRED_BOOKING_ERROR = 'Не удалось снять истёкшее бронирование книги. Попробуйте позже!',
 
   UPLOAD_AVATAR_SUCCESS = 'Фото успешно сохранено!',
   UPLOAD_AVATAR_ERROR = 'Что-то пошло не так, фото не сохранилось. Попробуйте позже!',

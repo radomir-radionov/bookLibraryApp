@@ -19,6 +19,9 @@ export const bookingSlice = createSlice({
     deleteBookingReq: (state, { payload }) => {
       state.isLoading = true;
     },
+    deleteExpiredBookingReq: (state, { payload }) => {
+      state.isLoading = true;
+    },
     cancelLoading: (state) => {
       state.isLoading = false;
     },

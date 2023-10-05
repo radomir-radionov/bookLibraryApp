@@ -12,14 +12,25 @@ import { BUTTON_VARIANTS } from 'types/button';
 import prepareBookingData from 'utils/calendar/prepareBookingData';
 
 import { ActionCloseIcon, Container, Header, Modal, NavBox, Title } from './styles';
+import { useLocation } from 'react-router-dom';
 
 const Booking = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const { onlyBookData, book } = useSelector(selectModalInfo);
   const [selectedDate, setSelectedDate] = useState<Date>();
+  const location = useLocation();
+
   const { id, booking } = book;
   const bookingId = booking?.id;
+
+  let currentPath = '';
+
+  if (location.pathname === '/books/all') {
+    currentPath = 'books';
+  } else {
+    currentPath = 'book';
+  }
 
   const handleBtnBookingClick = () => {
     const preparedBookingData = prepareBookingData(selectedDate, user, id);
@@ -31,7 +42,7 @@ const Booking = () => {
     dispatch(bookingActions.updateBookingReq({ onlyBookData, preparedBookingData }));
   };
 
-  const handleBtnCancelClick = () => dispatch(bookingActions.deleteBookingReq({ id, dataType: 'books' }));
+  const handleBtnCancelClick = () => dispatch(bookingActions.deleteBookingReq({ id, dataType: currentPath }));
   const handleBtnCloseClick = () => dispatch(modalActions.close());
 
   useEffect(() => {

@@ -18,6 +18,11 @@ const bookingReqService = {
 
     return data;
   },
+  deleteExpiredBooking: async (id: number) => {
+    const { data } = await httpService.delete(`${serverEndpoints.BOOKINGS}/expired/${id}`);
+
+    return data;
+  },
 };
 
 export default bookingReqService;
