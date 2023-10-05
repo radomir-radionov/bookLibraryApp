@@ -15,6 +15,7 @@ const errorText = {
   BOOK_ALREADY_BOOKED: 'Book already booked!',
   USER_LIMIT_BOOKING: "User's booking limit exceeded!",
   BOOKING_DELETE_ERROR: 'Booking deletion failed!',
+  EXPIRED_BOOKING_DELETE_ERROR: 'Expired booking deletion failed!',
 }
 
 export default errorText

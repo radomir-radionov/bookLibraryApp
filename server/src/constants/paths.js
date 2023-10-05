@@ -19,6 +19,7 @@ const paths = {
   bookingPaths: {
     bookings: '/api/bookings',
     bookingId: '/api/bookings/:id',
+    bookingExpiredId: '/api/bookings/expired/:id',
   },
   categoryPaths: {
     category: '/api/category',

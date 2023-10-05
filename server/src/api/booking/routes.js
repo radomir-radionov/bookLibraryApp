@@ -2,7 +2,7 @@ import paths from '../../constants/paths.js'
 import bookingHandlers from './handlers.js'
 
 const {
-  bookingPaths: {bookings, bookingId},
+  bookingPaths: {bookings, bookingId, bookingExpiredId},
 } = paths
 
 const routes = [
@@ -20,6 +20,11 @@ const routes = [
     path: bookingId,
     method: 'delete',
     action: bookingHandlers.deleteBooking,
+  },
+  {
+    path: bookingExpiredId,
+    method: 'delete',
+    action: bookingHandlers.deleteExpiredBooking,
   },
 ]
 

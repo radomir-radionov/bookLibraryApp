@@ -1,5 +1,6 @@
 const tableNames = require('../../../constants/tableNames.cjs')
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tableNames.users, {
@@ -65,6 +66,6 @@ module.exports = {
     })
   },
   async down(queryInterface) {
-    await queryInterface.dropTable(tableNames)
+    await queryInterface.dropTable(tableNames.users)
   },
 }

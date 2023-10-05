@@ -15,7 +15,7 @@ const getBooks = async (ctx, next) => {
 
 const getBookById = async (ctx, next) => {
   const id = ctx.params.id
-
+  console.log(id)
   const book = await Book.findOne({
     where: {id},
     include: [
