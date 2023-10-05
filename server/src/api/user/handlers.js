@@ -9,12 +9,12 @@ import modelAliases from '../../constants/modelAliases.js'
 import errorText from '../../constants/errorText.js'
 import {createJwtToken} from './services/jwt.js'
 import createHash from '../../utils/createHash.js'
-import prepareUpdateCommentRes from '../../helpers/user/prepareUpdateCommentRes.js'
-import generateCode from '../../helpers/user/generateCode.js'
+import prepareUpdateCommentRes from './helpers/prepareUpdateCommentRes.js'
+import generateCode from './helpers/generateCode.js'
 import sendMail from './services/mail.js'
 
 const {omit} = pkg
-const {User, Book, Comment, Booking} = db
+const {User, Book, Comment, Booking, Delivery} = db
 const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
 const {bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
@@ -67,7 +67,19 @@ const getUserById = async (ctx, next) => {
   const foundedUser = await User.findOne({
     where: {id},
     include: [
-      deliveryAlias,
+      {
+        model: Delivery,
+        as: deliveryAlias,
+        include: [
+          {
+            model: Book,
+            as: bookAlias,
+            attributes: {
+              exclude: ['categories', 'createdAt', 'updatedAt'],
+            },
+          },
+        ],
+      },
       {
         model: Booking,
         as: bookingAlias,

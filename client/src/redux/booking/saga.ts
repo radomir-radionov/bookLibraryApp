@@ -90,15 +90,13 @@ export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActi
   try {
     const { id } = payload;
     const userId: number = yield select(selectUserDataId);
-    console.log(id);
-    console.log(1);
+
     yield call(() => bookingReqService.deleteExpiredBooking(id));
     yield put(userActions.getUser(userId));
 
     yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_EXPIRED_BOOKING_SUCCESS)));
   } catch (e) {
-    console.log(2);
     yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.CANCEL_EXPIRED_BOOKING_ERROR)));
   }

@@ -1,8 +1,7 @@
 import db from '../../database/postgres/instance/index.js'
-import errorText from '../../constants/errorText.js'
-import responseText from '../../constants/responseText.js'
 import modelAliases from '../../constants/modelAliases.js'
-import prepareAvailableUpToDate from './helpers/prepareAvailableUpToDate.js'
+import responseText from '../../constants/responseText.js'
+import errorText from '../../constants/errorText.js'
 import checkExpiredDate from './helpers/checkExpiredDate.js'
 
 const {Book, Booking} = db
@@ -23,7 +22,6 @@ const createBooking = async (ctx, next) => {
     ctx.throw(404, BOOK_ALREADY_BOOKED)
   }
 
-  // const availableUpTo = prepareAvailableUpToDate(bookingData.createdAt)
   const createdBooking = await Booking.create(bookingData)
 
   const book = await Book.findOne({

@@ -21,11 +21,13 @@ import {
 } from './styles';
 import { bookingActions } from 'redux/booking/slice.js';
 
-type BookProfileProps = {
+type TProps = {
+  type: string;
   data: any;
+  dateHandedTo?: any;
 };
 
-const BookProfile = ({ data }: BookProfileProps) => {
+const BookProfile = ({ type, data, dateHandedTo }: TProps) => {
   const dispatch = useDispatch();
   const enteredText = useSelector(enteredBookName);
   const navigate = useNavigate();
@@ -36,7 +38,6 @@ const BookProfile = ({ data }: BookProfileProps) => {
     event.stopPropagation();
     dispatch(bookingActions.deleteBookingReq({ id }));
   };
-
   return (
     <BookStyled onClick={handleNavigateClick} data-test-id={dataTestId.CARD}>
       {image ? (
@@ -57,8 +58,8 @@ const BookProfile = ({ data }: BookProfileProps) => {
         </NameBox>
         <Active>
           <RatingList rating={rating} />
-          {data.createdAt ? (
-            <DeliveryText>возврат {formatDateButton(data?.dateHandedTo.toString() || '')}</DeliveryText>
+          {type === 'delivery' ? (
+            <DeliveryText>возврат {formatDateButton(dateHandedTo.toString())}</DeliveryText>
           ) : (
             <Button onClick={handleClick} variant={BUTTON_VARIANTS.SMALL} dataTestId={dataTestId.BOOKING_CANCEL_BUTTON}>
               отменить бронь

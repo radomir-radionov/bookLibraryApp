@@ -9,9 +9,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const userAdditionalInfo = useSelector(selectAdditionalInfo);
-
   const [ignore, setIgnore] = useState(false);
-
+  console.log('BookedBook', userAdditionalInfo.booking);
+  console.log('UserBook', userAdditionalInfo.delivery);
   useEffect(() => {
     if (user && Object.keys(user).length > 0 && ignore) {
       dispatch(userActions.getUser(user.id));
@@ -26,7 +26,7 @@ const Profile = () => {
         <Header data={user} />
         <Сredentials data={user} />
         <BookedBook data={userAdditionalInfo.booking} />
-        <UserBook data={userAdditionalInfo} />
+        <UserBook data={userAdditionalInfo.delivery} />
         <PurchaseHistory data={userAdditionalInfo} />
       </Content>
     </ProfileStyled>

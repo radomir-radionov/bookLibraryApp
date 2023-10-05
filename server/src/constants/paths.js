@@ -12,6 +12,9 @@ const paths = {
     comments: '/api/comments',
     commentId: '/api/comments/:id',
   },
+  categoryPaths: {
+    category: '/api/category',
+  },
   bookPaths: {
     book: '/api/book',
     bookId: '/api/book/:id',
@@ -21,8 +24,9 @@ const paths = {
     bookingId: '/api/bookings/:id',
     bookingExpiredId: '/api/bookings/expired/:id',
   },
-  categoryPaths: {
-    category: '/api/category',
+  deliveryPaths: {
+    deliveries: '/api/deliveries',
+    deliverieId: '/api/deliveries/:id',
   },
 }
 

@@ -16,6 +16,11 @@ const errorText = {
   USER_LIMIT_BOOKING: "User's booking limit exceeded!",
   BOOKING_DELETE_ERROR: 'Booking deletion failed!',
   EXPIRED_BOOKING_DELETE_ERROR: 'Expired booking deletion failed!',
+  // Delivery
+  CREATE_DELIVERY_ERROR: 'Failed to create delivery!',
+  USER_LIMIT_DELIVERY: "User's delivery limit exceeded!",
+  BOOK_ALREADY_DELIVERED: 'Book already  delivered!',
+  DELIVERY_DELETE_ERROR: 'Delivery deletion failed!',
 }
 
 export default errorText

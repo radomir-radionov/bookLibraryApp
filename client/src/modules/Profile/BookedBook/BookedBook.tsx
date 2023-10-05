@@ -40,7 +40,7 @@ const BookedBook = ({ data }: TProps) => {
           {isExpired && (
             <ExpiredMask title={hintText.EXPIRED_BOOKING_TITLE} subtitle={hintText.EXPIRED_BOOKING_SUBTITLE} />
           )}
-          <BookProfile data={book} />
+          <BookProfile type='booking' data={book} />
         </BookWrapper>
       ) : (
         <EmptyData text={hintText.BOOKED_BOOK_TEXT} />

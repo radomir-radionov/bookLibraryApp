@@ -9,6 +9,10 @@
 - empty user 401
 - fix error when make the first comment
 
+## admin
+
+- add button to add on hand book and change delivery status plus add some info about user that is correct for model
+
 ## future
 
 - chat
