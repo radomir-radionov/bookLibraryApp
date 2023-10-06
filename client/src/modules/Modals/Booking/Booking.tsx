@@ -12,7 +12,7 @@ import { BUTTON_VARIANTS } from 'types/button';
 import prepareBookingData from 'utils/calendar/prepareBookingData';
 
 import { ActionCloseIcon, Container, Header, Modal, NavBox, Title } from './styles';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -20,13 +20,14 @@ const Booking = () => {
   const { onlyBookData, book } = useSelector(selectModalInfo);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const location = useLocation();
-
   const { id, booking } = book;
   const bookingId = booking?.id;
-
+  console.log('Booking', location.pathname);
   let currentPath = '';
 
-  if (location.pathname === '/books/all') {
+  if (location.pathname === '/profile') {
+    currentPath = 'user';
+  } else if (location.pathname === '/books/all') {
     currentPath = 'books';
   } else {
     currentPath = 'book';

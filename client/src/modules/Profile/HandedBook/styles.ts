@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-export const UserBookStyled = styled.section`
+export const HandedBookStyled = styled.section`
   display: flex;
   flex-direction: column;
   gap: 32px;

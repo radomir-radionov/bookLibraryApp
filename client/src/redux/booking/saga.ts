@@ -18,8 +18,10 @@ import { selectUserDataId } from 'redux/user/selectors.js';
 export function* postBooking({ payload }: ReturnType<typeof bookingActions.createBookingReq>) {
   try {
     const { onlyBookData, preparedBookingData } = payload;
+    const userId: number = yield select(selectUserDataId);
 
     yield call(() => bookingReqService.postBooking(preparedBookingData));
+    yield put(userActions.getUser(userId));
 
     if (onlyBookData) {
       const book: TBookDetailed = yield call(() => booksService.getBookById(preparedBookingData.bookId));
@@ -67,10 +69,9 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
     const userId: number = yield select(selectUserDataId);
 
     yield call(() => bookingReqService.deleteBooking(id));
+    yield put(booksActions.getBooks());
 
-    if (dataType === 'books') {
-      yield put(booksActions.getBooks());
-    } else if (dataType === 'book') {
+    if (dataType === 'book') {
       yield put(bookActions.getBook(id));
     } else {
       yield put(userActions.getUser(userId));

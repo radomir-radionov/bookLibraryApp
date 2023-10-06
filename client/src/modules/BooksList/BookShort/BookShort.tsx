@@ -23,7 +23,8 @@ const BookShort = ({ data }: TProps) => {
   const { category } = useParams();
   const { id, title, authors, rating, issueYear, image } = data;
 
-  const onNavigateClick = () => navigate(`/books/${category}/${id}`);
+  const correctedCategory = category ? category : 'all';
+  const onNavigateClick = () => navigate(`/books/${correctedCategory}/${id}`);
 
   return (
     <BookItemStyled onClick={onNavigateClick} data-test-id={dataTestId.CARD}>

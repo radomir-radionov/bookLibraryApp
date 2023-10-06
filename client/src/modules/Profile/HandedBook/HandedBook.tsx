@@ -4,20 +4,20 @@ import { ExpiredMask } from 'components';
 import { BookProfile } from 'modules';
 import { EmptyData } from 'modules/Profile';
 
-import { Text, BookWrapper, Header, Title, UserBookStyled } from './styles';
+import { Text, BookWrapper, Header, Title, HandedBookStyled } from './styles';
 import { TUserDelivery } from 'types/user';
 
 type TProps = {
   data: TUserDelivery;
 };
 
-const UserBook = ({ data }: TProps) => {
+const HandedBook = ({ data }: TProps) => {
   const { book, dateHandedTo } = data ?? {};
 
   const isExpired = new Date().getTime() >= (dateHandedTo ? new Date(dateHandedTo).getTime() : 0);
 
   return (
-    <UserBookStyled>
+    <HandedBookStyled>
       <Header>
         <Title>Книга которую взяли</Title>
         <Text>Здесь можете просмотреть информацию о книге и узнать сроки возврата</Text>
@@ -32,8 +32,8 @@ const UserBook = ({ data }: TProps) => {
       ) : (
         <EmptyData text={hintText.USER_BOOK_TEXT} />
       )}
-    </UserBookStyled>
+    </HandedBookStyled>
   );
 };
 
-export default UserBook;
+export default HandedBook;

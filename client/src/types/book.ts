@@ -58,3 +58,11 @@ export type TComment = {
   };
   createdAt: string;
 };
+
+export type THistoryBook = {
+  id: number;
+  userId: number;
+  bookId: number;
+  createdAt: string;
+  updatedAt: string | null;
+};

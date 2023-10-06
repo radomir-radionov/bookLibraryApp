@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-export const PurchaseHistoryStyled = styled.section`
+export const HistoryBooksListStyled = styled.section`
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -37,9 +37,11 @@ export const Text = styled.p`
 
 export const SwiperStyled = styled(Swiper)`
   width: 100%;
+  padding: 10px;
 
-  .swiper-wrapper > div {
-    margin-left: 2px;
+  .swiper-wrapper {
+    box-sizing: border-box;
+    height: fit-content;
   }
 
   .swiper-pagination {
@@ -47,7 +49,7 @@ export const SwiperStyled = styled(Swiper)`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 16px;
+    margin-top: 24px;
   }
 
   .swiper-pagination-bullet {
@@ -66,15 +68,23 @@ export const SwiperStyled = styled(Swiper)`
 `;
 
 export const SwiperSlideStyled = styled(SwiperSlide)`
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+
   & > article {
     width: 255px;
 
-    @media (max-width: ${device.laptopM}) {
+    @media (max-width: ${device.tabletMT}) {
       width: 190px;
     }
   }
 
   & > article > div > button {
     width: 100% !important;
+  }
+
+  @media (max-width: ${device.tabletMT}) {
+    margin-right: 0px;
   }
 `;

@@ -1,3 +1,5 @@
+import { THistoryBook } from './book.js';
+
 export type TUser = {
   id: number;
   username: string;
@@ -19,7 +21,7 @@ export type TExtendedUserInfo = TUser & {
   comments: TComment[];
   booking: TUserBooking;
   delivery: TUserDelivery;
-  history: TUserHistory;
+  histories: THistoryBook[];
 };
 
 export type RoleProps = {
@@ -36,7 +38,7 @@ export type TComment = {
   bookId: number;
 };
 
-export type ShortBookDataProps = {
+export type TShortBook = {
   id: number;
   title: string;
   issueYear: string;
@@ -49,7 +51,7 @@ export type TUserBooking = {
   bookId: number;
   order: string | null;
   createdAt: string | Date | null;
-  book: ShortBookDataProps | null;
+  book: TShortBook | null;
 };
 
 export type TUserDelivery = {
@@ -57,10 +59,5 @@ export type TUserDelivery = {
   handed: string;
   dateHandedFrom: string | Date;
   dateHandedTo: string | Date;
-  book: ShortBookDataProps;
-};
-
-export type TUserHistory = {
-  id: number;
-  books: ShortBookDataProps[];
+  book: TShortBook;
 };
