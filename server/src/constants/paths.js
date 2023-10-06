@@ -28,6 +28,9 @@ const paths = {
     deliveries: '/api/deliveries',
     deliverieId: '/api/deliveries/:id',
   },
+  historyPaths: {
+    histories: '/api/histories',
+  },
 }
 
 export default paths

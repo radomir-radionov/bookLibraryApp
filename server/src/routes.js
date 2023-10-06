@@ -3,7 +3,8 @@ import bookRoutes from './api/book/index.js'
 import categoryRoutes from './api/category/index.js'
 import bookingRoutes from './api/booking/index.js'
 import deliveryRoutes from './api/delivery/index.js'
+import historyRoutes from './api/history/index.js'
 
-const AppRoutes = [...userRoutes, ...categoryRoutes, ...bookRoutes, ...bookingRoutes, ...deliveryRoutes]
+const AppRoutes = [...userRoutes, ...categoryRoutes, ...bookRoutes, ...bookingRoutes, ...deliveryRoutes, ...historyRoutes]
 
 export default AppRoutes
