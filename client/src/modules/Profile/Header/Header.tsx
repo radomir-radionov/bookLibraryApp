@@ -21,6 +21,7 @@ import {
   UserName,
 } from './styles';
 import { TUser } from 'types/user';
+import base64ToBlobAndUrl from 'utils/base64ToBlobAndUrl.js';
 
 type TProps = {
   data: TUser;
@@ -33,6 +34,9 @@ type TAvatar = {
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const { firstName, lastName, avatar } = data;
+  console.log('avatar', avatar);
+
+  //   const blobUrl = base64ToBlobAndUrl(avatar, contentType);
 
   const {
     register,
@@ -40,11 +44,12 @@ const Header = ({ data }: TProps) => {
     formState: { errors },
   } = useForm<TAvatar>();
 
-  const onSubmit = (imgData: TAvatar) => {
-    console.log(imgData);
-    dispatch(userActions.updateAvatarReq(imgData));
-  };
+  const onSubmit = (imgData: any) => {
+    const formData = new FormData();
+    formData.append('avatar', imgData.picture[0]);
 
+    dispatch(userActions.updateAvatarReq(formData));
+  };
   return (
     <HeaderStyled data-test-id={dataTestId.PROFILE_AVATAR}>
       <ProfileAvatar>
@@ -55,11 +60,11 @@ const Header = ({ data }: TProps) => {
               <ActionAvatarIcon />
             </Mask>
           </Label>
-          {avatar ? (
-            <Avatar src={`${avatar}`} alt='profile-avatar' />
+          {/* {avatar ? (
+            <Avatar src={`${blobUrl}`} alt='profile-avatar' />
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' data-test-id={dataTestId.PROFILE_AVATAR} />
-          )}
+          )} */}
         </Form>
       </ProfileAvatar>
       <UserName>

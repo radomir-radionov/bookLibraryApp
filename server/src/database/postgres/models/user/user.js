@@ -1,7 +1,7 @@
 import {DataTypes} from 'sequelize'
-import modelNames from '../../../constants/modelNames.js'
-import foreignKeys from '../../../constants/foreignKeys.js'
-import modelAliases from '../../../constants/modelAliases.js'
+import modelNames from '../../../../constants/modelNames.js'
+import foreignKeys from '../../../../constants/foreignKeys.js'
+import modelAliases from '../../../../constants/modelAliases.js'
 
 const {bookId} = foreignKeys
 const {userAlias, deliveryAlias, bookingAlias, historyAlias} = modelAliases
@@ -17,7 +17,6 @@ export default (sequelize) => {
     provider: DataTypes.STRING,
     username: DataTypes.STRING,
     passwordHash: DataTypes.STRING,
-    avatar: DataTypes.STRING,
     code: DataTypes.STRING,
   })
 

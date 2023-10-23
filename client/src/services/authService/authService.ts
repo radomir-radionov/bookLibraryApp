@@ -12,7 +12,11 @@ const authService = {
     await httpService.post(serverEndpoints.REGISTRATION, payload);
   },
   postAuthentication: async (payload: PostAuthenticationProps) => {
-    const { data }: AxiosResponse<TAuthResponse> = await httpService.post(serverEndpoints.AUTHORIZATION, payload);
+    const { data }: AxiosResponse<TAuthResponse> = await httpService.post(serverEndpoints.AUTHORIZATION, payload, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+    });
 
     return data;
   },

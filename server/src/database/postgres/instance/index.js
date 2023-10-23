@@ -1,12 +1,13 @@
 import dotenv from 'dotenv'
 import sequelize from './instance.js'
-import {user, book, history, booking, delivery, category, extendedBook, comment} from '../index.js'
+import {user, avatar, book, history, booking, delivery, category, extendedBook, comment} from '../index.js'
 import foreignKeys from '../../../constants/foreignKeys.js'
 import modelAliases from '../../../constants/modelAliases.js'
 
 dotenv.config()
 
 const User = user(sequelize)
+const Avatar = avatar(sequelize)
 const Category = category(sequelize)
 const Book = book(sequelize)
 const Delivery = delivery(sequelize)
@@ -16,7 +17,7 @@ const ExtendedBook = extendedBook(sequelize)
 const Comment = comment(sequelize)
 
 const {userId, bookId} = foreignKeys
-const {userAlias, bookAlias, extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
+const {userAlias, avatarAlias, bookAlias, extendedBookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
 // Comment
 User.hasMany(Comment, {foreignKey: userId, as: commentAlias})
@@ -46,11 +47,16 @@ History.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 Book.hasOne(ExtendedBook, {foreignKey: bookId, as: extendedBookAlias})
 ExtendedBook.belongsTo(Book, {foreignKey: bookId, as: bookAlias})
 
+// Avatar
+User.hasOne(Avatar, {foreignKey: userId, as: avatarAlias})
+Avatar.belongsTo(User, {foreignKey: userId, as: avatarAlias})
+
 const db = {
   sequelize,
   User,
-  Book,
+  Avatar,
   Category,
+  Book,
   Delivery,
   Booking,
   History,

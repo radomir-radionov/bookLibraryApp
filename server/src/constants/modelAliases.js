@@ -1,8 +1,9 @@
 const modelAliases = {
   userAlias: 'user',
+  avatarAlias: 'avatar',
+  extendedBookAlias: 'extendedBook',
   bookAlias: 'book',
   categoryAlias: 'category',
-  extendedBookAlias: 'extendedBook',
   deliveryAlias: 'delivery',
   bookingAlias: 'booking',
   historyAlias: 'histories',

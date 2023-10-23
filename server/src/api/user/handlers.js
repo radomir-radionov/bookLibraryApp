@@ -14,8 +14,8 @@ import generateCode from './helpers/generateCode.js'
 import sendMail from './services/mail.js'
 
 const {omit} = pkg
-const {User, Book, Comment, Booking, Delivery} = db
-const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND} = errorText
+const {User, Avatar, Book, Comment, Booking, Delivery} = db
+const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND, CREATE_AVATAR_ERROR, UPLOAD_AVATAR_SUCCESS, NO_FILE} = errorText
 const {bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
 
 const createUser = async (ctx, next) => {
@@ -39,7 +39,6 @@ const createUser = async (ctx, next) => {
 const authenticateUser = async (ctx, next) => {
   const authData = ctx.request.body
   const {email, password} = authData
-
   const foundedUser = await User.findOne({where: {email}})
   ctx.assert(foundedUser, 404, USER_NOT_FOUND)
 
@@ -48,7 +47,6 @@ const authenticateUser = async (ctx, next) => {
 
   const user = omit(foundedUser.dataValues, ['passwordHash'])
   const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
-
   ctx.body = {jwt: token, user}
 
   await next()
@@ -100,18 +98,8 @@ const getUserById = async (ctx, next) => {
 
   ctx.assert(foundedUser, 404, INVALID_USER)
 
-  const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
+  const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'avatar', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
 
-  // const bookId = user.booking.datatValues.bookId
-
-  // const foundedBook = await Book.findOne({
-  //   where: {bookId},
-  //   attributes: {
-  //     exclude: ['property1', 'property2'], // List the properties you want to exclude
-  //   },
-  // })
-  // console.log(foundedBook)
-  ctx.assert(foundedUser, 404, INVALID_USER)
   ctx.body = user
 
   await next()
@@ -138,14 +126,34 @@ const updateUser = async (ctx, next) => {
 
 const updateUserAvatarById = async (ctx, next) => {
   const id = ctx.params.id
-  const body = ctx.request.body
-  const reader = fs.createReadStream(body.path)
-  const stream = fs.createWriteStream(path.join(os.tmpdir(), Math.random().toString()))
-  reader.pipe(stream)
-  console.log(id, body)
+  const {files} = ctx.request
 
-  console.log('uploading %s -> %s', body.name, stream.path)
+  if (!files || !files.avatar) {
+    ctx.throw(400, NO_FILE)
+    return
+  }
 
+  const newAvatarData = await fs.promises.readFile(files.avatar.filepath)
+
+  const user = await User.findByPk(id)
+  ctx.assert(user, 404, USER_NOT_FOUND)
+
+  // const existingAvatarData = user.avatar || Buffer.from('')
+  // const updatedAvatarData = Buffer.from(newAvatarData)
+  const avatarBufferData = Buffer.from(newAvatarData)
+  const avatarBase64 = avatarBufferData.toString('base64')
+
+  const avatar = {
+    userId: id,
+    contentType: files.avatar.mimetype,
+    fileName: files.avatar.originalFilename,
+    data: avatarBase64,
+  }
+
+  const createdAvatar = await Avatar.create(avatar)
+  ctx.assert(createdAvatar, 404, CREATE_AVATAR_ERROR)
+
+  ctx.body = {message: UPLOAD_AVATAR_SUCCESS}
   await next()
 }
 

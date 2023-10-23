@@ -21,6 +21,11 @@ const errorText = {
   USER_LIMIT_DELIVERY: "User's delivery limit exceeded!",
   BOOK_ALREADY_DELIVERED: 'Book already  delivered!',
   DELIVERY_DELETE_ERROR: 'Delivery deletion failed!',
+  // Avatar
+  CREATE_AVATAR_ERROR: 'Failed to create avatar!',
+  UPLOAD_AVATAR_SUCCESS: 'Avatar uploaded successfully!',
+  UPLOAD_AVATAR_ERROR: 'Failed to upload avatar!',
+  NO_FILE: 'No avatar file uploaded',
 }
 
 export default errorText

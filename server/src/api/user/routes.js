@@ -1,3 +1,4 @@
+import {koaBody} from 'koa-body'
 import paths from '../../constants/paths.js'
 import userHandlers from './handlers.js'
 import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
@@ -37,11 +38,6 @@ const routes = [
     action: userHandlers.authenticateUser,
   },
   {
-    path: comments,
-    method: 'post',
-    action: userHandlers.createComment,
-  },
-  {
     path: userId,
     method: 'put',
     action: async (ctx, next) => {
@@ -50,6 +46,17 @@ const routes = [
       })
     },
   },
+  {
+    path: updateUserAvatarById,
+    method: 'post',
+    action: async function combinedMiddleware(ctx, next) {
+      await koaBody({multipart: true})(ctx, async () => {
+        await userHandlers.updateUserAvatarById(ctx, next)
+      })
+    },
+  },
+
+  // password
   {
     path: forgotPassword,
     method: 'post',
@@ -60,14 +67,12 @@ const routes = [
     method: 'post',
     action: userHandlers.resetPassword,
   },
+
+  // comments
   {
-    path: updateUserAvatarById,
-    method: 'put',
-    action: async (ctx, next) => {
-      await jwtAuthenticater(ctx, async () => {
-        await userHandlers.updateUserAvatarById(ctx, next)
-      })
-    },
+    path: comments,
+    method: 'post',
+    action: userHandlers.createComment,
   },
   {
     path: commentId,

@@ -11,9 +11,15 @@ export type TUser = {
   firstName: string;
   lastName: string;
   phone: string;
-  avatar: string;
+  avatar: TUserAvatar;
   createdAt: string;
   updatedAt: string;
+};
+
+export type TUserAvatar = {
+  contentType: string;
+  fileName: string;
+  data: string;
 };
 
 export type TExtendedUserInfo = TUser & {

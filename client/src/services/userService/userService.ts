@@ -21,9 +21,12 @@ const userService = {
 
     return data;
   },
-  putUserAvatar: async ({ userId, payload }: any) => {
-    const { data } = await httpService.put(`${serverEndpoints.USER}/${userId}/avatar`, payload);
-    // return data;
+  postUserAvatar: async ({ userId, payload }: any) => {
+    await httpService.post(`${serverEndpoints.USER}/${userId}/avatar`, payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   },
   deleteBooking: async (payload: number) => {
     const resp = await httpService.delete(`${serverEndpoints.BOOKINGS}/${payload}`);

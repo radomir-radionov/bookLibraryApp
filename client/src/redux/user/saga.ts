@@ -51,7 +51,8 @@ export function* putUser({ payload }: ReturnType<typeof userActions.putUser>) {
 export function* updateAvatar({ payload }: ReturnType<typeof userActions.updateAvatarReq>) {
   try {
     const userId: number = yield select(selectUserDataId);
-    const newAvatar: TBookDetailed = yield call(() => userService.putUserAvatar({ userId, payload }));
+    console.log('updateAvatar', payload);
+    const newAvatar: TBookDetailed = yield call(() => userService.postUserAvatar({ userId, payload }));
     yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.UPLOAD_AVATAR_SUCCESS)));
   } catch (e) {

@@ -1,8 +1,9 @@
 const tableNames = {
   users: 'Users',
+  avatars: 'Avatars',
+  categories: 'Categories',
   books: 'Books',
   extendedBooks: 'ExtendedBooks',
-  categories: 'Categories',
   deliveries: 'Deliveries',
   histories: 'Histories',
   booking: 'Bookings',

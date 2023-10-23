@@ -5,6 +5,7 @@ import session from 'koa-session'
 import passport from 'koa-passport'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
+import {koaBody} from 'koa-body'
 import serve from 'koa-static'
 import path from 'path'
 import dotenv from 'dotenv'
@@ -24,7 +25,8 @@ app.keys = [process.env.SESSION_KEY]
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 app.use(serve(path.join(__dirname, '../public/images/covers')))
 
-app.use(errorHandler).use(cors()).use(bodyParser()).use(json()).use(session({}, app)).use(passport.initialize()).use(passport.session())
+app.use(errorHandler).use(cors()).use(bodyParser()).use(json()).use(session({}, app))
+// .use(passport.initialize()).use(passport.session())
 
 AppRoutes.forEach((route) => router[route.method](route.path, route.action))
 

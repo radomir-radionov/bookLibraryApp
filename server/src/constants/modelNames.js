@@ -1,5 +1,6 @@
 const modelNames = {
   user: 'User',
+  avatar: 'Avatar',
   book: 'Book',
   category: 'Category',
   extendedBook: 'ExtendedBook',

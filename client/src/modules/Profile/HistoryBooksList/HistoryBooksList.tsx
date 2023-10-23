@@ -30,7 +30,7 @@ const HistoryBooksList = ({ data }: TProps) => {
         <Title>История</Title>
         <Text>Список прочитанных книг</Text>
       </Header>
-      {data ? (
+      {data?.length ? (
         <SwiperStyled breakpoints={breakpoints} modules={[Pagination]} pagination={{ clickable: true }}>
           {historyBooks.map((book: TBook) => (
             <SwiperSlideStyled key={book.id} data-test-id={dataTestId.HISTORY_SLIDE}>
