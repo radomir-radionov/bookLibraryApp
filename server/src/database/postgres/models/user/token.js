@@ -2,12 +2,10 @@ import { DataTypes } from 'sequelize';
 import modelNames from '../../../../constants/modelNames.js';
 
 export default (sequelize) => {
-  const Avatar = sequelize.define(modelNames.avatar, {
+  const Token = sequelize.define(modelNames.token, {
     userId: DataTypes.INTEGER,
-    contentType: DataTypes.STRING,
-    fileName: DataTypes.STRING,
-    data: DataTypes.TEXT,
+    refreshToken: DataTypes.TEXT,
   });
 
-  return Avatar;
+  return Token;
 };

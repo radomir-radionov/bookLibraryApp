@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 const handleUnauthorizedError = (error: AxiosError) => {
   if (error.response?.status === 401) {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.location.replace(pageRoutes.AUTH);
   }

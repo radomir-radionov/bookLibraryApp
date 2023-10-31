@@ -40,7 +40,7 @@ const AuthStep = () => {
 
   const isBtnDisabled = !!(errors.email || errors.password);
 
-  const onSubmit: SubmitHandler<TAuthForm> = (data) => dispatch(authActions.setAuthData({ data, navigate }));
+  const onSubmit: SubmitHandler<TAuthForm> = (data) => dispatch(authActions.postLogin({ data, navigate }));
 
   return (
     <ModalStyled>

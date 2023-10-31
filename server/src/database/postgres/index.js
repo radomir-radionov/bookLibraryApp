@@ -1,9 +1,10 @@
-export {default as user} from './models/user/user.js'
-export {default as avatar} from './models/user/avatar.js'
-export {default as category} from './models/category.js'
-export {default as book} from './models/book/book.js'
-export {default as booking} from './models/book/booking.js'
-export {default as delivery} from './models/book/delivery.js'
-export {default as history} from './models/book/history.js'
-export {default as extendedBook} from './models/book/extendedBook.js'
-export {default as comment} from './models/book/comment.js'
+export { default as user } from './models/user/user.js';
+export { default as token } from './models/user/token.js';
+export { default as avatar } from './models/user/avatar.js';
+export { default as category } from './models/category.js';
+export { default as book } from './models/book/book.js';
+export { default as booking } from './models/book/booking.js';
+export { default as delivery } from './models/book/delivery.js';
+export { default as history } from './models/book/history.js';
+export { default as extendedBook } from './models/book/extendedBook.js';
+export { default as comment } from './models/book/comment.js';

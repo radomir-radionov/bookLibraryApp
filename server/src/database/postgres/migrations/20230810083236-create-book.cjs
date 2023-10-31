@@ -1,4 +1,4 @@
-const tableNames = require('../../../constants/tableNames.cjs')
+const tableNames = require('../../../constants/tableNames.cjs');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -44,9 +44,9 @@ module.exports = {
         allowNull: true,
         type: Sequelize.DATE,
       },
-    })
+    });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable(tableNames.books)
+    await queryInterface.dropTable(tableNames.books);
   },
-}
+};

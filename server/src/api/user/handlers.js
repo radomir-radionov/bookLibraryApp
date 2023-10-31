@@ -1,69 +1,52 @@
-import fs from 'fs'
-import os from 'os'
-import path from 'path'
-import pkg from 'lodash'
-import {compare} from 'bcrypt'
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import pkg from 'lodash';
+import { compare } from 'bcrypt';
 
-import db from '../../database/postgres/instance/index.js'
-import modelAliases from '../../constants/modelAliases.js'
-import errorText from '../../constants/errorText.js'
-import {createJwtToken} from './services/jwt.js'
-import createHash from '../../utils/createHash.js'
-import prepareUpdateCommentRes from './helpers/prepareUpdateCommentRes.js'
-import generateCode from './helpers/generateCode.js'
-import sendMail from './services/mail.js'
+import db from '../../database/postgres/instance/index.js';
+import modelAliases from '../../constants/modelAliases.js';
+import errorText from '../../constants/errorText.js';
+import { createJwtToken } from './services/jwt.js';
+import createHash from '../../utils/createHash.js';
+import prepareUpdateCommentRes from './helpers/prepareUpdateCommentRes.js';
+import generateCode from './helpers/generateCode.js';
+import sendMail from './services/mail.js';
 
-const {omit} = pkg
-const {User, Avatar, Book, Comment, Booking, Delivery} = db
-const {INVALID_USER, EXSITED_USER, AUTH_WRONG_DATA, CREATE_USER_ERROR, CREATE_COMMENT_ERROR, USER_NOT_FOUND, COMMENT_NOT_FOUND, CREATE_AVATAR_ERROR, UPLOAD_AVATAR_SUCCESS, NO_FILE} = errorText
-const {bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias} = modelAliases
-
-const createUser = async (ctx, next) => {
-  const registerData = ctx.request.body
-  const {email, password} = registerData
-
-  const foundedUser = await User.findOne({where: {email}})
-  ctx.assert(!foundedUser, 404, EXSITED_USER)
-
-  const passwordHash = await createHash(password)
-  const createdUser = await User.create({...registerData, passwordHash})
-  const user = omit(createdUser.dataValues, ['passwordHash'])
-  ctx.assert(createdUser, 500, CREATE_USER_ERROR)
-
-  const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
-
-  ctx.body = {jwt: token, user}
-  await next()
-}
-
-const authenticateUser = async (ctx, next) => {
-  const authData = ctx.request.body
-  const {email, password} = authData
-  const foundedUser = await User.findOne({where: {email}})
-  ctx.assert(foundedUser, 404, USER_NOT_FOUND)
-
-  const isPasswordEquals = await compare(password, foundedUser.passwordHash)
-  ctx.assert(isPasswordEquals, 401, AUTH_WRONG_DATA)
-
-  const user = omit(foundedUser.dataValues, ['passwordHash'])
-  const token = createJwtToken({sub: user.id, iat: Date.now() / 1000})
-  ctx.body = {jwt: token, user}
-
-  await next()
-}
+const { omit } = pkg;
+const { User, Avatar, Book, Comment, Booking, Delivery } = db;
+const {
+  EXSITED_USER,
+  LOGIN_WRONG_DATA,
+  CREATE_USER_ERROR,
+  CREATE_COMMENT_ERROR,
+  USER_NOT_FOUND,
+  COMMENT_NOT_FOUND,
+  CREATE_AVATAR_ERROR,
+  UPLOAD_AVATAR_SUCCESS,
+  NO_FILE,
+} = errorText;
+const {
+  avatarAlias,
+  bookAlias,
+  deliveryAlias,
+  bookingAlias,
+  historyAlias,
+  commentAlias,
+} = modelAliases;
 
 const getUsers = async (ctx, next) => {
-  const users = await User.findAll()
-  ctx.body = users
+  const users = await User.findAll();
+  ctx.body = users;
 
-  await next()
-}
+  await next();
+};
 
 const getUserById = async (ctx, next) => {
-  const id = ctx.params.id
+  const id = ctx.params.id;
 
   const foundedUser = await User.findOne({
-    where: {id},
+    where: { id },
     include: [
       {
         model: Delivery,
@@ -94,125 +77,139 @@ const getUserById = async (ctx, next) => {
       historyAlias,
       commentAlias,
     ],
-  })
+  });
 
-  ctx.assert(foundedUser, 404, INVALID_USER)
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND);
 
-  const user = omit(foundedUser.dataValues, ['id', 'firstName', 'lastName', 'email', 'phone', 'avatar', 'passwordHash', 'blocked', 'confirmed', 'provider', 'username', 'createdAt', 'updatedAt'])
+  const user = omit(foundedUser.dataValues, [
+    'id',
+    'firstName',
+    'lastName',
+    'email',
+    'phone',
+    'passwordHash',
+    'blocked',
+    'confirmed',
+    'provider',
+    'username',
+    'createdAt',
+    'updatedAt',
+  ]);
 
-  ctx.body = user
+  ctx.body = user;
 
-  await next()
-}
+  await next();
+};
 
 const updateUser = async (ctx, next) => {
-  const id = ctx.params.id
-  const body = ctx.request.body
+  const id = ctx.params.id;
+  const body = ctx.request.body;
 
-  console.log('updateUser', id, body)
+  console.log('updateUser', id, body);
 
-  await User.update({...body}, {where: {id}})
+  await User.update({ ...body }, { where: { id } });
 
-  const foundedUser = await User.findOne({where: {id}})
+  const foundedUser = await User.findOne({ where: { id } });
 
-  ctx.assert(foundedUser, 404, USER_NOT_FOUND)
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND);
 
-  const user = omit(foundedUser.dataValues, ['passwordHash', 'createdAt', 'updatedAt'])
+  const user = omit(foundedUser.dataValues, [
+    'passwordHash',
+    'createdAt',
+    'updatedAt',
+  ]);
 
-  ctx.body = user
+  ctx.body = user;
 
-  await next()
-}
+  await next();
+};
 
 const updateUserAvatarById = async (ctx, next) => {
-  const id = ctx.params.id
-  const {files} = ctx.request
+  const id = ctx.params.id;
+  const { files } = ctx.request;
 
   if (!files || !files.avatar) {
-    ctx.throw(400, NO_FILE)
-    return
+    ctx.throw(400, NO_FILE);
+    return;
   }
 
-  const newAvatarData = await fs.promises.readFile(files.avatar.filepath)
+  const newAvatarData = await fs.promises.readFile(files.avatar.filepath);
+  const user = await User.findByPk(id);
+  ctx.assert(user, 404, USER_NOT_FOUND);
 
-  const user = await User.findByPk(id)
-  ctx.assert(user, 404, USER_NOT_FOUND)
+  await Avatar.destroy({ where: { userId: id } });
 
-  // const existingAvatarData = user.avatar || Buffer.from('')
-  // const updatedAvatarData = Buffer.from(newAvatarData)
-  const avatarBufferData = Buffer.from(newAvatarData)
-  const avatarBase64 = avatarBufferData.toString('base64')
+  const avatarBufferData = Buffer.from(newAvatarData);
+  const avatarBase64 = avatarBufferData.toString('base64');
 
   const avatar = {
     userId: id,
     contentType: files.avatar.mimetype,
     fileName: files.avatar.originalFilename,
     data: avatarBase64,
-  }
+  };
 
-  const createdAvatar = await Avatar.create(avatar)
-  ctx.assert(createdAvatar, 404, CREATE_AVATAR_ERROR)
+  const createdAvatar = await Avatar.create(avatar);
+  ctx.assert(createdAvatar, 404, CREATE_AVATAR_ERROR);
 
-  ctx.body = {message: UPLOAD_AVATAR_SUCCESS}
-  await next()
-}
+  ctx.body = { data: createdAvatar, message: UPLOAD_AVATAR_SUCCESS };
+  await next();
+};
 
 const createComment = async (ctx, next) => {
-  const commentData = ctx.request.body
-  const createdComment = await Comment.create(commentData)
+  const commentData = ctx.request.body;
+  const createdComment = await Comment.create(commentData);
 
-  ctx.assert(createdComment, 404, CREATE_COMMENT_ERROR)
-  ctx.body = createdComment.dataValues
-  await next()
-}
+  ctx.assert(createdComment, 404, CREATE_COMMENT_ERROR);
+  ctx.body = createdComment.dataValues;
+  await next();
+};
 
 const updateComment = async (ctx, next) => {
-  const id = ctx.params.id
-  const body = ctx.request.body
-  const {rating, text} = body
+  const id = ctx.params.id;
+  const body = ctx.request.body;
+  const { rating, text } = body;
 
-  await Comment.update({rating, text}, {where: {id}})
-  const foundedComment = await Comment.findOne({where: {id}})
+  await Comment.update({ rating, text }, { where: { id } });
+  const foundedComment = await Comment.findOne({ where: { id } });
 
-  ctx.assert(foundedComment, 404, COMMENT_NOT_FOUND)
-  ctx.body = prepareUpdateCommentRes(foundedComment.dataValues)
+  ctx.assert(foundedComment, 404, COMMENT_NOT_FOUND);
+  ctx.body = prepareUpdateCommentRes(foundedComment.dataValues);
 
-  await next()
-}
+  await next();
+};
 
 const forgotPassword = async (ctx, next) => {
-  const {email} = ctx.request.body
+  const { email } = ctx.request.body;
 
-  const foundedUser = await User.findOne({where: {email}})
-  ctx.assert(foundedUser, 404, INVALID_USER)
+  const foundedUser = await User.findOne({ where: { email } });
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND);
 
-  const code = generateCode()
-  await User.update({code}, {where: {email}})
+  const code = generateCode();
+  await User.update({ code }, { where: { email } });
 
-  await sendMail(email, code)
+  await sendMail(email, code);
 
-  ctx.body = code
+  ctx.body = code;
 
-  await next()
-}
+  await next();
+};
 
 const resetPassword = async (ctx, next) => {
-  const {passwordConfirmation, code} = ctx.request.body
-  const foundedUser = await User.findOne({where: {code}})
-  ctx.assert(foundedUser, 404, INVALID_USER)
+  const { passwordConfirmation, code } = ctx.request.body;
+  const foundedUser = await User.findOne({ where: { code } });
+  ctx.assert(foundedUser, 404, USER_NOT_FOUND);
 
-  const passwordHash = await createHash(passwordConfirmation)
-  foundedUser.passwordHash = passwordHash
-  await foundedUser.save()
+  const passwordHash = await createHash(passwordConfirmation);
+  foundedUser.passwordHash = passwordHash;
+  await foundedUser.save();
 
-  ctx.body = true
+  ctx.body = true;
 
-  await next()
-}
+  await next();
+};
 
 const userHandlers = {
-  createUser,
-  authenticateUser,
   getUsers,
   getUserById,
   updateUser,
@@ -221,6 +218,6 @@ const userHandlers = {
   updateComment,
   forgotPassword,
   resetPassword,
-}
+};
 
-export default userHandlers
+export default userHandlers;

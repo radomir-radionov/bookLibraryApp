@@ -1,5 +1,6 @@
 const tableNames = {
   users: 'Users',
+  tokens: 'Tokens',
   avatars: 'Avatars',
   categories: 'Categories',
   books: 'Books',
@@ -8,6 +9,6 @@ const tableNames = {
   histories: 'Histories',
   booking: 'Bookings',
   comments: 'Comments',
-}
+};
 
-module.exports = tableNames
+module.exports = tableNames;

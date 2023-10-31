@@ -1,18 +1,27 @@
-import responseText from 'constants/responseText';
-
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { userActions } from 'redux/user';
 import { AxiosError } from 'axios';
 import { authService } from 'services';
-import { PostRegistrationProps } from 'services/authService/types';
+import { TPostRegistrationPayload } from 'services/authService/types';
 
 import { selectRegistrationData } from './selectors';
 import { registrationActions } from './slice';
+import { TRegistrationResponse } from 'redux/auth/types';
 
-export function* postRegistrationData() {
-  const registrationData: PostRegistrationProps = yield select(selectRegistrationData);
+import responseText from 'constants/responseText';
+
+export function* postRegistrationSaga() {
+  const registrationData: TPostRegistrationPayload = yield select(selectRegistrationData);
 
   try {
-    yield call(() => authService.postRegistration(registrationData));
+    const { accessToken, user }: TRegistrationResponse = yield call(() =>
+      authService.postRegistration(registrationData)
+    );
+
+    localStorage.setItem('token', accessToken);
+    yield put(userActions.setAuth(true));
+    yield put(userActions.setUser(user));
+
     yield put(registrationActions.setDefiniteStep(4));
   } catch (e) {
     const { response } = e as AxiosError;
@@ -28,7 +37,7 @@ export function* postRegistrationData() {
 }
 
 function* registrationSaga() {
-  yield all([takeLatest(registrationActions.postRegistrationData, postRegistrationData)]);
+  yield all([takeLatest(registrationActions.postRegistration, postRegistrationSaga)]);
 }
 
 export default registrationSaga;

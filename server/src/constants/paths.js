@@ -1,7 +1,9 @@
 const paths = {
   authPaths: {
-    register: '/api/auth/local/register',
-    auth: '/api/auth/local',
+    registration: '/api/auth/registration',
+    login: '/api/auth/login',
+    logout: '/api/auth/logout',
+    refresh: '/api/auth/refresh',
     forgotPassword: '/api/auth/forgot-password',
     resetPassword: '/api/auth/reset-password',
   },
@@ -31,6 +33,6 @@ const paths = {
   historyPaths: {
     histories: '/api/histories',
   },
-}
+};
 
-export default paths
+export default paths;

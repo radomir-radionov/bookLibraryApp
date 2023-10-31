@@ -15,7 +15,7 @@ const FailedAuthStep = () => {
   const responseMessage = useSelector(selectResponseMessage);
   const navigate = useNavigate();
 
-  const handleNavigateClick = () => dispatch(authActions.setAuthData({ data, navigate }));
+  const handleNavigateClick = () => dispatch(authActions.postLogin({ data, navigate }));
   const handleNavigateBackClick = () => dispatch(authActions.setStep(1));
 
   return (

@@ -8,6 +8,7 @@ const initialState: TUserState = {
   userData: {} as TUser,
   additionalInfo: {} as any,
   enteredBookName: '',
+  isAuth: false,
   isLoading: false,
 };
 
@@ -15,28 +16,23 @@ export const userSlice = createSlice({
   name: 'USER',
   initialState,
   reducers: {
-    setJwt: (state, { payload }) => {
-      state.jwt = payload;
+    setAuth: (state, { payload }) => {
+      state.isAuth = payload;
     },
-    setUserData: (state, { payload }) => {
+    setUser: (state, { payload }) => {
       state.userData = payload;
     },
-
-    setAdditionalInfo: (state, { payload }) => {
+    setExtendedUserlInfo: (state, { payload }) => {
       state.additionalInfo = payload;
     },
     getUser: (state, { payload }) => {
       state.isLoading = true;
     },
-
-    clearUser: () => initialState,
+    putUser: (state, { payload }) => {
+      state.isLoading = true;
+    },
     setBookName: (state, { payload }: PayloadAction<string>) => {
       state.enteredBookName = payload;
-    },
-    setAvatar: (state, { payload }: PayloadAction<string>) => {
-      if (state.userData) {
-        state.additionalInfo.avatar = payload;
-      }
     },
     putComment: (state, { payload }) => {
       state.isLoading = true;
@@ -44,12 +40,15 @@ export const userSlice = createSlice({
     postComment: (state, { payload }) => {
       state.isLoading = true;
     },
-    putUser: (state, { payload }) => {
-      state.isLoading = true;
+
+    // avatar
+    setNewAvatar: (state, { payload }) => {
+      state.userData.avatar = payload;
     },
     updateAvatarReq: (state, { payload }) => {
       state.isLoading = true;
     },
+
     cancelLoading: (state) => {
       state.isLoading = false;
     },

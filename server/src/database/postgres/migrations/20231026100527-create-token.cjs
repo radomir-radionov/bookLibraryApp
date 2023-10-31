@@ -3,20 +3,20 @@ const tableNames = require('../../../constants/tableNames.cjs');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tableNames.categories, {
+    await queryInterface.createTable(tableNames.tokens, {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      userId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
-      path: {
+      refreshToken: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
@@ -29,7 +29,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tableNames.categories);
+  async down(queryInterface) {
+    await queryInterface.dropTable(tableNames.tokens);
   },
 };

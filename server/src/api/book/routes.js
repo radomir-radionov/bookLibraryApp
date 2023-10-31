@@ -1,9 +1,9 @@
-import paths from '../../constants/paths.js'
-import bookHandlers from './handlers.js'
+import paths from '../../constants/paths.js';
+import bookHandlers from './handlers.js';
 
 const {
-  bookPaths: {book, bookId},
-} = paths
+  bookPaths: { book, bookId },
+} = paths;
 
 const routes = [
   {
@@ -16,6 +16,6 @@ const routes = [
     method: 'get',
     action: bookHandlers.getBookById,
   },
-]
+];
 
-export default routes
+export default routes;

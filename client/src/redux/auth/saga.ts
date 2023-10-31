@@ -6,22 +6,21 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { authService } from 'services';
 
 import { authActions } from './slice';
-import { TAuthResponse } from './types';
+import { TLoginResponse, TRefreshResponse } from './types';
 import { toastActions } from 'redux/toast/slice.js';
 import prepareToastData from 'helpers/toast/createToast.js';
 import { ToastTypes } from 'types/toast.js';
 
-export function* postAuthData({ payload }: ReturnType<typeof authActions.setAuthData>) {
+export function* postLoginSaga({ payload }: ReturnType<typeof authActions.postLogin>) {
   const { data, navigate } = payload;
 
   try {
-    const { jwt, user }: TAuthResponse = yield call(() => authService.postAuthentication(data));
+    const { accessToken, user }: TLoginResponse = yield call(() => authService.postLogin(data));
 
-    yield put(userActions.setJwt(jwt));
-    yield put(userActions.setUserData(user));
-    localStorage.setItem('jwt', jwt);
-    localStorage.setItem('user', JSON.stringify(user));
-    yield put(authActions.cancelLoading());
+    localStorage.setItem('token', accessToken);
+    yield put(userActions.setAuth(true));
+    yield put(userActions.setUser(user));
+
     yield navigate(pageRoutes.BOOKS_ALL);
   } catch (e) {
     const { response } = e as any;
@@ -33,13 +32,50 @@ export function* postAuthData({ payload }: ReturnType<typeof authActions.setAuth
       yield put(authActions.setStep(2));
     }
 
-    yield put(authActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
+
+  yield put(authActions.cancelLoading());
+}
+
+export function* postLogoutSaga() {
+  try {
+    yield call(() => authService.postLogout());
+
+    localStorage.removeItem('token');
+    yield put(userActions.setAuth(false));
+    yield put(userActions.setUser({}));
+  } catch (e) {
+    const { response } = e as any;
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
+  }
+
+  yield put(authActions.cancelLoading());
+}
+
+export function* checkAuthSaga() {
+  try {
+    const { accessToken, user }: TRefreshResponse = yield call(() => authService.getRefreshAuth());
+
+    localStorage.setItem('token', accessToken);
+    yield put(userActions.setAuth(true));
+    yield put(userActions.setUser(user));
+  } catch (e) {
+    const { response } = e as any;
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
+  }
+
+  yield put(authActions.cancelLoading());
 }
 
 function* authSaga() {
-  yield all([takeLatest(authActions.setAuthData, postAuthData)]);
+  yield all([
+    takeLatest(authActions.postLogin, postLoginSaga),
+    takeLatest(authActions.postLogout, postLogoutSaga),
+    takeLatest(authActions.checkAuth, checkAuthSaga),
+  ]);
 }
 
 export default authSaga;

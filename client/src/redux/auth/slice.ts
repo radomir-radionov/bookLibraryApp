@@ -17,10 +17,16 @@ export const authSlice = createSlice({
     setStep: (state, { payload }) => {
       state.step = payload;
     },
-    setAuthData: (state, { payload }) => {
+    postLogin: (state, { payload }) => {
       const { data } = payload;
 
       state.authData = data;
+      state.isLoading = true;
+    },
+    postLogout: (state) => {
+      state.isLoading = true;
+    },
+    checkAuth: (state) => {
       state.isLoading = true;
     },
     setErrorStatus: (state, { payload }) => {

@@ -1,12 +1,12 @@
-import {koaBody} from 'koa-body'
-import paths from '../../constants/paths.js'
-import userHandlers from './handlers.js'
-import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js'
+import { koaBody } from 'koa-body';
+import paths from '../../constants/paths.js';
+import userHandlers from './handlers.js';
+import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js';
 
 const {
-  userPaths: {user, userId, updateUserAvatarById, comments, commentId},
-  authPaths: {register, auth, forgotPassword, resetPassword},
-} = paths
+  userPaths: { user, userId, updateUserAvatarById, comments, commentId },
+  authPaths: { forgotPassword, resetPassword },
+} = paths;
 
 const routes = [
   {
@@ -14,8 +14,8 @@ const routes = [
     method: 'get',
     action: async (ctx, next) => {
       await jwtAuthenticater(ctx, async () => {
-        await userHandlers.getUsers(ctx, next)
-      })
+        await userHandlers.getUsers(ctx, next);
+      });
     },
   },
   {
@@ -23,36 +23,26 @@ const routes = [
     method: 'get',
     action: async (ctx, next) => {
       await jwtAuthenticater(ctx, async () => {
-        await userHandlers.getUserById(ctx, next)
-      })
+        await userHandlers.getUserById(ctx, next);
+      });
     },
-  },
-  {
-    path: register,
-    method: 'post',
-    action: userHandlers.createUser,
-  },
-  {
-    path: auth,
-    method: 'post',
-    action: userHandlers.authenticateUser,
   },
   {
     path: userId,
     method: 'put',
     action: async (ctx, next) => {
       await jwtAuthenticater(ctx, async () => {
-        await userHandlers.updateUser(ctx, next)
-      })
+        await userHandlers.updateUser(ctx, next);
+      });
     },
   },
   {
     path: updateUserAvatarById,
     method: 'post',
     action: async function combinedMiddleware(ctx, next) {
-      await koaBody({multipart: true})(ctx, async () => {
-        await userHandlers.updateUserAvatarById(ctx, next)
-      })
+      await koaBody({ multipart: true })(ctx, async () => {
+        await userHandlers.updateUserAvatarById(ctx, next);
+      });
     },
   },
 
@@ -79,10 +69,10 @@ const routes = [
     method: 'put',
     action: async (ctx, next) => {
       await jwtAuthenticater(ctx, async () => {
-        await userHandlers.updateComment(ctx, next)
-      })
+        await userHandlers.updateComment(ctx, next);
+      });
     },
   },
-]
+];
 
-export default routes
+export default routes;

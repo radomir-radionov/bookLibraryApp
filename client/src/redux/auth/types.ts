@@ -1,3 +1,4 @@
+import { string } from 'yup';
 import { TUser } from 'types/user.js';
 
 export type TAuthData = {
@@ -13,7 +14,20 @@ export type TAuthState = {
   responseMessage: string;
 };
 
-export type TAuthResponse = {
-  jwt: string;
+export type TRefreshResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: TUser;
+};
+
+export type TRegistrationResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: TUser;
+};
+
+export type TLoginResponse = {
+  accessToken: string;
+  refreshToken: string;
   user: TUser;
 };

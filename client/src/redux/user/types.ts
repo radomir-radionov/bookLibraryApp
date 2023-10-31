@@ -5,12 +5,8 @@ export type TUserState = {
   userData: TUser;
   additionalInfo: TExtendedUserInfo;
   enteredBookName: string;
+  isAuth: boolean;
   isLoading: boolean;
-};
-
-export type PutEditUserDataResponseProps = {
-  jwt: string;
-  user: TUser;
 };
 
 export type TPutCommentRes = {

@@ -1,10 +1,16 @@
-import {DataTypes} from 'sequelize'
-import modelNames from '../../../../constants/modelNames.js'
-import foreignKeys from '../../../../constants/foreignKeys.js'
-import modelAliases from '../../../../constants/modelAliases.js'
+import { DataTypes } from 'sequelize';
+import modelNames from '../../../../constants/modelNames.js';
+import foreignKeys from '../../../../constants/foreignKeys.js';
+import modelAliases from '../../../../constants/modelAliases.js';
 
-const {bookId} = foreignKeys
-const {bookAlias, extendedBookAlias, deliveryAlias, bookingAlias, historyAlias} = modelAliases
+const { bookId } = foreignKeys;
+const {
+  bookAlias,
+  extendedBookAlias,
+  deliveryAlias,
+  bookingAlias,
+  historyAlias,
+} = modelAliases;
 
 export default (sequelize) => {
   const Book = sequelize.define(modelNames.book, {
@@ -14,7 +20,7 @@ export default (sequelize) => {
     authors: DataTypes.ARRAY(DataTypes.STRING),
     image: DataTypes.STRING,
     categories: DataTypes.ARRAY(DataTypes.STRING),
-  })
+  });
 
   // TODO: circular dependency
 
@@ -25,5 +31,5 @@ export default (sequelize) => {
   //   Book.hasMany(History, {foreignKey: bookId, as: historyAlias})
   // }
 
-  return Book
-}
+  return Book;
+};

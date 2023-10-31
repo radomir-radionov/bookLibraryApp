@@ -1,13 +1,15 @@
-import pageRoutes from 'constants/pageRoutes';
-
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet, useSearchParams } from 'react-router-dom';
+
+import pageRoutes from 'constants/pageRoutes';
 import { forgotPwdActions } from 'redux/forgotPwd';
+import { selectAuth } from 'redux/user/selectors';
 
 const ProtectedAuth = () => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectAuth);
+
   const [searchParams] = useSearchParams();
-  const jwt = localStorage.getItem('jwt');
   const code = searchParams.get('code');
 
   if (code?.length) {
@@ -15,7 +17,7 @@ const ProtectedAuth = () => {
     <Navigate to={pageRoutes.FORGOT_PWD} />;
   }
 
-  return jwt ? <Navigate to={pageRoutes.BOOKS_ALL} /> : <Outlet />;
+  return isAuth ? <Navigate to={pageRoutes.BOOKS_ALL} /> : <Outlet />;
 };
 
 export default ProtectedAuth;

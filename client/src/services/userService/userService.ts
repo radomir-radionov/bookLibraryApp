@@ -1,11 +1,9 @@
 import serverEndpoints from 'constants/apiEndpoints';
-
 import httpService from '../../http';
-
 import { PostCommentProps, PutCommentProps, TPutUserReq } from './types';
 
 const userService = {
-  getUser: async (id: number) => {
+  getUserByid: async (id: number) => {
     const { data } = await httpService.get(`${serverEndpoints.USER}/${id}`);
 
     return data;
@@ -22,16 +20,18 @@ const userService = {
     return data;
   },
   postUserAvatar: async ({ userId, payload }: any) => {
-    await httpService.post(`${serverEndpoints.USER}/${userId}/avatar`, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+    const {
+      data: { data },
+    } = await httpService.post(`${serverEndpoints.USER}/${userId}/avatar`, payload, {
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
+
+    return data;
   },
   deleteBooking: async (payload: number) => {
-    const resp = await httpService.delete(`${serverEndpoints.BOOKINGS}/${payload}`);
+    const { data } = await httpService.delete(`${serverEndpoints.BOOKINGS}/${payload}`);
 
-    return resp.data;
+    return data;
   },
 };
 

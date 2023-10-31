@@ -1,24 +1,22 @@
-import pkg from 'jsonwebtoken'
-import jwtData from '../constants/jwtData.js'
+import tokenService from '../api/auth/services/tokenService.js';
+import errorText from '../constants/errorText.js';
 
-const {verify} = pkg
-const {JWT_SECRET} = jwtData
+const { UNAUTHORIZED_USER } = errorText;
 
 const jwtAuthenticater = async (ctx, next) => {
-  const {authorization} = ctx.headers
-  if (!authorization) {
-    ctx.throw(401, 'Unauthorized. Token is required.')
-  }
+  const authorizationHeader = ctx.request.headers.authorization;
+  console.log('ctx.request.headers', ctx.request.headers);
+  console.log('authorization', authorizationHeader);
+  ctx.assert(authorizationHeader, 401, UNAUTHORIZED_USER);
 
-  const [, token] = authorization.split(' ')
+  const accessToken = authorizationHeader.split(' ')[1];
+  ctx.assert(accessToken, 401, UNAUTHORIZED_USER);
 
-  try {
-    const decoded = await verify(token, JWT_SECRET)
-    ctx.state.userTokenData = decoded
-    await next()
-  } catch (err) {
-    ctx.throw(401, `Unauthorized: ${err.message}`)
-  }
-}
+  const userData = tokenService.validateAccessToken(accessToken);
+  ctx.assert(userData, 401, UNAUTHORIZED_USER);
+  ctx.body = userData;
 
-export default jwtAuthenticater
+  await next();
+};
+
+export default jwtAuthenticater;

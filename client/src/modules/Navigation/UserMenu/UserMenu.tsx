@@ -6,6 +6,7 @@ import { userActions } from 'redux/user';
 
 import { MenuItem, NavLinkStyled, UserMenuStyled } from './styles';
 import { Dispatch, SetStateAction } from 'react';
+import { authActions } from 'redux/auth';
 
 type TUserMenu = {
   setIsBurgerMenuOpen?: Dispatch<SetStateAction<boolean>>;
@@ -16,7 +17,7 @@ const UserMenu = ({ setIsBurgerMenuOpen }: TUserMenu) => {
 
   const onBtnExitClick = () => {
     !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);
-    dispatch(userActions.clearUser());
+    dispatch(authActions.postLogout());
   };
 
   const onBtnProfileClick = () => !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(false);

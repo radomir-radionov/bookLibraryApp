@@ -1,11 +1,9 @@
 ## current
 
-- read book in histiry
 - in aboutbook component add slider and for some books add a few images
 
 ## next
 
-- empty user 401(no user in bd)
 - fix error when make the first comment
 
 ## admin
@@ -17,3 +15,20 @@
 
 - chat
 - add update refresh token
+
+TODO_CLIENT:
+
+- add array of images for book page and scrollbar
+- check loader on the blur
+- add error boudry
+
+FUTURE_TODO:
+
+- add auto import adding all congogs file in config folder
+- find some alternative for auto import besides babel
+- yarn remove "@babel/cli": "^7.22.9",
+  "@babel/core": "^7.22.9",
+  "@babel/preset-env": "^7.22.9",
+  "babel-plugin-module-resolver": "^5.0.0",console.log();
+
+Q1!qqqqqqqq

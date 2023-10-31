@@ -15,20 +15,15 @@ import { TExtendedUserInfo } from 'types/user';
 import { TPutCommentRes } from './types.js';
 import prepareToastData from 'helpers/toast/createToast.js';
 
-export function* clearUser() {
-  yield localStorage.removeItem('jwt');
-  yield localStorage.removeItem('user');
-}
-
-export function* getUser({ payload }: ReturnType<typeof userActions.getUser>) {
+export function* getExtendedUserInfoSaga({ payload }: ReturnType<typeof userActions.getUser>) {
   try {
-    const data: TExtendedUserInfo = yield call(() => userService.getUser(payload));
-    yield put(userActions.setAdditionalInfo(data));
-    yield put(userActions.cancelLoading());
+    const data: TExtendedUserInfo = yield call(() => userService.getUserByid(payload));
+    yield put(userActions.setExtendedUserlInfo(data));
   } catch (e: any) {
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, e.response.data.error.message)));
   }
+
+  yield put(userActions.cancelLoading());
 }
 
 export function* putUser({ payload }: ReturnType<typeof userActions.putUser>) {
@@ -37,28 +32,29 @@ export function* putUser({ payload }: ReturnType<typeof userActions.putUser>) {
     const updatedUser: TExtendedUserInfo = yield call(() => userService.putUser({ userId, payload }));
 
     if (updatedUser) {
-      yield put(userActions.setUserData(updatedUser));
+      yield put(userActions.setUser(updatedUser));
     }
 
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.EDIT_USER_DATA_SUCCESS)));
   } catch (e) {
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.EDIT_USER_DATA_ERROR)));
   }
+
+  yield put(userActions.cancelLoading());
 }
 
 export function* updateAvatar({ payload }: ReturnType<typeof userActions.updateAvatarReq>) {
   try {
     const userId: number = yield select(selectUserDataId);
-    console.log('updateAvatar', payload);
     const newAvatar: TBookDetailed = yield call(() => userService.postUserAvatar({ userId, payload }));
-    yield put(userActions.cancelLoading());
+
+    yield put(userActions.setNewAvatar(newAvatar));
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.UPLOAD_AVATAR_SUCCESS)));
   } catch (e) {
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.UPLOAD_AVATAR_ERROR)));
   }
+
+  yield put(userActions.cancelLoading());
 }
 
 export function* postComment({ payload }: ReturnType<typeof userActions.postComment>) {
@@ -69,14 +65,13 @@ export function* postComment({ payload }: ReturnType<typeof userActions.postComm
     const bookData: TBookDetailed = yield call(() => booksService.getBookById(payload.bookId));
 
     yield put(bookActions.setBook(bookData));
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.COMMENTS_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.COMMENTS_ERROR)));
   }
+
+  yield put(modalActions.close());
+  yield put(userActions.cancelLoading());
 }
 
 export function* putComment({ payload }: ReturnType<typeof userActions.putComment>) {
@@ -87,24 +82,22 @@ export function* putComment({ payload }: ReturnType<typeof userActions.putCommen
     const bookData: TBookDetailed = yield call(() => booksService.getBookById(bookId));
 
     yield put(bookActions.setBook(bookData));
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.EDIT_COMMENTS_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.EDIT_COMMENTS_ERROR)));
   }
+
+  yield put(modalActions.close());
+  yield put(userActions.cancelLoading());
 }
 
 function* userSaga() {
   yield all([
-    takeLatest(userActions.getUser, getUser),
+    takeLatest(userActions.getUser, getExtendedUserInfoSaga),
     takeLatest(userActions.putUser, putUser),
     takeLatest(userActions.updateAvatarReq, updateAvatar),
     takeLatest(userActions.putComment, putComment),
     takeLatest(userActions.postComment, postComment),
-    takeLatest(userActions.clearUser, clearUser),
   ]);
 }
 

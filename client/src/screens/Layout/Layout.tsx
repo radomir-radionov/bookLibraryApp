@@ -9,7 +9,6 @@ import { LayoutStyled } from './styles';
 
 const Layout = () => {
   const dispatch = useDispatch();
-
   const [ignore, setIgnore] = useState(false);
 
   useEffect(() => {

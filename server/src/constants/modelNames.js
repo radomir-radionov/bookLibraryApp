@@ -1,5 +1,6 @@
 const modelNames = {
   user: 'User',
+  token: 'Token',
   avatar: 'Avatar',
   book: 'Book',
   category: 'Category',
@@ -8,6 +9,6 @@ const modelNames = {
   booking: 'Booking',
   history: 'History',
   comment: 'Comment',
-}
+};
 
-export default modelNames
+export default modelNames;

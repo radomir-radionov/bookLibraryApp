@@ -34,9 +34,7 @@ type TAvatar = {
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const { firstName, lastName, avatar } = data;
-  console.log('avatar', avatar);
-
-  //   const blobUrl = base64ToBlobAndUrl(avatar, contentType);
+  const blobUrl = avatar && base64ToBlobAndUrl(avatar.data, 'png');
 
   const {
     register,
@@ -60,11 +58,11 @@ const Header = ({ data }: TProps) => {
               <ActionAvatarIcon />
             </Mask>
           </Label>
-          {/* {avatar ? (
+          {avatar ? (
             <Avatar src={`${blobUrl}`} alt='profile-avatar' />
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' data-test-id={dataTestId.PROFILE_AVATAR} />
-          )} */}
+          )}
         </Form>
       </ProfileAvatar>
       <UserName>
