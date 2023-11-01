@@ -43,8 +43,7 @@ SPA app with client-server architecture.
 ## run app
 
 ```
-yarn
-yarn start
+if you would like to run this app just message me on https://www.linkedin.com/in/radomir-radionov/
 ```
 
 ![image](https://user-images.githubusercontent.com/66359081/227992921-0d87e337-a8fb-4cae-99f9-78041ece5563.png)
