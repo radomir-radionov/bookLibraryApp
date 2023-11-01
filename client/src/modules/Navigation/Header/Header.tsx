@@ -29,7 +29,7 @@ const Header = () => {
   const onMenuMouseEnter = () => setIsHeaderHovered(true);
   const onMenuMouseLeave = () => setIsHeaderHovered(false);
 
-  // const blobUrl = base64ToBlobAndUrl(user.avatar?.data, 'png');
+  const blobUrl = user.avatar && base64ToBlobAndUrl(user.avatar.data, 'png');
 
   return (
     <HeaderStyled $isHovered={isHeaderHovered}>
@@ -41,7 +41,7 @@ const Header = () => {
         </LogoBox>
         <Profile onMouseEnter={onMenuMouseEnter} onMouseLeave={onMenuMouseLeave}>
           <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
-          {/* {user && user.avatar ? <Avatar img={blobUrl} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />} */}
+          {user && user.avatar ? <Avatar img={blobUrl || ''} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />}
           {isHeaderHovered && (
             <UserMenuWrapper>
               <UserMenu />

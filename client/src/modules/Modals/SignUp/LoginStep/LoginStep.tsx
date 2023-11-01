@@ -43,7 +43,7 @@ const LoginStep = () => {
           <InputFields>
             <InputLogin
               name='username'
-              labelText='Придумайте логин для входа'
+              labelText='Придумайте логин'
               error={errors.username?.message}
               customHint={<CustomLoginHint value={username} />}
             />

@@ -1,8 +1,6 @@
-import serverEndpoints from 'constants/apiEndpoints';
-
 import axios from 'axios';
 
-import handleUnauthorizedError from './helpers/handleUnauthorizedError';
+import serverEndpoints from 'constants/apiEndpoints';
 import { TRefreshResponse } from 'redux/auth/types';
 
 const $api = axios.create({
@@ -13,9 +11,7 @@ const $api = axios.create({
 $api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  if (token) config.headers.Authorization = `Bearer ${token}`;
 
   return config;
 });

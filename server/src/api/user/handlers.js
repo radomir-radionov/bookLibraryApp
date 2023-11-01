@@ -1,13 +1,9 @@
 import fs from 'fs';
-import os from 'os';
-import path from 'path';
 import pkg from 'lodash';
-import { compare } from 'bcrypt';
 
 import db from '../../database/postgres/instance/index.js';
 import modelAliases from '../../constants/modelAliases.js';
 import errorText from '../../constants/errorText.js';
-import { createJwtToken } from './services/jwt.js';
 import createHash from '../../utils/createHash.js';
 import prepareUpdateCommentRes from './helpers/prepareUpdateCommentRes.js';
 import generateCode from './helpers/generateCode.js';
@@ -16,24 +12,16 @@ import sendMail from './services/mail.js';
 const { omit } = pkg;
 const { User, Avatar, Book, Comment, Booking, Delivery } = db;
 const {
-  EXSITED_USER,
-  LOGIN_WRONG_DATA,
-  CREATE_USER_ERROR,
   CREATE_COMMENT_ERROR,
   USER_NOT_FOUND,
+  USER_AVATAR_NOT_FOUND,
   COMMENT_NOT_FOUND,
   CREATE_AVATAR_ERROR,
   UPLOAD_AVATAR_SUCCESS,
   NO_FILE,
 } = errorText;
-const {
-  avatarAlias,
-  bookAlias,
-  deliveryAlias,
-  bookingAlias,
-  historyAlias,
-  commentAlias,
-} = modelAliases;
+const { bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias } =
+  modelAliases;
 
 const getUsers = async (ctx, next) => {
   const users = await User.findAll();
@@ -105,8 +93,6 @@ const updateUser = async (ctx, next) => {
   const id = ctx.params.id;
   const body = ctx.request.body;
 
-  console.log('updateUser', id, body);
-
   await User.update({ ...body }, { where: { id } });
 
   const foundedUser = await User.findOne({ where: { id } });
@@ -120,6 +106,20 @@ const updateUser = async (ctx, next) => {
   ]);
 
   ctx.body = user;
+
+  await next();
+};
+
+const getUserAvatar = async (ctx, next) => {
+  const id = ctx.params.id;
+
+  const user = await User.findOne({ where: { id } });
+  ctx.assert(user, 404, USER_NOT_FOUND);
+
+  const avatar = await Avatar.findOne({ where: { userId: id } });
+  ctx.assert(avatar, 404, USER_AVATAR_NOT_FOUND);
+
+  ctx.body = avatar;
 
   await next();
 };
@@ -158,9 +158,10 @@ const updateUserAvatarById = async (ctx, next) => {
 
 const createComment = async (ctx, next) => {
   const commentData = ctx.request.body;
-  const createdComment = await Comment.create(commentData);
 
+  const createdComment = await Comment.create(commentData);
   ctx.assert(createdComment, 404, CREATE_COMMENT_ERROR);
+
   ctx.body = createdComment.dataValues;
   await next();
 };
@@ -213,6 +214,7 @@ const userHandlers = {
   getUsers,
   getUserById,
   updateUser,
+  getUserAvatar,
   updateUserAvatarById,
   createComment,
   updateComment,

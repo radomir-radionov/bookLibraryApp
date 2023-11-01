@@ -10,7 +10,7 @@ const paths = {
   userPaths: {
     user: '/api/users',
     userId: '/api/users/:id',
-    updateUserAvatarById: '/api/users/:id/avatar',
+    userAvatarById: '/api/users/:id/avatar',
     comments: '/api/comments',
     commentId: '/api/comments/:id',
   },

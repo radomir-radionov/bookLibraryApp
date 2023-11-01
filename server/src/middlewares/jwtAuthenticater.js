@@ -5,8 +5,6 @@ const { UNAUTHORIZED_USER } = errorText;
 
 const jwtAuthenticater = async (ctx, next) => {
   const authorizationHeader = ctx.request.headers.authorization;
-  console.log('ctx.request.headers', ctx.request.headers);
-  console.log('authorization', authorizationHeader);
   ctx.assert(authorizationHeader, 401, UNAUTHORIZED_USER);
 
   const accessToken = authorizationHeader.split(' ')[1];

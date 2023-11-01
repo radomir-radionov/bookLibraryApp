@@ -22,7 +22,6 @@ type BooksListProps = {
 };
 
 const BooksList = ({ books, categories }: BooksListProps) => {
-  const dispatch = useDispatch();
   const displayingData = useSelector(displayingBooks);
   const enteredText = useSelector(enteredBookName);
   const isSortByRating = useSelector(selectIsSortByRating);
@@ -35,10 +34,6 @@ const BooksList = ({ books, categories }: BooksListProps) => {
     () => getСurrentCategory(category, categories, books),
     [category, categories, books]
   );
-
-  useEffect(() => {
-    dispatch(booksActions.getBooks());
-  }, []);
 
   useEffect(() => {
     setFiltredBooks(getFilteredBooks(books, enteredText, isSortByRating, categoryTranslate));

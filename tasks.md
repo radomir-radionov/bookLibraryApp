@@ -1,9 +1,8 @@
 ## current
 
-- in aboutbook component add slider and for some books add a few images
-
 ## next
 
+- think aboud dto
 - fix error when make the first comment
 
 ## admin
@@ -14,7 +13,8 @@
 ## future
 
 - chat
-- add update refresh token
+- in aboutbook component add slider and for some books add a few images
+- add contentType logic for avatar
 
 TODO_CLIENT:
 

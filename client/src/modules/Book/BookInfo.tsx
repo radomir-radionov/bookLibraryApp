@@ -21,9 +21,7 @@ const BookInfo = () => {
   const bookId = pathData[3];
 
   useEffect(() => {
-    if (ignore) {
-      dispatch(bookActions.getBook(+bookId));
-    }
+    if (ignore) dispatch(bookActions.getBook(+bookId));
 
     return () => setIgnore(true);
   }, [bookId, ignore, dispatch]);

@@ -19,6 +19,11 @@ const userService = {
 
     return data;
   },
+  getUserAvatar: async (userId: number) => {
+    const { data } = await httpService.get(`${serverEndpoints.USER}/${userId}/avatar`);
+
+    return data;
+  },
   postUserAvatar: async ({ userId, payload }: any) => {
     const {
       data: { data },

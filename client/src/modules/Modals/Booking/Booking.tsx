@@ -22,7 +22,6 @@ const Booking = () => {
   const location = useLocation();
   const { id, booking } = book;
   const bookingId = booking?.id;
-  console.log('Booking', location.pathname);
   let currentPath = '';
 
   if (location.pathname === '/profile') {

@@ -21,7 +21,6 @@ const InputPhone = ({ name, view, labelText, alwaysShowMask, error, isDisabled, 
     formState: { errors },
   } = useFormContext();
 
-  console.log();
   return (
     <Wrapper $errors={error}>
       <Label>

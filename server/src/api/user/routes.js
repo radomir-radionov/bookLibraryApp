@@ -4,7 +4,7 @@ import userHandlers from './handlers.js';
 import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js';
 
 const {
-  userPaths: { user, userId, updateUserAvatarById, comments, commentId },
+  userPaths: { user, userId, userAvatarById, comments, commentId },
   authPaths: { forgotPassword, resetPassword },
 } = paths;
 
@@ -36,15 +36,6 @@ const routes = [
       });
     },
   },
-  {
-    path: updateUserAvatarById,
-    method: 'post',
-    action: async function combinedMiddleware(ctx, next) {
-      await koaBody({ multipart: true })(ctx, async () => {
-        await userHandlers.updateUserAvatarById(ctx, next);
-      });
-    },
-  },
 
   // password
   {
@@ -56,6 +47,26 @@ const routes = [
     path: resetPassword,
     method: 'post',
     action: userHandlers.resetPassword,
+  },
+
+  // avatar
+  {
+    path: userAvatarById,
+    method: 'get',
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await userHandlers.getUserAvatar(ctx, next);
+      });
+    },
+  },
+  {
+    path: userAvatarById,
+    method: 'post',
+    action: async function combinedMiddleware(ctx, next) {
+      await koaBody({ multipart: true })(ctx, async () => {
+        await userHandlers.updateUserAvatarById(ctx, next);
+      });
+    },
   },
 
   // comments

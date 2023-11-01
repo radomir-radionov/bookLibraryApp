@@ -21,7 +21,7 @@ export function* postBooking({ payload }: ReturnType<typeof bookingActions.creat
     const userId: number = yield select(selectUserDataId);
 
     yield call(() => bookingReqService.postBooking(preparedBookingData));
-    yield put(userActions.getUser(userId));
+    yield put(userActions.getExtendeUserInfo(userId));
 
     if (onlyBookData) {
       const book: TBookDetailed = yield call(() => booksService.getBookById(preparedBookingData.bookId));
@@ -74,7 +74,7 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
     if (dataType === 'book') {
       yield put(bookActions.getBook(id));
     } else {
-      yield put(userActions.getUser(userId));
+      yield put(userActions.getExtendeUserInfo(userId));
     }
 
     yield put(modalActions.close());
@@ -93,7 +93,7 @@ export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActi
     const userId: number = yield select(selectUserDataId);
 
     yield call(() => bookingReqService.deleteExpiredBooking(id));
-    yield put(userActions.getUser(userId));
+    yield put(userActions.getExtendeUserInfo(userId));
 
     yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_EXPIRED_BOOKING_SUCCESS)));

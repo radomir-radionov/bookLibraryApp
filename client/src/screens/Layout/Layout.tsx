@@ -6,6 +6,7 @@ import { categoriesActions } from 'redux/categories';
 import { Footer, Header } from 'modules';
 
 import { LayoutStyled } from './styles';
+import { userActions } from 'redux/user';
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (ignore) {
+      dispatch(userActions.getUserAvatar());
       dispatch(booksActions.getBooks());
       dispatch(categoriesActions.getCategories());
     }

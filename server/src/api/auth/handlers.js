@@ -1,23 +1,5 @@
-import pkg from 'lodash';
-
-import db from '../../database/postgres/instance/index.js';
-import modelAliases from '../../constants/modelAliases.js';
-import errorText from '../../constants/errorText.js';
-import createHash from '../../utils/createHash.js';
-import tokenService from './services/tokenService.js';
 import authService from './services/authService.js';
 
-const { omit } = pkg;
-const { User } = db;
-const { EXSITED_USER, CREATE_USER_ERROR, UNAUTHORIZED_USER } = errorText;
-const {
-  avatarAlias,
-  bookAlias,
-  deliveryAlias,
-  bookingAlias,
-  historyAlias,
-  commentAlias,
-} = modelAliases;
 const thirtyDaysInMilliseconds = 30 * 24 * 60 * 60 * 1000;
 
 const registration = async (ctx, next) => {

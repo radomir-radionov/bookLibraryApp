@@ -4,6 +4,7 @@ const errorText = {
   INVALID_BOOK: 'Book not found!',
   EXSITED_USER: 'User already exists',
   USER_NOT_FOUND: 'User not found!',
+  USER_AVATAR_NOT_FOUND: 'User avatar not found!',
   CREATE_USER_ERROR: 'Failed to create user!',
   UNAUTHORIZED_USER: 'User not authorized',
   LOGIN_WRONG_DATA:

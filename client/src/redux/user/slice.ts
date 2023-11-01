@@ -25,7 +25,7 @@ export const userSlice = createSlice({
     setExtendedUserlInfo: (state, { payload }) => {
       state.additionalInfo = payload;
     },
-    getUser: (state, { payload }) => {
+    getExtendeUserInfo: (state, { payload }) => {
       state.isLoading = true;
     },
     putUser: (state, { payload }) => {
@@ -42,7 +42,10 @@ export const userSlice = createSlice({
     },
 
     // avatar
-    setNewAvatar: (state, { payload }) => {
+    getUserAvatar: (state) => {
+      state.isLoading = true;
+    },
+    setUserAvatar: (state, { payload }) => {
       state.userData.avatar = payload;
     },
     updateAvatarReq: (state, { payload }) => {

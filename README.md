@@ -14,6 +14,7 @@
 
   - Node.js, Koa.js
   - PostgreSQL, Sequelize
+  - JWT
 
 - tools:
 
@@ -46,6 +47,7 @@ App builds using `Docker`.
 2. For every entity created `API` with `CRUD` operations.
 3. For organizing collection of structured information uses `Postgres`. Managing through `Sequelize`.  
    Implemented `models`, `migrations` and `seeds`.
+4. Access control is using `JWT`, which includes access and refresh tokens.
 
 <!-- ## Run app
 

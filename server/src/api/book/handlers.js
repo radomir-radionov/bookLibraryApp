@@ -2,9 +2,10 @@ import db from '../../database/postgres/instance/index.js';
 import modelAliases from '../../constants/modelAliases.js';
 import errorText from '../../constants/errorText.js';
 
-const { User, Book, ExtendedBook, Comment } = db;
+const { User, Avatar, Book, ExtendedBook, Comment } = db;
 const {
   userAlias,
+  avatarAlias,
   extendedBookAlias,
   deliveryAlias,
   bookingAlias,
@@ -13,7 +14,6 @@ const {
 } = modelAliases;
 const { INVALID_BOOK } = errorText;
 const getBooks = async (ctx, next) => {
-  console.log(1);
   const books = await Book.findAll({
     include: [deliveryAlias, bookingAlias, historyAlias],
   });
@@ -24,7 +24,6 @@ const getBooks = async (ctx, next) => {
 
 const getBookById = async (ctx, next) => {
   const id = ctx.params.id;
-  console.log(id);
   const book = await Book.findOne({
     where: { id },
     include: [
@@ -43,7 +42,13 @@ const getBookById = async (ctx, next) => {
           {
             model: User,
             as: userAlias,
-            attributes: ['id', 'firstName', 'lastName', 'avatar'],
+            attributes: ['id', 'firstName', 'lastName'],
+            include: [
+              {
+                model: Avatar,
+                as: avatarAlias,
+              },
+            ],
           },
         ],
         attributes: { exclude: ['userId', 'updatedAt'] },

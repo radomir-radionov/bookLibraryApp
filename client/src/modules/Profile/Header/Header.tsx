@@ -1,11 +1,10 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
 import { DefaultAvatarImg } from 'assets';
-import { convertFile } from 'utils/convertFile';
 
 import {
   ActionAvatarIcon,
@@ -34,6 +33,7 @@ type TAvatar = {
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const { firstName, lastName, avatar } = data;
+
   const blobUrl = avatar && base64ToBlobAndUrl(avatar.data, 'png');
 
   const {
@@ -48,6 +48,7 @@ const Header = ({ data }: TProps) => {
 
     dispatch(userActions.updateAvatarReq(formData));
   };
+
   return (
     <HeaderStyled data-test-id={dataTestId.PROFILE_AVATAR}>
       <ProfileAvatar>

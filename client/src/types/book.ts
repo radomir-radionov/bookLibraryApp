@@ -1,3 +1,5 @@
+import { TUser } from './user';
+
 export type TBook = {
   issueYear: string | null;
   rating: number | null;
@@ -50,12 +52,7 @@ export type TComment = {
   bookId: number;
   text: string;
   rating: number;
-  user: {
-    commentUserId: number;
-    firstName: string;
-    lastName: string;
-    avatarUrl: string;
-  };
+  user: TUser;
   createdAt: string;
 };
 

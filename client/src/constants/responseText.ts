@@ -34,6 +34,7 @@ enum responseText {
 
   UPLOAD_AVATAR_SUCCESS = 'Фото успешно сохранено!',
   UPLOAD_AVATAR_ERROR = 'Что-то пошло не так, фото не сохранилось. Попробуйте позже!',
+  USER_AVATAR_ERROR = 'Что-то пошло не так, фото не было получено.',
 
   EDIT_USER_DATA_SUCCESS = 'Изменения успешно сохранены!',
   EDIT_USER_DATA_ERROR = 'Изменения не были сохранены. Попробуйте позже!',

@@ -12,12 +12,10 @@ const Profile = () => {
   const [ignore, setIgnore] = useState(false);
 
   useEffect(() => {
-    if (user && Object.keys(user).length > 0 && ignore) {
-      dispatch(userActions.getUser(user.id));
-    }
+    if (ignore) dispatch(userActions.getExtendeUserInfo(user.id));
 
     return () => setIgnore(true);
-  }, [user, ignore]);
+  }, [ignore]);
 
   return (
     <ProfileStyled>
