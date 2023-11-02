@@ -53,7 +53,7 @@ const BookLong = ({ data, view }: TProps) => {
   return (
     <BookItemStyled onClick={onBookClick} data-test-id={dataTestId.CARD}>
       {image ? (
-        <Img src={`http://localhost:5000/${image}`} alt='Book cover' />
+        <Img src={`http://localhost:5000/${image}`} alt='Book cover' width='132' height='186' loading='lazy' />
       ) : (
         <ImgBox>
           <CatIcon />

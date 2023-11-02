@@ -20,8 +20,10 @@ $api.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status == 401 && error.config && !error.config._isRetry) {
+    console.log(error.response.status);
+    if (error.response.status === 401 && error.config && !error.config._isRetry) {
       originalRequest._isRetry = true;
+      console.log(`${serverEndpoints.API_URL}${serverEndpoints.REFRESH_URL}`);
       try {
         const response = await axios.get<TRefreshResponse>(`${serverEndpoints.API_URL}${serverEndpoints.REFRESH_URL}`, {
           withCredentials: true,

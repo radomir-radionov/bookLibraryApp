@@ -24,7 +24,9 @@ const SearchBar = ({ isSearchBarOpen, setIsSearchBarOpen }: TProps) => {
 
   return (
     <Form $visible={isSearchBarOpen}>
-      <Label htmlFor='searching'>{isFocused ? <ActionSearchingCIcon /> : <ActionSearchingIcon />}</Label>
+      <Label htmlFor='searching'>
+        {isFocused ? <ActionSearchingCIcon width='16' height='16' /> : <ActionSearchingIcon width='16' height='16' />}
+      </Label>
       <SearchInput
         type='search'
         id='searching'
@@ -42,7 +44,7 @@ const SearchBar = ({ isSearchBarOpen, setIsSearchBarOpen }: TProps) => {
           $variant='mobile'
           data-test-id={dataTestId.BUTTON_SEARCH_CLOSE}
         >
-          <ActionCloseIcon />
+          <ActionCloseIcon width='16' height='16' />
         </Btn>
       )}
     </Form>

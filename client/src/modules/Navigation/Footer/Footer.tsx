@@ -12,7 +12,7 @@ const Footer = () => {
           {SocialLinksData.map(({ id, href, icon }) => (
             <Item key={id}>
               <Link href={href}>
-                <Img src={icon} alt='Social' />
+                <Img src={icon} alt='Social' width='24' height='24' />
               </Link>
             </Item>
           ))}

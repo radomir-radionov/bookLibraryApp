@@ -36,12 +36,16 @@ const Header = () => {
       <Content>
         <LogoBox>
           <BurgerMenu />
-          <Logo onClick={onLogoClick} src={LogoIcon} alt='Logo' />
+          <Logo onClick={onLogoClick} src={LogoIcon} alt='Logo' width='165' height='40' />
           <Title>Библиотека</Title>
         </LogoBox>
         <Profile onMouseEnter={onMenuMouseEnter} onMouseLeave={onMenuMouseLeave}>
           <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
-          {user && user.avatar ? <Avatar img={blobUrl || ''} /> : <Img src={DefaultAvatarImg} alt='default-avatar' />}
+          {user && user.avatar ? (
+            <Avatar img={blobUrl || ''} />
+          ) : (
+            <Img src={DefaultAvatarImg} alt='default-avatar' width='58' height='58' />
+          )}
           {isHeaderHovered && (
             <UserMenuWrapper>
               <UserMenu />

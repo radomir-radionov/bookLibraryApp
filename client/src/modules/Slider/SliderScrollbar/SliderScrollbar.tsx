@@ -27,7 +27,7 @@ const SliderScrollbar = ({ img }: TProps) => {
         data-test-id={dataTestId.SLIDE_BIG}
       >
         {/* <SwiperSlide key={Math.random()}> */}
-        <Img src={img} />
+        <Img src={img} loading='lazy' />
         {/* </SwiperSlide> */}
       </ValueBar>
 
