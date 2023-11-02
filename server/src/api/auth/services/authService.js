@@ -2,7 +2,6 @@ import pkg from 'lodash';
 import { compare } from 'bcrypt';
 
 import db from '../../../database/postgres/instance/index.js';
-import modelAliases from '../../../constants/modelAliases.js';
 import errorText from '../../../constants/errorText.js';
 import createHash from '../../../utils/createHash.js';
 import tokenService from '.././services/tokenService.js';
