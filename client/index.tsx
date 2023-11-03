@@ -6,8 +6,8 @@ import { Loader, ToastList } from 'components';
 import { Modal } from 'modules';
 import store from 'store';
 
-import App from './App';
-import { GlobalStyles } from './styles';
+import App from './src/App';
+import { GlobalStyles } from './src/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

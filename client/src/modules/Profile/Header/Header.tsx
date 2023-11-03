@@ -1,6 +1,6 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
@@ -32,6 +32,7 @@ type TAvatar = {
 
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
+  const [ignore, setIgnore] = useState(false);
   const { firstName, lastName, avatar } = data;
 
   const blobUrl = avatar && base64ToBlobAndUrl(avatar.data, 'png');
@@ -48,6 +49,12 @@ const Header = ({ data }: TProps) => {
 
     dispatch(userActions.updateAvatarReq(formData));
   };
+
+  useEffect(() => {
+    if (ignore) dispatch(userActions.getUserAvatar());
+
+    return () => setIgnore(true);
+  }, [dispatch, ignore]);
 
   return (
     <HeaderStyled data-test-id={dataTestId.PROFILE_AVATAR}>

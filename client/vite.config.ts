@@ -8,14 +8,18 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [react(), viteTsconfigPaths(), svgrPlugin(), viteCompression()],
+  plugins: [
+    react(),
+    viteTsconfigPaths(),
+    svgrPlugin(),
+    viteCompression({
+      filter: /\.(js|css|html|json)$/,
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+  ],
   build: {
     minify: true,
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
   },
 });
