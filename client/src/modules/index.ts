@@ -18,6 +18,7 @@ export { default as AboutBook } from './Book/components/AboutBook/AboutBook';
 export { default as CommentsList } from './Book/components/CommentsList/CommentsList';
 export { default as Comment } from './Book/components/CommentsList/Comment/Comment';
 export { default as Detailed } from './Book/components/Detailed/Detailed';
+export { default as Rating } from './Book/components/Rating/Rating';
 
 export { default as BookList } from './BooksList/BooksList';
 export { default as BookShort } from './BooksList/BookShort/BookShort';
