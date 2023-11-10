@@ -13,8 +13,23 @@ const generateTokens = (payload) => {
   return { accessToken, refreshToken };
 };
 
-const validateAccessToken = (token) => verify(token, JWT_ACCESS_SECRET);
-const validateRefreshToken = (token) => verify(token, JWT_REFRESH_SECRET);
+const validateAccessToken = (token) => {
+  try {
+    const userData = verify(token, process.env.JWT_ACCESS_SECRET);
+    return userData;
+  } catch (e) {
+    return null;
+  }
+};
+
+const validateRefreshToken = (token) => {
+  try {
+    const userData = verify(token, process.env.JWT_REFRESH_SECRET);
+    return userData;
+  } catch (e) {
+    return null;
+  }
+};
 
 const saveToken = async (userId, refreshToken) => {
   const tokenData = await Token.findOne({ where: { userId } });

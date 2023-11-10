@@ -6,7 +6,7 @@ export type TInputProps = {
   labelText: string;
   watchValue: string;
   clearErrors?: UseFormClearErrors<any>;
-  error?: string | boolean;
+  error?: string;
   payload?: any;
 };
 

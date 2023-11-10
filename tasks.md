@@ -15,6 +15,7 @@
 - chat
 - in aboutbook component add slider and for some books add a few images
 - add contentType logic for avatar
+- add another error response when try to rebook book
 
 TODO_CLIENT:
 

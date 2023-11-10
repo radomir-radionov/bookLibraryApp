@@ -2,7 +2,6 @@ import dataTestId from 'constants/dataTestId';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { bookActions } from 'redux/book';
 import { modalActions } from 'redux/modal';
 import { Button, SubTitle } from 'components';
 import { Comment } from 'modules';

@@ -30,14 +30,15 @@ export function* postBooking({ payload }: ReturnType<typeof bookingActions.creat
       yield put(booksActions.getBooks());
     }
 
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.BOOKING_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
-    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.BOOKING_ERROR)));
+    const { response } = e as any;
+    console.log(e);
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
+
+  yield put(modalActions.close());
+  yield put(bookingActions.cancelLoading());
 }
 
 export function* putBooking({
@@ -53,14 +54,15 @@ export function* putBooking({
       yield put(booksActions.getBooks());
     }
 
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.UPDATE_BOOKING_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
-    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.UPDATE_BOOKING_ERROR)));
+    const { response } = e as any;
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
+
+  yield put(modalActions.close());
+  yield put(bookingActions.cancelLoading());
 }
 
 export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.deleteBookingReq>) {
@@ -77,14 +79,15 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
       yield put(userActions.getExtendeUserInfo(userId));
     }
 
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_BOOKING_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(bookingActions.cancelLoading());
-    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.CANCEL_BOOKING_ERROR)));
+    const { response } = e as any;
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
+
+  yield put(modalActions.close());
+  yield put(bookingActions.cancelLoading());
 }
 
 export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActions.deleteExpiredBookingReq>) {
@@ -95,12 +98,14 @@ export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActi
     yield call(() => bookingReqService.deleteExpiredBooking(id));
     yield put(userActions.getExtendeUserInfo(userId));
 
-    yield put(bookingActions.cancelLoading());
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.CANCEL_EXPIRED_BOOKING_SUCCESS)));
   } catch (e) {
-    yield put(bookingActions.cancelLoading());
-    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.CANCEL_EXPIRED_BOOKING_ERROR)));
+    const { response } = e as any;
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
+
+  yield put(bookingActions.cancelLoading());
 }
 
 function* bookingSaga() {

@@ -64,6 +64,7 @@ export function* checkAuthSaga() {
   } catch (e) {
     const { response } = e as any;
 
+    yield put(userActions.setAuth(false));
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, response?.data.error.message)));
   }
 

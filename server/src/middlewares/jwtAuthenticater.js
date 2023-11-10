@@ -12,6 +12,7 @@ const jwtAuthenticater = async (ctx, next) => {
 
   const userData = tokenService.validateAccessToken(accessToken);
   ctx.assert(userData, 401, UNAUTHORIZED_USER);
+
   ctx.body = userData;
 
   await next();

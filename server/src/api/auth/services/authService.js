@@ -60,10 +60,12 @@ const refresh = async (ctx, refreshToken) => {
   ctx.assert(refreshToken, 401, UNAUTHORIZED_USER);
 
   const userData = tokenService.validateRefreshToken(refreshToken);
+  ctx.assert(userData, 401, UNAUTHORIZED_USER);
 
   const tokenFromDb = await tokenService.findToken(refreshToken);
-  ctx.assert(userData || tokenFromDb, 401, UNAUTHORIZED_USER);
+  ctx.assert(tokenFromDb, 401, UNAUTHORIZED_USER);
 
+  // @ts-ignore
   const user = await User.findOne({ where: { id: userData.id } });
   ctx.assert(user, 404, USER_NOT_FOUND);
 

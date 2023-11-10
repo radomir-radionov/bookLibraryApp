@@ -13,8 +13,8 @@ const Modal = () => {
   const modalType: string = useSelector(modalTypeSelector);
   const ModalComponent = MODALS_MAPPING[modalType];
 
-  const onModalClick = () => dispatch(modalActions.close());
-  const onOutsideClick = (event: MouseEvent<HTMLDivElement>) => event.target === event.currentTarget && onModalClick();
+  const onOutsideClick = (event: MouseEvent<HTMLDivElement>) =>
+    event.target === event.currentTarget && dispatch(modalActions.close());
 
   useEffect(() => {
     modalType ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
@@ -24,7 +24,7 @@ const Modal = () => {
     <>
       {modalType && (
         <Wrapper onClick={onOutsideClick} data-test-id={dataTestId.MODAL_OUTER}>
-          <ModalComponent onClose={onModalClick} />
+          <ModalComponent />
         </Wrapper>
       )}
     </>

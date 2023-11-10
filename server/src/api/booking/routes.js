@@ -1,31 +1,48 @@
-import paths from '../../constants/paths.js'
-import bookingHandlers from './handlers.js'
+import jwtAuthenticater from '../../middlewares/jwtAuthenticater.js';
+import paths from '../../constants/paths.js';
+import bookingHandlers from './handlers.js';
 
 const {
-  bookingPaths: {bookings, bookingId, bookingExpiredId},
-} = paths
+  bookingPaths: { bookings, bookingId, bookingExpiredId },
+} = paths;
 
 const routes = [
   {
     path: bookings,
     method: 'post',
-    action: bookingHandlers.createBooking,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await bookingHandlers.createBooking(ctx, next);
+      });
+    },
   },
   {
     path: bookingId,
     method: 'put',
-    action: bookingHandlers.updateBooking,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await bookingHandlers.updateBooking(ctx, next);
+      });
+    },
   },
   {
     path: bookingId,
     method: 'delete',
-    action: bookingHandlers.deleteBooking,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await bookingHandlers.deleteBooking(ctx, next);
+      });
+    },
   },
   {
     path: bookingExpiredId,
     method: 'delete',
-    action: bookingHandlers.deleteExpiredBooking,
+    action: async (ctx, next) => {
+      await jwtAuthenticater(ctx, async () => {
+        await bookingHandlers.deleteExpiredBooking(ctx, next);
+      });
+    },
   },
-]
+];
 
-export default routes
+export default routes;

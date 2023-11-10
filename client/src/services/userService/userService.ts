@@ -3,7 +3,7 @@ import httpService from '../../http';
 import { PostCommentProps, PutCommentProps, TPutUserReq } from './types';
 
 const userService = {
-  getUserByid: async (id: number) => {
+  getUserById: async (id: number) => {
     const { data } = await httpService.get(`${serverEndpoints.USER}/${id}`);
 
     return data;

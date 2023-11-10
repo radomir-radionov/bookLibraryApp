@@ -1,5 +1,4 @@
 export { default as Protected } from './Protected/Protected';
-export { default as ProtectedAuth } from './ProtectedAuth/ProtectedAuth';
 
 export { default as Layout } from './Layout/Layout';
 export { default as LayoutHome } from './LayoutHome/LayoutHome';

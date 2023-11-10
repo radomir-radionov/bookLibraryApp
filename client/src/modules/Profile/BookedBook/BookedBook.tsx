@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 type TProps = {
-  data?: TUserBooking; // Make data optional to handle cases where it's undefined
+  data?: TUserBooking;
 };
 
 const BookedBook = ({ data }: TProps) => {

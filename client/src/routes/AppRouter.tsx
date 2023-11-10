@@ -1,19 +1,7 @@
 import pageRoutes from 'constants/pageRoutes';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import {
-  Auth,
-  Book,
-  ForgotPwd,
-  Home,
-  Layout,
-  LayoutHome,
-  Profile,
-  Protected,
-  ProtectedAuth,
-  Registration,
-  Terms,
-} from 'screens';
+import { Auth, Book, ForgotPwd, Home, Layout, LayoutHome, Profile, Protected, Registration, Terms } from 'screens';
 
 function AppRouter() {
   return (
@@ -29,8 +17,6 @@ function AppRouter() {
           <Route path={pageRoutes.BOOK_DATA} element={<Book />} />
           <Route path={pageRoutes.PROFILE} element={<Profile />} />
         </Route>
-      </Route>
-      <Route element={<ProtectedAuth />}>
         <Route path={pageRoutes.AUTH} element={<Auth />} />
         <Route path={pageRoutes.REGISTRATION} element={<Registration />} />
         <Route path={pageRoutes.FORGOT_PWD} element={<ForgotPwd />} />

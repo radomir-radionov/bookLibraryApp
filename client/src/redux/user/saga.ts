@@ -17,7 +17,7 @@ import prepareToastData from 'helpers/toast/createToast.js';
 
 export function* getExtendedUserInfoSaga({ payload }: ReturnType<typeof userActions.getExtendeUserInfo>) {
   try {
-    const data: TExtendedUserInfo = yield call(() => userService.getUserByid(payload));
+    const data: TExtendedUserInfo = yield call(() => userService.getUserById(payload));
     yield put(userActions.setExtendedUserlInfo(data));
   } catch (e: any) {
     yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, e.response.data.error.message)));
@@ -48,9 +48,7 @@ export function* getUserAvatarSaga() {
     const avatar: TUserAvatar = yield call(() => userService.getUserAvatar(userId));
 
     yield put(userActions.setUserAvatar(avatar));
-  } catch (e) {
-    console.error(responseText.USER_AVATAR_ERROR);
-  }
+  } catch (e) {}
 
   yield put(userActions.cancelLoading());
 }

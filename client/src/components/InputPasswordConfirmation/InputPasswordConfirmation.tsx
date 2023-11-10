@@ -80,7 +80,7 @@ const InputPasswordConfirmation = ({ register, labelText, watchValue, error, pay
 
       {isPasswordsEquals && error && !!!value.length && <Hint colored={true}>{hintText.EMPTY_FIELD}</Hint>}
 
-      {!isPasswordsEquals && error && <Hint colored={true}>{error.message}</Hint>}
+      {!isPasswordsEquals && error && <Hint colored={true}>{error}</Hint>}
     </Wrapper>
   );
 };
