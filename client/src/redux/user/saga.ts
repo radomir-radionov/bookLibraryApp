@@ -10,7 +10,7 @@ import { PostCommentProps } from 'services/userService/types';
 import { TBookDetailed } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
-import { selectUserDataId } from './selectors';
+import { selectUserId } from './selectors';
 import { TExtendedUserInfo, TUserAvatar } from 'types/user';
 import { TPutCommentRes } from './types.js';
 import prepareToastData from 'helpers/toast/createToast.js';
@@ -28,7 +28,7 @@ export function* getExtendedUserInfoSaga({ payload }: ReturnType<typeof userActi
 
 export function* updateUserInfoSaga({ payload }: ReturnType<typeof userActions.putUser>) {
   try {
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
     const updatedUser: TExtendedUserInfo = yield call(() => userService.putUser({ userId, payload }));
 
     if (updatedUser) yield put(userActions.setUser(updatedUser));
@@ -44,7 +44,7 @@ export function* updateUserInfoSaga({ payload }: ReturnType<typeof userActions.p
 
 export function* getUserAvatarSaga() {
   try {
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
     const avatar: TUserAvatar = yield call(() => userService.getUserAvatar(userId));
 
     yield put(userActions.setUserAvatar(avatar));
@@ -55,7 +55,7 @@ export function* getUserAvatarSaga() {
 
 export function* updateAvatar({ payload }: ReturnType<typeof userActions.updateAvatarReq>) {
   try {
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
     const newAvatar: TUserAvatar = yield call(() => userService.postUserAvatar({ userId, payload }));
 
     yield put(userActions.setUserAvatar(newAvatar));
@@ -89,8 +89,8 @@ export function* putComment({ payload }: ReturnType<typeof userActions.putCommen
     const {
       data: { bookId },
     }: TPutCommentRes = yield call(() => userService.putComment(payload));
-    const bookData: TBookDetailed = yield call(() => booksService.getBookById(bookId));
 
+    const bookData: TBookDetailed = yield call(() => booksService.getBookById(bookId));
     yield put(bookActions.setBook(bookData));
     yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.EDIT_COMMENTS_SUCCESS)));
   } catch (e) {

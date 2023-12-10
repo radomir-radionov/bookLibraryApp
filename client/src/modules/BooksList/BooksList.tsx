@@ -1,20 +1,19 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectIsBooksLoading, selectIsSortByRating } from 'redux/books/selectors';
 import { displayingBooks } from 'redux/displayingContent/selectors';
 import { selectToasts } from 'redux/toast/selectors';
 import { enteredBookName } from 'redux/user/selectors';
-import { BookLong, BookShort, Pagination } from 'modules';
+import { Pagination } from 'modules';
 import { TBook } from 'types/book';
 import { TCategory } from 'types/categories';
 import { getСurrentCategory } from 'utils/categories';
 import getFilteredBooks from 'utils/getFiltredBooks';
 
 import { BooksListStyled, EmptyData, Message } from './styles';
-import { booksActions } from 'redux/books/slice.js';
 
 type BooksListProps = {
   books: TBook[];

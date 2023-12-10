@@ -3,7 +3,7 @@ import dataTestId from 'constants/dataTestId';
 import { ButtonBooking, SubTitle } from 'components';
 import { SliderPagination, SliderScrollbar } from 'modules';
 import { TBookDetailed } from 'types/book';
-import useWindowDimensions from 'utils/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import {
   About,

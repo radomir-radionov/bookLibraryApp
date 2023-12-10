@@ -8,7 +8,7 @@ import { Container, Name, Wrapper } from './styles';
 
 const Auth = () => {
   const step = useSelector(selectStep);
-
+  console.log(1);
   const getStepToRender = () => {
     switch (true) {
       case step === 1:

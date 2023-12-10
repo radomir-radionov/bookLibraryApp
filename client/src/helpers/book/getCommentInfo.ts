@@ -1,10 +1,10 @@
 import moment from 'moment';
 import { TComment } from 'types/book.js';
 
-const getCommentInfo = (comments: TComment[] | [], id: number) => {
-  const bookCommentIds = comments.map(({ bookId }) => bookId);
-  const isCommentedBook = bookCommentIds.includes(id);
-  const filtredCommentedBookData = comments.find(({ bookId }) => bookId === id);
+const getCommentInfo = (comments: TComment[] | [], id: number, userId: number) => {
+  const usersIds = comments.map(({ user }) => user.id);
+  const isCommentedBook = usersIds.includes(userId);
+  const foundUserComment = comments.find(({ user }) => user.id === userId);
 
   const sortedCommentsByCreatedAt = comments.slice().sort((a, b) => {
     const dateA = moment(a.createdAt);
@@ -13,7 +13,7 @@ const getCommentInfo = (comments: TComment[] | [], id: number) => {
     return dateB.diff(dateA);
   });
 
-  return { filtredCommentedBookData, sortedCommentsByCreatedAt, isCommentedBook };
+  return { foundUserComment, sortedCommentsByCreatedAt, isCommentedBook };
 };
 
 export default getCommentInfo;

@@ -2,8 +2,8 @@ import dataTestId from 'constants/dataTestId';
 
 import { useRef, useState } from 'react';
 import { Nav, UserMenu } from 'modules';
-import useOnClickOutside from 'utils/useOutsideClick';
-import useWindowDimensions from 'utils/useWindowDimensions';
+import useOnClickOutside from 'hooks/useOutsideClick';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { BurgerMenuStyled, BurgerNav, CloseMenuIcon, HumburgerIcon, MenuWrapper } from './styles';
 

@@ -1,6 +1,14 @@
-import { ActionRatingDown_Icon, ActionRatingUp_Icon, ActionSearching_Icon, List_Icon, Tiles_Icon } from 'assets';
+import {
+  ActionRatingDown_Icon,
+  ActionRatingUp_Icon,
+  ActionSearching_Icon,
+  List_Icon,
+  Tiles_Icon,
+  Chat_Icon,
+} from 'assets';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors, device, typography } from 'styles';
+import { colors, device, other, typography } from 'styles';
 
 export const MenuStyled = styled.div`
   display: flex;
@@ -48,3 +56,40 @@ export const ActionSearchingIcon = styled(ActionSearching_Icon)``;
 export const ListIcon = styled(List_Icon)``;
 
 export const TilesIcon = styled(Tiles_Icon)``;
+
+export const ChatIcon = styled(Chat_Icon)``;
+
+export const NavLinkStyled = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+  border: 0;
+  border-radius: 20px;
+  background: ${colors.MAIN_WHITE};
+
+  path {
+    fill: ${colors.GREY_BLACK_40};
+  }
+
+  filter: ${other.MAIN_FILTER};
+  transition: all 0.1s ease-out;
+
+  &:nth-child(2) {
+    margin-right: 0;
+  }
+
+  &:hover {
+    filter: ${other.FILTER_СRYSTAL};
+  }
+
+  &:active {
+    box-shadow: none;
+    filter: ${other.FILTER_LIGHT};
+  }
+
+  @media (max-width: ${device.tablet}) {
+    display: flex;
+    width: 38px;
+  }
+`;

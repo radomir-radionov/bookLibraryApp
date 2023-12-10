@@ -1,7 +1,7 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from 'redux/modal';
 import { Button, SubTitle } from 'components';
 import { Comment } from 'modules';
@@ -11,6 +11,7 @@ import { MODAL_TYPES } from 'types/modal';
 
 import { ChevronIcon, CommentsListStyled, Qty, SubTitleBox, Wrapper } from './styles';
 import getCommentInfo from 'helpers/book/getCommentInfo.js';
+import { selectUserId } from 'redux/user/selectors';
 
 type TProps = {
   data: TBookDetailed;
@@ -19,9 +20,11 @@ type TProps = {
 const CommentsList = ({ data }: TProps) => {
   const dispatch = useDispatch();
   const [isCommentsListOpen, setCommentsListOpen] = useState(true);
-  const { id, comments } = data;
-  const { filtredCommentedBookData, sortedCommentsByCreatedAt, isCommentedBook } = getCommentInfo(comments, id);
+  const userId = useSelector(selectUserId);
 
+  const { id, comments } = data;
+
+  const { foundUserComment, sortedCommentsByCreatedAt, isCommentedBook } = getCommentInfo(comments, id, userId);
   const handleOpenListClick = () => setCommentsListOpen(!isCommentsListOpen);
   const handleCreateCommentClick = () => dispatch(modalActions.open({ type: MODAL_TYPES.RATE_BOOK }));
   const handleUpdateCommentClick = () => {
@@ -30,7 +33,7 @@ const CommentsList = ({ data }: TProps) => {
         type: MODAL_TYPES.RATE_BOOK,
         modalInfo: {
           view: 'editCommentModal',
-          ...filtredCommentedBookData,
+          ...foundUserComment,
         },
       })
     );

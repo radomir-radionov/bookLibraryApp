@@ -26,3 +26,5 @@ export { default as BookLong } from './BooksList/BookLong/BookLong';
 export { default as BookProfile } from './BooksList/BookProfile/BookProfile';
 
 export { default as Calendar } from './Calendar/Calendar';
+
+export { default as ChatWindow } from './ChatWindow/ChatWindow';
