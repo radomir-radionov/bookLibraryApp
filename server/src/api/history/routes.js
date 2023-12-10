@@ -1,9 +1,9 @@
-import paths from '../../constants/paths.js'
-import historyHandlers from './handlers.js'
+import paths from '../../constants/paths.js';
+import historyHandlers from './handlers.js';
 
 const {
-  historyPaths: {histories},
-} = paths
+  historyPaths: { histories },
+} = paths;
 
 const routes = [
   {
@@ -16,6 +16,6 @@ const routes = [
     method: 'post',
     action: historyHandlers.createHistory,
   },
-]
+];
 
-export default routes
+export default routes;
