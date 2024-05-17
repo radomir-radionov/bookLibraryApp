@@ -42,8 +42,8 @@ const InputEmail = ({ name, labelText, error, isDisabled, required = true }: TIn
       </Label>
       <Hint colored={true}>
         {isValidEmail && error}
-        {responseMessage}
         {isEmptyEmail && hintText.EMPTY_FIELD}
+        {(isValidEmail || isEmptyEmail) && responseMessage ? null : responseMessage}
       </Hint>
     </Wrapper>
   );

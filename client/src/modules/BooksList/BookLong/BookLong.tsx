@@ -4,24 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { bookActions } from 'redux/book';
 import { modalActions } from 'redux/modal';
-import { enteredBookName, selectUserComments } from 'redux/user/selectors';
+import { enteredBookName } from 'redux/user/selectors';
 import { Button, ButtonBooking, HighLight, RatingList } from 'components';
 import { TBook } from 'types/book';
 import { BUTTON_VARIANTS } from 'types/button';
 import { MODAL_TYPES } from 'types/modal';
 
-import {
-  Active,
-  Author,
-  BookItemStyled,
-  CatIcon,
-  Img,
-  ImgBox,
-  ImgWrapper,
-  Info,
-  NameBox,
-  SubTitleWrapper,
-} from './styles';
+import { Active, Author, BookItemStyled, CatIcon, Img, ImgBox, Info, NameBox, SubTitleWrapper } from './styles';
 
 type TProps = {
   data: TBook;
@@ -30,13 +19,11 @@ type TProps = {
 
 const BookLong = ({ data, view }: TProps) => {
   const dispatch = useDispatch();
-  const comments = useSelector(selectUserComments);
   const enteredText = useSelector(enteredBookName);
   const navigate = useNavigate();
   const { category } = useParams();
 
-  const { id, title, authors, rating, issueYear, booking, delivery, image } = data;
-  const imgSrc = `${image?.url}`;
+  const { id, title, authors, rating, issueYear, booking, delivery, image, comments } = data;
   const bookCommentIds = comments?.map(({ bookId }) => bookId);
   const isCommentedBook = bookCommentIds?.includes(id);
   const filtredCommentedBookData = comments?.find((comment) => comment.bookId === id);
@@ -65,15 +52,13 @@ const BookLong = ({ data, view }: TProps) => {
 
   return (
     <BookItemStyled onClick={onBookClick} data-test-id={dataTestId.CARD}>
-      <ImgWrapper>
-        {imgSrc ? (
-          <Img src={imgSrc} alt='Book cover' />
-        ) : (
-          <ImgBox>
-            <CatIcon />
-          </ImgBox>
-        )}
-      </ImgWrapper>
+      {image ? (
+        <Img src={`http://localhost:8080/${image}`} alt='Book cover' width='132' height='186' loading='lazy' />
+      ) : (
+        <ImgBox>
+          <CatIcon />
+        </ImgBox>
+      )}
       <Info>
         <NameBox>
           <SubTitleWrapper>
@@ -86,7 +71,7 @@ const BookLong = ({ data, view }: TProps) => {
         <Active>
           <RatingList rating={rating} />
           {view !== 'history' ? (
-            <ButtonBooking book={data} booking={booking} delivery={delivery} />
+            <ButtonBooking book={data} />
           ) : isCommentedBook ? (
             <Button
               className='editCommentButton'

@@ -1,12 +1,14 @@
 const tableNames = {
   users: 'Users',
+  tokens: 'Tokens',
+  avatars: 'Avatars',
+  categories: 'Categories',
   books: 'Books',
   extendedBooks: 'ExtendedBooks',
-  categories: 'Categories',
   deliveries: 'Deliveries',
   histories: 'Histories',
   booking: 'Bookings',
   comments: 'Comments',
-}
+};
 
-module.exports = tableNames
+module.exports = tableNames;

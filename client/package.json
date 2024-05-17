@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
+    "start": "vite --host 0.0.0.0",
+    "build": "vite build",
     "serve": "vite preview",
     "cy": "cypress open",
     "e2e": "start-server-and-test start http-get://localhost:3000 cy",
@@ -19,6 +19,7 @@
     "@types/react": "^18.0.25",
     "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "^18.0.8",
+    "@types/socket.io-client": "^3.0.0",
     "arui-presets-lint": "^6.0.1",
     "cypress": "^11.0.1",
     "eslint-config-airbnb": "^19.0.4",
@@ -43,7 +44,8 @@
     "start-server-and-test": "^1.14.0",
     "stylelint": "^14.8.1",
     "stylelint-config-standard": "^29.0.0",
-    "stylelint-prettier": "^2.0.0"
+    "stylelint-prettier": "^2.0.0",
+    "vite-plugin-compression": "^0.5.1"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
@@ -63,9 +65,11 @@
     "react-highlight-words": "^0.20.0",
     "react-hook-form": "^7.43.1",
     "react-input-mask": "^2.0.4",
+    "react-paginate": "^8.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "redux-saga": "^1.2.2",
+    "socket.io-client": "^4.7.5",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.6",
     "uuidv4": "^6.2.13",

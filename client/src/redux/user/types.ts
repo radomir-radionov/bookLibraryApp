@@ -1,27 +1,22 @@
-import { TUserData } from 'types/user';
-
-export type IUserData = {
-  id: number;
-  username: string;
-  email: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  createdAt: string;
-  updatedAt: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
-};
+import { TExtendedUserInfo, TUser } from 'types/user';
 
 export type TUserState = {
   jwt: string;
-  userData: TUserData;
+  userData: TUser;
+  additionalInfo: TExtendedUserInfo;
   enteredBookName: string;
+  isAuth: boolean;
   isLoading: boolean;
 };
 
-export type PutEditUserDataResponseProps = {
-  jwt: string;
-  user: IUserData;
+export type TPutCommentRes = {
+  commentId: number;
+  data: {
+    userId: number;
+    bookId: number;
+    rating: number;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 };

@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TBookingState } from './types';
 
 const initialState: TBookingState = {
-  bookId: null,
   isLoading: false,
 };
 
@@ -11,16 +10,16 @@ export const bookingSlice = createSlice({
   name: 'BOOKING',
   initialState,
   reducers: {
-    setBookId: (state, { payload }) => {
-      state.bookId = payload;
-    },
-    postBooking: (state, { payload }) => {
+    createBookingReq: (state, { payload }) => {
       state.isLoading = true;
     },
-    putRebooking: (state, { payload }) => {
+    updateBookingReq: (state, { payload }) => {
       state.isLoading = true;
     },
-    deleteBooking: (state, { payload }) => {
+    deleteBookingReq: (state, { payload }) => {
+      state.isLoading = true;
+    },
+    deleteExpiredBookingReq: (state, { payload }) => {
       state.isLoading = true;
     },
     cancelLoading: (state) => {

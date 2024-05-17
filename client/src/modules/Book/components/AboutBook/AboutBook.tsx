@@ -3,7 +3,7 @@ import dataTestId from 'constants/dataTestId';
 import { ButtonBooking, SubTitle } from 'components';
 import { SliderPagination, SliderScrollbar } from 'modules';
 import { TBookDetailed } from 'types/book';
-import useWindowDimensions from 'utils/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import {
   About,
@@ -26,13 +26,17 @@ type TProps = {
 
 const AboutBook = ({ data }: TProps) => {
   const { width } = useWindowDimensions();
-  const { title, authors, issueYear, description, images, booking, delivery } = data;
+  const { title, authors, issueYear, description, image } = data;
 
   return (
     <About>
-      {images ? (
+      {image ? (
         <SliderWrapper>
-          {width > 1024 ? <SliderScrollbar imgs={images} /> : <SliderPagination imgs={images} />}
+          {
+            //   width > 1024 ? <SliderScrollbar img={`http://localhost:5000/${image}`} /> : null
+            <SliderScrollbar img={`http://localhost:5000/${image}`} />
+            //   <SliderPagination imgs={image} />
+          }
         </SliderWrapper>
       ) : (
         <ImgContainer>
@@ -49,7 +53,7 @@ const AboutBook = ({ data }: TProps) => {
               {authors?.map((author) => author)}, {issueYear}
             </Author>
           </NameBook>
-          <ButtonBooking book={data} booking={booking} delivery={delivery} />
+          <ButtonBooking onlyBookData={true} book={data} />
         </Header>
         <Description>
           <SubTitle>О книге</SubTitle>

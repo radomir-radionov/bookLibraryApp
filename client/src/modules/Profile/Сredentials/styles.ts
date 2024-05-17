@@ -1,6 +1,6 @@
 import { Button } from 'components';
 import styled from 'styled-components';
-import { colors, device, typography } from 'styles';
+import { colors, device, other, typography } from 'styles';
 
 export const СredentialsStyled = styled.section`
   display: flex;
@@ -88,10 +88,4 @@ export const ButtonEdit = styled(Button)`
 
 export const ButtonSave = styled(Button)`
   text-transform: uppercase;
-
-  &:disabled {
-    border: none;
-    color: ${colors.MAIN_WHITE};
-    background: rgb(235, 235, 235);
-  }
 `;

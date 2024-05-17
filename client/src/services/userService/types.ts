@@ -1,15 +1,13 @@
-export type PostCommentsProps = {
-  data: { rating: number; text: string; book: string; user: string };
-};
+export type PostCommentProps = { bookId: number; userId: number; rating: number; text: string };
 
-export type PutEditUserDataProps = {
+export type TPutUserReq = {
   userId: number;
-  reqBody: { username: string; password: string; firstName: string; lastName: string; phone: string; email: string };
+  payload: { username: string; password: string; firstName: string; lastName: string; phone: string; email: string };
 };
 
 export type PutCommentProps = {
-  commentId?: string;
-  data: { username: string; password: string; firstName: string; lastName: string; phone: string; email: string };
+  commentId: number;
+  data: { bookId: number; userId: number; rating: number; text: string };
 };
 
 export type pPutRebookingProps = {

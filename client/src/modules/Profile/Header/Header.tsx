@@ -1,11 +1,10 @@
 import dataTestId from 'constants/dataTestId';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'redux/user';
 import { DefaultAvatarImg } from 'assets';
-import { convertFile } from 'utils/convertFile';
 
 import {
   ActionAvatarIcon,
@@ -20,33 +19,42 @@ import {
   ProfileAvatar,
   UserName,
 } from './styles';
-import { TUserData } from 'types/user';
+import { TUser } from 'types/user';
+import base64ToBlobAndUrl from 'utils/base64ToBlobAndUrl.js';
 
 type TProps = {
-  data: TUserData;
+  data: TUser;
 };
 
-type TFileUploadProps = {
+type TAvatar = {
   picture: any;
 };
 
 const Header = ({ data }: TProps) => {
   const dispatch = useDispatch();
-  const [image, setImage] = useState<string | undefined>('');
-  const { id, firstName, lastName, avatar } = data;
+  const [ignore, setIgnore] = useState(false);
+  const { firstName, lastName, avatar } = data;
+
+  const blobUrl = avatar && base64ToBlobAndUrl(avatar.data, 'png');
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFileUploadProps>();
+  } = useForm<TAvatar>();
 
-  const onSubmit = (imgData: TFileUploadProps) => {
+  const onSubmit = (imgData: any) => {
     const formData = new FormData();
-    formData.append('files', imgData.picture[0]);
-    imgData.picture.length && convertFile(imgData.picture[0], setImage);
-    dispatch(userActions.putUploadAvatar({ id, formData }));
+    formData.append('avatar', imgData.picture[0]);
+
+    dispatch(userActions.updateAvatarReq(formData));
   };
+
+  useEffect(() => {
+    if (ignore) dispatch(userActions.getUserAvatar());
+
+    return () => setIgnore(true);
+  }, [dispatch, ignore]);
 
   return (
     <HeaderStyled data-test-id={dataTestId.PROFILE_AVATAR}>
@@ -59,7 +67,7 @@ const Header = ({ data }: TProps) => {
             </Mask>
           </Label>
           {avatar ? (
-            <Avatar src={`${avatar}`} alt='profile-avatar' />
+            <Avatar src={`${blobUrl}`} alt='profile-avatar' />
           ) : (
             <Img src={DefaultAvatarImg} alt='default-avatar' data-test-id={dataTestId.PROFILE_AVATAR} />
           )}

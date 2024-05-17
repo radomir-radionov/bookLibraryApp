@@ -16,7 +16,6 @@ type TProps = {
 const CategoriesList = ({ isOpen, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps) => {
   const books = useSelector(selectBooks);
   const categories = useSelector(selectCategories);
-
   const extendedCategories = useMemo(() => createCategories(books, categories), [books, categories]);
 
   return (

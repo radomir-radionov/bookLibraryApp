@@ -27,7 +27,7 @@ const ContactStep = () => {
 
   const onSubmit: SubmitHandler<TContactForm> = (data) => {
     dispatch(registrationActions.setContactStepData(data));
-    dispatch(registrationActions.postRegistrationData());
+    dispatch(registrationActions.postRegistration());
   };
 
   return (

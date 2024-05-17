@@ -1,4 +1,5 @@
-import { IUserData } from 'redux/user/types';
+import { string } from 'yup';
+import { TUser } from 'types/user.js';
 
 export type TAuthData = {
   identifier: string;
@@ -13,7 +14,20 @@ export type TAuthState = {
   responseMessage: string;
 };
 
-export type TAuthResponse = {
-  jwt: string;
-  user: IUserData;
+export type TRefreshResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: TUser;
+};
+
+export type TRegistrationResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: TUser;
+};
+
+export type TLoginResponse = {
+  accessToken: string;
+  refreshToken: string;
+  user: TUser;
 };

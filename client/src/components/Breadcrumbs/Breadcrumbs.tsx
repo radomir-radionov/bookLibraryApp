@@ -2,7 +2,6 @@ import dataTestId from 'constants/dataTestId';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { booksActions } from 'redux/books';
 import { selectCategories } from 'redux/categories/selectors';
 
 import { Content, Link, BookName, Container } from './styles';
@@ -20,10 +19,7 @@ const Breadcrumbs = ({ title }: TProps) => {
   const { category } = params;
   const categoryName = categories?.find(({ path }) => path === category)?.name;
 
-  const clickNavigateBack = () => {
-    dispatch(booksActions.getBooks());
-    navigate(`/books/${categoryName ? category : 'all'}`);
-  };
+  const clickNavigateBack = () => navigate(`/books/${categoryName ? category : 'all'}`);
 
   return (
     <Container>

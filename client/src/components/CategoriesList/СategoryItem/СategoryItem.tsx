@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { TExtendedCategory } from 'types/categories';
-import useWindowDimensions from 'utils/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { NavLinkStyled, Name, Qty, СategoryItemStyled } from './styles';
 

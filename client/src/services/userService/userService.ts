@@ -1,67 +1,42 @@
 import serverEndpoints from 'constants/apiEndpoints';
-
-import { AxiosResponse } from 'axios';
-import { TFileUploadResponse } from 'types/user';
-
 import httpService from '../../http';
-
-import { PostCommentsProps, PutCommentProps, PutEditUserDataProps } from './types';
+import { PostCommentProps, PutCommentProps, TPutUserReq } from './types';
 
 const userService = {
-  getUser: async () => {
-    const resp = await httpService.get(serverEndpoints.USER);
-
-    return resp.data;
-  },
-  putComment: async (payload: PutCommentProps) => {
-    const { commentId } = payload;
-
-    delete payload.commentId;
-
-    const resp = await httpService.put(`${serverEndpoints.COMMENTS}/${commentId}`, payload);
-
-    return resp.data;
-  },
-  postComments: async (payload: PostCommentsProps) => {
-    const resp = await httpService.post(serverEndpoints.COMMENTS, payload);
-
-    return resp.data;
-  },
-  putEditUserData: async (payload: PutEditUserDataProps) => {
-    const resp = await httpService.put(`${serverEndpoints.EDIT_USER_DATA}/${payload.userId}`, payload.reqBody);
-
-    return resp.data;
-  },
-  putUploadAvatar: async (payload: any) => {
-    const config = {
-      headers: { 'Content-type': 'multipart/form-data' },
-    };
-
-    const { data }: AxiosResponse<TFileUploadResponse[]> = await httpService.post(
-      serverEndpoints.UPLOAD_AVATAR,
-      payload,
-      config
-    );
+  getUserById: async (id: number) => {
+    const { data } = await httpService.get(`${serverEndpoints.USER}/${id}`);
 
     return data;
   },
-  putAvatarToServer: async (payload: any) => {
-    const resp = await httpService.put(`${serverEndpoints.UPLOAD_AVATAR_BY_ID}/${payload.userId}`, payload.reqBody);
+  postComment: async (paylaod: PostCommentProps) => await httpService.post(serverEndpoints.COMMENTS, paylaod),
+  putComment: async ({ commentId, ...restPayload }: PutCommentProps) => {
+    const { data } = await httpService.put(`${serverEndpoints.COMMENTS}/${commentId}`, restPayload.data);
 
-    return resp.data;
+    return data;
   },
+  putUser: async ({ userId, payload }: TPutUserReq) => {
+    const { data } = await httpService.put(`${serverEndpoints.USER}/${userId}`, payload);
 
-  putUploadAvatarById: async (payload: any) => {
-    const { data: userData }: AxiosResponse<any> = await httpService.put(
-      `${serverEndpoints.UPLOAD_AVATAR_BY_ID}/${payload.id}`
-    );
+    return data;
+  },
+  getUserAvatar: async (userId: number) => {
+    const { data } = await httpService.get(`${serverEndpoints.USER}/${userId}/avatar`);
 
-    return userData;
+    return data;
+  },
+  postUserAvatar: async ({ userId, payload }: any) => {
+    const {
+      data: { data },
+    } = await httpService.post(`${serverEndpoints.USER}/${userId}/avatar`, payload, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+    return data;
   },
   deleteBooking: async (payload: number) => {
-    const resp = await httpService.delete(`${serverEndpoints.BOOKINGS}/${payload}`);
+    const { data } = await httpService.delete(`${serverEndpoints.BOOKINGS}/${payload}`);
 
-    return resp.data;
+    return data;
   },
 };
 

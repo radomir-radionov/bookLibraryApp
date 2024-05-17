@@ -59,13 +59,17 @@ export const NavItem = styled.li<TNavItem>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 258px;
+  width: 258px;
   ${typography.desktop.H5};
   cursor: pointer;
 
   ${NavLinkStyled} {
     display: flex;
     justify-content: space-between;
+  }
+
+  & > a:hover {
+    ${formalization.HOVER}
   }
 `;
 

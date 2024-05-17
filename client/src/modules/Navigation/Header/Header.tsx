@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { selectUser } from 'redux/user/selectors';
 import { DefaultAvatarImg, LogoIcon } from 'assets';
 import { BurgerMenu, UserMenu } from 'modules';
+import base64ToBlobAndUrl from 'utils/base64ToBlobAndUrl';
 
 import {
   Avatar,
@@ -24,25 +25,26 @@ const Header = () => {
   const user = useSelector(selectUser);
   const [isHeaderHovered, setIsHeaderHovered] = useState(false);
   const navigate = useNavigate();
-
   const onLogoClick = () => navigate(pageRoutes.HOME);
   const onMenuMouseEnter = () => setIsHeaderHovered(true);
   const onMenuMouseLeave = () => setIsHeaderHovered(false);
+
+  const blobUrl = user.avatar && base64ToBlobAndUrl(user.avatar.data, 'png');
 
   return (
     <HeaderStyled $isHovered={isHeaderHovered}>
       <Content>
         <LogoBox>
           <BurgerMenu />
-          <Logo onClick={onLogoClick} src={LogoIcon} alt='Logo' />
+          <Logo onClick={onLogoClick} src={LogoIcon} alt='Logo' width='165' height='40' />
           <Title>Библиотека</Title>
         </LogoBox>
         <Profile onMouseEnter={onMenuMouseEnter} onMouseLeave={onMenuMouseLeave}>
           <Greetings>{`Привет, ${user?.firstName}!`}</Greetings>
           {user && user.avatar ? (
-            <Avatar img={`${user.avatar}`} />
+            <Avatar img={blobUrl || ''} />
           ) : (
-            <Img src={DefaultAvatarImg} alt='default-avatar' />
+            <Img src={DefaultAvatarImg} alt='default-avatar' width='58' height='58' />
           )}
           {isHeaderHovered && (
             <UserMenuWrapper>

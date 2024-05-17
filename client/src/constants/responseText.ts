@@ -11,6 +11,7 @@ enum responseText {
   AUTH_WRONG_DATA = 'Неверный логин или пароль!',
   AUTH_SMTH_WRONG = 'Что-то пошло не так. Попробуйте еще раз',
 
+  FORGOT_PWD_SUCCESS = 'Пароль успешно изменен!',
   FORGOT_PWD_ERROR = 'error',
   FORGOT_PWD_SMTH_WRONG = 'Что-то пошло не так. Попробуйте еще раз',
 
@@ -23,14 +24,17 @@ enum responseText {
   BOOKING_SUCCESS = 'Книга забронирована. Подробности можно посмотреть на странице Профиль',
   BOOKING_ERROR = 'Что-то пошло не так, книга не забронирована. Попробуйте позже!',
 
-  REBOOKING_SUCCESS = 'Изменения успешно сохранены!',
-  REBOOKING_ERROR = 'Изменения не были сохранены. Попробуйте позже!',
+  UPDATE_BOOKING_SUCCESS = 'Изменения успешно сохранены!',
+  UPDATE_BOOKING_ERROR = 'Изменения не были сохранены. Попробуйте позже!',
 
   CANCEL_BOOKING_SUCCESS = 'Бронирование книги успешно отменено!',
   CANCEL_BOOKING_ERROR = 'Не удалось снять бронирование книги. Попробуйте позже!',
+  CANCEL_EXPIRED_BOOKING_SUCCESS = 'Истёкшее бронирование книги успешно отменено!',
+  CANCEL_EXPIRED_BOOKING_ERROR = 'Не удалось снять истёкшее бронирование книги. Попробуйте позже!',
 
   UPLOAD_AVATAR_SUCCESS = 'Фото успешно сохранено!',
   UPLOAD_AVATAR_ERROR = 'Что-то пошло не так, фото не сохранилось. Попробуйте позже!',
+  USER_AVATAR_ERROR = 'Что-то пошло не так, фото не было получено.',
 
   EDIT_USER_DATA_SUCCESS = 'Изменения успешно сохранены!',
   EDIT_USER_DATA_ERROR = 'Изменения не были сохранены. Попробуйте позже!',

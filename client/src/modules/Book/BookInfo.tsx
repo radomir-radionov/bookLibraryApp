@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { bookActions } from 'redux/book';
 import { bookDataState } from 'redux/book/selectors';
-import { AboutBook, CommentsList, Detailed } from 'modules';
+import { AboutBook, CommentsList, Detailed, Rating } from 'modules';
 
-import { Additional, BookStyled, Content, Text, RateBox, RateQty, Rating } from './styles';
-import { RatingList, SubTitle } from 'components';
+import { Additional, BookStyled, Content, Text } from './styles';
+import { SubTitle } from 'components';
 
 const BookInfo = () => {
   const dispatch = useDispatch();
   const bookData = useSelector(bookDataState);
   const location = useLocation();
   const [ignore, setIgnore] = useState(false);
-
   const { book } = bookData;
   const { rating, description } = book;
   const isBookDataEmpty = Object.keys(book).length !== 0;
@@ -22,9 +21,7 @@ const BookInfo = () => {
   const bookId = pathData[3];
 
   useEffect(() => {
-    if (ignore) {
-      dispatch(bookActions.getBook(Number(bookId)));
-    }
+    if (ignore) dispatch(bookActions.getBook(+bookId));
 
     return () => setIgnore(true);
   }, [bookId, ignore, dispatch]);
@@ -39,13 +36,7 @@ const BookInfo = () => {
               <SubTitle>О книге</SubTitle>
               <Text>{description}</Text>
             </Content>
-            <Rating>
-              <SubTitle>Рейтинг</SubTitle>
-              <RateBox>
-                <RatingList rating={rating} />
-                <RateQty>{rating}</RateQty>
-              </RateBox>
-            </Rating>
+            <Rating rating={rating} />
             <Detailed data={book} />
             <CommentsList data={book} />
           </Additional>

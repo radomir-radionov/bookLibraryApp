@@ -4,7 +4,7 @@ import pageRoutes from 'constants/pageRoutes';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { forgotPwdActions } from 'redux/forgotPwd';
-import { Button, InputEmail } from 'components';
+import { Button, FormFooter, InputEmail } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
 import {
@@ -12,13 +12,9 @@ import {
   Back,
   BtnField,
   ChevronLeftIcon,
-  ChevronRightIcon,
   Form,
-  IconBox,
   InputField,
   LinkStyled,
-  LinkText,
-  LoginInfo,
   ModalStyled,
   Title,
   Wrapper,
@@ -31,18 +27,11 @@ type TEmailForm = {
 const EmailStep = () => {
   const dispatch = useDispatch();
 
-  const methods = useForm<TEmailForm>({
-    mode: 'onBlur',
-    reValidateMode: 'onBlur',
-  });
-
+  const methods = useForm<TEmailForm>();
   const { errors } = methods.formState;
   const isBtnDisabled = !!errors.email;
 
-  const onSubmit: SubmitHandler<TEmailForm> = (data) => {
-    dispatch(forgotPwdActions.postForgotPwd(data));
-    dispatch(forgotPwdActions.setStep());
-  };
+  const onSubmit: SubmitHandler<TEmailForm> = (data) => dispatch(forgotPwdActions.postForgotPwd(data));
 
   return (
     <ModalStyled>
@@ -66,15 +55,7 @@ const EmailStep = () => {
               <Button type='submit' variant={BUTTON_VARIANTS.LARGE} disabled={isBtnDisabled}>
                 восстановить
               </Button>
-              <LoginInfo>
-                Нет учётной записи?
-                <LinkText to={pageRoutes.REGISTRATION}>
-                  Регистрация
-                  <IconBox>
-                    <ChevronRightIcon />
-                  </IconBox>
-                </LinkText>
-              </LoginInfo>
+              <FormFooter text='Нет учётной записи?' link={pageRoutes.REGISTRATION} linkText='Регистрация' />
             </BtnField>
           </Form>
         </FormProvider>

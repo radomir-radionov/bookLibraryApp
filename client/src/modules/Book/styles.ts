@@ -5,6 +5,7 @@ export const BookStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 42px;
+  width: 100%;
   max-width: 1100px;
   transition: all 0.2s ease-out;
 
@@ -42,24 +43,4 @@ export const Additional = styled.article`
   @media (max-width: ${device.tablet}) {
     gap: 28px;
   }
-`;
-
-export const Rating = styled.section``;
-
-export const RateBox = styled.div`
-  display: flex;
-  gap: 26px;
-
-  @media (max-width: ${device.mobileM}) {
-    div > div > svg {
-      width: 37px;
-      height: 37px;
-    }
-  }
-`;
-
-export const RateQty = styled.div`
-  display: flex;
-  align-items: center;
-  ${typography.desktop.H5};
 `;

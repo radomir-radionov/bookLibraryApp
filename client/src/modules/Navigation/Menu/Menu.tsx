@@ -17,8 +17,11 @@ import {
   Name,
   MenuStyled,
   TilesIcon,
+  ChatIcon,
+  NavLinkStyled,
 } from './styles';
 import { useState } from 'react';
+import pageRoutes from 'constants/pageRoutes';
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -46,7 +49,11 @@ const Menu = () => {
               <ActionSearchingIcon />
             </ButtonFiltering>
             <ButtonFiltering onClick={onBtnRatingClick} variant={BTN_FILTER_VARIANTS.OVAL}>
-              {isSortByRating ? <ActionRatingUpIcon /> : <ActionRatingDownIcon />}
+              {isSortByRating ? (
+                <ActionRatingUpIcon width='16' height='16' />
+              ) : (
+                <ActionRatingDownIcon width='16' height='16' />
+              )}
               <Name data-test-id={dataTestId.BUTTON_SORT_RATING}>По рейтингу</Name>
             </ButtonFiltering>
           </Actions>
@@ -56,7 +63,7 @@ const Menu = () => {
               onClick={onBtnViewClick('tiles')}
               dataTestId={dataTestId.BUTTON_MENU_VIEW_WINDOW}
             >
-              <TilesIcon />
+              <TilesIcon width='20' height='20' />
             </ButtonFiltering>
             <ButtonFiltering
               isActive={displayingData === 'list'}

@@ -1,25 +1,13 @@
-export type UserProps = {
-  id: number;
-  username: string;
-  email: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  createdAt: string;
-  updatedAt: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
-};
+import { TUser } from './user.js';
 
 export type RegistrationResponseProps = {
   jwt: string;
-  user: UserProps;
+  user: TUser;
 };
 
 export type AuthenticationProps = {
   jwt: string;
-  user: UserProps;
+  user: TUser;
 };
 
 export type ForgotPwdProps = {
@@ -28,5 +16,5 @@ export type ForgotPwdProps = {
 
 export type ResetPwdProps = {
   jwt: string;
-  user: UserProps;
+  user: TUser;
 };

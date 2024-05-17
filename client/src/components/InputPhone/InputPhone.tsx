@@ -10,22 +10,12 @@ type TProps = {
   view: 'form' | 'profile';
   labelText: string;
   alwaysShowMask?: boolean;
-  defaultValue?: string;
   error?: string | boolean;
   isDisabled?: boolean;
   required?: boolean;
 };
 
-const InputPhone = ({
-  name,
-  view,
-  labelText,
-  alwaysShowMask,
-  defaultValue,
-  error,
-  isDisabled,
-  required = true,
-}: TProps) => {
+const InputPhone = ({ name, view, labelText, alwaysShowMask, error, isDisabled, required = true }: TProps) => {
   const {
     register,
     formState: { errors },
@@ -43,7 +33,6 @@ const InputPhone = ({
             },
           })}
           type='text'
-          value={defaultValue}
           placeholder=' '
           mask='+375 (99) 999-99-99'
           maskChar='x'
@@ -53,16 +42,13 @@ const InputPhone = ({
         />
         <LabelText>{labelText}</LabelText>
       </Label>
-      {view === 'form' && (
-        <>
-          {errors?.phone?.message && <Hint colored={true}>{error}</Hint>}
-          {!errors?.phone?.message && <Hint>{hintText.VALID_PHONE_NUMBER}</Hint>}
-        </>
-      )}
       {view === 'profile' && (
         <Hint>
-          {errors?.phone?.message && <HintWord $colored={true}>{error}</HintWord>}
-          {!errors?.phone?.message && <HintWord>{hintText.VALID_PHONE_NUMBER}</HintWord>}
+          {errors?.phone?.message ? (
+            <HintWord $colored={true}>{error}</HintWord>
+          ) : (
+            <HintWord>{hintText.VALID_PHONE_NUMBER}</HintWord>
+          )}
         </Hint>
       )}
     </Wrapper>

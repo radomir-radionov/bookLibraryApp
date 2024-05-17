@@ -1,15 +1,13 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useSelector } from 'react-redux';
-import { selectIsLoading, selectStep } from 'redux/auth/selectors';
-import { Loader } from 'components';
+import { selectStep } from 'redux/auth/selectors';
 import { AuthStep, FailedAuthStep } from 'modules/Modals';
 
 import { Container, Name, Wrapper } from './styles';
 
 const Auth = () => {
   const step = useSelector(selectStep);
-  const isLoading = useSelector(selectIsLoading);
 
   const getStepToRender = () => {
     switch (true) {
@@ -28,7 +26,6 @@ const Auth = () => {
         <Name>Cleverland</Name>
         {getStepToRender()}
       </Container>
-      {isLoading && <Loader />}
     </Wrapper>
   );
 };

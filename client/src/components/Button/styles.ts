@@ -33,9 +33,9 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   }
 
   &:disabled {
-    outline: 1px solid ${colors.GREY_BLACK_20};
-    color: ${colors.GREY_BLACK_40};
-    background: ${colors.GREY_BLACK_5};
+    border: none;
+    color: ${colors.MAIN_WHITE};
+    background: rgb(235, 235, 235);
   }
 
   @media (max-width: ${device.laptop}) {

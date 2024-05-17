@@ -15,7 +15,8 @@ const FailedAuthStep = () => {
   const responseMessage = useSelector(selectResponseMessage);
   const navigate = useNavigate();
 
-  const handleNavigateClick = () => dispatch(authActions.setAuthData({ data, navigate }));
+  const handleNavigateClick = () => dispatch(authActions.postLogin({ data, navigate }));
+  const handleNavigateBackClick = () => dispatch(authActions.setStep(1));
 
   return (
     <ModalStyled data-test-id={dataTestId.STATUS_BLOCK}>
@@ -23,6 +24,9 @@ const FailedAuthStep = () => {
       <Text>{responseMessage}</Text>
       <Button type='submit' onClick={handleNavigateClick} variant={BUTTON_VARIANTS.LARGE}>
         повторить
+      </Button>
+      <Button type='submit' onClick={handleNavigateBackClick} variant={BUTTON_VARIANTS.LARGE}>
+        назад к входу
       </Button>
     </ModalStyled>
   );

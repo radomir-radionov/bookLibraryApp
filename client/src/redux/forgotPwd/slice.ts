@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PostResetPwdProps } from 'services/authService/types';
+import { TPostResetPwdReq } from 'services/authService/types';
 
 import { TForgotPwdState } from './types';
 
@@ -8,7 +8,7 @@ const initialState: TForgotPwdState = {
   email: '',
   newPassword: '',
   confirmedPassword: '',
-  resetPwdData: {} as PostResetPwdProps,
+  resetPwdData: {} as TPostResetPwdReq,
   isLoading: false,
   responseMessage: '',
 };
@@ -33,9 +33,6 @@ export const forgotPwdSlice = createSlice({
     },
     postResetPwd: (state, { payload }) => {
       state.isLoading = true;
-    },
-    setResponseMessage: (state, { payload }) => {
-      state.responseMessage = payload;
     },
   },
 });

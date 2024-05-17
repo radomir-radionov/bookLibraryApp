@@ -1,0 +1,52 @@
+version: '3.9'
+
+volumes:
+  postgres_data:
+
+services:
+  postgres:
+    container_name: db_service
+    image: postgres:15.3-alpine
+    env_file: ./server/.env
+    restart: unless-stopped
+    volumes:
+      - 'postgres_data:${DB_DATA}'
+    ports:
+      - '${HOST_DB_PORT}:5432'
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: unless-stopped
+
+  server:
+    container_name: server
+    build:
+      context: server
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    env_file: ./server/.env
+    depends_on:
+      - postgres
+    volumes:
+      - ./server:/server
+      - ./server/src:/server/src
+      - '/server/node_modules' # ensure that the directory is available within the container.
+    ports:
+      - '${APP_PORT}:8080'
+      - '${WEBSOCKET_PORT}:4000'
+
+  client:
+    container_name: client
+    build:
+      context: client
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    volumes:
+      - ./client/src:/client/src
+    ports:
+      - '${CLIENT_PORT}:3000'
+    environment:
+      CHOKIDAR_USEPOLLING: 'true'

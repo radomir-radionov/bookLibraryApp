@@ -5,204 +5,110 @@ import { modalActions } from 'redux/modal';
 import { toastActions } from 'redux/toast';
 import { userActions } from 'redux/user';
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import { nanoid } from '@reduxjs/toolkit';
 import { booksService, userService } from 'services';
-import { PostCommentsProps } from 'services/userService/types';
+import { PostCommentProps } from 'services/userService/types';
 import { TBookDetailed } from 'types/book';
 import { ToastTypes } from 'types/toast';
 
-import { selectUserDataId } from './selectors';
-import { TUserData } from 'types/user';
+import { selectUserId } from './selectors';
+import { TExtendedUserInfo, TUserAvatar } from 'types/user';
+import { TPutCommentRes } from './types.js';
+import prepareToastData from 'helpers/toast/createToast.js';
 
-export function* clearUserData() {
-  yield localStorage.removeItem('jwt');
-  yield localStorage.removeItem('userData');
+export function* getExtendedUserInfoSaga({ payload }: ReturnType<typeof userActions.getExtendeUserInfo>) {
+  try {
+    const data: TExtendedUserInfo = yield call(() => userService.getUserById(payload));
+    yield put(userActions.setExtendedUserlInfo(data));
+  } catch (e: any) {
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, e.response.data.error.message)));
+  }
+
+  yield put(userActions.cancelLoading());
 }
 
-export function* getUser() {
+export function* updateUserInfoSaga({ payload }: ReturnType<typeof userActions.putUser>) {
   try {
-    const data: TUserData = yield call(() => userService.getUser());
+    const userId: number = yield select(selectUserId);
+    const updatedUser: TExtendedUserInfo = yield call(() => userService.putUser({ userId, payload }));
 
-    yield put(userActions.setUserData(data));
-    yield put(userActions.cancelLoading());
+    if (updatedUser) yield put(userActions.setUser(updatedUser));
+    yield put(userActions.getUserAvatar());
+
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.EDIT_USER_DATA_SUCCESS)));
   } catch (e) {
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.COMMON_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.EDIT_USER_DATA_ERROR)));
   }
+
+  yield put(userActions.cancelLoading());
+}
+
+export function* getUserAvatarSaga() {
+  try {
+    const userId: number = yield select(selectUserId);
+    const avatar: TUserAvatar = yield call(() => userService.getUserAvatar(userId));
+
+    yield put(userActions.setUserAvatar(avatar));
+  } catch (e) {}
+
+  yield put(userActions.cancelLoading());
+}
+
+export function* updateAvatar({ payload }: ReturnType<typeof userActions.updateAvatarReq>) {
+  try {
+    const userId: number = yield select(selectUserId);
+    const newAvatar: TUserAvatar = yield call(() => userService.postUserAvatar({ userId, payload }));
+
+    yield put(userActions.setUserAvatar(newAvatar));
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.UPLOAD_AVATAR_SUCCESS)));
+  } catch (e) {
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.UPLOAD_AVATAR_ERROR)));
+  }
+
+  yield put(userActions.cancelLoading());
+}
+
+export function* postComment({ payload }: ReturnType<typeof userActions.postComment>) {
+  const reqBody: PostCommentProps = { ...payload };
+  try {
+    yield call(() => userService.postComment(reqBody));
+
+    const bookData: TBookDetailed = yield call(() => booksService.getBookById(payload.bookId));
+
+    yield put(bookActions.setBook(bookData));
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.COMMENTS_SUCCESS)));
+  } catch (e) {
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.COMMENTS_ERROR)));
+  }
+
+  yield put(modalActions.close());
+  yield put(userActions.cancelLoading());
 }
 
 export function* putComment({ payload }: ReturnType<typeof userActions.putComment>) {
   try {
-    yield call(() => userService.putComment(payload));
+    const {
+      data: { bookId },
+    }: TPutCommentRes = yield call(() => userService.putComment(payload));
 
-    yield put(userActions.getUser());
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.EDIT_COMMENTS_SUCCESS,
-      })
-    );
-  } catch (e) {
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.EDIT_COMMENTS_ERROR,
-      })
-    );
-  }
-}
-
-export function* postComments({ payload }: ReturnType<typeof userActions.postComments>) {
-  const reqBody: PostCommentsProps = { data: { ...payload } };
-  const { book } = payload;
-
-  try {
-    yield call(() => userService.postComments(reqBody));
-    const bookData: TBookDetailed = yield call(() => booksService.getBook(book));
-
+    const bookData: TBookDetailed = yield call(() => booksService.getBookById(bookId));
     yield put(bookActions.setBook(bookData));
-    yield put(userActions.getUser());
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.COMMENTS_SUCCESS,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.SUCCESS, responseText.EDIT_COMMENTS_SUCCESS)));
   } catch (e) {
-    yield put(modalActions.close());
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.COMMENTS_ERROR,
-      })
-    );
+    yield put(toastActions.addToast(prepareToastData(ToastTypes.ERROR, responseText.EDIT_COMMENTS_ERROR)));
   }
-}
 
-export function* putUploadAvatar({ payload }: ReturnType<typeof userActions.putUploadAvatar>): any {
-  const { id, formData } = payload;
-
-  try {
-    const newAvatar = yield call(() => userService.putUploadAvatar(formData));
-    const reqAvatarToServerBody = {
-      avatar: newAvatar[0].id,
-    };
-    const payloadAvatarToServer = {
-      userId: id,
-      reqBody: reqAvatarToServerBody,
-    };
-
-    if (newAvatar) {
-      const updatedUser = yield call(() => userService.putAvatarToServer(payloadAvatarToServer));
-
-      yield put(userActions.setUserData(updatedUser));
-    }
-
-    yield put(userActions.setAvatar(newAvatar[0].url));
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.UPLOAD_AVATAR_SUCCESS,
-      })
-    );
-  } catch (e) {
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.UPLOAD_AVATAR_ERROR,
-      })
-    );
-  }
-}
-
-export function* putEditUserData({ payload }: ReturnType<typeof userActions.putEditUserData>) {
-  const userId: number = yield select(selectUserDataId);
-
-  try {
-    const requestData = {
-      userId,
-      reqBody: payload,
-    };
-    const updatedUser: TUserData = yield call(() => userService.putEditUserData(requestData));
-
-    if (updatedUser) {
-      yield put(userActions.setUserData(updatedUser));
-    }
-
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.EDIT_USER_DATA_SUCCESS,
-      })
-    );
-  } catch (e) {
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.EDIT_USER_DATA_ERROR,
-      })
-    );
-  }
-}
-
-export function* deletelBooking({ payload }: ReturnType<typeof userActions.deletelBooking>) {
-  try {
-    yield call(() => userService.deleteBooking(payload));
-    yield put(userActions.getUser());
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.SUCCESS,
-        text: responseText.CANCEL_BOOKING_SUCCESS,
-      })
-    );
-  } catch (e) {
-    yield put(userActions.cancelLoading());
-    yield put(
-      toastActions.addToast({
-        id: nanoid(),
-        type: ToastTypes.ERROR,
-        text: responseText.CANCEL_BOOKING_ERROR,
-      })
-    );
-  }
+  yield put(modalActions.close());
+  yield put(userActions.cancelLoading());
 }
 
 function* userSaga() {
   yield all([
-    takeLatest(userActions.getUser, getUser),
-    takeLatest(userActions.putEditUserData, putEditUserData),
-    takeLatest(userActions.putUploadAvatar, putUploadAvatar),
-    takeLatest(userActions.deletelBooking, deletelBooking),
+    takeLatest(userActions.getExtendeUserInfo, getExtendedUserInfoSaga),
+    takeLatest(userActions.putUser, updateUserInfoSaga),
+    takeLatest(userActions.getUserAvatar, getUserAvatarSaga),
+    takeLatest(userActions.updateAvatarReq, updateAvatar),
     takeLatest(userActions.putComment, putComment),
-    takeLatest(userActions.postComments, postComments),
-    takeLatest(userActions.clearUser, clearUserData),
+    takeLatest(userActions.postComment, postComment),
   ]);
 }
 

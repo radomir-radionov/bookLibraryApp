@@ -30,8 +30,6 @@ export const SubTitleBox = styled.div<TSubTitleBox>`
   }
 `;
 
-export const ListWrapper = styled.div``;
-
 export const Qty = styled.span`
   margin-left: 6px;
   ${typography.desktop.BODY_MEDIUM}

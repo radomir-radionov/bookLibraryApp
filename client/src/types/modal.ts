@@ -1,11 +1,11 @@
 import { Booking, RateBook } from 'modules/Modals';
 
-type ModalTypesProps = {
+type TModalTypes = {
   RATE_BOOK: string;
   BOOKING: string;
 };
 
-export const MODAL_TYPES: ModalTypesProps = {
+export const MODAL_TYPES: TModalTypes = {
   RATE_BOOK: 'RATE_BOOK',
   BOOKING: 'BOOKING',
 };
@@ -21,7 +21,7 @@ export type IModalInfo = {
   [key: string]: any;
 };
 
-export type IModalSelectorData = {
+export type IModalSelector = {
   modalInfo: {
     [key: string]: IModalInfo;
   };

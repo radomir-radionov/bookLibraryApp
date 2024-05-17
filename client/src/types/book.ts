@@ -1,20 +1,21 @@
+import { TUser } from './user';
+
 export type TBook = {
   issueYear: string | null;
   rating: number | null;
   title: string;
   authors: string[] | null;
-  image: {
-    url: string | null;
-  } | null;
+  image: string | null;
   categories: string[] | null;
   id: number;
+  comments: TComment[] | [];
   booking: {
     id: number;
+    userId: number;
+    bookId: number;
     order: boolean;
-    dateOrder: string | null;
-    customerId: number | null;
-    customerFirstName: string | null;
-    customerLastName: string | null;
+    createdAt: string;
+    updatedAt: string;
   } | null;
   delivery: {
     id: number;
@@ -35,24 +36,7 @@ export type TBook = {
     | null;
 };
 
-export type TComment = {
-  text: string;
-  createdAt: string;
-  rating: number;
-  id: number;
-  user: {
-    commentUserId: number;
-    firstName: string;
-    lastName: string;
-    avatarUrl: string;
-  };
-};
-
-export type TBookDetailed = {
-  id: number;
-  title: string;
-  rating: number;
-  issueYear: string;
+export type TBookDetailed = TBook & {
   description: string;
   publish: string;
   pages: string;
@@ -61,35 +45,21 @@ export type TBookDetailed = {
   format: string;
   ISBN: string;
   producer: string;
-  authors: string[];
-  images: [
-    {
-      url: string;
-    }
-  ];
-  categories: string[];
-  comments: TComment[];
-  booking: {
-    id: number;
-    order: boolean;
-    dateOrder: string;
-    customerId: number;
-    customerFirstName: string;
-    customerLastName: string;
-  };
-  delivery: {
-    id: number;
-    handed: boolean;
-    dateHandedFrom: string;
-    dateHandedTo: string;
-    recipientId: number;
-    recipientFirstName: string;
-    recipientLastName: string;
-  };
-  histories: [
-    {
-      id: number;
-      userId: number;
-    }
-  ];
+};
+
+export type TComment = {
+  id: number;
+  bookId: number;
+  text: string;
+  rating: number;
+  user: TUser;
+  createdAt: string;
+};
+
+export type THistoryBook = {
+  id: number;
+  userId: number;
+  bookId: number;
+  createdAt: string;
+  updatedAt: string | null;
 };

@@ -1,48 +1,33 @@
-export type TFileUploadResponse = {
-  id: number;
-  name: string;
-  alternativeText: string | null;
-  caption: string | null;
-  width: number;
-  height: number;
-  formats: any;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: string | null;
-  provider: string;
-  provider_metadata: string | null;
-  createdAt: string;
-  updatedAt: string;
-};
+import { THistoryBook } from './book.js';
 
-export type TUserData = {
+export type TUser = {
   id: number;
   username: string;
   email: string;
-  password?: string;
-  confirmed: boolean;
-  blocked: boolean;
-  createdAt: string;
-  updatedAt: string;
+  confirmed: boolean | null;
+  provider: string | null;
+  blocked: boolean | null;
   firstName: string;
   lastName: string;
   phone: string;
-  comments: TComment[];
-  role: RoleProps;
-  avatar: string;
-  booking: TUserBooking;
-  delivery: TUserDelivery;
-  history: TUserHistory;
+  passwordHash?: string;
+  avatar?: TUserAvatar;
+  createdAt: string;
+  updatedAt: string;
 };
 
-export type TComment = {
-  id: number;
-  rating: number;
-  text: string;
-  bookId: number;
+export type TUserAvatar = {
+  contentType: string;
+  fileName: string;
+  data: string;
+};
+
+export type TExtendedUserInfo = TUser & {
+  role: RoleProps;
+  comments: TComment[];
+  booking: TUserBooking;
+  delivery: TUserDelivery;
+  histories: THistoryBook[];
 };
 
 export type RoleProps = {
@@ -52,7 +37,14 @@ export type RoleProps = {
   type: string;
 };
 
-export type ShortBookDataProps = {
+export type TComment = {
+  id: number;
+  rating: number;
+  text: string;
+  bookId: number;
+};
+
+export type TShortBook = {
   id: number;
   title: string;
   issueYear: string;
@@ -62,9 +54,10 @@ export type ShortBookDataProps = {
 
 export type TUserBooking = {
   id: number | null;
+  bookId: number;
   order: string | null;
-  dateOrder: string | Date | null;
-  book: ShortBookDataProps | null;
+  createdAt: string | Date | null;
+  book: TShortBook | null;
 };
 
 export type TUserDelivery = {
@@ -72,10 +65,5 @@ export type TUserDelivery = {
   handed: string;
   dateHandedFrom: string | Date;
   dateHandedTo: string | Date;
-  book: ShortBookDataProps;
-};
-
-export type TUserHistory = {
-  id: number;
-  books: ShortBookDataProps[];
+  book: TShortBook;
 };

@@ -29,7 +29,7 @@ export const registrationSlice = createSlice({
     setContactStepData: (state, { payload }) => {
       state.registrationData = { ...state.registrationData, ...payload };
     },
-    postRegistrationData: (state) => {
+    postRegistration: (state) => {
       state.isLoading = true;
     },
     cancelLoading: (state) => {

@@ -4,13 +4,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { forgotPwdActions } from 'redux/forgotPwd';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, InputPasswordConfirmation } from 'components';
 import { BUTTON_VARIANTS } from 'types/button';
 
-import schema from './schema';
 import { Hint, BtnField, Form, InputFields, ModalStyled, Title } from './styles';
-import { NewPwdFormProps } from './types';
+
+type TNewPwdForm = { password: string; passwordConfirmation: string };
 
 const NewPwdStep = () => {
   const dispatch = useDispatch();
@@ -23,13 +22,12 @@ const NewPwdStep = () => {
     handleSubmit,
     watch,
     formState: { errors },
-    clearErrors,
-  } = useForm<NewPwdFormProps>({ resolver: yupResolver(schema), mode: 'all' });
-
-  const isBtnDisabled = !!errors.password || !!errors.passwordConfirmation;
+  } = useForm<TNewPwdForm>();
 
   const { password, passwordConfirmation } = watch();
+
   const isPasswordsEquals = password === passwordConfirmation;
+  const isBtnDisabled = !!errors.password || !!errors.passwordConfirmation;
 
   const payload = {
     name: 'passwordConfirmation',
@@ -37,12 +35,7 @@ const NewPwdStep = () => {
     isPasswordsEquals,
     error: errors.passwordConfirmation,
   };
-
-  const onSubmit: SubmitHandler<NewPwdFormProps> = (data) => {
-    const submitData = { ...data, code };
-
-    dispatch(forgotPwdActions.postResetPwd(submitData));
-  };
+  const onSubmit: SubmitHandler<TNewPwdForm> = (data) => dispatch(forgotPwdActions.postResetPwd({ ...data, code }));
 
   return (
     <ModalStyled>
@@ -51,18 +44,18 @@ const NewPwdStep = () => {
         <InputFields>
           <InputPasswordConfirmation
             register={register('password')}
-            labelText='Новый пароль'
             watchValue={watch('password')}
-            clearErrors={clearErrors}
-            errors={errors.password}
+            name='password'
+            labelText='Новый пароль'
+            error={errors.password?.message}
             payload={payload}
           />
           <InputPasswordConfirmation
             register={register('passwordConfirmation')}
-            labelText='Повторите пароль'
             watchValue={watch('passwordConfirmation')}
-            clearErrors={clearErrors}
-            errors={errors.passwordConfirmation}
+            name='passwordConfirmation'
+            labelText='Повторите пароль'
+            error={errors.passwordConfirmation?.message}
           />
         </InputFields>
         <BtnField>

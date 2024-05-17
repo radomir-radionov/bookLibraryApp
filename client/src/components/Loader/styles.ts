@@ -22,7 +22,6 @@ export const LoaderStyled = styled.div<TLoaderStyled>`
 `;
 
 export const LoaderIcon = styled(Loader_Icon)`
-  transition: all 0.2s ease-out;
   animation: loading-spinner 1s linear infinite;
 
   @keyframes loading-spinner {

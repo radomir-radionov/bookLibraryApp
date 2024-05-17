@@ -9,6 +9,10 @@ type TAssistiveText = {
 export const LinkStyled = styled(Link)`
   color: ${colors.MAIN_DARK};
   cursor: pointer;
+
+  &:hover {
+    color: ${colors.ORANGE} !important;
+  }
 `;
 
 export const ModalStyled = styled.div`

@@ -1,16 +1,14 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useSelector } from 'react-redux';
-import { selectIsLoading, selectStep } from 'redux/forgotPwd/selectors';
-import { Loader } from 'components';
+import { selectStep } from 'redux/forgotPwd/selectors';
 import { EmailStep, FailedPwdStep, LetterStep, NewPwdStep, SuccessfulPwdStep } from 'modules/Modals';
 
 import { Container, Title, Wrapper } from './styles';
 
 const ForgotPwd = () => {
   const step = useSelector(selectStep);
-  const isLoading = useSelector(selectIsLoading);
-
+  console.log(1);
   const getStepToRender = () => {
     switch (true) {
       case step === 1:
@@ -34,9 +32,6 @@ const ForgotPwd = () => {
         <Title>Cleverland</Title>
         {getStepToRender()}
       </Container>
-      <div hidden={!isLoading}>
-        <Loader />
-      </div>
     </Wrapper>
   );
 };

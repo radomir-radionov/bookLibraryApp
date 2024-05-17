@@ -1,31 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colors, device, typography } from 'styles';
 
-type TBooksListStyled = {
-  $displaying?: string;
-};
-
-export const BooksListStyled = styled.section<TBooksListStyled>`
-  ${({ $displaying }) => {
-    switch ($displaying) {
-      case 'tiles':
-        return css`
-          display: flex;
-          gap: 24px 20px;
-          flex-wrap: wrap;
-          transition: all 0.2s ease-out;
-        `;
-      default:
-        return css`
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        `;
-    }
-  }}
+export const BooksListStyled = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 
   @media (max-width: ${device.laptopL}) {
-    gap: 24px 20px;
+    gap: 24px 16px;
   }
 
   @media (max-width: ${device.tablet}) {

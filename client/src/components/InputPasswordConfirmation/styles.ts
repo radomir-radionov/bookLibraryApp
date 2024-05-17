@@ -1,14 +1,13 @@
-import { FieldError } from 'react-hook-form';
 import { ActionUnvisible_Icon, ActionVisible_Icon, Check_Icon } from 'assets';
 import styled, { css } from 'styled-components';
 import { colors, device, typography } from 'styles';
 
 type TWrapper = {
-  $errors?: FieldError;
+  $error?: string;
 };
 
 type TInputStyled = {
-  $errors?: FieldError;
+  $error?: string;
   autoComplete: string;
 };
 
@@ -16,14 +15,10 @@ type THintWord = {
   $colored?: boolean;
 };
 
-type TCheckIcon = {
-  $mix: boolean;
-};
-
 export const Wrapper = styled.div<TWrapper>`
   p {
     transition: all 0.2s ease;
-    color: ${({ $errors }) => $errors && `${colors.OTHER_NEGATIVE}`};
+    color: ${({ $error }) => $error && `${colors.OTHER_NEGATIVE}`};
   }
 
   span > mark {
@@ -75,8 +70,8 @@ export const InputStyled = styled.input<TInputStyled>`
   transition-duration: 0.3s;
   transition: all 0.2s ease;
 
-  ${({ $errors }) =>
-    $errors &&
+  ${({ $error }) =>
+    $error &&
     css`
       border-bottom: 1px solid ${colors.OTHER_NEGATIVE};
     `};
@@ -117,11 +112,10 @@ export const HintWord = styled.span<THintWord>`
   color: ${({ $colored }) => ($colored ? colors.OTHER_NEGATIVE : colors.GREY_BLACK_40)};
 `;
 
-export const CheckIcon = styled(Check_Icon)<TCheckIcon>`
+export const CheckIcon = styled(Check_Icon)`
   position: absolute;
   right: 45px;
   bottom: 2px;
-  width: ${({ $mix }) => ($mix ? 'auto' : 0)};
 `;
 
 export const ActionUnvisibleIcon = styled(ActionUnvisible_Icon)``;

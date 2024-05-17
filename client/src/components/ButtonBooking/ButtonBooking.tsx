@@ -1,28 +1,31 @@
 import dataTestId from 'constants/dataTestId';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { bookingActions } from 'redux/booking';
 import { modalActions } from 'redux/modal';
-import { selectUserDataId } from 'redux/user/selectors';
+import { selectUserId } from 'redux/user/selectors';
 import { MODAL_TYPES } from 'types/modal';
 import { formatDateButton } from 'utils/formatDate';
 
 import { ButtonStyled } from './styles';
-import { TProps } from './types';
+import { TBook, TBookDetailed } from 'types/book.js';
 
-const ButtonBooking = ({ book, booking, delivery }: TProps) => {
+type TProps = {
+  onlyBookData?: boolean;
+  book: TBook | TBookDetailed;
+};
+
+const ButtonBooking = ({ onlyBookData, book }: TProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector(selectUserDataId);
-  const { id } = book;
+  const userId = useSelector(selectUserId);
+  const { booking, delivery } = book;
 
   const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
-    dispatch(modalActions.open({ type: MODAL_TYPES.BOOKING, modalInfo: book }));
-    dispatch(bookingActions.setBookId(id));
+    dispatch(modalActions.open({ type: MODAL_TYPES.BOOKING, modalInfo: { onlyBookData, book } }));
   };
 
   switch (true) {
-    case booking?.customerId === userId:
+    case booking?.userId === userId:
       return (
         <ButtonStyled
           type='button'
@@ -33,7 +36,7 @@ const ButtonBooking = ({ book, booking, delivery }: TProps) => {
           забронирована
         </ButtonStyled>
       );
-    case booking?.order && booking?.customerId !== userId:
+    case booking?.order && booking?.userId !== userId:
       return (
         <ButtonStyled
           type='button'

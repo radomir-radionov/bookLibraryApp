@@ -1,4 +1,4 @@
-export type PostRegistrationProps = {
+export type TPostRegistrationPayload = {
   email: string;
   username: string;
   password: string;
@@ -7,16 +7,16 @@ export type PostRegistrationProps = {
   phone: string;
 };
 
-export type PostAuthenticationProps = {
-  identifier: string;
+export type TPostLoginPayload = {
+  email: string;
   password: string;
 };
 
-export type PostForgotPwdProps = {
+export type TPostForgotPwdPayload = {
   email: string;
 };
 
-export type PostResetPwdProps = {
+export type TPostResetPwdPayload = {
   password: string;
   passwordConfirmation: string;
   code: string;

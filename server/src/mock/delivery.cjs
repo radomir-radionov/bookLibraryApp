@@ -6,5 +6,4 @@ module.exports = {
   dateHandedTo: new Date(),
   recipientFirstName: 'Ал',
   recipientLastName: 'Вал',
-  createdAt: new Date(),
 }

@@ -1,7 +1,9 @@
 export interface TCategory {
+  id: number;
   name: string;
   path: string;
-  id: number;
+  createdAt: string;
+  updatedAt: string | null;
 }
 
 export interface TExtendedCategory extends TCategory {

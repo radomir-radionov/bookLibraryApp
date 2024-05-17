@@ -48,9 +48,7 @@ export const Header = styled.div`
     right: 32px;
     top: 32px;
     padding: 12px;
-    transition: all 0.2s ease-out;
     background-color: ${colors.GREY_BLACK_5};
-    filter: none;
 
     @media (max-width: ${device.tablet}) {
       right: 16px;
