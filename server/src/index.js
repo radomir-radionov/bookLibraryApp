@@ -1,24 +1,20 @@
 import path from 'path';
-import http from 'http';
+import { createServer } from 'http';
 import Koa from 'koa';
 import json from 'koa-json';
 import cors from '@koa/cors';
 import session from 'koa-session';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
-import { koaBody } from 'koa-body';
 import serve from 'koa-static';
 import helmet from 'koa-helmet';
 import dotenv from 'dotenv';
-import { Server } from 'socket.io';
-import Redis from 'ioredis';
-import redisStore from 'koa-redis';
-// import redisClient from './database/redis/index.js';
 import AppRoutes from './routes.js';
-import sessionConfig from './config/sessionConfig.js';
 import db from './database/postgres/instance/index.js';
 import errorHandler from './middlewares/errorHandler.js';
-// import redisClient from 'database/redis/index.js';
+import koaSession from './config/koaSession.js';
+import { handleConnection } from './api/chat/index.js';
+import { Server } from 'socket.io';
 
 dotenv.config();
 
@@ -32,38 +28,22 @@ app.keys = [process.env.SESSION_KEY];
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 app.use(serve(path.join(__dirname, '../public/images/covers')));
 
-const redisOptions = {
-  host: 'localhost',
-  port: 6379,
-};
-
 app
   .use(helmet())
   .use(errorHandler)
   .use(cors({ credentials: true }))
   .use(bodyParser())
-  .use(json());
-// .use(
-//   session(
-//     {
-//       store: redisStore({ client: redisClient }),
-//       maxAge: 86400000, // 1 day
-//     },
-//     app
-//   )
-// );
+  .use(json())
+  .use(session(koaSession, app));
 
-const server = http.createServer(app.callback()); // Create an HTTP server using Koa's callback function
-// const io = new Server(server, {
-//   cors: { origin: 'http://localhost:3000', credentials: true },
-// });
+const httpServer = createServer(app.callback());
 
-// io.use(wrap(sessionMiddleware));
-// io.on('connect', (socket) => {
-//   console.log(socket.request);
-// });
+export const io = new Server(httpServer, {
+  cors: { origin: 'http://localhost:3000' },
+});
+io.on('connection', (socket) => handleConnection(socket));
 
-AppRoutes.forEach((route) => router[route.method](route.path, route.action));
+AppRoutes.forEach(({ method, path, action }) => router[method](path, action));
 app.use(router.routes()).use(router.allowedMethods());
 
 const main = async () => {
@@ -78,9 +58,23 @@ const main = async () => {
         console.log(`Server started on port ${port}`);
       }
     });
+
+    httpServer.listen(process.env.WEBSOCKET_PORT, (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(
+          `Socket Server started on port ${process.env.WEBSOCKET_PORT}`
+        );
+      }
+    });
   } catch (err) {
     console.error('Unable to connect to the database:', err);
   }
 };
 
 main();
+
+// app.use(async (ctx) => {
+//   ctx.body = 'Hello from KoaJS';
+// });

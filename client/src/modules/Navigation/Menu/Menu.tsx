@@ -58,9 +58,6 @@ const Menu = () => {
             </ButtonFiltering>
           </Actions>
           <Actions>
-            <NavLinkStyled to={pageRoutes.CHAT}>
-              <ChatIcon width='20' height='20' />
-            </NavLinkStyled>
             <ButtonFiltering
               isActive={displayingData === 'tiles'}
               onClick={onBtnViewClick('tiles')}

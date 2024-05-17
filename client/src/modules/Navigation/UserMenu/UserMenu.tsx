@@ -2,7 +2,6 @@ import dataTestId from 'constants/dataTestId';
 import pageRoutes from 'constants/pageRoutes';
 
 import { useDispatch } from 'react-redux';
-import { userActions } from 'redux/user';
 
 import { MenuItem, NavLinkStyled, UserMenuStyled } from './styles';
 import { Dispatch, SetStateAction } from 'react';

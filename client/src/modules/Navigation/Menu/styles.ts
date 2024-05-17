@@ -57,6 +57,7 @@ export const ListIcon = styled(List_Icon)``;
 
 export const TilesIcon = styled(Tiles_Icon)``;
 
+// unused icon
 export const ChatIcon = styled(Chat_Icon)``;
 
 export const NavLinkStyled = styled(NavLink)`

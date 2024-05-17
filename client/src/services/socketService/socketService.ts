@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 
-// const socketService: Socket = io('http://localhost:5000', {
+// const socketService: Socket = io('http://localhost:', {
 //   autoConnect: false,
 //   withCredentials: true,
 // });

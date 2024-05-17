@@ -27,4 +27,5 @@ export { default as BookProfile } from './BooksList/BookProfile/BookProfile';
 
 export { default as Calendar } from './Calendar/Calendar';
 
-export { default as ChatWindow } from './ChatWindow/ChatWindow';
+export { default as ChatWindow } from './Chat/components/ChatWindow/ChatWindow';
+export { default as ChatBar } from './Chat/components/ChatBar/ChatBar';

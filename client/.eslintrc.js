@@ -12,6 +12,7 @@ module.exports = {
     },
   ],
   rules: {
+    'react-hooks/exhaustive-deps': ['warn', { additionalHooks: 'useEffect' }],
     'import/no-extraneous-dependencies': 'off',
     indent: 'off', // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^action' }],

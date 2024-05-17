@@ -69,7 +69,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "redux-saga": "^1.2.2",
-    "socket.io-client": "^4.7.2",
+    "socket.io-client": "^4.7.5",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.6",
     "uuidv4": "^6.2.13",
