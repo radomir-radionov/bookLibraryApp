@@ -29,7 +29,7 @@ const BookShort = ({ data }: TProps) => {
   return (
     <BookItemStyled onClick={onNavigateClick} data-test-id={dataTestId.CARD}>
       {image ? (
-        <Img src={`http://localhost:5000/${image}`} alt='Book cover' width='174' height='242' />
+        <Img src={`http://localhost:8080/${image}`} alt='Book cover' width='174' height='242' />
       ) : (
         <ImgBox>
           <CatIcon />

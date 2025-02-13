@@ -114,9 +114,8 @@ export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 1 445px;
-  max-width: 445px;
-  max-height: 593px;
+  flex: 1;
+  max-width: 360px;
   transition: all 0.2s ease-out;
 
   @media (max-width: ${device.laptop}) {
@@ -134,20 +133,21 @@ export const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
-  height: 593px;
+  width: 100%;
+  height: 100%;
+  max-height: 593px;
   background: ${colors.GREY_BLACK_5};
   border: 1px solid ${colors.GREY_BLACK_40};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 
   @media (max-width: ${device.laptop}) {
-    flex: 0 136px;
+    flex-basis: 136px;
     height: 198px;
   }
 
   @media (max-width: ${device.tablet}) {
-    flex: 0 188px;
+    flex-basis: 188px;
     height: 260px;
   }
 `;

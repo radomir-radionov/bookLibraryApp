@@ -3,8 +3,8 @@ import { colors, other } from 'styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const Img = styled.img`
-  width: 445px;
-  height: 593px;
+  width: 100%;
+  max-height: 593px;
   transition: all 0.2s ease-out;
 `;
 
@@ -18,11 +18,11 @@ export const ImgScroll = styled.img`
 `;
 
 export const ValueBar = styled(Swiper)`
-  width: 445px;
+  max-width: 445px;
 `;
 
 export const ChoiseBar = styled(Swiper)`
-  width: 445px;
+  max-width: 445px;
   margin-top: 16px;
   mask-image: linear-gradient(to left, rgba(0, 0, 0, -0.2) 0%, rgba(0, 0, 0, 1) 20%);
   -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, -0.2) 0%, rgba(0, 0, 0, 1) 20%);

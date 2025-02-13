@@ -41,7 +41,7 @@ const BookProfile = ({ type, data, dateHandedTo }: TProps) => {
   return (
     <BookStyled onClick={handleNavigateClick} data-test-id={dataTestId.CARD}>
       {image ? (
-        <Img src={`http://localhost:5000/${image}`} alt='Book cover' />
+        <Img src={`http://localhost:8080/${image}`} alt='Book cover' />
       ) : (
         <ImgBox>
           <CatIcon />

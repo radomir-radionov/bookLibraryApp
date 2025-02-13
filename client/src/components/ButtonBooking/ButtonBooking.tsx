@@ -2,7 +2,7 @@ import dataTestId from 'constants/dataTestId';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from 'redux/modal';
-import { selectUserDataId } from 'redux/user/selectors';
+import { selectUserId } from 'redux/user/selectors';
 import { MODAL_TYPES } from 'types/modal';
 import { formatDateButton } from 'utils/formatDate';
 
@@ -16,7 +16,7 @@ type TProps = {
 
 const ButtonBooking = ({ onlyBookData, book }: TProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector(selectUserDataId);
+  const userId = useSelector(selectUserId);
   const { booking, delivery } = book;
 
   const onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

@@ -13,6 +13,7 @@ import ImgTwo from './images/imgTwo.jpg';
 import NoCover from './images/nocover.jpg';
 import User from './images/user.jpg';
 
+export { ReactComponent as Chat_Icon } from './icons/chat.svg';
 export { ReactComponent as Loader_Icon } from './icons/loader.svg';
 export { ReactComponent as Chevron_Icon } from './icons/chevron.svg';
 export { ReactComponent as ChevronRight_Icon } from './icons/chevronRight.svg';

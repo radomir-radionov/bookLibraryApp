@@ -8,7 +8,7 @@ import { Container, Title, Wrapper } from './styles';
 
 const ForgotPwd = () => {
   const step = useSelector(selectStep);
-
+  console.log(1);
   const getStepToRender = () => {
     switch (true) {
       case step === 1:

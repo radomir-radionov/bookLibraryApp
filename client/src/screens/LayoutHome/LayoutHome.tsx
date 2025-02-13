@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Nav } from 'modules';
-import useWindowDimensions from 'utils/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { Content, LayoutHomeStyled } from './styles';
 

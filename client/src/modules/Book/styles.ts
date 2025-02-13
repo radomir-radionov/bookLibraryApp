@@ -5,6 +5,7 @@ export const BookStyled = styled.div`
   display: flex;
   flex-direction: column;
   gap: 42px;
+  width: 100%;
   max-width: 1100px;
   transition: all 0.2s ease-out;
 

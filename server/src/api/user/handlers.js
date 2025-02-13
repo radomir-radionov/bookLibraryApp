@@ -20,8 +20,7 @@ const {
   UPLOAD_AVATAR_SUCCESS,
   NO_FILE,
 } = errorText;
-const { bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias } =
-  modelAliases;
+const { bookAlias, deliveryAlias, bookingAlias, historyAlias, commentAlias } = modelAliases;
 
 const getUsers = async (ctx, next) => {
   const users = await User.findAll();
@@ -99,11 +98,7 @@ const updateUser = async (ctx, next) => {
 
   ctx.assert(foundedUser, 404, USER_NOT_FOUND);
 
-  const user = omit(foundedUser.dataValues, [
-    'passwordHash',
-    'createdAt',
-    'updatedAt',
-  ]);
+  const user = omit(foundedUser.dataValues, ['passwordHash', 'createdAt', 'updatedAt']);
 
   ctx.body = user;
 
@@ -158,7 +153,7 @@ const updateUserAvatarById = async (ctx, next) => {
 
 const createComment = async (ctx, next) => {
   const commentData = ctx.request.body;
-
+  console.log(commentData);
   const createdComment = await Comment.create(commentData);
   ctx.assert(createdComment, 404, CREATE_COMMENT_ERROR);
 

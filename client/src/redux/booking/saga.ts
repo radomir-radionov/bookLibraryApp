@@ -13,12 +13,12 @@ import prepareToastData from 'helpers/toast/createToast.js';
 import { TBookDetailed } from 'types/book.js';
 import { bookActions } from 'redux/book/slice.js';
 import { userActions } from 'redux/user/slice.js';
-import { selectUserDataId } from 'redux/user/selectors.js';
+import { selectUserId } from 'redux/user/selectors.js';
 
 export function* postBooking({ payload }: ReturnType<typeof bookingActions.createBookingReq>) {
   try {
     const { onlyBookData, preparedBookingData } = payload;
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
 
     yield call(() => bookingReqService.postBooking(preparedBookingData));
     yield put(userActions.getExtendeUserInfo(userId));
@@ -68,7 +68,7 @@ export function* putBooking({
 export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.deleteBookingReq>) {
   try {
     const { id, dataType } = payload;
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
 
     yield call(() => bookingReqService.deleteBooking(id));
     yield put(booksActions.getBooks());
@@ -93,7 +93,7 @@ export function* deleteBooking({ payload }: ReturnType<typeof bookingActions.del
 export function* deleteExpiredBooking({ payload }: ReturnType<typeof bookingActions.deleteExpiredBookingReq>) {
   try {
     const { id } = payload;
-    const userId: number = yield select(selectUserDataId);
+    const userId: number = yield select(selectUserId);
 
     yield call(() => bookingReqService.deleteExpiredBooking(id));
     yield put(userActions.getExtendeUserInfo(userId));

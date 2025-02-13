@@ -32,14 +32,12 @@ const Detailed = ({ data }: TProps) => {
       <Table>
         {tableGroups.map((group, index) => (
           <TColumn key={index}>
-            {group.map(({ id, text, value }) => {
-              return (
-                <TRow key={id}>
-                  <TProp>{text}</TProp>
-                  <TValue>{value}</TValue>
-                </TRow>
-              );
-            })}
+            {group.map(({ id, text, value }) => (
+              <TRow key={id}>
+                <TProp>{text}</TProp>
+                <TValue>{value ? value : '-'}</TValue>
+              </TRow>
+            ))}
           </TColumn>
         ))}
       </Table>

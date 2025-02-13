@@ -17,8 +17,11 @@ import {
   Name,
   MenuStyled,
   TilesIcon,
+  ChatIcon,
+  NavLinkStyled,
 } from './styles';
 import { useState } from 'react';
+import pageRoutes from 'constants/pageRoutes';
 
 const Menu = () => {
   const dispatch = useDispatch();

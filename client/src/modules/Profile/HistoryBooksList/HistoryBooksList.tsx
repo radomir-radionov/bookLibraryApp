@@ -1,8 +1,8 @@
 import dataTestId from 'constants/dataTestId';
 import hintText from 'constants/hintText';
 
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectBooks } from 'redux/books/selectors';
 import { BookShort } from 'modules';
 import { EmptyData } from 'modules/Profile';
@@ -11,18 +11,30 @@ import { TBook, THistoryBook } from 'types/book';
 
 import { breakpoints } from './data';
 import { Text, Header, HistoryBooksListStyled, SwiperSlideStyled, SwiperStyled, Title } from './styles';
+import { booksActions } from 'redux/books';
 
 type TProps = {
   data: THistoryBook[];
 };
 
 const HistoryBooksList = ({ data }: TProps) => {
+  const [ignore, setIgnore] = useState(false);
   const allBooks = useSelector(selectBooks);
   const [historyBooks, setHistoryBook] = useState<TBook[]>([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     data && setHistoryBook(data.map(({ bookId }: THistoryBook) => allBooks.find(({ id }) => bookId === id)) as TBook[]);
   }, [data, allBooks]);
+
+  useLayoutEffect(() => {
+    if (ignore) {
+      dispatch(booksActions.getBooks());
+    }
+
+    return () => setIgnore(true);
+  }, [dispatch, ignore]);
 
   return (
     <HistoryBooksListStyled data-test-id={dataTestId.HISTORY}>

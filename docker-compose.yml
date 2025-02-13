@@ -14,6 +14,11 @@ services:
     ports:
       - '${HOST_DB_PORT}:5432'
 
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: unless-stopped
+
   server:
     container_name: server
     build:
@@ -29,7 +34,8 @@ services:
       - ./server/src:/server/src
       - '/server/node_modules' # ensure that the directory is available within the container.
     ports:
-      - '${APP_PORT}:5000'
+      - '${APP_PORT}:8080'
+      - '${WEBSOCKET_PORT}:4000'
 
   client:
     container_name: client
