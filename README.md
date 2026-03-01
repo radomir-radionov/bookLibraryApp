@@ -5,24 +5,21 @@
 ## The technology stack:
 
 - client:
-
   - React, Typescript
   - Redux Toolkit, Redux-Saga
   - Styled Components
 
 - server:
-
   - Node.js, Koa.js
   - PostgreSQL, Sequelize
   - JWT
 
 - tools:
-
-  - Git, Docker, DBeaver, Insomnia
+  - Git, DBeaver, Insomnia
 
 ### Configuration
 
-App builds using `Docker`.
+Run the server and client locally (see Project installation).
 
 ### Client
 
@@ -39,7 +36,7 @@ App builds using `Docker`.
 9. User's opportunities: `Booking` and `Delivering` a book and more. Also, view the history of all the books you've read.
 10. Ability to recover the password through the message on the email.
 11. This app uses `swiper` for sliders.
-12. More than 100 tests have been written to test(e2e) the application using `Cypress`.
+12. Tests are written using Jest and React Testing Library.
 
 ### Server
 
@@ -78,3 +75,7 @@ Each entity has files like `index.js`,`routes.js`, `handlers.js`, `entityName.js
 
 src: https://drive.google.com/drive/folders/1cvz-B15d51kwQpbgaY8qrA_y3VWgnq3Z  
 figma: https://www.figma.com/file/d8LhhLjMkaTfPvAcYQULNv/Library---students-file?node-id=3601%3A32186&mode=dev
+
+`npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string` -create model:User  
+`npx sequelize-cli seed:generate --name example-booking` - create a seed`  
+`db:migrate": "npx sequelize-cli db:migrate`- need to invoke every time when migtatings are changed

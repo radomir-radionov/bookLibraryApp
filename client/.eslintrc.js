@@ -1,7 +1,7 @@
 module.exports = {
   extends: [require.resolve('arui-presets-lint/eslint'), 'plugin:react/jsx-runtime'],
   parserOptions: {
-    project: ['./tsconfig.eslint.json' /* './cypress/tsconfig.json' */],
+    project: ['./tsconfig.eslint.json'],
   },
   overrides: [
     {
@@ -42,5 +42,5 @@ module.exports = {
     'unicorn/filename-case': 'off',
   },
 
-  ignorePatterns: ['coverage', 'cypress.config.ts'],
+  ignorePatterns: ['coverage'],
 };
