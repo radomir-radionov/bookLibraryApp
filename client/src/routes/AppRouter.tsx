@@ -5,7 +5,6 @@ import {
   Auth,
   AuthLayout,
   Book,
-  Chat,
   ForgotPwd,
   Home,
   Layout,
@@ -24,7 +23,6 @@ function AppRouter() {
           <Route element={<LayoutHome />}>
             <Route path={pageRoutes.HOME} element={<Navigate to={pageRoutes.BOOKS_ALL} />} />
             <Route path={pageRoutes.BOOK_CATEGORY} element={<Home />} />
-            <Route path={pageRoutes.CHAT} element={<Chat />} />
             <Route path={pageRoutes.TERMS} element={<Terms contentView='terms' />} />
             <Route path={pageRoutes.CONTRACT} element={<Terms contentView='contract' />} />
           </Route>

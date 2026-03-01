@@ -67,7 +67,7 @@ bookLibraryApp/
 │   │   └── routes.js       # Aggregated API routes
 │   ├── .env.example
 │   └── package.json
-├── run-app.sh              # Install deps, copy .env, migrate, seed
+├── run.sh                  # Run server + client (install and DB setup first)
 └── desc.md                 # Sequelize CLI notes
 ```
 
@@ -84,18 +84,20 @@ bookLibraryApp/
 
 From the project root:
 
+**First-time setup:** install deps, create `.env`, run migrations and seeds:
+
 ```bash
-./run-app.sh
+cd server && yarn install && cp .env.example .env && yarn db:migrate && yarn db:seed:up
+cd ../client && yarn install
 ```
 
-This will:
+**Run server and client:**
 
-1. Install client and server dependencies
-2. Copy `server/.env.example` to `server/.env`
-3. Run DB migrations: `yarn run db:migrate` (in server)
-4. Run seeds: `yarn run db:seed:up`
+```bash
+./run.sh
+```
 
-Then start the server (`cd server && yarn start`) and client (`cd client && yarn start`) in separate terminals.
+This starts the server in the background and the client in the foreground. Ctrl+C stops both.
 
 ### Manual setup
 

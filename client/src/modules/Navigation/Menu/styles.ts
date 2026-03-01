@@ -4,7 +4,6 @@ import {
   ActionSearching_Icon,
   List_Icon,
   Tiles_Icon,
-  Chat_Icon,
 } from 'assets';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -56,9 +55,6 @@ export const ActionSearchingIcon = styled(ActionSearching_Icon)``;
 export const ListIcon = styled(List_Icon)``;
 
 export const TilesIcon = styled(Tiles_Icon)``;
-
-// unused icon
-export const ChatIcon = styled(Chat_Icon)``;
 
 export const NavLinkStyled = styled(NavLink)`
   display: flex;

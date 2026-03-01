@@ -17,7 +17,6 @@ import {
   Name,
   MenuStyled,
   TilesIcon,
-  ChatIcon,
   NavLinkStyled,
 } from './styles';
 import { useState } from 'react';

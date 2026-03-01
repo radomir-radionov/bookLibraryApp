@@ -6,7 +6,6 @@ import { ChevronIcon, NavItem, NavList, NavStyled, NavLinkStyled } from './style
 import navListData from './data';
 import pageRoutes from 'constants/pageRoutes';
 import dataTestId from 'constants/dataTestId';
-import socket from 'socket';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/user/selectors';
 
@@ -34,8 +33,6 @@ const Nav = ({ visible = false, isBurgerMenuOpen, setIsBurgerMenuOpen }: TProps)
   const onNavItemClick = (e: MouseEvent<HTMLLIElement>) => {
     setActiveIndex(+e.currentTarget.id);
     !!setIsBurgerMenuOpen && setIsBurgerMenuOpen(!isBurgerMenuOpen);
-
-    if (+e.currentTarget.id === 1 && !socket.connected) socket.emit('joinUser', { name: username, room: 'JavaScript' });
   };
   const onChevronItemClick = () => setIsOpenCategoriesList(!isOpenCategoriesList);
 

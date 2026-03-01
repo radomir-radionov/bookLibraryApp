@@ -48,7 +48,8 @@ Run the server and client locally (see Project installation).
 
 ### Project installation
 
-- './install_project.sh' - to init base project config
+- Copy `server/.env.example` to `server/.env`, set DB and other vars. In `server/`: `yarn install`, `yarn db:migrate`, `yarn db:seed:up`. In `client/`: `yarn install`.
+- `./run.sh` — start server and client from project root.
 
 ### file/folder structure
 
@@ -79,3 +80,7 @@ figma: https://www.figma.com/file/d8LhhLjMkaTfPvAcYQULNv/Library---students-file
 `npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string` -create model:User  
 `npx sequelize-cli seed:generate --name example-booking` - create a seed`  
 `db:migrate": "npx sequelize-cli db:migrate`- need to invoke every time when migtatings are changed
+
+test1
+test1AAAA
+radomir.radionov01@gmail.com

@@ -7,7 +7,6 @@ enum pageRoutes {
   TERMS = '/terms',
   CONTRACT = '/contract',
   PROFILE = '/profile',
-  CHAT = '/chat',
 
   AUTH = '/auth',
   REGISTRATION = '/registration',
