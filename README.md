@@ -2,6 +2,8 @@
 
 **_Don't forget about star_**
 
+To run app use run.sh, don't forget about dbeaver-connection.md
+
 ## The technology stack:
 
 - client:
